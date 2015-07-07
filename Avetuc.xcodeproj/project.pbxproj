@@ -19,6 +19,12 @@
 		789EB36C1B4B92870039DDBA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36B1B4B92870039DDBA /* Account.swift */; };
 		789EB36E1B4B92870039DDBA /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36D1B4B92870039DDBA /* PhotoEntity.swift */; };
 		789EB3701B4B92870039DDBA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36F1B4B92870039DDBA /* Tweet.swift */; };
+		789EB3761B4B94580039DDBA /* LocalStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3751B4B94580039DDBA /* LocalStoreService.swift */; };
+		789EB37A1B4B95100039DDBA /* ModelActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3791B4B95100039DDBA /* ModelActions.swift */; };
+		789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB37C1B4B95BD0039DDBA /* AccountData.swift */; };
+		789EB3801B4B960B0039DDBA /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB37F1B4B960B0039DDBA /* Dispatcher.swift */; };
+		789EB3821B4B96700039DDBA /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3811B4B96700039DDBA /* AccountsStore.swift */; };
+		789EB3871B4B970C0039DDBA /* DispatcherUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3861B4B970C0039DDBA /* DispatcherUtilities.swift */; };
 		78A7C9C81B49C31800CC7BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */; };
 		78A7C9C91B49C31800CC7BB4 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */; };
 		78A7C9CA1B49C31800CC7BB4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */; };
@@ -53,6 +59,12 @@
 		789EB36B1B4B92870039DDBA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		789EB36D1B4B92870039DDBA /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = ../PhotoEntity.swift; sourceTree = "<group>"; };
 		789EB36F1B4B92870039DDBA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		789EB3751B4B94580039DDBA /* LocalStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStoreService.swift; sourceTree = "<group>"; };
+		789EB3791B4B95100039DDBA /* ModelActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelActions.swift; sourceTree = "<group>"; };
+		789EB37C1B4B95BD0039DDBA /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		789EB37F1B4B960B0039DDBA /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		789EB3811B4B96700039DDBA /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
+		789EB3861B4B970C0039DDBA /* DispatcherUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherUtilities.swift; sourceTree = "<group>"; };
 		78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Avetuc.xcdatamodel; sourceTree = "<group>"; };
 		78A7C9BF1B49C31800CC7BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -122,6 +134,7 @@
 				789EB36B1B4B92870039DDBA /* Account.swift */,
 				789EB36F1B4B92870039DDBA /* Tweet.swift */,
 				789EB3611B4B92870039DDBA /* User.swift */,
+				78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -139,16 +152,69 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		789EB3741B4B94580039DDBA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				789EB3751B4B94580039DDBA /* LocalStoreService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		789EB37B1B4B95130039DDBA /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				789EB3791B4B95100039DDBA /* ModelActions.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		789EB37E1B4B95C10039DDBA /* ImmutableModels */ = {
+			isa = PBXGroup;
+			children = (
+				789EB37C1B4B95BD0039DDBA /* AccountData.swift */,
+			);
+			name = ImmutableModels;
+			sourceTree = "<group>";
+		};
+		789EB3831B4B96730039DDBA /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				789EB3811B4B96700039DDBA /* AccountsStore.swift */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		789EB3841B4B969A0039DDBA /* UIs */ = {
+			isa = PBXGroup;
+			children = (
+				78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */,
+				78A7C9C41B49C31800CC7BB4 /* ViewController.swift */,
+				78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */,
+				78A7C9C21B49C31800CC7BB4 /* Images.xcassets */,
+			);
+			name = UIs;
+			sourceTree = "<group>";
+		};
+		789EB3851B4B96B80039DDBA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				78A7C9C31B49C31800CC7BB4 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 		78A7C9BA1B49C31800CC7BB4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				783DFBD81B4B677E00222ACF /* Models */,
-				78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */,
-				78A7C9C21B49C31800CC7BB4 /* Images.xcassets */,
-				78A7C9C31B49C31800CC7BB4 /* Info.plist */,
-				78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */,
-				78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */,
-				78A7C9C41B49C31800CC7BB4 /* ViewController.swift */,
+				789EB37E1B4B95C10039DDBA /* ImmutableModels */,
+				789EB3741B4B94580039DDBA /* Services */,
+				789EB37B1B4B95130039DDBA /* Actions */,
+				789EB3831B4B96730039DDBA /* Stores */,
+				789EB3841B4B969A0039DDBA /* UIs */,
+				789EB37F1B4B960B0039DDBA /* Dispatcher.swift */,
+				789EB3861B4B970C0039DDBA /* DispatcherUtilities.swift */,
+				789EB3851B4B96B80039DDBA /* Support Files */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -325,8 +391,10 @@
 			files = (
 				783DFBE81B4B680700222ACF /* TimestampUtility.swift in Sources */,
 				78A7C9CE1B49C31800CC7BB4 /* ViewController.swift in Sources */,
+				789EB3801B4B960B0039DDBA /* Dispatcher.swift in Sources */,
 				789EB36A1B4B92870039DDBA /* MentionEntity.swift in Sources */,
 				789EB3701B4B92870039DDBA /* Tweet.swift in Sources */,
+				789EB3821B4B96700039DDBA /* AccountsStore.swift in Sources */,
 				789EB3601B4B92860039DDBA /* UrlEntity.swift in Sources */,
 				789EB3641B4B92870039DDBA /* HashtagEntity.swift in Sources */,
 				789EB36C1B4B92870039DDBA /* Account.swift in Sources */,
@@ -334,9 +402,13 @@
 				78A7C9C81B49C31800CC7BB4 /* AppDelegate.swift in Sources */,
 				783DFBEE1B4B686D00222ACF /* BaseUtility.swift in Sources */,
 				789EB3681B4B92870039DDBA /* Entity.swift in Sources */,
+				789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */,
+				789EB3761B4B94580039DDBA /* LocalStoreService.swift in Sources */,
 				789EB3661B4B92870039DDBA /* MediaSize.swift in Sources */,
 				78A7C9C91B49C31800CC7BB4 /* Avetuc.xcdatamodeld in Sources */,
 				789EB3621B4B92870039DDBA /* User.swift in Sources */,
+				789EB37A1B4B95100039DDBA /* ModelActions.swift in Sources */,
+				789EB3871B4B970C0039DDBA /* DispatcherUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +618,8 @@
 				78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */,
 			);
 			currentVersion = 78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */;
-			path = Avetuc.xcdatamodeld;
+			name = Avetuc.xcdatamodeld;
+			path = ../Avetuc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
