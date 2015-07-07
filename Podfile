@@ -3,3 +3,4 @@ use_frameworks!
 
 pod 'CoreStore'
 pod 'ReactKit'
+pod 'SwiftyJSON'
