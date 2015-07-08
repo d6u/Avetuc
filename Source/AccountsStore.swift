@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EmitterKit
 
 class AccountsStore {
 
@@ -21,12 +22,20 @@ class AccountsStore {
         return Static.instance!
     }
 
-    var account: AccountData!
-
     init() {
-        Dispatcher.instance.register(.Account, callback: { (account) -> Void in
+        listener = Dispatcher.instance.register(.Account) { account in
             self.account = account
-        })
+            self.event.emit(account)
+        }
+    }
+
+    private let event = Event<AccountData?>()
+    private var listener: Listener?
+
+    var account: AccountData?
+
+    func on(callback: AccountDataHandler) -> Listener {
+        return event.on(callback)
     }
 
 }

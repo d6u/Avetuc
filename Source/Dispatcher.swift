@@ -7,14 +7,7 @@
 //
 
 import Foundation
-
-enum DispatcherEventType {
-    case Account
-    case Friends
-    case Tweets
-}
-
-typealias AccountEventCallback = (AccountData) -> Void
+import EmitterKit
 
 class Dispatcher {
 
@@ -29,26 +22,19 @@ class Dispatcher {
         return Static.instance!
     }
 
-    var accountEventCallbacks = [AccountEventCallback]()
+    let accountEvent = Event<AccountData?>()
 
-    func register(type: DispatcherEventType, callback: AccountEventCallback) {
-        accountEventCallbacks.append(callback)
-    }
-
-    func dispatch(type: DispatcherEventType, payload: [Any]) {
+    func register(type: DispatcherEventType, callback: AccountDataHandler) -> Listener {
         switch type {
         case .Account:
-            let account = payload[0] as! AccountData
-            for callback in accountEventCallbacks {
-                callback(account)
-            }
-        case .Friends:
-            break
-        case .Tweets:
-            break
+            return accountEvent.on(callback)
         default:
-            break
+            assert(false, "Unrecognized type")
         }
+    }
+
+    func dispatchAccountData(account: AccountData?) {
+        accountEvent.emit(account)
     }
 
 }

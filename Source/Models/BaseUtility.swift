@@ -20,10 +20,6 @@ class BaseUtility: NSManagedObject {
         return self.entity.attributesByName[name] != nil
     }
 
-    // TODO: Move to Tweet class
-    //                // "description" is reserved property
-    //                let propertyName = key == "description" ? "twitterDescription" : key
-
     func setPropertiesFromJson(json: JSON)
     {
         if let dict = json.object as? [String: JSON]

@@ -20,4 +20,8 @@ class Account: BaseUtility {
     @NSManaged var profile: User
     @NSManaged var relatedTweets: NSSet
 
+    func toImmutable() -> AccountData {
+        return AccountData()
+    }
+
 }

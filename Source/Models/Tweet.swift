@@ -31,4 +31,8 @@ class Tweet: TimestampUtility {
     @NSManaged var retweetingStatus: NSSet
     @NSManaged var user: User
 
+    // TODO: Move to Tweet class
+    //                // "description" is reserved property
+    //                let propertyName = key == "description" ? "twitterDescription" : key
+
 }

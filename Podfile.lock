@@ -1,22 +1,19 @@
 PODS:
   - CoreStore (0.2.0):
     - GCDKit (= 1.0.1)
+  - EmitterKit (3.2.1)
   - GCDKit (1.0.1)
-  - ReactKit (0.11.2):
-    - SwiftTask (~> 3.3.0)
-  - SwiftTask (3.3.0)
   - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
   - CoreStore
-  - ReactKit
+  - EmitterKit (~> 3.2)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   CoreStore: 5fa31d08544ac6b183993aa8a9c766072e20f8b7
+  EmitterKit: c052cafcca0052005760d18e0c7f163df13730c3
   GCDKit: cabc5ea4ae8d53134e657b59c99e16141d15a8fd
-  ReactKit: 826b40273ddb82e33fdc358aa19afa037f595e7e
-  SwiftTask: 8bc1ec4e0348ce8a40436af737992174485f8996
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
 COCOAPODS: 0.37.2

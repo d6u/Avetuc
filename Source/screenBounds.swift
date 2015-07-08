@@ -1,5 +1,5 @@
 //
-//  DispatcherUtilities.swift
+//  screenBounds.swift
 //  Avetuc
 //
 //  Created by Daiwei Lu on 7/7/15.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
+func screenBounds() -> CGRect {
+    return UIScreen.mainScreen().bounds
+}

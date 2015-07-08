@@ -9,11 +9,14 @@
 import UIKit
 import CoreStore
 
-class ViewController: UIViewController {
+class FriendsViewController:
+    UITableViewController,
+    UITableViewDelegate,
+    UITableViewDataSource
+{
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
 }
-
