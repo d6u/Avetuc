@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7406855C0784655A98959FE3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12FB6C8B182C1AC1890F045 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		78165E3F1B4CD167008FDA47 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78165E3E1B4CD167008FDA47 /* IntroView.swift */; };
 		782CA6C91B4CABF500B09573 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6C81B4CABF500B09573 /* screenBounds.swift */; };
 		782CA6CD1B4CAE4E00B09573 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */; };
 		782CA6CF1B4CB03B00B09573 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		1EFD2B1E3F77A4E587004E62 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		25FA77F5E4EF2000FA2846FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		78165E3E1B4CD167008FDA47 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		782CA6C81B4CABF500B09573 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
 		782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */,
 				782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */,
 				782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */,
+				78165E3E1B4CD167008FDA47 /* IntroView.swift */,
 				78A7C9C41B49C31800CC7BB4 /* FriendsViewController.swift */,
 			);
 			name = UIs;
@@ -227,9 +230,9 @@
 				789EB3841B4B969A0039DDBA /* UIs */,
 				789EB37B1B4B95130039DDBA /* Actions */,
 				789EB3831B4B96730039DDBA /* Stores */,
-				789EB37E1B4B95C10039DDBA /* ImmutableModels */,
 				789EB3741B4B94580039DDBA /* Services */,
 				783DFBD81B4B677E00222ACF /* Models */,
+				789EB37E1B4B95C10039DDBA /* ImmutableModels */,
 				782CA6C71B4CABCC00B09573 /* Utilities */,
 				789EB3851B4B96B80039DDBA /* Support Files */,
 			);
@@ -423,6 +426,7 @@
 				789EB3681B4B92870039DDBA /* Entity.swift in Sources */,
 				789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */,
 				787C37C51B4CC32E0035B2FB /* EventUtilities.swift in Sources */,
+				78165E3F1B4CD167008FDA47 /* IntroView.swift in Sources */,
 				789EB3761B4B94580039DDBA /* LocalStorageService.swift in Sources */,
 				782CA6C91B4CABF500B09573 /* screenBounds.swift in Sources */,
 				789EB3661B4B92870039DDBA /* MediaSize.swift in Sources */,

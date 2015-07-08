@@ -13,7 +13,10 @@ class IntroViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+        view = IntroView()
     }
+
+    // MARK: - No use
 
     required convenience init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

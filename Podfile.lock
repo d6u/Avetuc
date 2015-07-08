@@ -3,17 +3,20 @@ PODS:
     - GCDKit (= 1.0.1)
   - EmitterKit (3.2.1)
   - GCDKit (1.0.1)
+  - SnapKit (0.12.0)
   - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
   - CoreStore
   - EmitterKit (~> 3.2)
+  - SnapKit (~> 0.12.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   CoreStore: 5fa31d08544ac6b183993aa8a9c766072e20f8b7
   EmitterKit: c052cafcca0052005760d18e0c7f163df13730c3
   GCDKit: cabc5ea4ae8d53134e657b59c99e16141d15a8fd
+  SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
 COCOAPODS: 0.37.2

@@ -12,27 +12,39 @@ import EmitterKit
 
 class RootViewController: UINavigationController {
 
-    private let event = Event<String>()
-    private var accountListener: Listener
-
-    let friendsTableViewController = FriendsViewController()
-
     init() {
+        super.init(nibName: nil, bundle: nil)
+
         accountListener = AccountsStore.instance.on { account in
             if let account = account {
                 println("has account")
             } else {
-                println("no account")
+                self.presentIntroView()
             }
         }
-
-        super.init(nibName: nil, bundle: nil)
-
-        AccountActions.askCurrentAccount()
     }
+
+    private let event = Event<String>()
+    private var accountListener: Listener?
+
+    let friendsTableViewController = FriendsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pushViewController(friendsTableViewController, animated: false)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        AccountActions.askCurrentAccount()
+    }
+
+    func presentIntroView()
+    {
+        let introViewController = IntroViewController()
+//        introViewController.transitioningDelegate = self.transitionDelegate
+//        introViewController.modalPresentationStyle = .Custom
+        self.presentViewController(introViewController, animated: true, completion: nil)
     }
 
     // MARK: - No use
