@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreStore
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window.rootViewController = RootViewController()
         window.makeKeyAndVisible()
+
+        let api = TwitterApi(consumerKey: "t438xJ7yjwTWn7MeW2tH9Q", consumerSecret: "AVtSkceC0eB4eiTYRXJzemqJTRNhF2JWGV9Ax5K0Pw0")
+
+        api.fetch(.OauthRequestToken, params: .OauthCallback("avetuc://twitter_callback"))
 
         return true
     }
