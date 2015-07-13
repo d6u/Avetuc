@@ -15,44 +15,44 @@ class IntroView: UIView {
     init() {
         super.init(frame: CGRectZero)
 
-        backgroundColor = UIColor(white: 0, alpha: 0)
+        self.backgroundColor = UIColor(white: 0, alpha: 0)
 
-        background.backgroundColor = UIColor.blackColor()
-        background.alpha = 0
-        background.frame = frame
+        self.background.backgroundColor = UIColor.blackColor()
+        self.background.alpha = 0
+        self.background.frame = frame
 
-        backgroundPlate.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height - 20)
-        backgroundPlate.backgroundColor = UIColor.greenColor()
-        backgroundPlate.layer.cornerRadius = 6
-        backgroundPlate.layer.masksToBounds = true
+        self.backgroundPlate.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height - 20)
+        self.backgroundPlate.backgroundColor = UIColor.greenColor()
+        self.backgroundPlate.layer.cornerRadius = 6
+        self.backgroundPlate.layer.masksToBounds = true
 
-        webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
-        iosAuthButton.frame = CGRect(x: 170, y: 100, width: 130, height: 200)
+        self.webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
+        self.iosAuthButton.frame = CGRect(x: 170, y: 100, width: 130, height: 200)
 
-        webAuthButton.backgroundColor = UIColor.redColor()
-        webAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        webAuthButton.setTitle("Web Auth", forState: UIControlState.Normal)
+        self.webAuthButton.backgroundColor = UIColor.redColor()
+        self.webAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.webAuthButton.setTitle("Web Auth", forState: UIControlState.Normal)
 
-        iosAuthButton.backgroundColor = UIColor.purpleColor()
-        iosAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        iosAuthButton.setTitle("iOS Auth", forState: UIControlState.Normal)
+        self.iosAuthButton.backgroundColor = UIColor.purpleColor()
+        self.iosAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.iosAuthButton.setTitle("iOS Auth", forState: UIControlState.Normal)
 
-        webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
-        iosAuthButton.addTarget(self, action: "iosAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        self.iosAuthButton.addTarget(self, action: "iosAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 
-        addSubview(background)
-        addSubview(backgroundPlate)
-        addSubview(webAuthButton)
-        addSubview(iosAuthButton)
+        self.addSubview(self.background)
+        self.addSubview(self.backgroundPlate)
+        self.addSubview(self.webAuthButton)
+        self.addSubview(self.iosAuthButton)
 
-        webAuthButton.snp_makeConstraints { (make) -> Void in
+        self.webAuthButton.snp_makeConstraints { (make) -> Void in
             make.centerY.equalTo(self.snp_centerY)
             make.centerX.equalTo(self.snp_centerX).multipliedBy(1.5)
             make.width.equalTo(self.snp_width).dividedBy(3)
             make.height.equalTo(300)
         }
 
-        iosAuthButton.snp_makeConstraints { (make) -> Void in
+        self.iosAuthButton.snp_makeConstraints { (make) -> Void in
             make.centerY.equalTo(self.snp_centerY)
             make.centerX.equalTo(self.snp_centerX).multipliedBy(0.5)
             make.width.equalTo(self.snp_width).dividedBy(3)
@@ -65,6 +65,14 @@ class IntroView: UIView {
     let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let iosAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+
+    func webAuthButtonTapped() {
+        AccountActions.addAccountThroughWeb()
+    }
+
+    func iosAuthButtonTapped() {
+
+    }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

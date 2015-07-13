@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 func paramsToDict(params: [TwitterApiParam]) -> [String: String] {
     var dict = [String: String]()
@@ -87,4 +88,14 @@ let UrlEncoder = Alamofire.ParameterEncoding.Custom { (request, params) -> (NSUR
     }
 
     return (mutableUrlRequest, nil)
+}
+
+func parseQueryParams(queryStr: String) -> JSON {
+    let pairs = queryStr.componentsSeparatedByString("&")
+    var dict = [String: String]()
+    for pair in pairs {
+        let keyValue = pair.componentsSeparatedByString("=")
+        dict[keyValue[0]] = keyValue[1]
+    }
+    return JSON(dict)
 }

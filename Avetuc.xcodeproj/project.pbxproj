@@ -34,6 +34,8 @@
 		789EB3821B4B96700039DDBA /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3811B4B96700039DDBA /* AccountsStore.swift */; };
 		78A7B0C61B52AA070058C3C8 /* SortedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B0C51B52AA070058C3C8 /* SortedDictionary.swift */; };
 		78A7B1331B52F36F0058C3C8 /* TwitterApiParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1321B52F36F0058C3C8 /* TwitterApiParam.swift */; };
+		78A7B1351B535BF00058C3C8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1341B535BF00058C3C8 /* Config.swift */; };
+		78A7B1371B535F4F0058C3C8 /* TwitterApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */; };
 		78A7C9C81B49C31800CC7BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */; };
 		78A7C9C91B49C31800CC7BB4 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */; };
 		78A7C9CA1B49C31800CC7BB4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */; };
@@ -84,6 +86,8 @@
 		789EB3811B4B96700039DDBA /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		78A7B0C51B52AA070058C3C8 /* SortedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortedDictionary.swift; sourceTree = "<group>"; };
 		78A7B1321B52F36F0058C3C8 /* TwitterApiParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiParam.swift; sourceTree = "<group>"; };
+		78A7B1341B535BF00058C3C8 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterApiService.swift; path = ../TwitterApiService.swift; sourceTree = "<group>"; };
 		78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Avetuc.xcdatamodel; sourceTree = "<group>"; };
 		78A7C9BF1B49C31800CC7BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				789EB3751B4B94580039DDBA /* LocalStorageService.swift */,
+				78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			children = (
 				789EB37F1B4B960B0039DDBA /* Dispatcher.swift */,
 				787C37C41B4CC32E0035B2FB /* EventUtilities.swift */,
+				78A7B1341B535BF00058C3C8 /* Config.swift */,
 				789EB3841B4B969A0039DDBA /* UIs */,
 				789EB37B1B4B95130039DDBA /* Actions */,
 				789EB3831B4B96730039DDBA /* Stores */,
@@ -451,11 +457,13 @@
 				783DFBEE1B4B686D00222ACF /* BaseUtility.swift in Sources */,
 				788A2E541B5228A700EF1C5A /* TwitterApi.swift in Sources */,
 				782CA6CF1B4CB03B00B09573 /* IntroViewController.swift in Sources */,
+				78A7B1351B535BF00058C3C8 /* Config.swift in Sources */,
 				789EB3681B4B92870039DDBA /* Entity.swift in Sources */,
 				789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */,
 				787C37C51B4CC32E0035B2FB /* EventUtilities.swift in Sources */,
 				78165E3F1B4CD167008FDA47 /* IntroView.swift in Sources */,
 				789EB3761B4B94580039DDBA /* LocalStorageService.swift in Sources */,
+				78A7B1371B535F4F0058C3C8 /* TwitterApiService.swift in Sources */,
 				782CA6C91B4CABF500B09573 /* screenBounds.swift in Sources */,
 				788A2E5D1B52323800EF1C5A /* TwitterApiEndpoint.swift in Sources */,
 				789EB3661B4B92870039DDBA /* MediaSize.swift in Sources */,

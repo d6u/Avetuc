@@ -18,4 +18,12 @@ struct AccountActions {
         LocalStorageService.instance.loadDefaultAccount()
     }
 
+    static func addAccountThroughWeb() {
+        TwitterApiService.instance.addAccountThroughWeb()
+    }
+
+    static func handleCallbackUrl(url: NSURL) {
+        TwitterApiService.instance.handleOauthCallback(url)
+    }
+
 }

@@ -11,11 +11,14 @@ import Foundation
 enum TwitterApiParam {
 
     case OauthCallback(String)
+    case OauthVerifier(String)
 
     var keyValuePair: (String, String) {
         switch self {
         case .OauthCallback(let value):
             return ("oauth_callback", value)
+        case .OauthVerifier(let value):
+            return ("oauth_verifier", value)
         }
     }
 }

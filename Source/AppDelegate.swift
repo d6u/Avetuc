@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(
+        application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         let window = UIWindow(frame: screenBounds())
 
@@ -24,10 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = RootViewController()
         window.makeKeyAndVisible()
 
-        let api = TwitterApi(consumerKey: "t438xJ7yjwTWn7MeW2tH9Q", consumerSecret: "AVtSkceC0eB4eiTYRXJzemqJTRNhF2JWGV9Ax5K0Pw0")
+        return true
+    }
 
-        api.fetch(.OauthRequestToken, params: .OauthCallback("avetuc://twitter_callback"))
-
+    func application(
+        application: UIApplication, 
+        openURL url: NSURL,
+        sourceApplication: String?, 
+        annotation: AnyObject?) -> Bool
+    {
+        AccountActions.handleCallbackUrl(url)
         return true
     }
 
@@ -45,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication)
     {
-        CoreStore.beginSynchronous { (transaction) -> Void in
+        CoreStore.beginSynchronous { transaction in
             transaction.commit()
         }
     }

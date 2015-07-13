@@ -13,7 +13,7 @@ class IntroViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        view = IntroView()
+        self.view = IntroView()
     }
 
     // MARK: - No use

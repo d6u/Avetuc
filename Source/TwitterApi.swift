@@ -8,6 +8,11 @@
 
 import Foundation
 import Alamofire
+import SwiftTask
+import SwiftyJSON
+
+typealias Progress = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
+typealias TwitterApiTask = Task<Progress, JSON, NSError>
 
 class TwitterApi {
 
@@ -21,16 +26,29 @@ class TwitterApi {
     var oauthToken: String?
     var oauthSecret: String?
 
-    func fetch(endpoint: TwitterApiEndpoint, params: TwitterApiParam...) -> Request {
-        Alamofire.request(self.buildRequest(endpoint, params: params))
-            .response { (request, response, data, error) in
-                switch endpoint {
-                case .OauthRequestToken:
-
-                default:
-
+    func fetch(endpoint: TwitterApiEndpoint, params: TwitterApiParam...) -> TwitterApiTask {
+        return TwitterApiTask { progress, fulfill, reject, configure in
+            Alamofire
+                .request(self.buildRequest(endpoint, params: params))
+                .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                    progress((bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) as Progress)
                 }
-            }
+                .response { request, response, data, error in
+                    if let error = error {
+                        reject(error)
+                        return
+                    }
+
+                    switch endpoint {
+                    case .OauthRequestToken: fallthrough
+                    case .OauthAccessToken:
+                        let json = parseQueryParams(NSString(data: data as! NSData, encoding: NSUTF8StringEncoding) as! String)
+                        fulfill(json)
+                    }
+                }
+
+            return
+        }
     }
 
     private func buildRequest(endpoint: TwitterApiEndpoint, params: [TwitterApiParam]) -> URLRequestConvertible {
@@ -68,9 +86,9 @@ class TwitterApi {
     private func unsignedOauthDict(params: [String: String], includeToken: Bool) -> [String: String] {
         var dict = [
             "oauth_consumer_key": self.consumerKey,
-            "oauth_nonce": "16f906900f2ba45bde24a1db55725960", //NSUUID().UUIDString,
+            "oauth_nonce": NSUUID().UUIDString,
             "oauth_signature_method": "HMAC-SHA1",
-            "oauth_timestamp": "1436733623", //String(Int64(NSDate().timeIntervalSince1970)),
+            "oauth_timestamp": String(Int64(NSDate().timeIntervalSince1970)),
             "oauth_version": "1.0",
         ]
 

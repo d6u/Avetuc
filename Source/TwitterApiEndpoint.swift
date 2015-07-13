@@ -8,11 +8,13 @@
 
 import Foundation
 
-let API_URL = "https://api.twitter.com/1.1/"
+let API_BASE_URL = "https://api.twitter.com/1.1/"
+let OAUTH_BASE_URL = "https://api.twitter.com/oauth/"
 
 enum TwitterApiEndpoint: String {
 
-    case OauthRequestToken = "https://api.twitter.com/oauth/request_token"
+    case OauthRequestToken = "request_token"
+    case OauthAccessToken = "access_token"
 
     enum Method: String {
         case GET = "GET"
@@ -21,13 +23,18 @@ enum TwitterApiEndpoint: String {
 
     var method: String {
         switch self {
-        case .OauthRequestToken:
+        case .OauthRequestToken: fallthrough
+        case .OauthAccessToken:
             return Method.POST.rawValue
         }
     }
 
     var url: String {
-        return self.rawValue
+        switch self {
+        case .OauthRequestToken: fallthrough
+        case .OauthAccessToken:
+            return OAUTH_BASE_URL + self.rawValue
+        }
     }
 
     var includeToken: Bool {
