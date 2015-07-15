@@ -19,6 +19,11 @@ class BaseUtility: NSManagedObject {
         return self.entity.attributesByName[name] != nil
     }
 
+    func toDict() -> [String: AnyObject] {
+        let keys = self.entity.attributesByName.keys.array
+        return self.dictionaryWithValuesForKeys(keys) as! [String: AnyObject]
+    }
+
 //    func setPropertiesFromJson(json: JSON)
 //    {
 //        if let dict = json.object as? [String: JSON]

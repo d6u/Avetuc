@@ -29,12 +29,13 @@ class Dispatcher {
         case .Account:
             return accountEvent.on(callback)
         default:
+            assert(false, "Type other than Account is not implemented yet")
             return accountEvent.on(callback)
         }
     }
 
     func dispatchAccountData(account: AccountData?) {
-        accountEvent.emit(account)
+        self.accountEvent.emit(account)
     }
 
 }

@@ -9,6 +9,8 @@
 import Foundation
 import EmitterKit
 
+typealias StoreAccountEventHandler = (StoreEvent<AccountData>) -> Void
+
 class AccountsStore {
 
     class var instance: AccountsStore {
@@ -25,16 +27,16 @@ class AccountsStore {
     init() {
         listener = Dispatcher.instance.register(.Account) { account in
             self.account = account
-            self.event.emit(account)
+            self.event.emit(StoreEvent<AccountData>(cur: account, pre: self.account))
         }
     }
 
-    private let event = Event<AccountData?>()
-    private var listener: Listener?
-
     var account: AccountData?
 
-    func on(callback: AccountDataHandler) -> Listener {
+    private let event = Event<StoreEvent<AccountData>>()
+    private var listener: Listener?
+
+    func on(callback: StoreAccountEventHandler) -> Listener {
         return event.on(callback)
     }
 

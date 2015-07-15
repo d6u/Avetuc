@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786E70C81B560F7D00B78FFE /* TwitterCallbackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */; };
+		786E70CA1B56155900B78FFE /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C91B56155900B78FFE /* Tweet.swift */; };
+		786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70CC1B56195500B78FFE /* StoreEvent.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
 		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
 		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
 		78FD6C331B55FC9300AA3875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */; };
 		78FD6C3F1B55FC9300AA3875 /* AvetucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */; };
-		78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C481B55FE1800AA3875 /* screenBounds.swift */; };
+		78FD6C491B55FE1800AA3875 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C481B55FE1800AA3875 /* Utilities.swift */; };
 		78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */; };
 		78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C501B55FED000AA3875 /* AccountActions.swift */; };
 		78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C531B55FEFC00AA3875 /* AccountData.swift */; };
@@ -51,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCallbackData.swift; sourceTree = "<group>"; };
+		786E70C91B56155900B78FFE /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		786E70CC1B56195500B78FFE /* StoreEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreEvent.swift; sourceTree = "<group>"; };
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +66,7 @@
 		78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvetucTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C3D1B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvetucTests.swift; sourceTree = "<group>"; };
-		78FD6C481B55FE1800AA3875 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
+		78FD6C481B55FE1800AA3875 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		78FD6C501B55FED000AA3875 /* AccountActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountActions.swift; sourceTree = "<group>"; };
 		78FD6C531B55FEFC00AA3875 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
@@ -125,6 +131,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		786E70CB1B5617DE00B78FFE /* Dispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */,
+				78FD6C841B56021600AA3875 /* DispatcherUtility.swift */,
+			);
+			name = Dispatcher;
+			sourceTree = "<group>";
+		};
 		78FD6C171B55FC9300AA3875 = {
 			isa = PBXGroup;
 			children = (
@@ -149,11 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C651B56001F00AA3875 /* Config.swift */,
-				78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */,
-				78FD6C841B56021600AA3875 /* DispatcherUtility.swift */,
+				78FD6C4C1B55FE5900AA3875 /* UI */,
+				786E70CB1B5617DE00B78FFE /* Dispatcher */,
 				78FD6C7C1B56018B00AA3875 /* Store */,
 				78FD6C581B55FF2500AA3875 /* Services */,
-				78FD6C4C1B55FE5900AA3875 /* UI */,
 				78FD6C521B55FED400AA3875 /* Actions */,
 				78FD6C551B55FEFF00AA3875 /* Data */,
 				78FD6C601B55FFBF00AA3875 /* Models */,
@@ -207,7 +221,7 @@
 		78FD6C4D1B55FE6A00AA3875 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C481B55FE1800AA3875 /* screenBounds.swift */,
+				78FD6C481B55FE1800AA3875 /* Utilities.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -225,6 +239,7 @@
 			children = (
 				78FD6C531B55FEFC00AA3875 /* AccountData.swift */,
 				78FD6C6F1B5600C600AA3875 /* TokenData.swift */,
+				786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -258,6 +273,7 @@
 				78FD6C611B55FFE600AA3875 /* BaseUtility.swift */,
 				78FD6C751B56011800AA3875 /* TimestampUtility.swift */,
 				78FD6C5E1B55FFBC00AA3875 /* Account.swift */,
+				786E70C91B56155900B78FFE /* Tweet.swift */,
 				78FD6C731B5600F500AA3875 /* User.swift */,
 			);
 			name = Models;
@@ -267,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C7A1B56018900AA3875 /* AccountsStore.swift */,
+				786E70CC1B56195500B78FFE /* StoreEvent.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -432,12 +449,15 @@
 				78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */,
 				78FD6C6C1B5600A100AA3875 /* TwitterApiEndpoint.swift in Sources */,
 				78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */,
+				786E70CA1B56155900B78FFE /* Tweet.swift in Sources */,
 				78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */,
 				78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */,
+				786E70C81B560F7D00B78FFE /* TwitterCallbackData.swift in Sources */,
 				78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */,
 				78FD6C681B56003500AA3875 /* TwitterApi.swift in Sources */,
 				78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */,
 				78FD6C701B5600C600AA3875 /* TokenData.swift in Sources */,
+				786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */,
 				78FD6C741B5600F500AA3875 /* User.swift in Sources */,
 				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
 				78FD6C661B56001F00AA3875 /* Config.swift in Sources */,
@@ -448,7 +468,7 @@
 				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
 				78FD6C851B56021600AA3875 /* DispatcherUtility.swift in Sources */,
 				78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */,
-				78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */,
+				78FD6C491B55FE1800AA3875 /* Utilities.swift in Sources */,
 				78FD6C571B55FF1B00AA3875 /* TwitterApiResponse.swift in Sources */,
 				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
 				78FD6C621B55FFE600AA3875 /* BaseUtility.swift in Sources */,

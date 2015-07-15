@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftTask
+import JSONHelper
 
 class TwitterApiService {
 
@@ -37,30 +38,18 @@ class TwitterApiService {
 
     func handleOauthCallback(url: NSURL) {
         let dict = parseQueryParams(url.query!)
-        println(dict)
-//        if let requestToken = json["oauth_token"].string {
-//            let oauthVerifier = json["oauth_verifier"].stringValue
-//            self.twitterApi.fetch(.OauthAccessToken, params: .OauthVerifier(oauthVerifier))
-//                .then { (json, errorInfo) -> Void in
-//                    if let json = json {
-//                        self.twitterApi.oauthToken = json["oauth_token"].stringValue
-//                        self.twitterApi.oauthSecret = json["oauth_token_secret"].stringValue
-//
-//                        let accountData = AccountData(
-//                            oauth_token: json["oauth_token"].stringValue,
-//                            oauth_token_secret: json["oauth_token_secret"].stringValue,
-//                            user_id: json["user_id"].stringValue,
-//                            screen_name: json["screen_name"].stringValue
-//                        )
-//
-//                        
-//                    }
-//
-//                    return
-//                }
-//        } else {
-//            // TODO:
-//        }
+        let callbackData = TwitterCallbackData(data: dict)
+
+        self.twitterApi.fetch(.OauthAccessToken, params: .OauthVerifier(callbackData.oauth_verifier!))
+            .success { (response: TwitterApiResponse) -> LocalStorageTask in
+                let data = response as! AccountData
+                self.twitterApi.oauthToken = data.oauth_token!
+                self.twitterApi.oauthSecret = data.oauth_token_secret!
+                return LocalStorageService.instance.createAccount(data)
+            }
+            .success { (data: AccountData) -> Void in
+                AccountActions.emitAccount(data)
+            }
     }
 
 }

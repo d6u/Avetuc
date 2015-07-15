@@ -15,8 +15,9 @@ class RootViewController: UINavigationController {
     init() {
         super.init(nibName: nil, bundle: nil)
 
-        accountListener = AccountsStore.instance.on { account in
-            if let account = account {
+        accountListener = AccountsStore.instance.on { storeData in
+            println("emitted")
+            if let account = storeData.cur {
                 println("has account")
             } else {
                 self.presentIntroView()
@@ -24,19 +25,18 @@ class RootViewController: UINavigationController {
         }
     }
 
-    private let event = Event<String>()
-    private var accountListener: Listener?
-
     let friendsTableViewController = FriendsViewController()
+
+    private var accountListener: Listener?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pushViewController(friendsTableViewController, animated: false)
+        self.pushViewController(self.friendsTableViewController, animated: false)
+        AccountActions.askCurrentAccount()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        AccountActions.askCurrentAccount()
     }
 
     func presentIntroView()

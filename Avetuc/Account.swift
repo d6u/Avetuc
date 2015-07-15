@@ -11,13 +11,17 @@ import CoreData
 
 class Account: BaseUtility {
 
-    @NSManaged var accountIdentifier: String
-    @NSManaged var lastFetchSinceId: String
-    @NSManaged var token: String
-    @NSManaged var tokenSecret: String
+    @NSManaged var accountIdentifier: String?
+    @NSManaged var lastFetchSinceId: String?
+    @NSManaged var token: String?
+    @NSManaged var tokenSecret: String?
     @NSManaged var userId: String
-    @NSManaged var friends: NSSet
+    @NSManaged var friends: Set<User>
     @NSManaged var profile: User
-    @NSManaged var relatedTweets: NSSet
+    @NSManaged var relatedTweets: Set<Tweet>
+
+    func toData() -> AccountData {
+        return AccountData(data: self.toDict())
+    }
 
 }

@@ -8,6 +8,9 @@
 
 import Foundation
 import CoreStore
+import SwiftTask
+
+typealias LocalStorageTask = Task<Float, AccountData, NSError>
 
 class LocalStorageService {
 
@@ -44,9 +47,31 @@ class LocalStorageService {
         dataStack.beginAsynchronous {(transaction) in
             let accounts = transaction.fetchAll(From(Account))!
             if let account = accounts.first {
-                AccountActions.emitAccount(nil)
+                AccountActions.emitAccount(account.toData())
             } else {
                 AccountActions.emitAccount(nil)
+            }
+        }
+    }
+
+    func createAccount(accountData: AccountData) -> LocalStorageTask {
+        return LocalStorageTask { progress, fulfill, reject, configure in
+            self.dataStack.beginAsynchronous { transaction in
+                let account = transaction.create(Into(Account))
+                account.token = accountData.oauth_token
+                account.tokenSecret = accountData.oauth_token_secret
+                account.userId = accountData.user_id!
+
+                transaction.commit { result -> Void in
+                    switch result {
+                    case .Success(let hasChanges):
+                        println("success! hasChanges? \(hasChanges)")
+                        fulfill(account.toData())
+                    case .Failure(let error):
+                        println(error)
+                        reject(error)
+                    }
+                }
             }
         }
     }

@@ -22,5 +22,4 @@ struct AccountData: Deserializable, TwitterApiResponse {
         user_id <-- data["user_id"]
         screen_name <-- data["screen_name"]
     }
-
 }
