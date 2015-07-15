@@ -7,110 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7406855C0784655A98959FE3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12FB6C8B182C1AC1890F045 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		78165E3F1B4CD167008FDA47 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78165E3E1B4CD167008FDA47 /* IntroView.swift */; };
-		782CA6C91B4CABF500B09573 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6C81B4CABF500B09573 /* screenBounds.swift */; };
-		782CA6CD1B4CAE4E00B09573 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */; };
-		782CA6CF1B4CB03B00B09573 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */; };
-		783DFBE81B4B680700222ACF /* TimestampUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DFBE71B4B680700222ACF /* TimestampUtility.swift */; };
-		783DFBEE1B4B686D00222ACF /* BaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783DFBED1B4B686D00222ACF /* BaseUtility.swift */; };
-		787C37C51B4CC32E0035B2FB /* EventUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C37C41B4CC32E0035B2FB /* EventUtilities.swift */; };
-		788A2E541B5228A700EF1C5A /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A2E531B5228A700EF1C5A /* TwitterApi.swift */; };
-		788A2E581B52291300EF1C5A /* TwitterApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A2E571B52291300EF1C5A /* TwitterApiUtils.swift */; };
-		788A2E5D1B52323800EF1C5A /* TwitterApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A2E5C1B52323800EF1C5A /* TwitterApiEndpoint.swift */; };
-		789EB3601B4B92860039DDBA /* UrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB35F1B4B92860039DDBA /* UrlEntity.swift */; };
-		789EB3621B4B92870039DDBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3611B4B92870039DDBA /* User.swift */; };
-		789EB3641B4B92870039DDBA /* HashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3631B4B92870039DDBA /* HashtagEntity.swift */; };
-		789EB3661B4B92870039DDBA /* MediaSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3651B4B92870039DDBA /* MediaSize.swift */; };
-		789EB3681B4B92870039DDBA /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3671B4B92870039DDBA /* Entity.swift */; };
-		789EB36A1B4B92870039DDBA /* MentionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3691B4B92870039DDBA /* MentionEntity.swift */; };
-		789EB36C1B4B92870039DDBA /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36B1B4B92870039DDBA /* Account.swift */; };
-		789EB36E1B4B92870039DDBA /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36D1B4B92870039DDBA /* PhotoEntity.swift */; };
-		789EB3701B4B92870039DDBA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB36F1B4B92870039DDBA /* Tweet.swift */; };
-		789EB3761B4B94580039DDBA /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3751B4B94580039DDBA /* LocalStorageService.swift */; };
-		789EB37A1B4B95100039DDBA /* AccountActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3791B4B95100039DDBA /* AccountActions.swift */; };
-		789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB37C1B4B95BD0039DDBA /* AccountData.swift */; };
-		789EB3801B4B960B0039DDBA /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB37F1B4B960B0039DDBA /* Dispatcher.swift */; };
-		789EB3821B4B96700039DDBA /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789EB3811B4B96700039DDBA /* AccountsStore.swift */; };
-		78A7B0C61B52AA070058C3C8 /* SortedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B0C51B52AA070058C3C8 /* SortedDictionary.swift */; };
-		78A7B1331B52F36F0058C3C8 /* TwitterApiParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1321B52F36F0058C3C8 /* TwitterApiParam.swift */; };
-		78A7B1351B535BF00058C3C8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1341B535BF00058C3C8 /* Config.swift */; };
-		78A7B1371B535F4F0058C3C8 /* TwitterApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */; };
-		78A7C9C81B49C31800CC7BB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */; };
-		78A7C9C91B49C31800CC7BB4 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */; };
-		78A7C9CA1B49C31800CC7BB4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */; };
-		78A7C9CC1B49C31800CC7BB4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9C21B49C31800CC7BB4 /* Images.xcassets */; };
-		78A7C9CD1B49C31800CC7BB4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9C31B49C31800CC7BB4 /* Info.plist */; };
-		78A7C9CE1B49C31800CC7BB4 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9C41B49C31800CC7BB4 /* FriendsViewController.swift */; };
-		78A7C9D01B49C31800CC7BB4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78A7C9C71B49C31800CC7BB4 /* Info.plist */; };
-		78A7C9D11B49C32E00CC7BB4 /* AvetucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A7C9C61B49C31800CC7BB4 /* AvetucTests.swift */; };
+		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
+		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
+		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
+		78FD6C331B55FC9300AA3875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */; };
+		78FD6C3F1B55FC9300AA3875 /* AvetucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */; };
+		78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C481B55FE1800AA3875 /* screenBounds.swift */; };
+		78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */; };
+		78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C501B55FED000AA3875 /* AccountActions.swift */; };
+		78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C531B55FEFC00AA3875 /* AccountData.swift */; };
+		78FD6C571B55FF1B00AA3875 /* TwitterApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */; };
+		78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */; };
+		78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */; };
+		78FD6C5F1B55FFBC00AA3875 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5E1B55FFBC00AA3875 /* Account.swift */; };
+		78FD6C621B55FFE600AA3875 /* BaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C611B55FFE600AA3875 /* BaseUtility.swift */; };
+		78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C631B56000000AA3875 /* TwitterApiService.swift */; };
+		78FD6C661B56001F00AA3875 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C651B56001F00AA3875 /* Config.swift */; };
+		78FD6C681B56003500AA3875 /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C671B56003500AA3875 /* TwitterApi.swift */; };
+		78FD6C6A1B56008100AA3875 /* Request+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C691B56008100AA3875 /* Request+Extension.swift */; };
+		78FD6C6C1B5600A100AA3875 /* TwitterApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */; };
+		78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */; };
+		78FD6C701B5600C600AA3875 /* TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6F1B5600C600AA3875 /* TokenData.swift */; };
+		78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */; };
+		78FD6C741B5600F500AA3875 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C731B5600F500AA3875 /* User.swift */; };
+		78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C751B56011800AA3875 /* TimestampUtility.swift */; };
+		78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7A1B56018900AA3875 /* AccountsStore.swift */; };
+		78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */; };
+		78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */; };
+		78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C811B5601E400AA3875 /* IntroView.swift */; };
+		78FD6C851B56021600AA3875 /* DispatcherUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C841B56021600AA3875 /* DispatcherUtility.swift */; };
+		8D96051C56640C1CDFE78EE0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		782180471B49C26000FD4EEC /* PBXContainerItemProxy */ = {
+		78FD6C391B55FC9300AA3875 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 782180261B49C26000FD4EEC /* Project object */;
+			containerPortal = 78FD6C181B55FC9300AA3875 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7821802D1B49C26000FD4EEC;
+			remoteGlobalIDString = 78FD6C1F1B55FC9300AA3875;
 			remoteInfo = Avetuc;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1EFD2B1E3F77A4E587004E62 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		25FA77F5E4EF2000FA2846FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		78165E3E1B4CD167008FDA47 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
-		782CA6C81B4CABF500B09573 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
-		782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		783DFBE71B4B680700222ACF /* TimestampUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampUtility.swift; sourceTree = "<group>"; };
-		783DFBED1B4B686D00222ACF /* BaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUtility.swift; sourceTree = "<group>"; };
-		787C37C41B4CC32E0035B2FB /* EventUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUtilities.swift; sourceTree = "<group>"; };
-		788A2E531B5228A700EF1C5A /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
-		788A2E571B52291300EF1C5A /* TwitterApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiUtils.swift; sourceTree = "<group>"; };
-		788A2E591B52295A00EF1C5A /* Avetuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Avetuc-Bridging-Header.h"; sourceTree = "<group>"; };
-		788A2E5C1B52323800EF1C5A /* TwitterApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiEndpoint.swift; sourceTree = "<group>"; };
-		789EB35F1B4B92860039DDBA /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UrlEntity.swift; path = ../UrlEntity.swift; sourceTree = "<group>"; };
-		789EB3611B4B92870039DDBA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		789EB3631B4B92870039DDBA /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashtagEntity.swift; path = ../HashtagEntity.swift; sourceTree = "<group>"; };
-		789EB3651B4B92870039DDBA /* MediaSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaSize.swift; path = ../MediaSize.swift; sourceTree = "<group>"; };
-		789EB3671B4B92870039DDBA /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = ../Entity.swift; sourceTree = "<group>"; };
-		789EB3691B4B92870039DDBA /* MentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MentionEntity.swift; path = ../MentionEntity.swift; sourceTree = "<group>"; };
-		789EB36B1B4B92870039DDBA /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		789EB36D1B4B92870039DDBA /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = ../PhotoEntity.swift; sourceTree = "<group>"; };
-		789EB36F1B4B92870039DDBA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
-		789EB3751B4B94580039DDBA /* LocalStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
-		789EB3791B4B95100039DDBA /* AccountActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountActions.swift; sourceTree = "<group>"; };
-		789EB37C1B4B95BD0039DDBA /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
-		789EB37F1B4B960B0039DDBA /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
-		789EB3811B4B96700039DDBA /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
-		78A7B0C51B52AA070058C3C8 /* SortedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortedDictionary.swift; sourceTree = "<group>"; };
-		78A7B1321B52F36F0058C3C8 /* TwitterApiParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiParam.swift; sourceTree = "<group>"; };
-		78A7B1341B535BF00058C3C8 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterApiService.swift; path = ../TwitterApiService.swift; sourceTree = "<group>"; };
-		78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Avetuc.xcdatamodel; sourceTree = "<group>"; };
-		78A7C9BF1B49C31800CC7BB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		78A7C9C21B49C31800CC7BB4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		78A7C9C31B49C31800CC7BB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78A7C9C41B49C31800CC7BB4 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
-		78A7C9C61B49C31800CC7BB4 /* AvetucTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvetucTests.swift; sourceTree = "<group>"; };
-		78A7C9C71B49C31800CC7BB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78A7C9D21B49C35000CC7BB4 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		78A7C9D41B49C38000CC7BB4 /* AvetucTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvetucTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B12FB6C8B182C1AC1890F045 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Avetuc.xcdatamodel; sourceTree = "<group>"; };
+		78FD6C2F1B55FC9300AA3875 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		78FD6C321B55FC9300AA3875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvetucTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78FD6C3D1B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvetucTests.swift; sourceTree = "<group>"; };
+		78FD6C481B55FE1800AA3875 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
+		78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		78FD6C501B55FED000AA3875 /* AccountActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountActions.swift; sourceTree = "<group>"; };
+		78FD6C531B55FEFC00AA3875 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
+		78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiResponse.swift; sourceTree = "<group>"; };
+		78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		78FD6C5E1B55FFBC00AA3875 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		78FD6C611B55FFE600AA3875 /* BaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUtility.swift; sourceTree = "<group>"; };
+		78FD6C631B56000000AA3875 /* TwitterApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiService.swift; sourceTree = "<group>"; };
+		78FD6C651B56001F00AA3875 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		78FD6C671B56003500AA3875 /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
+		78FD6C691B56008100AA3875 /* Request+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request+Extension.swift"; sourceTree = "<group>"; };
+		78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiEndpoint.swift; sourceTree = "<group>"; };
+		78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiParam.swift; sourceTree = "<group>"; };
+		78FD6C6F1B5600C600AA3875 /* TokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenData.swift; sourceTree = "<group>"; };
+		78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiUtils.swift; sourceTree = "<group>"; };
+		78FD6C731B5600F500AA3875 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		78FD6C751B56011800AA3875 /* TimestampUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampUtility.swift; sourceTree = "<group>"; };
+		78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Avetuc-Bridging-Header.h"; sourceTree = "<group>"; };
+		78FD6C7A1B56018900AA3875 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
+		78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		78FD6C811B5601E400AA3875 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		78FD6C841B56021600AA3875 /* DispatcherUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherUtility.swift; sourceTree = "<group>"; };
+		84AE55537037288AF826D948 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6979D922A0AA266349DCBD6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7821802B1B49C26000FD4EEC /* Frameworks */ = {
+		78FD6C1D1B55FC9300AA3875 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7406855C0784655A98959FE3 /* Pods.framework in Frameworks */,
+				8D96051C56640C1CDFE78EE0 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		782180431B49C26000FD4EEC /* Frameworks */ = {
+		78FD6C351B55FC9300AA3875 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -120,187 +108,190 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09B0701E66D3C9910DE31EE3 /* Pods */ = {
+		288AECAE7D0721E49BE8D438 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1EFD2B1E3F77A4E587004E62 /* Pods.debug.xcconfig */,
-				25FA77F5E4EF2000FA2846FC /* Pods.release.xcconfig */,
+				1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */,
+				A6979D922A0AA266349DCBD6 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1EBB2FD02A8D67510B0D8CC7 /* Frameworks */ = {
+		36552AE3FEC07D455F1AE10C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B12FB6C8B182C1AC1890F045 /* Pods.framework */,
+				84AE55537037288AF826D948 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		782180251B49C26000FD4EEC = {
+		78FD6C171B55FC9300AA3875 = {
 			isa = PBXGroup;
 			children = (
-				78A7C9BA1B49C31800CC7BB4 /* Source */,
-				78A7C9C51B49C31800CC7BB4 /* Tests */,
-				78A7C9D31B49C36F00CC7BB4 /* Product */,
-				09B0701E66D3C9910DE31EE3 /* Pods */,
-				1EBB2FD02A8D67510B0D8CC7 /* Frameworks */,
+				78FD6C221B55FC9300AA3875 /* Avetuc */,
+				78FD6C3B1B55FC9300AA3875 /* AvetucTests */,
+				78FD6C211B55FC9300AA3875 /* Products */,
+				288AECAE7D0721E49BE8D438 /* Pods */,
+				36552AE3FEC07D455F1AE10C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		782CA6C71B4CABCC00B09573 /* Utilities */ = {
+		78FD6C211B55FC9300AA3875 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				788A2E521B52286E00EF1C5A /* TwitterAPI */,
-				782CA6C81B4CABF500B09573 /* screenBounds.swift */,
-				78A7B0C51B52AA070058C3C8 /* SortedDictionary.swift */,
+				78FD6C201B55FC9300AA3875 /* Avetuc.app */,
+				78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		78FD6C221B55FC9300AA3875 /* Avetuc */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C651B56001F00AA3875 /* Config.swift */,
+				78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */,
+				78FD6C841B56021600AA3875 /* DispatcherUtility.swift */,
+				78FD6C7C1B56018B00AA3875 /* Store */,
+				78FD6C581B55FF2500AA3875 /* Services */,
+				78FD6C4C1B55FE5900AA3875 /* UI */,
+				78FD6C521B55FED400AA3875 /* Actions */,
+				78FD6C551B55FEFF00AA3875 /* Data */,
+				78FD6C601B55FFBF00AA3875 /* Models */,
+				78FD6C231B55FC9300AA3875 /* Supporting Files */,
+			);
+			path = Avetuc;
+			sourceTree = "<group>";
+		};
+		78FD6C231B55FC9300AA3875 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */,
+				78FD6C2F1B55FC9300AA3875 /* Images.xcassets */,
+				78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */,
+				78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */,
+				78FD6C241B55FC9300AA3875 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78FD6C3B1B55FC9300AA3875 /* AvetucTests */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */,
+				78FD6C3C1B55FC9300AA3875 /* Supporting Files */,
+			);
+			path = AvetucTests;
+			sourceTree = "<group>";
+		};
+		78FD6C3C1B55FC9300AA3875 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C3D1B55FC9300AA3875 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78FD6C4C1B55FE5900AA3875 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C251B55FC9300AA3875 /* AppDelegate.swift */,
+				78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */,
+				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
+				78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */,
+				78FD6C831B5601E800AA3875 /* Views */,
+				78FD6C4D1B55FE6A00AA3875 /* Utilities */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		78FD6C4D1B55FE6A00AA3875 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C481B55FE1800AA3875 /* screenBounds.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
 		};
-		783DFBD81B4B677E00222ACF /* Models */ = {
+		78FD6C521B55FED400AA3875 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				789EB3521B4B92130039DDBA /* Entities */,
-				783DFBED1B4B686D00222ACF /* BaseUtility.swift */,
-				783DFBE71B4B680700222ACF /* TimestampUtility.swift */,
-				789EB36B1B4B92870039DDBA /* Account.swift */,
-				789EB36F1B4B92870039DDBA /* Tweet.swift */,
-				789EB3611B4B92870039DDBA /* User.swift */,
-				78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		788A2E521B52286E00EF1C5A /* TwitterAPI */ = {
-			isa = PBXGroup;
-			children = (
-				788A2E531B5228A700EF1C5A /* TwitterApi.swift */,
-				788A2E5C1B52323800EF1C5A /* TwitterApiEndpoint.swift */,
-				78A7B1321B52F36F0058C3C8 /* TwitterApiParam.swift */,
-				788A2E571B52291300EF1C5A /* TwitterApiUtils.swift */,
-			);
-			name = TwitterAPI;
-			sourceTree = "<group>";
-		};
-		789EB3521B4B92130039DDBA /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				789EB36D1B4B92870039DDBA /* PhotoEntity.swift */,
-				789EB3691B4B92870039DDBA /* MentionEntity.swift */,
-				789EB3671B4B92870039DDBA /* Entity.swift */,
-				789EB3651B4B92870039DDBA /* MediaSize.swift */,
-				789EB3631B4B92870039DDBA /* HashtagEntity.swift */,
-				789EB35F1B4B92860039DDBA /* UrlEntity.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		789EB3741B4B94580039DDBA /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				789EB3751B4B94580039DDBA /* LocalStorageService.swift */,
-				78A7B1361B535F4F0058C3C8 /* TwitterApiService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		789EB37B1B4B95130039DDBA /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				789EB3791B4B95100039DDBA /* AccountActions.swift */,
+				78FD6C501B55FED000AA3875 /* AccountActions.swift */,
 			);
 			name = Actions;
 			sourceTree = "<group>";
 		};
-		789EB37E1B4B95C10039DDBA /* ImmutableModels */ = {
+		78FD6C551B55FEFF00AA3875 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				789EB37C1B4B95BD0039DDBA /* AccountData.swift */,
+				78FD6C531B55FEFC00AA3875 /* AccountData.swift */,
+				78FD6C6F1B5600C600AA3875 /* TokenData.swift */,
 			);
-			name = ImmutableModels;
+			name = Data;
 			sourceTree = "<group>";
 		};
-		789EB3831B4B96730039DDBA /* Stores */ = {
+		78FD6C581B55FF2500AA3875 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				789EB3811B4B96700039DDBA /* AccountsStore.swift */,
+				78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */,
+				78FD6C631B56000000AA3875 /* TwitterApiService.swift */,
+				78FD6C591B55FF3300AA3875 /* Utilities */,
 			);
-			name = Stores;
+			name = Services;
 			sourceTree = "<group>";
 		};
-		789EB3841B4B969A0039DDBA /* UIs */ = {
+		78FD6C591B55FF3300AA3875 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */,
-				78A7C9C21B49C31800CC7BB4 /* Images.xcassets */,
-				78A7C9BB1B49C31800CC7BB4 /* AppDelegate.swift */,
-				782CA6CC1B4CAE4E00B09573 /* RootViewController.swift */,
-				782CA6CE1B4CB03B00B09573 /* IntroViewController.swift */,
-				78165E3E1B4CD167008FDA47 /* IntroView.swift */,
-				78A7C9C41B49C31800CC7BB4 /* FriendsViewController.swift */,
+				78FD6C671B56003500AA3875 /* TwitterApi.swift */,
+				78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */,
+				78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */,
+				78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */,
+				78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */,
+				78FD6C691B56008100AA3875 /* Request+Extension.swift */,
 			);
-			name = UIs;
+			name = Utilities;
 			sourceTree = "<group>";
 		};
-		789EB3851B4B96B80039DDBA /* Support Files */ = {
+		78FD6C601B55FFBF00AA3875 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				788A2E591B52295A00EF1C5A /* Avetuc-Bridging-Header.h */,
-				78A7C9C31B49C31800CC7BB4 /* Info.plist */,
+				78FD6C611B55FFE600AA3875 /* BaseUtility.swift */,
+				78FD6C751B56011800AA3875 /* TimestampUtility.swift */,
+				78FD6C5E1B55FFBC00AA3875 /* Account.swift */,
+				78FD6C731B5600F500AA3875 /* User.swift */,
 			);
-			name = "Support Files";
+			name = Models;
 			sourceTree = "<group>";
 		};
-		78A7C9BA1B49C31800CC7BB4 /* Source */ = {
+		78FD6C7C1B56018B00AA3875 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				789EB37F1B4B960B0039DDBA /* Dispatcher.swift */,
-				787C37C41B4CC32E0035B2FB /* EventUtilities.swift */,
-				78A7B1341B535BF00058C3C8 /* Config.swift */,
-				789EB3841B4B969A0039DDBA /* UIs */,
-				789EB37B1B4B95130039DDBA /* Actions */,
-				789EB3831B4B96730039DDBA /* Stores */,
-				789EB3741B4B94580039DDBA /* Services */,
-				783DFBD81B4B677E00222ACF /* Models */,
-				789EB37E1B4B95C10039DDBA /* ImmutableModels */,
-				782CA6C71B4CABCC00B09573 /* Utilities */,
-				789EB3851B4B96B80039DDBA /* Support Files */,
+				78FD6C7A1B56018900AA3875 /* AccountsStore.swift */,
 			);
-			path = Source;
+			name = Store;
 			sourceTree = "<group>";
 		};
-		78A7C9C51B49C31800CC7BB4 /* Tests */ = {
+		78FD6C831B5601E800AA3875 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				78A7C9C61B49C31800CC7BB4 /* AvetucTests.swift */,
-				78A7C9C71B49C31800CC7BB4 /* Info.plist */,
+				78FD6C811B5601E400AA3875 /* IntroView.swift */,
 			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		78A7C9D31B49C36F00CC7BB4 /* Product */ = {
-			isa = PBXGroup;
-			children = (
-				78A7C9D21B49C35000CC7BB4 /* Avetuc.app */,
-				78A7C9D41B49C38000CC7BB4 /* AvetucTests.xctest */,
-			);
-			name = Product;
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7821802D1B49C26000FD4EEC /* Avetuc */ = {
+		78FD6C1F1B55FC9300AA3875 /* Avetuc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 782180501B49C26000FD4EEC /* Build configuration list for PBXNativeTarget "Avetuc" */;
+			buildConfigurationList = 78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "Avetuc" */;
 			buildPhases = (
-				DD9D451667238AADB7B1253A /* Check Pods Manifest.lock */,
-				7821802A1B49C26000FD4EEC /* Sources */,
-				7821802B1B49C26000FD4EEC /* Frameworks */,
-				7821802C1B49C26000FD4EEC /* Resources */,
-				A04711A70020FD48022D3FD9 /* Embed Pods Frameworks */,
-				E5821993ECFFB66DCD76B914 /* Copy Pods Resources */,
+				299597F0D289AAA5FBBBD773 /* Check Pods Manifest.lock */,
+				78FD6C1C1B55FC9300AA3875 /* Sources */,
+				78FD6C1D1B55FC9300AA3875 /* Frameworks */,
+				78FD6C1E1B55FC9300AA3875 /* Resources */,
+				5395733C53358737D64800A2 /* Embed Pods Frameworks */,
+				7519664E4587D15BAA8CBF1F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,46 +299,46 @@
 			);
 			name = Avetuc;
 			productName = Avetuc;
-			productReference = 78A7C9D21B49C35000CC7BB4 /* Avetuc.app */;
+			productReference = 78FD6C201B55FC9300AA3875 /* Avetuc.app */;
 			productType = "com.apple.product-type.application";
 		};
-		782180451B49C26000FD4EEC /* AvetucTests */ = {
+		78FD6C371B55FC9300AA3875 /* AvetucTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 782180531B49C26000FD4EEC /* Build configuration list for PBXNativeTarget "AvetucTests" */;
+			buildConfigurationList = 78FD6C451B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "AvetucTests" */;
 			buildPhases = (
-				782180421B49C26000FD4EEC /* Sources */,
-				782180431B49C26000FD4EEC /* Frameworks */,
-				782180441B49C26000FD4EEC /* Resources */,
+				78FD6C341B55FC9300AA3875 /* Sources */,
+				78FD6C351B55FC9300AA3875 /* Frameworks */,
+				78FD6C361B55FC9300AA3875 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				782180481B49C26000FD4EEC /* PBXTargetDependency */,
+				78FD6C3A1B55FC9300AA3875 /* PBXTargetDependency */,
 			);
 			name = AvetucTests;
 			productName = AvetucTests;
-			productReference = 78A7C9D41B49C38000CC7BB4 /* AvetucTests.xctest */;
+			productReference = 78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		782180261B49C26000FD4EEC /* Project object */ = {
+		78FD6C181B55FC9300AA3875 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Daiwei Lu";
 				TargetAttributes = {
-					7821802D1B49C26000FD4EEC = {
+					78FD6C1F1B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
 					};
-					782180451B49C26000FD4EEC = {
+					78FD6C371B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
-						TestTargetID = 7821802D1B49C26000FD4EEC;
+						TestTargetID = 78FD6C1F1B55FC9300AA3875;
 					};
 				};
 			};
-			buildConfigurationList = 782180291B49C26000FD4EEC /* Build configuration list for PBXProject "Avetuc" */;
+			buildConfigurationList = 78FD6C1B1B55FC9300AA3875 /* Build configuration list for PBXProject "Avetuc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -355,30 +346,28 @@
 				en,
 				Base,
 			);
-			mainGroup = 782180251B49C26000FD4EEC;
-			productRefGroup = 782180251B49C26000FD4EEC;
+			mainGroup = 78FD6C171B55FC9300AA3875;
+			productRefGroup = 78FD6C211B55FC9300AA3875 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7821802D1B49C26000FD4EEC /* Avetuc */,
-				782180451B49C26000FD4EEC /* AvetucTests */,
+				78FD6C1F1B55FC9300AA3875 /* Avetuc */,
+				78FD6C371B55FC9300AA3875 /* AvetucTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7821802C1B49C26000FD4EEC /* Resources */ = {
+		78FD6C1E1B55FC9300AA3875 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78A7C9CD1B49C31800CC7BB4 /* Info.plist in Resources */,
-				78A7C9CC1B49C31800CC7BB4 /* Images.xcassets in Resources */,
-				78A7C9CA1B49C31800CC7BB4 /* LaunchScreen.xib in Resources */,
-				78A7C9D01B49C31800CC7BB4 /* Info.plist in Resources */,
+				78FD6C331B55FC9300AA3875 /* LaunchScreen.xib in Resources */,
+				78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		782180441B49C26000FD4EEC /* Resources */ = {
+		78FD6C361B55FC9300AA3875 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -388,22 +377,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A04711A70020FD48022D3FD9 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD9D451667238AADB7B1253A /* Check Pods Manifest.lock */ = {
+		299597F0D289AAA5FBBBD773 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -418,7 +392,22 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E5821993ECFFB66DCD76B914 /* Copy Pods Resources */ = {
+		5395733C53358737D64800A2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7519664E4587D15BAA8CBF1F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -436,67 +425,62 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7821802A1B49C26000FD4EEC /* Sources */ = {
+		78FD6C1C1B55FC9300AA3875 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				783DFBE81B4B680700222ACF /* TimestampUtility.swift in Sources */,
-				78A7C9CE1B49C31800CC7BB4 /* FriendsViewController.swift in Sources */,
-				78A7B0C61B52AA070058C3C8 /* SortedDictionary.swift in Sources */,
-				789EB3801B4B960B0039DDBA /* Dispatcher.swift in Sources */,
-				789EB36A1B4B92870039DDBA /* MentionEntity.swift in Sources */,
-				789EB3701B4B92870039DDBA /* Tweet.swift in Sources */,
-				789EB3821B4B96700039DDBA /* AccountsStore.swift in Sources */,
-				789EB3601B4B92860039DDBA /* UrlEntity.swift in Sources */,
-				789EB3641B4B92870039DDBA /* HashtagEntity.swift in Sources */,
-				789EB36C1B4B92870039DDBA /* Account.swift in Sources */,
-				78A7B1331B52F36F0058C3C8 /* TwitterApiParam.swift in Sources */,
-				789EB36E1B4B92870039DDBA /* PhotoEntity.swift in Sources */,
-				782CA6CD1B4CAE4E00B09573 /* RootViewController.swift in Sources */,
-				78A7C9C81B49C31800CC7BB4 /* AppDelegate.swift in Sources */,
-				783DFBEE1B4B686D00222ACF /* BaseUtility.swift in Sources */,
-				788A2E541B5228A700EF1C5A /* TwitterApi.swift in Sources */,
-				782CA6CF1B4CB03B00B09573 /* IntroViewController.swift in Sources */,
-				78A7B1351B535BF00058C3C8 /* Config.swift in Sources */,
-				789EB3681B4B92870039DDBA /* Entity.swift in Sources */,
-				789EB37D1B4B95BD0039DDBA /* AccountData.swift in Sources */,
-				787C37C51B4CC32E0035B2FB /* EventUtilities.swift in Sources */,
-				78165E3F1B4CD167008FDA47 /* IntroView.swift in Sources */,
-				789EB3761B4B94580039DDBA /* LocalStorageService.swift in Sources */,
-				78A7B1371B535F4F0058C3C8 /* TwitterApiService.swift in Sources */,
-				782CA6C91B4CABF500B09573 /* screenBounds.swift in Sources */,
-				788A2E5D1B52323800EF1C5A /* TwitterApiEndpoint.swift in Sources */,
-				789EB3661B4B92870039DDBA /* MediaSize.swift in Sources */,
-				78A7C9C91B49C31800CC7BB4 /* Avetuc.xcdatamodeld in Sources */,
-				789EB3621B4B92870039DDBA /* User.swift in Sources */,
-				789EB37A1B4B95100039DDBA /* AccountActions.swift in Sources */,
-				788A2E581B52291300EF1C5A /* TwitterApiUtils.swift in Sources */,
+				78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */,
+				78FD6C6C1B5600A100AA3875 /* TwitterApiEndpoint.swift in Sources */,
+				78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */,
+				78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */,
+				78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */,
+				78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */,
+				78FD6C681B56003500AA3875 /* TwitterApi.swift in Sources */,
+				78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */,
+				78FD6C701B5600C600AA3875 /* TokenData.swift in Sources */,
+				78FD6C741B5600F500AA3875 /* User.swift in Sources */,
+				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
+				78FD6C661B56001F00AA3875 /* Config.swift in Sources */,
+				78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */,
+				78FD6C5F1B55FFBC00AA3875 /* Account.swift in Sources */,
+				78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */,
+				78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */,
+				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
+				78FD6C851B56021600AA3875 /* DispatcherUtility.swift in Sources */,
+				78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */,
+				78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */,
+				78FD6C571B55FF1B00AA3875 /* TwitterApiResponse.swift in Sources */,
+				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
+				78FD6C621B55FFE600AA3875 /* BaseUtility.swift in Sources */,
+				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
+				78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */,
+				78FD6C6A1B56008100AA3875 /* Request+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		782180421B49C26000FD4EEC /* Sources */ = {
+		78FD6C341B55FC9300AA3875 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78A7C9D11B49C32E00CC7BB4 /* AvetucTests.swift in Sources */,
+				78FD6C3F1B55FC9300AA3875 /* AvetucTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		782180481B49C26000FD4EEC /* PBXTargetDependency */ = {
+		78FD6C3A1B55FC9300AA3875 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7821802D1B49C26000FD4EEC /* Avetuc */;
-			targetProxy = 782180471B49C26000FD4EEC /* PBXContainerItemProxy */;
+			target = 78FD6C1F1B55FC9300AA3875 /* Avetuc */;
+			targetProxy = 78FD6C391B55FC9300AA3875 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		78A7C9BE1B49C31800CC7BB4 /* LaunchScreen.xib */ = {
+		78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				78A7C9BF1B49C31800CC7BB4 /* Base */,
+				78FD6C321B55FC9300AA3875 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -504,7 +488,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7821804E1B49C26000FD4EEC /* Debug */ = {
+		78FD6C401B55FC9300AA3875 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -548,7 +532,7 @@
 			};
 			name = Debug;
 		};
-		7821804F1B49C26000FD4EEC /* Release */ = {
+		78FD6C411B55FC9300AA3875 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -585,34 +569,39 @@
 			};
 			name = Release;
 		};
-		782180511B49C26000FD4EEC /* Debug */ = {
+		78FD6C431B55FC9300AA3875 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFD2B1E3F77A4E587004E62 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Avetuc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/Avetuc-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
 			};
 			name = Debug;
 		};
-		782180521B49C26000FD4EEC /* Release */ = {
+		78FD6C441B55FC9300AA3875 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25FA77F5E4EF2000FA2846FC /* Pods.release.xcconfig */;
+			baseConfigurationReference = A6979D922A0AA266349DCBD6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Avetuc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Source/Avetuc-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
 			};
 			name = Release;
 		};
-		782180541B49C26000FD4EEC /* Debug */ = {
+		78FD6C461B55FC9300AA3875 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -624,14 +613,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = AvetucTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avetuc.app/Avetuc";
 			};
 			name = Debug;
 		};
-		782180551B49C26000FD4EEC /* Release */ = {
+		78FD6C471B55FC9300AA3875 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -639,7 +628,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = AvetucTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avetuc.app/Avetuc";
@@ -649,29 +638,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		782180291B49C26000FD4EEC /* Build configuration list for PBXProject "Avetuc" */ = {
+		78FD6C1B1B55FC9300AA3875 /* Build configuration list for PBXProject "Avetuc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7821804E1B49C26000FD4EEC /* Debug */,
-				7821804F1B49C26000FD4EEC /* Release */,
+				78FD6C401B55FC9300AA3875 /* Debug */,
+				78FD6C411B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		782180501B49C26000FD4EEC /* Build configuration list for PBXNativeTarget "Avetuc" */ = {
+		78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "Avetuc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				782180511B49C26000FD4EEC /* Debug */,
-				782180521B49C26000FD4EEC /* Release */,
+				78FD6C431B55FC9300AA3875 /* Debug */,
+				78FD6C441B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		782180531B49C26000FD4EEC /* Build configuration list for PBXNativeTarget "AvetucTests" */ = {
+		78FD6C451B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "AvetucTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				782180541B49C26000FD4EEC /* Debug */,
-				782180551B49C26000FD4EEC /* Release */,
+				78FD6C461B55FC9300AA3875 /* Debug */,
+				78FD6C471B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -679,18 +668,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		78A7C9BC1B49C31800CC7BB4 /* Avetuc.xcdatamodeld */ = {
+		78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */,
+				78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */,
 			);
-			currentVersion = 78A7C9BD1B49C31800CC7BB4 /* Avetuc.xcdatamodel */;
-			name = Avetuc.xcdatamodeld;
-			path = ../Avetuc.xcdatamodeld;
+			currentVersion = 78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */;
+			path = Avetuc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 782180261B49C26000FD4EEC /* Project object */;
+	rootObject = 78FD6C181B55FC9300AA3875 /* Project object */;
 }
