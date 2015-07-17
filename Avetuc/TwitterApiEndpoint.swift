@@ -15,6 +15,7 @@ enum TwitterApiEndpoint: String {
 
     case OauthRequestToken = "request_token"
     case OauthAccessToken = "access_token"
+    case FriendsIds = "friends/ids.json"
 
     enum Method: String {
         case GET = "GET"
@@ -31,6 +32,8 @@ enum TwitterApiEndpoint: String {
         case .OauthRequestToken: fallthrough
         case .OauthAccessToken:
             return Method.POST.rawValue
+        default:
+            return Method.GET.rawValue
         }
     }
 
@@ -39,6 +42,8 @@ enum TwitterApiEndpoint: String {
         case .OauthRequestToken: fallthrough
         case .OauthAccessToken:
             return OAUTH_BASE_URL + self.rawValue
+        default:
+            return API_BASE_URL + self.rawValue
         }
     }
 
@@ -56,6 +61,8 @@ enum TwitterApiEndpoint: String {
         case .OauthAccessToken: fallthrough
         case .OauthRequestToken:
             return .QueryParam
+        default:
+            return .JSON
         }
     }
 }

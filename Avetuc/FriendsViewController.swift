@@ -21,6 +21,7 @@ class FriendsViewController:
         self.accountListener = AccountsStore.instance.on { event in
             if let account = event.cur {
                 FriendActions.loadAllFriends(account.user_id!)
+                FriendActions.fetchFriends(account.user_id!)
             } else {
                 self.friends = []
                 self.tableView.reloadData()

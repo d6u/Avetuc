@@ -23,7 +23,12 @@ class TwitterApiService {
         return Static.instance!
     }
 
-    let twitterApi = TwitterApi(consumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
+    private let twitterApi = TwitterApi(consumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
+
+    func loadTokens(accountData: AccountData) {
+        self.twitterApi.oauthToken = accountData.oauth_token!
+        self.twitterApi.oauthSecret = accountData.oauth_token_secret!
+    }
 
     func addAccountThroughWeb() {
         self.twitterApi.fetch(.OauthRequestToken, params: .OauthCallback(TWITTER_OAUTH_CALLBACK))
@@ -49,6 +54,15 @@ class TwitterApiService {
             }
             .success { (data: AccountData) -> Void in
                 AccountActions.emitAccount(data)
+            }
+    }
+
+    func fetchFriends(user_id: String) {
+        self.twitterApi.fetch(.FriendsIds, params: .UserId(user_id), .Count(5000), .StringifyIds(true))
+            .success { (response: TwitterApiResponse) -> Void in
+                let data = response as! FriendsIdsData
+                // TODO: Fetch user data
+                println(data.ids)
             }
     }
 

@@ -47,7 +47,9 @@ class LocalStorageService {
         dataStack.beginAsynchronous {(transaction) in
             let accounts = transaction.fetchAll(From(Account))!
             if let account = accounts.first {
-                AccountActions.emitAccount(account.toData())
+                let accountData = account.toData()
+                TwitterApiService.instance.loadTokens(accountData)
+                AccountActions.emitAccount(accountData)
             } else {
                 AccountActions.emitAccount(nil)
             }

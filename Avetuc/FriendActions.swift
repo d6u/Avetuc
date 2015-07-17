@@ -19,4 +19,8 @@ struct FriendActions {
         Dispatcher.instance.dispatch(friends)
     }
 
+    static func fetchFriends(user_id: String) {
+        TwitterApiService.instance.fetchFriends(user_id)
+    }
+
 }

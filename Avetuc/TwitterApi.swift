@@ -43,19 +43,28 @@ class TwitterApi {
                 case .OauthAccessToken:
                     let account = AccountData(data: dict)
                     return TwitterApiTask(value: account)
+
+                case .FriendsIds:
+                    let ids = FriendsIdsData(data: dict)
+                    return TwitterApiTask(value: ids)
                 }
             }
     }
 
-    private func processResponse(endpoint: TwitterApiEndpoint, responseTask: AlamofireTask) -> ProcessedApiTask {
+    private func processResponse(endpoint: TwitterApiEndpoint, responseTask: AlamofireTask) -> ProcessedApiTask
+    {
         return responseTask.success { (data) -> ProcessedApiTask in
-            switch endpoint.responseFormat {
+
+            switch endpoint.responseFormat
+            {
                 case .QueryParam:
                     let str = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
                     let dict = parseQueryParams(str)
                     return ProcessedApiTask(value: dict)
+
                 case .JSON:
-                    return ProcessedApiTask(value: [:])
+                    let dict = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as! [String: AnyObject]
+                    return ProcessedApiTask(value: dict)
             }
         }
 
