@@ -23,19 +23,22 @@ class Dispatcher {
     }
 
     let accountEvent = Event<AccountData?>()
+    let friendsEvent = Event<[UserData]>()
 
-    func register(type: DispatcherEventType, callback: AccountDataHandler) -> Listener {
-        switch type {
-        case .Account:
-            return accountEvent.on(callback)
-        default:
-            assert(false, "Type other than Account is not implemented yet")
-            return accountEvent.on(callback)
-        }
+    func register(callback: AccountDataHandler) -> Listener {
+        return accountEvent.on(callback)
     }
 
-    func dispatchAccountData(account: AccountData?) {
+    func register(callback: FriendsDataHandler) -> Listener {
+        return friendsEvent.on(callback)
+    }
+
+    func dispatch(account: AccountData?) {
         self.accountEvent.emit(account)
+    }
+
+    func dispatch(friends: [UserData]) {
+        self.friendsEvent.emit(friends)
     }
 
 }

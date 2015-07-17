@@ -25,13 +25,13 @@ class AccountsStore {
     }
 
     init() {
-        listener = Dispatcher.instance.register(.Account) { account in
+        self.listener = Dispatcher.instance.register { (account: AccountData?) -> Void in
             self.account = account
             self.event.emit(StoreEvent<AccountData>(cur: account, pre: self.account))
         }
     }
 
-    var account: AccountData?
+    private var account: AccountData?
 
     private let event = Event<StoreEvent<AccountData>>()
     private var listener: Listener?

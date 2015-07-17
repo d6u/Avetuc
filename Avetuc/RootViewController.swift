@@ -15,11 +15,8 @@ class RootViewController: UINavigationController {
     init() {
         super.init(nibName: nil, bundle: nil)
 
-        accountListener = AccountsStore.instance.on { storeData in
-            println("emitted")
-            if let account = storeData.cur {
-                println("has account")
-            } else {
+        self.accountListener = AccountsStore.instance.on { storeData in
+            if storeData.cur == nil {
                 self.presentIntroView()
             }
         }

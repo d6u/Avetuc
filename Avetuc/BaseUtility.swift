@@ -24,29 +24,4 @@ class BaseUtility: NSManagedObject {
         return self.dictionaryWithValuesForKeys(keys) as! [String: AnyObject]
     }
 
-//    func setPropertiesFromJson(json: JSON)
-//    {
-//        if let dict = json.object as? [String: JSON]
-//        {
-//            for (key, json) in dict
-//            {
-//                if self.isPropertyDefined(key)
-//                {
-//                    switch json.type {
-//                    case .Bool:
-//                        self.setValue(json.boolValue, forKey: key)
-//                    case .Number:
-//                        self.setValue(json.numberValue, forKey: key)
-//                    case .String:
-//                        self.setValue(json.stringValue, forKey: key)
-//                    case .Null:
-//                        self.setValue(nil, forKey: key)
-//                    default:
-//                        break
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 }

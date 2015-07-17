@@ -9,6 +9,7 @@
 import Foundation
 
 typealias AccountDataHandler = (AccountData?) -> Void
+typealias FriendsDataHandler = ([UserData]) -> Void
 
 enum DispatcherEventType {
     case Account

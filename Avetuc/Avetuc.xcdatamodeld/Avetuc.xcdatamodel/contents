@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Account" representedClassName="Avetuc.Account" syncable="YES">
-        <attribute name="accountIdentifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastFetchSinceId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tokenSecret" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userId" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="friends" toMany="YES" deletionRule="Cascade" destinationEntity="User" inverseName="followerAccount" inverseEntity="User" syncable="YES"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="profileAccount" inverseEntity="User" syncable="YES"/>
-        <relationship name="relatedTweets" toMany="YES" deletionRule="Cascade" destinationEntity="Tweet" inverseName="relatedAccount" inverseEntity="Tweet" syncable="YES"/>
+        <attribute name="account_identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_fetch_since_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oauth_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="oauth_token_secret" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screen_name" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Entity" representedClassName="Avetuc.Entity" syncable="YES">
         <attribute name="displayStr" attributeType="String" syncable="YES"/>
@@ -18,7 +16,6 @@
         <attribute name="parsedIndicesEnd" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="targetStr" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
-        <relationship name="tweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="entities" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <entity name="HashtagEntity" representedClassName="Avetuc.HashtagEntity" parentEntity="Entity" syncable="YES">
         <attribute name="text" attributeType="String" syncable="YES"/>
@@ -51,19 +48,12 @@
         <attribute name="in_reply_to_screen_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="in_reply_to_status_id_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="in_reply_to_user_id_str" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isRead" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="is_read" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="retweet_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="retweeted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="text" attributeType="String" syncable="YES"/>
         <attribute name="text_with_entities" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="entities" toMany="YES" deletionRule="Cascade" destinationEntity="Entity" inverseName="tweet" inverseEntity="Entity" syncable="YES"/>
-        <relationship name="quotedStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="quotingStatus" inverseEntity="Tweet" syncable="YES"/>
-        <relationship name="quotingStatus" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="quotedStatus" inverseEntity="Tweet" syncable="YES"/>
-        <relationship name="relatedAccount" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="relatedTweets" inverseEntity="Account" syncable="YES"/>
-        <relationship name="retweetedStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="retweetingStatus" inverseEntity="Tweet" syncable="YES"/>
-        <relationship name="retweetingStatus" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="retweetedStatus" inverseEntity="Tweet" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="statuses" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="UrlEntity" representedClassName="Avetuc.UrlEntity" parentEntity="Entity" syncable="YES">
         <attribute name="displayUrl" attributeType="String" syncable="YES"/>
@@ -71,6 +61,7 @@
         <attribute name="url" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="Avetuc.User" parentEntity="TimestampUtility" syncable="YES">
+        <attribute name="account_user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favourites_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="followers_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="following" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -87,22 +78,19 @@
         <attribute name="twitter_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unread_count" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="utc_offset" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="utc_offset" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="verified" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <relationship name="followerAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="friends" inverseEntity="Account" syncable="YES"/>
-        <relationship name="profileAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="profile" inverseEntity="Account" syncable="YES"/>
-        <relationship name="statuses" toMany="YES" deletionRule="Cascade" destinationEntity="Tweet" inverseName="user" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-270" positionY="63" width="128" height="165"/>
-        <element name="Entity" positionX="-162" positionY="180" width="128" height="165"/>
+        <element name="Account" positionX="-270" positionY="63" width="128" height="135"/>
+        <element name="Entity" positionX="-162" positionY="180" width="128" height="150"/>
         <element name="HashtagEntity" positionX="-135" positionY="207" width="128" height="60"/>
         <element name="MediaSize" positionX="-117" positionY="225" width="128" height="120"/>
         <element name="MentionEntity" positionX="-144" positionY="198" width="128" height="90"/>
         <element name="PhotoEntity" positionX="-126" positionY="216" width="128" height="105"/>
         <element name="TimestampUtility" positionX="-162" positionY="180" width="128" height="60"/>
-        <element name="Tweet" positionX="-162" positionY="180" width="128" height="330"/>
+        <element name="Tweet" positionX="-162" positionY="180" width="128" height="225"/>
         <element name="UrlEntity" positionX="-153" positionY="189" width="128" height="90"/>
-        <element name="User" positionX="-54" positionY="27" width="128" height="360"/>
+        <element name="User" positionX="-54" positionY="27" width="128" height="330"/>
     </elements>
 </model>

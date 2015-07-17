@@ -2,7 +2,7 @@
 //  Account.swift
 //  Avetuc
 //
-//  Created by Daiwei Lu on 7/7/15.
+//  Created by Daiwei Lu on 7/16/15.
 //  Copyright (c) 2015 Daiwei Lu. All rights reserved.
 //
 
@@ -11,14 +11,12 @@ import CoreData
 
 class Account: BaseUtility {
 
-    @NSManaged var accountIdentifier: String?
-    @NSManaged var lastFetchSinceId: String?
-    @NSManaged var token: String?
-    @NSManaged var tokenSecret: String?
-    @NSManaged var userId: String
-    @NSManaged var friends: Set<User>
-    @NSManaged var profile: User
-    @NSManaged var relatedTweets: Set<Tweet>
+    @NSManaged var account_identifier: String?
+    @NSManaged var last_fetch_since_id: String?
+    @NSManaged var oauth_token: String?
+    @NSManaged var oauth_token_secret: String?
+    @NSManaged var user_id: String
+    @NSManaged var screen_name: String
 
     func toData() -> AccountData {
         return AccountData(data: self.toDict())

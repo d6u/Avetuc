@@ -11,7 +11,7 @@ import Foundation
 struct AccountActions {
 
     static func emitAccount(account: AccountData?) {
-        Dispatcher.instance.dispatchAccountData(account)
+        Dispatcher.instance.dispatch(account)
     }
 
     static func askCurrentAccount() {

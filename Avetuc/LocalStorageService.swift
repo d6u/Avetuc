@@ -58,9 +58,10 @@ class LocalStorageService {
         return LocalStorageTask { progress, fulfill, reject, configure in
             self.dataStack.beginAsynchronous { transaction in
                 let account = transaction.create(Into(Account))
-                account.token = accountData.oauth_token
-                account.tokenSecret = accountData.oauth_token_secret
-                account.userId = accountData.user_id!
+                account.oauth_token = accountData.oauth_token
+                account.oauth_token_secret = accountData.oauth_token_secret
+                account.user_id = accountData.user_id!
+                account.screen_name = accountData.screen_name!
 
                 transaction.commit { result -> Void in
                     switch result {
@@ -73,6 +74,21 @@ class LocalStorageService {
                     }
                 }
             }
+        }
+    }
+
+    func loadFriendsFor(user_id: String) {
+        self.dataStack.beginAsynchronous { transaction in
+            let users = transaction.fetchAll(
+                From(User),
+                Where("account_user_id = \(user_id)")
+            )! as [User]
+
+            let usersData = users.map { user in
+                return user.toData()
+            }
+
+            FriendActions.emitFriends(usersData)
         }
     }
 

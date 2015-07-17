@@ -14,10 +14,11 @@ class IntroViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+
         self.view = IntroView()
 
-        accountListener = AccountsStore.instance.on { storeData in
-            if let account = storeData.cur {
+        self.accountListener = AccountsStore.instance.on { storeData in
+            if storeData.cur != nil {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
