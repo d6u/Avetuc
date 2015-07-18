@@ -48,7 +48,7 @@ class LocalStorageService {
             let accounts = transaction.fetchAll(From(Account))!
             if let account = accounts.first {
                 let accountData = account.toData()
-                TwitterApiService.instance.loadTokens(accountData)
+                TwitterApiService.instance.loadTokens(accountData.oauth_token, oauthTokenSecret: accountData.oauth_token_secret)
                 AccountActions.emitAccount(accountData)
             } else {
                 AccountActions.emitAccount(nil)
@@ -62,8 +62,8 @@ class LocalStorageService {
                 let account = transaction.create(Into(Account))
                 account.oauth_token = accountData.oauth_token
                 account.oauth_token_secret = accountData.oauth_token_secret
-                account.user_id = accountData.user_id!
-                account.screen_name = accountData.screen_name!
+                account.user_id = accountData.user_id
+                account.screen_name = accountData.screen_name
 
                 transaction.commit { result -> Void in
                     switch result {

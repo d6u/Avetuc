@@ -12,8 +12,8 @@ import Alamofire
 func paramsToDict(params: [TwitterApiParam]) -> [String: String] {
     var dict = [String: String]()
     for param in params {
-        let (key, value) = param.keyValuePair
-        dict[key] = value
+        let pair = param.pair
+        dict[pair.key] = pair.value
     }
     return dict
 }
@@ -89,7 +89,7 @@ let UrlEncoder = Alamofire.ParameterEncoding.Custom { (request, params) -> (NSUR
     return (mutableUrlRequest, nil)
 }
 
-func parseQueryParams(queryStr: String) -> [String: AnyObject] {
+func parseQueryParams(queryStr: String) -> [String: String] {
     let pairs = queryStr.componentsSeparatedByString("&")
     var dict = [String: String]()
     for pair in pairs {

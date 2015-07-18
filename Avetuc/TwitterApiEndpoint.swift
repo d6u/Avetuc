@@ -16,6 +16,7 @@ enum TwitterApiEndpoint: String {
     case OauthRequestToken = "request_token"
     case OauthAccessToken = "access_token"
     case FriendsIds = "friends/ids.json"
+    case UsersLookup = "users/lookup.json"
 
     enum Method: String {
         case GET = "GET"

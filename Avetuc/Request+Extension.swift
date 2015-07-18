@@ -10,21 +10,15 @@ import Foundation
 import Alamofire
 import SwiftTask
 
-typealias Progress = (bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
-typealias AlamofireTask = Task<Progress, NSData, NSError>
+typealias RequestTask = Task<Float, NSData, NSError>
 
 extension Request {
-
-    func responseAsync() -> AlamofireTask {
-        return AlamofireTask { progress, fulfill, reject, configure in
+    func response() -> RequestTask {
+        return RequestTask { progress, fulfill, reject, configure -> Void in
             self.response { request, response, data, error in
-                if let err = error {
-                    reject(err)
-                    return
-                }
-                fulfill(data as! NSData)
+                error != nil ? reject(error!) : fulfill(data as! NSData)
             }
-            return
+            return // Must return to make SwiftTask happen when compile
         }
     }
 }

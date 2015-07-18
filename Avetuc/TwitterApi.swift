@@ -1,121 +1,67 @@
 //
-//  TwitterAPI.swift
+//  TwitterApi.swift
 //  Avetuc
 //
-//  Created by Daiwei Lu on 7/12/15.
+//  Created by Daiwei Lu on 7/18/15.
 //  Copyright (c) 2015 Daiwei Lu. All rights reserved.
 //
 
 import Foundation
-import Alamofire
 import SwiftTask
-import JSONHelper
+import Argo
 
-typealias TwitterApiTask = Task<Progress, TwitterApiResponse, NSError>
-typealias ProcessedApiTask = Task<Progress, [String: AnyObject], NSError>
+typealias OauthRequestTokenTask = Task<Float, OauthRequestTokenData, NSError>
+typealias OauthAccessTokenTask = Task<Float, AccountData, NSError>
+typealias FriendsIdsTask = Task<Float, FriendsIdsData, NSError>
 
 class TwitterApi {
 
     init(consumerKey: String, consumerSecret: String) {
-        self.consumerKey = consumerKey
-        self.consumerSecret = consumerSecret
+        self.client = TwitterApiClient(consumerKey: consumerKey, consumerSecret: consumerSecret)
     }
 
-    let consumerKey: String
-    let consumerSecret: String
-    var oauthToken: String?
-    var oauthSecret: String?
+    private let client: TwitterApiClient
 
-    func fetch(endpoint: TwitterApiEndpoint, params: TwitterApiParam...) -> TwitterApiTask {
-        let task = Alamofire.request(self.buildRequest(endpoint, params: params)).responseAsync()
+    func loadTokens(oauthToken: String, oauthTokenSecret: String) {
+        self.client.loadTokens(oauthToken, oauthTokenSecret: oauthTokenSecret)
+    }
 
-        return self.processResponse(endpoint, responseTask: task)
-            .success { (dict) -> TwitterApiTask in
-                switch endpoint {
+    private func fetch(endpoint: TwitterApiEndpoint, params: [TwitterApiParam]) -> FetchTask {
+        return self.client.fetch(endpoint, params: params)
+    }
 
-                case .OauthRequestToken:
-                    let tokenData = TokenData(
-                        oauth_token: dict["oauth_token"] as! String,
-                        oauth_token_secret: dict["oauth_token_secret"] as! String,
-                        oauth_callback_confirmed: (dict["oauth_callback_confirmed"] as! String) == "true")
-                    return TwitterApiTask(value: tokenData)
+    // MARK: - API
 
-                case .OauthAccessToken:
-                    let account = AccountData(data: dict)
-                    return TwitterApiTask(value: account)
-
-                case .FriendsIds:
-                    let ids = FriendsIdsData(data: dict)
-                    return TwitterApiTask(value: ids)
-                }
+    func oauthRequestToken(params: [TwitterApiParam]) -> OauthRequestTokenTask {
+        return self.fetch(.OauthRequestToken, params: params)
+            .success { (json: AnyObject) -> OauthRequestTokenTask in
+                let data: OauthRequestTokenData? = decode(json)
+                return OauthRequestTokenTask(value: data!)
             }
     }
 
-    private func processResponse(endpoint: TwitterApiEndpoint, responseTask: AlamofireTask) -> ProcessedApiTask
-    {
-        return responseTask.success { (data) -> ProcessedApiTask in
+    func oauthAccessToken(params: [TwitterApiParam]) -> OauthAccessTokenTask {
+        return self.fetch(.OauthAccessToken, params: params)
+            .success { (json: AnyObject) -> OauthAccessTokenTask in
+                let data: AccountData? = decode(json)
+                return OauthAccessTokenTask(value: data!)
+        }
+    }
 
-            switch endpoint.responseFormat
-            {
-                case .QueryParam:
-                    let str = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
-                    let dict = parseQueryParams(str)
-                    return ProcessedApiTask(value: dict)
-
-                case .JSON:
-                    let dict = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as! [String: AnyObject]
-                    return ProcessedApiTask(value: dict)
+    func friendsIds(params: [TwitterApiParam]) -> FriendsIdsTask {
+        return self.fetch(.FriendsIds, params: params)
+            .success { (json: AnyObject) -> FriendsIdsTask in
+                let data: FriendsIdsData? = decode(json)
+                return FriendsIdsTask(value: data!)
             }
-        }
-
     }
 
-    private func buildRequest(endpoint: TwitterApiEndpoint, params: [TwitterApiParam]) -> URLRequestConvertible {
-        let url = NSURL(string: endpoint.url)!
-        let mutableUrlRequest = NSMutableURLRequest(URL: url)
-        mutableUrlRequest.HTTPMethod = endpoint.method
+    // MARK: - Callback Handler
 
-        let paramDict = paramsToDict(params)
-        let authStr = self.authString(endpoint, params: paramDict)
-        mutableUrlRequest.setValue(authStr, forHTTPHeaderField: "Authorization")
-
-        return UrlEncoder.encode(mutableUrlRequest, parameters: paramDict).0
-    }
-
-    private func authString(endpoint: TwitterApiEndpoint, params: [String: String]) -> String {
-        var oauthDict = self.unsignedOauthDict(params, includeToken: endpoint.includeToken)
-        let allParams = merge(oauthDict, params)
-
-        var signingKey = urlEncode(self.consumerSecret) + "&"
-        if endpoint.includeToken {
-            signingKey += urlEncode(self.oauthSecret!)
-        }
-
-        oauthDict["oauth_signature"] = generateOauthSignature(endpoint.method, endpoint.url, allParams, signingKey)
-
-        var arr = [String]()
-        for key in sorted(oauthDict.keys) {
-            let value = oauthDict[key]!
-            arr.append(urlEncode(key) + "=\"" + urlEncode(value) + "\"")
-        }
-
-        return "OAuth " + join(", ", arr)
-    }
-
-    private func unsignedOauthDict(params: [String: String], includeToken: Bool) -> [String: String] {
-        var dict = [
-            "oauth_consumer_key": self.consumerKey,
-            "oauth_nonce": NSUUID().UUIDString,
-            "oauth_signature_method": "HMAC-SHA1",
-            "oauth_timestamp": String(Int64(NSDate().timeIntervalSince1970)),
-            "oauth_version": "1.0",
-        ]
-
-        if includeToken {
-            dict["oauth_token"] = self.oauthToken!
-        }
-
-        return dict
+    func parseOauthCallback(url: NSURL) -> OauthCallbackData {
+        let dict = parseQueryParams(url.query!)
+        let callbackData: OauthCallbackData? = decode(dict)
+        return callbackData!
     }
 
 }

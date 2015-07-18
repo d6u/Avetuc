@@ -13,8 +13,11 @@
 		7834C96E1B58A423004029C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* Account.swift */; };
 		7834C9701B58A423004029C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* User.swift */; };
 		7834C9721B58B573004029C3 /* FriendsIdsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C9711B58B573004029C3 /* FriendsIdsData.swift */; };
-		786E70C81B560F7D00B78FFE /* TwitterCallbackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */; };
+		786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */; };
 		786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70CC1B56195500B78FFE /* StoreEvent.swift */; };
+		78AA3C371B5ADBD60082E44D /* UsersLookupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA3C361B5ADBD60082E44D /* UsersLookupData.swift */; };
+		78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38311B5AF00900FA060B /* TwitterApi.swift */; };
+		78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
 		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
 		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
@@ -24,17 +27,15 @@
 		78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */; };
 		78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C501B55FED000AA3875 /* AccountActions.swift */; };
 		78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C531B55FEFC00AA3875 /* AccountData.swift */; };
-		78FD6C571B55FF1B00AA3875 /* TwitterApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */; };
 		78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */; };
 		78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */; };
 		78FD6C621B55FFE600AA3875 /* BaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C611B55FFE600AA3875 /* BaseUtility.swift */; };
 		78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C631B56000000AA3875 /* TwitterApiService.swift */; };
 		78FD6C661B56001F00AA3875 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C651B56001F00AA3875 /* Config.swift */; };
-		78FD6C681B56003500AA3875 /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C671B56003500AA3875 /* TwitterApi.swift */; };
+		78FD6C681B56003500AA3875 /* TwitterApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C671B56003500AA3875 /* TwitterApiClient.swift */; };
 		78FD6C6A1B56008100AA3875 /* Request+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C691B56008100AA3875 /* Request+Extension.swift */; };
 		78FD6C6C1B5600A100AA3875 /* TwitterApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */; };
 		78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */; };
-		78FD6C701B5600C600AA3875 /* TokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6F1B5600C600AA3875 /* TokenData.swift */; };
 		78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */; };
 		78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C751B56011800AA3875 /* TimestampUtility.swift */; };
 		78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7A1B56018900AA3875 /* AccountsStore.swift */; };
@@ -63,8 +64,11 @@
 		7834C96D1B58A423004029C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7834C96F1B58A423004029C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7834C9711B58B573004029C3 /* FriendsIdsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsIdsData.swift; sourceTree = "<group>"; };
-		786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCallbackData.swift; sourceTree = "<group>"; };
+		786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthCallbackData.swift; sourceTree = "<group>"; };
 		786E70CC1B56195500B78FFE /* StoreEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreEvent.swift; sourceTree = "<group>"; };
+		78AA3C361B5ADBD60082E44D /* UsersLookupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersLookupData.swift; sourceTree = "<group>"; };
+		78BD38311B5AF00900FA060B /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
+		78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthRequestTokenData.swift; sourceTree = "<group>"; };
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,17 +82,15 @@
 		78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		78FD6C501B55FED000AA3875 /* AccountActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountActions.swift; sourceTree = "<group>"; };
 		78FD6C531B55FEFC00AA3875 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountData.swift; sourceTree = "<group>"; };
-		78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiResponse.swift; sourceTree = "<group>"; };
 		78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		78FD6C611B55FFE600AA3875 /* BaseUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUtility.swift; sourceTree = "<group>"; };
 		78FD6C631B56000000AA3875 /* TwitterApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiService.swift; sourceTree = "<group>"; };
 		78FD6C651B56001F00AA3875 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		78FD6C671B56003500AA3875 /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
+		78FD6C671B56003500AA3875 /* TwitterApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiClient.swift; sourceTree = "<group>"; };
 		78FD6C691B56008100AA3875 /* Request+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request+Extension.swift"; sourceTree = "<group>"; };
 		78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiEndpoint.swift; sourceTree = "<group>"; };
 		78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiParam.swift; sourceTree = "<group>"; };
-		78FD6C6F1B5600C600AA3875 /* TokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenData.swift; sourceTree = "<group>"; };
 		78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiUtils.swift; sourceTree = "<group>"; };
 		78FD6C751B56011800AA3875 /* TimestampUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampUtility.swift; sourceTree = "<group>"; };
 		78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Avetuc-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -174,7 +176,6 @@
 				78FD6C521B55FED400AA3875 /* Actions */,
 				78FD6C581B55FF2500AA3875 /* Services */,
 				78FD6C601B55FFBF00AA3875 /* Models */,
-				78FD6C551B55FEFF00AA3875 /* Data */,
 				786E70CB1B5617DE00B78FFE /* Dispatcher */,
 				78FD6C7C1B56018B00AA3875 /* Store */,
 				78FD6C231B55FC9300AA3875 /* Supporting Files */,
@@ -244,11 +245,12 @@
 		78FD6C551B55FEFF00AA3875 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */,
 				78FD6C531B55FEFC00AA3875 /* AccountData.swift */,
-				78FD6C6F1B5600C600AA3875 /* TokenData.swift */,
-				786E70C71B560F7D00B78FFE /* TwitterCallbackData.swift */,
-				7834C9671B589577004029C3 /* UserData.swift */,
+				786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */,
 				7834C9711B58B573004029C3 /* FriendsIdsData.swift */,
+				7834C9671B589577004029C3 /* UserData.swift */,
+				78AA3C361B5ADBD60082E44D /* UsersLookupData.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -266,12 +268,13 @@
 		78FD6C591B55FF3300AA3875 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C671B56003500AA3875 /* TwitterApi.swift */,
+				78BD38311B5AF00900FA060B /* TwitterApi.swift */,
+				78FD6C671B56003500AA3875 /* TwitterApiClient.swift */,
 				78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */,
 				78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */,
-				78FD6C561B55FF1B00AA3875 /* TwitterApiResponse.swift */,
 				78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */,
 				78FD6C691B56008100AA3875 /* Request+Extension.swift */,
+				78FD6C551B55FEFF00AA3875 /* Data */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -455,19 +458,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */,
 				78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */,
 				7834C9681B589577004029C3 /* UserData.swift in Sources */,
 				78FD6C6C1B5600A100AA3875 /* TwitterApiEndpoint.swift in Sources */,
 				78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */,
 				7834C9701B58A423004029C3 /* User.swift in Sources */,
+				78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */,
 				7834C96C1B5898A7004029C3 /* FriendsStore.swift in Sources */,
 				78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */,
 				78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */,
-				786E70C81B560F7D00B78FFE /* TwitterCallbackData.swift in Sources */,
+				786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */,
 				78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */,
-				78FD6C681B56003500AA3875 /* TwitterApi.swift in Sources */,
+				78AA3C371B5ADBD60082E44D /* UsersLookupData.swift in Sources */,
+				78FD6C681B56003500AA3875 /* TwitterApiClient.swift in Sources */,
 				78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */,
-				78FD6C701B5600C600AA3875 /* TokenData.swift in Sources */,
 				786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */,
 				7834C96A1B589644004029C3 /* FriendActions.swift in Sources */,
 				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
@@ -481,7 +486,6 @@
 				78FD6C851B56021600AA3875 /* DispatcherUtility.swift in Sources */,
 				78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */,
 				78FD6C491B55FE1800AA3875 /* Utilities.swift in Sources */,
-				78FD6C571B55FF1B00AA3875 /* TwitterApiResponse.swift in Sources */,
 				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
 				78FD6C621B55FFE600AA3875 /* BaseUtility.swift in Sources */,
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
@@ -609,7 +613,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
@@ -625,7 +629,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";

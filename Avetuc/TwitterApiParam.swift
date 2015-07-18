@@ -16,21 +16,24 @@ enum TwitterApiParam {
     case ScreenName(String)
     case StringifyIds(Bool)
     case Count(Int16)
+    case UserIds([String])
 
-    var keyValuePair: (String, String) {
+    var pair: (key: String, value: String) {
         switch self {
-        case .OauthCallback(let value):
-            return ("oauth_callback", value)
-        case .OauthVerifier(let value):
-            return ("oauth_verifier", value)
-        case .UserId(let value):
-            return ("user_id", value)
-        case .ScreenName(let value):
-            return ("screen_name", value)
-        case .StringifyIds(let value):
-            return ("stringify_ids", value ? "true" : "false")
-        case .Count(let value):
-            return ("count", String(value))
+        case .OauthCallback(let callback):
+            return (key: "oauth_callback", value: callback)
+        case .OauthVerifier(let verifier):
+            return (key: "oauth_verifier", value: verifier)
+        case .UserId(let id):
+            return (key: "user_id", value: id)
+        case .ScreenName(let screen_name):
+            return (key: "screen_name", value: screen_name)
+        case .StringifyIds(let isTrue):
+            return (key: "stringify_ids", value: isTrue ? "true" : "false")
+        case .Count(let count):
+            return (key: "count", value: String(count))
+        case .UserIds(let ids):
+            return (key: "user_id", value: join(",", ids))
         }
     }
 }

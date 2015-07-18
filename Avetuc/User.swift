@@ -32,7 +32,7 @@ class User: TimestampUtility {
     @NSManaged var verified: Bool
 
     func toData() -> UserData {
-        return UserData(data: self.toDict())
+        return UserData()
     }
 
 }

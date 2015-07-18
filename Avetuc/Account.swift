@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Argo
 
 class Account: BaseUtility {
 
@@ -19,7 +20,8 @@ class Account: BaseUtility {
     @NSManaged var screen_name: String
 
     func toData() -> AccountData {
-        return AccountData(data: self.toDict())
+        let data: AccountData? = decode(self.toDict())
+        return data!
     }
 
 }

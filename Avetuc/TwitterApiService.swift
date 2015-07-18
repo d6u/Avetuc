@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftTask
-import JSONHelper
 
 class TwitterApiService {
 
@@ -25,31 +24,26 @@ class TwitterApiService {
 
     private let twitterApi = TwitterApi(consumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
 
-    func loadTokens(accountData: AccountData) {
-        self.twitterApi.oauthToken = accountData.oauth_token!
-        self.twitterApi.oauthSecret = accountData.oauth_token_secret!
+    func loadTokens(oauthToken: String, oauthTokenSecret: String) {
+        self.twitterApi.loadTokens(oauthToken, oauthTokenSecret: oauthTokenSecret)
     }
 
     func addAccountThroughWeb() {
-        self.twitterApi.fetch(.OauthRequestToken, params: .OauthCallback(TWITTER_OAUTH_CALLBACK))
-            .success { (response: TwitterApiResponse) -> Void in
-                let data = response as! TokenData
-                self.twitterApi.oauthToken = data.oauth_token
-                self.twitterApi.oauthSecret = data.oauth_token_secret
+        self.twitterApi
+            .oauthRequestToken([.OauthCallback(TWITTER_OAUTH_CALLBACK)])
+            .success { data -> Void in
+                self.loadTokens(data.oauth_token, oauthTokenSecret: data.oauth_token_secret)
                 let url = NSURL(string: "https://api.twitter.com/oauth/authenticate?oauth_token=\(data.oauth_token)")!
                 UIApplication.sharedApplication().openURL(url)
             }
     }
 
     func handleOauthCallback(url: NSURL) {
-        let dict = parseQueryParams(url.query!)
-        let callbackData = TwitterCallbackData(data: dict)
-
-        self.twitterApi.fetch(.OauthAccessToken, params: .OauthVerifier(callbackData.oauth_verifier!))
-            .success { (response: TwitterApiResponse) -> LocalStorageTask in
-                let data = response as! AccountData
-                self.twitterApi.oauthToken = data.oauth_token!
-                self.twitterApi.oauthSecret = data.oauth_token_secret!
+        let data = self.twitterApi.parseOauthCallback(url)
+        self.twitterApi
+            .oauthAccessToken([.OauthVerifier(data.oauth_verifier)])
+            .success { data -> LocalStorageTask in
+                self.loadTokens(data.oauth_token, oauthTokenSecret: data.oauth_token_secret)
                 return LocalStorageService.instance.createAccount(data)
             }
             .success { (data: AccountData) -> Void in
@@ -58,10 +52,9 @@ class TwitterApiService {
     }
 
     func fetchFriends(user_id: String) {
-        self.twitterApi.fetch(.FriendsIds, params: .UserId(user_id), .Count(5000), .StringifyIds(true))
-            .success { (response: TwitterApiResponse) -> Void in
-                let data = response as! FriendsIdsData
-                // TODO: Fetch user data
+        self.twitterApi
+            .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
+            .success { data -> Void in
                 println(data.ids)
             }
     }
