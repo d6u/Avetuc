@@ -14,6 +14,7 @@
 		7834C96E1B58A423004029C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* Account.swift */; };
 		7834C9701B58A423004029C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* User.swift */; };
 		7834C9721B58B573004029C3 /* FriendsIdsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C9711B58B573004029C3 /* FriendsIdsData.swift */; };
+		784B5FA01B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B5F9F1B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift */; };
 		786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */; };
 		786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70CC1B56195500B78FFE /* StoreEvent.swift */; };
 		78AA343D1B5C186D0006B916 /* TweetsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AA343C1B5C186D0006B916 /* TweetsActions.swift */; };
@@ -73,6 +74,7 @@
 		7834C96D1B58A423004029C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7834C96F1B58A423004029C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7834C9711B58B573004029C3 /* FriendsIdsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsIdsData.swift; sourceTree = "<group>"; };
+		784B5F9F1B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiServiceUtilities.swift; sourceTree = "<group>"; };
 		786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthCallbackData.swift; sourceTree = "<group>"; };
 		786E70CC1B56195500B78FFE /* StoreEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreEvent.swift; sourceTree = "<group>"; };
 		78AA343C1B5C186D0006B916 /* TweetsActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsActions.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		78FD6C591B55FF3300AA3875 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				784B5F9F1B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift */,
 				78BD38311B5AF00900FA060B /* TwitterApi.swift */,
 				78FD6C671B56003500AA3875 /* TwitterApiClient.swift */,
 				78FD6C6B1B5600A100AA3875 /* TwitterApiEndpoint.swift */,
@@ -502,6 +505,7 @@
 				78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */,
 				7834C96C1B5898A7004029C3 /* FriendsStore.swift in Sources */,
 				78FD6C541B55FEFC00AA3875 /* AccountData.swift in Sources */,
+				784B5FA01B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift in Sources */,
 				78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */,
 				786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */,
 				78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */,
