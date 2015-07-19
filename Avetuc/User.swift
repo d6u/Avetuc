@@ -37,11 +37,30 @@ class User: TimestampUtility {
         return data!
     }
 
-    func fromData(data: AccountData) {
-        self.oauth_token = data.oauth_token
-        self.oauth_token_secret = data.oauth_token_secret
-        self.user_id = data.user_id
+    func fromData(data: UserData) {
+        // Parent class
+        self.created_at = data.created_at
+
+        // Different name
+        self.twitter_description = data.description
+
+        self.favourites_count = data.favourites_count
+        self.followers_count = data.followers_count
+        self.following = data.following
+        self.friends_count = data.friends_count
+        self.id_str = data.id_str
+        self.lang = data.lang
+        self.listed_count = data.listed_count
+        self.location = data.location
+        self.name = data.name
+        self.profile_image_url = data.profile_image_url
         self.screen_name = data.screen_name
+        self.statuses_count = data.statuses_count
+        self.time_zone = data.time_zone
+        self.unread_count = data.unread_count ?? -1
+        self.url = data.url
+        self.utc_offset = data.utc_offset ?? 0
+        self.verified = data.verified
     }
 
 }

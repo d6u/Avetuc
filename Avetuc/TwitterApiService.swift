@@ -44,7 +44,7 @@ class TwitterApiService {
         let data = self.twitterApi.parseOauthCallback(url)
         self.twitterApi
             .oauthAccessToken([.OauthVerifier(data.oauth_verifier)])
-            .success { data -> LocalStorageTask in
+            .success { data -> CreateAccountTask in
                 self.loadTokens(data.oauth_token, oauthTokenSecret: data.oauth_token_secret)
                 return LocalStorageService.instance.createAccount(data)
             }
@@ -73,12 +73,15 @@ class TwitterApiService {
 
                 return UsersLookupTask.all(tasks)
             }
-            .success { (data: [[UserData]]) -> Void in
+            .success { (data: [[UserData]]) -> CreateUsersTask in
                 var result = [UserData]()
                 for users in data {
                     result += users
                 }
-                println(result.map {$0.name})
+                return LocalStorageService.instance.createUsers(result)
+            }
+            .success { data -> Void in
+                FriendActions.emitFriends(data)
             }
     }
 

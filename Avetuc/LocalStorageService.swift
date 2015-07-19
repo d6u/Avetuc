@@ -10,7 +10,8 @@ import Foundation
 import CoreStore
 import SwiftTask
 
-typealias LocalStorageTask = Task<Float, AccountData, NSError>
+typealias CreateAccountTask = Task<Float, AccountData, NSError>
+typealias CreateUsersTask = Task<Float, [UserData], NSError>
 
 class LocalStorageService {
 
@@ -45,8 +46,8 @@ class LocalStorageService {
 
     // MARK: Create
 
-    func createAccount(accountData: AccountData) -> LocalStorageTask {
-        return LocalStorageTask { progress, fulfill, reject, configure in
+    func createAccount(accountData: AccountData) -> CreateAccountTask {
+        return CreateAccountTask { progress, fulfill, reject, configure in
             self.dataStack.beginAsynchronous { transaction in
                 let account = transaction.create(Into(Account)).fromData(accountData)
 
@@ -54,7 +55,7 @@ class LocalStorageService {
                     switch result {
                     case .Success(let hasChanges):
                         println("success! hasChanges? \(hasChanges)")
-                        fulfill(account.toData())
+                        fulfill(accountData)
                     case .Failure(let error):
                         println(error)
                         reject(error)
@@ -64,7 +65,24 @@ class LocalStorageService {
         }
     }
 
-    func createUser
+    func createUsers(usersData: [UserData]) -> CreateUsersTask {
+        return CreateUsersTask { progress, fulfill, reject, configure in
+            self.dataStack.beginAsynchronous { transaction in
+                let users = usersData.map { transaction.create(Into(User)).fromData($0) }
+
+                transaction.commit { result -> Void in
+                    switch result {
+                    case .Success(let hasChanges):
+                        println("success! hasChanges? \(hasChanges)")
+                        fulfill(usersData)
+                    case .Failure(let error):
+                        println(error)
+                        reject(error)
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: Read
 

@@ -30,7 +30,7 @@ class FriendsViewController:
 
         self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[UserData]>) in
             if let friends = data.cur {
-                println("get friends")
+                println("get friends", friends.count)
             }
         }
     }
