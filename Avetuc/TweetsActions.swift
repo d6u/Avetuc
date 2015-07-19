@@ -10,8 +10,8 @@ import Foundation
 
 struct TweetsActions {
 
-    static func fetchHomeTimeline(since_id: String?) {
-        TwitterApiService.instance.fetchHomeTimeline(since_id)
+    static func fetchHomeTimeline(user_id: String, since_id: String?) {
+        TwitterApiService.instance.fetchHomeTimeline(user_id, since_id: since_id)
     }
     
 }

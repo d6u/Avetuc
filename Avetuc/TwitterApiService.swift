@@ -89,12 +89,15 @@ class TwitterApiService {
     }
 
     // If no since_id is given, get max 200 tweets
-    func fetchHomeTimeline(since_id: String?) {
+    func fetchHomeTimeline(user_id: String, since_id: String?) {
         getHomeTimeline(self.twitterApi, since_id, nil)
             .success { (data: [TweetData]) -> Void in
-                print(data.count)
-                print(data.map { [$0.id_str, $0.creator_user_id] })
-                
+                println(data.count)
+                println(data.map { ($0.id_str, $0.creator_user_id) })
+                if data.count > 0 {
+                    let latest_id = data.first!.id_str
+                    LocalStorageService.instance.updateAccountLastestSinceId(user_id, latest_id: latest_id)
+                }
             }
     }
 

@@ -8,9 +8,16 @@
 
 import Foundation
 
-func getHomeTimeline(twitterApi: TwitterApi, since_id: String?, max_id: String?) -> StatusesHomeTimelineTask {
+func getHomeTimeline(twitterApi: TwitterApi, since_id: String?, max_id: String?) -> StatusesHomeTimelineTask
+{
     let params: [TwitterApiParam] = [.Count(200), .TrimUser(true), .ExcludeReplies(true), .IncludeEntities(true)]
-    return executeGetHomeTimeline(twitterApi, since_id, nil, params, [])
+
+    return executeGetHomeTimeline(
+        twitterApi,
+        since_id,
+        nil,
+        since_id == nil ? params : params + [.SinceId(since_id!)],
+        [])
 }
 
 func executeGetHomeTimeline(
@@ -19,7 +26,7 @@ func executeGetHomeTimeline(
     max_id: String?,
     params: [TwitterApiParam],
     result: [TweetData]
-    ) -> StatusesHomeTimelineTask
+) -> StatusesHomeTimelineTask
 {
     let newParams = max_id == nil ? params : params + [.MaxId(max_id!)]
 

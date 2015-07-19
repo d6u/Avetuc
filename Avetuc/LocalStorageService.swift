@@ -144,4 +144,14 @@ class LocalStorageService {
         }
     }
 
+    // Mark: - Update
+
+    func updateAccountLastestSinceId(user_id: String, latest_id: String) {
+        self.dataStack.beginAsynchronous { transaction in
+            let account = transaction.fetchOne(From(Account), Where("user_id == %@", user_id))!
+            account.last_fetch_since_id = latest_id
+            transaction.commit()
+        }
+    }
+
 }

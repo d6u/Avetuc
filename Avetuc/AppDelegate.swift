@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             if let account = event.cur {
                 FriendActions.fetchFriends(account.user_id)
-                TweetsActions.fetchHomeTimeline(account.last_fetch_since_id)
+                TweetsActions.fetchHomeTimeline(account.user_id, since_id: account.last_fetch_since_id)
             }
         }
 
