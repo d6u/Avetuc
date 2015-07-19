@@ -158,6 +158,18 @@
 			name = Dispatcher;
 			sourceTree = "<group>";
 		};
+		78CF9F631B5B76E100DE9D9E /* FriendCell */ = {
+			isa = PBXGroup;
+			children = (
+				78CF9F571B5B614100DE9D9E /* FriendCell.swift */,
+				78CF9F5B1B5B632D00DE9D9E /* FriendCellProfileImageView.swift */,
+				78CF9F5D1B5B704B00DE9D9E /* FriendCellNameLabel.swift */,
+				78CF9F5F1B5B710D00DE9D9E /* FriendCellScreenNameLabel.swift */,
+				78CF9F611B5B725300DE9D9E /* FriendCellUnreadCountView.swift */,
+			);
+			name = FriendCell;
+			sourceTree = "<group>";
+		};
 		78FD6C171B55FC9300AA3875 = {
 			isa = PBXGroup;
 			children = (
@@ -314,11 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C811B5601E400AA3875 /* IntroView.swift */,
-				78CF9F571B5B614100DE9D9E /* FriendCell.swift */,
-				78CF9F5B1B5B632D00DE9D9E /* FriendCellProfileImageView.swift */,
-				78CF9F5D1B5B704B00DE9D9E /* FriendCellNameLabel.swift */,
-				78CF9F5F1B5B710D00DE9D9E /* FriendCellScreenNameLabel.swift */,
-				78CF9F611B5B725300DE9D9E /* FriendCellUnreadCountView.swift */,
+				78CF9F631B5B76E100DE9D9E /* FriendCell */,
 			);
 			name = Views;
 			sourceTree = "<group>";

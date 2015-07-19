@@ -80,9 +80,18 @@ class LocalStorageService {
             self.dataStack.beginAsynchronous { transaction in
 
                 let users = usersData.map { data -> User in
-                    let user = transaction.create(Into(User)).fromData(data)
+                    var user: User! = transaction.fetchOne(From(User), Where("id_str == %@", data.id_str))
+
+                    if let user = user {
+                        user.fromData(data)
+                    } else {
+                        user = transaction.create(Into(User)).fromData(data)
+                    }
+
+                    // TODO: Improve fromData() method, prevent some property from updating
                     user.following_account_user_id = following_account_user_id
                     user.profile_account_user_id = profile_account_user_id
+
                     return user
                 }
 
