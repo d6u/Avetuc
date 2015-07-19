@@ -40,7 +40,9 @@ class User: TimestampUtility {
     @NSManaged var following_account_user_id: String?
 
     func toData() -> UserData {
-        let data: UserData? = decode(self.toDict())
+        var dict = self.toDict()
+        dict["description"] = dict["twitter_description"]
+        let data: UserData? = decode(dict)
         return data!
     }
 

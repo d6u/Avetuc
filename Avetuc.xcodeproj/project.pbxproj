@@ -17,6 +17,9 @@
 		786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70CC1B56195500B78FFE /* StoreEvent.swift */; };
 		78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38311B5AF00900FA060B /* TwitterApi.swift */; };
 		78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */; };
+		78CF9F581B5B614100DE9D9E /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F571B5B614100DE9D9E /* FriendCell.swift */; };
+		78CF9F5A1B5B61AB00DE9D9E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */; };
+		78CF9F5C1B5B632D00DE9D9E /* FriendCellProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F5B1B5B632D00DE9D9E /* FriendCellProfileImageView.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
 		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
 		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
@@ -67,6 +70,9 @@
 		786E70CC1B56195500B78FFE /* StoreEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreEvent.swift; sourceTree = "<group>"; };
 		78BD38311B5AF00900FA060B /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
 		78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthRequestTokenData.swift; sourceTree = "<group>"; };
+		78CF9F571B5B614100DE9D9E /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		78CF9F5B1B5B632D00DE9D9E /* FriendCellProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCellProfileImageView.swift; sourceTree = "<group>"; };
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C481B55FE1800AA3875 /* Utilities.swift */,
+				78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -301,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C811B5601E400AA3875 /* IntroView.swift */,
+				78CF9F571B5B614100DE9D9E /* FriendCell.swift */,
+				78CF9F5B1B5B632D00DE9D9E /* FriendCellProfileImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -476,9 +485,12 @@
 				78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */,
 				78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */,
 				78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */,
+				78CF9F5A1B5B61AB00DE9D9E /* UIColor+Extension.swift in Sources */,
 				7834C9721B58B573004029C3 /* FriendsIdsData.swift in Sources */,
+				78CF9F581B5B614100DE9D9E /* FriendCell.swift in Sources */,
 				7834C96E1B58A423004029C3 /* Account.swift in Sources */,
 				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
+				78CF9F5C1B5B632D00DE9D9E /* FriendCellProfileImageView.swift in Sources */,
 				78FD6C851B56021600AA3875 /* DispatcherUtility.swift in Sources */,
 				78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */,
 				78FD6C491B55FE1800AA3875 /* Utilities.swift in Sources */,

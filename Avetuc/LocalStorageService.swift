@@ -9,6 +9,7 @@
 import Foundation
 import CoreStore
 import SwiftTask
+import Async
 
 typealias CreateAccountTask = Task<Float, AccountData, NSError>
 typealias CreateUsersTask = Task<Float, [UserData], NSError>
@@ -55,10 +56,14 @@ class LocalStorageService {
                     switch result {
                     case .Success(let hasChanges):
                         println("success! hasChanges? \(hasChanges)")
-                        fulfill(accountData)
+                        Async.main {
+                            fulfill(accountData)
+                        }
                     case .Failure(let error):
                         println(error)
-                        reject(error)
+                        Async.main {
+                            reject(error)
+                        }
                     }
                 }
             }
@@ -85,10 +90,15 @@ class LocalStorageService {
                     switch result {
                     case .Success(let hasChanges):
                         println("success! hasChanges? \(hasChanges)")
-                        fulfill(users.map { $0.toData() })
+                        let data = users.map { $0.toData() }
+                        Async.main {
+                            fulfill(data)
+                        }
                     case .Failure(let error):
                         println(error)
-                        reject(error)
+                        Async.main {
+                            reject(error)
+                        }
                     }
                 }
             }
@@ -100,12 +110,17 @@ class LocalStorageService {
     func loadDefaultAccount() {
         dataStack.beginAsynchronous {(transaction) in
             let accounts = transaction.fetchAll(From(Account))!
+
             if let account = accounts.first {
                 let accountData = account.toData()
-                TwitterApiService.instance.loadTokens(accountData.oauth_token!, oauthTokenSecret: accountData.oauth_token_secret!)
-                AccountActions.emitAccount(accountData)
+                Async.main {
+                    TwitterApiService.instance.loadTokens(accountData.oauth_token!, oauthTokenSecret: accountData.oauth_token_secret!)
+                    AccountActions.emitAccount(accountData)
+                }
             } else {
-                AccountActions.emitAccount(nil)
+                Async.main {
+                    AccountActions.emitAccount(nil)
+                }
             }
         }
     }
@@ -113,7 +128,10 @@ class LocalStorageService {
     func loadFriendsFor(user_id: String) {
         self.dataStack.beginAsynchronous { transaction in
             let users = transaction.fetchAll(From(User), Where("following_account_user_id == %@", user_id))!
-            FriendActions.emitFriends(users.map { $0.toData() })
+            let data = users.map { $0.toData() }
+            Async.main {
+                FriendActions.emitFriends(data)
+            }
         }
     }
 

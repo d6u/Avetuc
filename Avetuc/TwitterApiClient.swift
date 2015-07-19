@@ -38,6 +38,14 @@ class TwitterApiClient {
     }
 
     func fetch(endpoint: TwitterApiEndpoint, params: [TwitterApiParam]) -> FetchTask {
+
+        if DISABLE_TWITTER_API_CALLS {
+            let err = NSError(domain: "com.daiweilu.Avtuc", code: 123, userInfo: ["desc": "API Request is blocked due to configuration"])
+            println(err)
+            println("Blocked request to \(endpoint.rawValue)")
+            return FetchTask(error: err)
+        }
+
         let task = Alamofire.request(self.buildRequest(endpoint, params: params)).response()
         return process(task, endpoint)
     }
