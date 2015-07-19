@@ -8,15 +8,18 @@
 
 import UIKit
 import CoreStore
+import EmitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var accountListener: Listener?
 
     func application(
         application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?
+    ) -> Bool
     {
         let window = UIWindow(frame: screenBounds())
 
@@ -24,6 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window.rootViewController = RootViewController()
         window.makeKeyAndVisible()
+
+        self.accountListener = AccountsStore.instance.on { event in
+
+            // TODO: Handle account switching
+
+            if let account = event.cur {
+                FriendActions.fetchFriends(account.user_id)
+                TweetsActions.fetchHomeTimeline(account.last_fetch_since_id)
+            }
+        }
 
         return true
     }
@@ -50,11 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
     }
 
-    func applicationWillTerminate(application: UIApplication)
-    {
-        CoreStore.beginSynchronous { transaction in
-            transaction.commit()
-        }
+    func applicationWillTerminate(application: UIApplication) {
     }
 
 }

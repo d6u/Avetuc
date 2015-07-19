@@ -19,6 +19,11 @@ enum TwitterApiParam {
     case UserIds([String])
     case ScreenNames([String])
     case IncludeEntities(Bool)
+    case SinceId(String)
+    case MaxId(String)
+    case TrimUser(Bool)
+    case ExcludeReplies(Bool)
+    case ContributorDetails(Bool)
 
     var pair: (key: String, value: String) {
         switch self {
@@ -40,6 +45,16 @@ enum TwitterApiParam {
             return (key: "screen_name", value: join(",", names))
         case .IncludeEntities(let isTrue):
             return (key: "include_entities", value: isTrue ? "true" : "false")
+        case .SinceId(let since_id):
+            return (key: "since_id", value: since_id)
+        case .MaxId(let max_id):
+            return (key: "max_id", value: max_id)
+        case .TrimUser(let isTrue):
+            return (key: "trim_user", value: isTrue ? "true" : "false")
+        case .ExcludeReplies(let isTrue):
+            return (key: "exclude_replies", value: isTrue ? "true" : "false")
+        case .ContributorDetails(let isTrue):
+            return (key: "contributor_details", value: isTrue ? "true" : "false")
         }
     }
 }

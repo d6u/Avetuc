@@ -35,7 +35,6 @@ class FriendsViewController:
 
             if let account = event.cur {
                 FriendActions.loadAllFriends(account.user_id)
-                FriendActions.fetchFriends(account.user_id)
             } else {
                 self.friends = []
                 self.tableView.reloadData()
@@ -44,6 +43,7 @@ class FriendsViewController:
 
         self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[UserData]>) in
             if let friends = data.cur {
+                println("Friends count", friends.count)
                 self.friends = friends
                 self.tableView.reloadData()
             }

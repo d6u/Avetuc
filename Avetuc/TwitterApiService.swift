@@ -10,6 +10,7 @@ import Foundation
 import SwiftTask
 
 typealias BulkProgress = (completedCount: Int, totalCount: Int)
+typealias FetchAllFriendsTask = Task<BulkProgress, [[UserData]], NSError>
 
 class TwitterApiService {
 
@@ -56,7 +57,7 @@ class TwitterApiService {
     func fetchFriends(user_id: String) {
         self.twitterApi
             .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
-            .success { data -> Task<BulkProgress, [[UserData]], NSError> in
+            .success { data -> FetchAllFriendsTask in
                 let ids = data.ids
                 var batch = [[String]]()
                 var i = 0
@@ -87,4 +88,41 @@ class TwitterApiService {
             }
     }
 
+    // If no since_id is given, get max 200 tweets
+    func fetchHomeTimeline(since_id: String?) {
+        getHomeTimeline(self.twitterApi, since_id, nil)
+            .success { (data: [TweetData]) -> Void in
+                print(data.count)
+                print(data.map { [$0.id_str, $0.creator_user_id] })
+                
+            }
+    }
+
+}
+
+func getHomeTimeline(twitterApi: TwitterApi, since_id: String?, max_id: String?) -> StatusesHomeTimelineTask {
+    let params: [TwitterApiParam] = [.Count(200), .TrimUser(true), .ExcludeReplies(true), .IncludeEntities(true)]
+    return executeGetHomeTimeline(twitterApi, since_id, nil, params, [])
+}
+
+func executeGetHomeTimeline(
+    twitterApi: TwitterApi,
+    since_id: String?,
+    max_id: String?,
+    params: [TwitterApiParam],
+    result: [TweetData]
+) -> StatusesHomeTimelineTask
+{
+    let newParams = max_id == nil ? params : params + [.MaxId(max_id!)]
+
+    return twitterApi.statusesHomeTimeline(newParams)
+        .success { (data: [TweetData]) -> StatusesHomeTimelineTask in
+
+            if since_id != nil && data.count > 0 {
+                let oldest_tweet_id = data.last!.id_str
+                return executeGetHomeTimeline(twitterApi, since_id, String(oldest_tweet_id.toInt()! - 1), params, result + data)
+            } else {
+                return StatusesHomeTimelineTask(value: result + data)
+            }
+    }
 }
