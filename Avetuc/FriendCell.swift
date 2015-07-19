@@ -24,130 +24,41 @@ class FriendTableCell: UITableViewCell {
         self.layoutMargins = UIEdgeInsetsZero
         self.separatorInset = UIEdgeInsetsMake(0, 72, 0, 0)
 
-        self.nameView.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
-
-//        self.screenNameView.font = UIFont(name: "HelveticaNeue", size: 15)
-//        self.screenNameView.textColor = UIColor.grayColor()
-//        self.screenNameView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        self.contentView.addSubview(self.screenNameView)
-//        self.contentView.addConstraint(NSLayoutConstraint(
-//            item: self.screenNameView,
-//            attribute: .Top,
-//            relatedBy: .Equal,
-//            toItem: self.contentView,
-//            attribute: .Top,
-//            multiplier: 1,
-//            constant: 39))
-//        self.contentView.addConstraint(NSLayoutConstraint(
-//            item: self.screenNameView,
-//            attribute: .Left,
-//            relatedBy: .Equal,
-//            toItem: self.contentView,
-//            attribute: .Left,
-//            multiplier: 1,
-//            constant: 72))
-//        self.contentView.addConstraint(NSLayoutConstraint(
-//            item: self.screenNameView,
-//            attribute: .Right,
-//            relatedBy: .Equal,
-//            toItem: self.contentView,
-//            attribute: .Right,
-//            multiplier: 1,
-//            constant: -60))
-//
-//        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
-//        self.unreadCountView.layer.cornerRadius = 4
-//        self.unreadCountView.layer.masksToBounds = true
-//        self.unreadCountView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        self.contentView.addSubview(self.unreadCountView)
-//        self.contentView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountView,
-//            attribute: .Right,
-//            relatedBy: .Equal,
-//            toItem: self.contentView,
-//            attribute: .Right,
-//            multiplier: 1,
-//            constant: -15))
-//        self.contentView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountView,
-//            attribute: .Top,
-//            relatedBy: .Equal,
-//            toItem: self.contentView,
-//            attribute: .Top,
-//            multiplier: 1,
-//            constant: 24))
-//
-//        self.unreadCountSubView.textColor = UIColor.whiteColor()
-//        self.unreadCountSubView.font = UIFont(name: "HelveticaNeue", size: 15)
-//        self.unreadCountSubView.textAlignment = .Center
-//        self.unreadCountSubView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//
-//        self.unreadCountView.addSubview(self.unreadCountSubView)
-//        self.unreadCountView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountSubView,
-//            attribute: .Right,
-//            relatedBy: .Equal,
-//            toItem: self.unreadCountView,
-//            attribute: .Right,
-//            multiplier: 1,
-//            constant: -5))
-//        self.unreadCountView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountSubView,
-//            attribute: .Top,
-//            relatedBy: .Equal,
-//            toItem: self.unreadCountView,
-//            attribute: .Top,
-//            multiplier: 1,
-//            constant: 3))
-//        self.unreadCountView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountSubView,
-//            attribute: .Bottom,
-//            relatedBy: .Equal,
-//            toItem: self.unreadCountView,
-//            attribute: .Bottom,
-//            multiplier: 1,
-//            constant: -3))
-//        self.unreadCountView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountSubView,
-//            attribute: .Left,
-//            relatedBy: .Equal,
-//            toItem: self.unreadCountView,
-//            attribute: .Left,
-//            multiplier: 1,
-//            constant: 5))
-//
-//        self.unreadCountSubView.addConstraint(NSLayoutConstraint(
-//            item: self.unreadCountSubView,
-//            attribute: .Width,
-//            relatedBy: .GreaterThanOrEqual,
-//            toItem: nil,
-//            attribute: .NotAnAttribute,
-//            multiplier: 1,
-//            constant: 15))
-
         self.contentView.addSubview(self.profileImageView)
         self.contentView.addSubview(self.nameView)
+        self.contentView.addSubview(self.screenNameView)
+        self.contentView.addSubview(self.unreadCountView)
 
         self.nameView.snp_makeConstraints { make in
-            make.left.equalTo(self.contentView.snp_left).offset(72)
-            make.right.equalTo(self.contentView.snp_right).offset(-60)
-            make.top.equalTo(self.contentView.snp_top).offset(15)
+            make.left.equalTo(self).offset(72)
+            make.right.equalTo(self).offset(-60)
+            make.top.equalTo(self).offset(15)
+        }
+
+        self.screenNameView.snp_makeConstraints { make in
+            make.top.equalTo(self).offset(39)
+            make.left.equalTo(self).offset(72)
+            make.right.equalTo(self).offset(-60)
+        }
+
+        self.unreadCountView.snp_makeConstraints { make in
+            make.right.equalTo(self).offset(-15)
+            make.top.equalTo(self).offset(24)
         }
     }
 
     var user: UserData?
 
     let profileImageView = FriendCellProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
-    let nameView = UILabel(frame: CGRect())
-    let screenNameView = UILabel(frame: CGRect())
-    let unreadCountView = UIView(frame: CGRect())
-    let unreadCountSubView = UILabel(frame: CGRect())
+    let nameView = FriendCellNameLabel()
+    let screenNameView = FriendCellScreenNameLabel()
+    let unreadCountView = FriendCellUnreadCountView()
 
     func load(data: UserData) {
         self.user = data
         self.nameView.text = data.name
-//        self.screenNameView.text = "@\(u.screenName)"
-//        self.unreadCountSubView.text = String(u.unreadCount)
+        self.screenNameView.text = "@\(data.screen_name)"
+        self.unreadCountView.count = data.unread_count
 //        self.profileImageView.kf_setImageWithURL(u.profileImageUrl, placeholderImage: nil)
 //
 //        if u.unreadCount > 0 {
