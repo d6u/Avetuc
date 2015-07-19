@@ -61,16 +61,17 @@
         <attribute name="url" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="Avetuc.User" parentEntity="TimestampUtility" syncable="YES">
-        <attribute name="account_user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="favourites_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="followers_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="following" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="following_account_user_id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="friends_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="id_str" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listed_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="profile_account_user_id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="profile_image_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screen_name" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="statuses_count" attributeType="Integer 64" defaultValueString="-1" syncable="YES"/>
@@ -91,6 +92,6 @@
         <element name="TimestampUtility" positionX="-162" positionY="180" width="128" height="60"/>
         <element name="Tweet" positionX="-162" positionY="180" width="128" height="225"/>
         <element name="UrlEntity" positionX="-153" positionY="189" width="128" height="90"/>
-        <element name="User" positionX="-54" positionY="27" width="128" height="330"/>
+        <element name="User" positionX="-54" positionY="27" width="128" height="345"/>
     </elements>
 </model>

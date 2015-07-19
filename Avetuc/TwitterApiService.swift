@@ -45,7 +45,7 @@ class TwitterApiService {
         self.twitterApi
             .oauthAccessToken([.OauthVerifier(data.oauth_verifier)])
             .success { data -> CreateAccountTask in
-                self.loadTokens(data.oauth_token, oauthTokenSecret: data.oauth_token_secret)
+                self.loadTokens(data.oauth_token!, oauthTokenSecret: data.oauth_token_secret!)
                 return LocalStorageService.instance.createAccount(data)
             }
             .success { (data: AccountData) -> Void in
@@ -75,10 +75,12 @@ class TwitterApiService {
             }
             .success { (data: [[UserData]]) -> CreateUsersTask in
                 var result = [UserData]()
+
                 for users in data {
                     result += users
                 }
-                return LocalStorageService.instance.createUsers(result)
+
+                return LocalStorageService.instance.createUsers(result, following_account_user_id: user_id)
             }
             .success { data -> Void in
                 FriendActions.emitFriends(data)

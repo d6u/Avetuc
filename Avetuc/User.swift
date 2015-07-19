@@ -12,32 +12,39 @@ import Argo
 
 class User: TimestampUtility {
 
-    @NSManaged var account_user_id: String?
     @NSManaged var favourites_count: Int64
     @NSManaged var followers_count: Int64
     @NSManaged var following: Bool
     @NSManaged var friends_count: Int64
     @NSManaged var id_str: String
-    @NSManaged var lang: String?
+    @NSManaged var lang: String
     @NSManaged var listed_count: Int64
-    @NSManaged var location: String?
+    @NSManaged var location: String
     @NSManaged var name: String
     @NSManaged var profile_image_url: String?
     @NSManaged var screen_name: String
     @NSManaged var statuses_count: Int64
     @NSManaged var time_zone: String?
-    @NSManaged var twitter_description: String?
-    @NSManaged var unread_count: Int64
     @NSManaged var url: String?
     @NSManaged var utc_offset: Int64
     @NSManaged var verified: Bool
+
+    // Different name
+    @NSManaged var twitter_description: String // Map description
+
+    // Custom
+    @NSManaged var unread_count: Int64
+
+    // Relationship
+    @NSManaged var profile_account_user_id: String?
+    @NSManaged var following_account_user_id: String?
 
     func toData() -> UserData {
         let data: UserData? = decode(self.toDict())
         return data!
     }
 
-    func fromData(data: UserData) {
+    func fromData(data: UserData) -> User {
         // Parent class
         self.created_at = data.created_at
 
@@ -61,6 +68,10 @@ class User: TimestampUtility {
         self.url = data.url
         self.utc_offset = data.utc_offset ?? 0
         self.verified = data.verified
+        self.profile_account_user_id = data.profile_account_user_id
+        self.following_account_user_id = data.following_account_user_id
+
+        return self
     }
 
 }

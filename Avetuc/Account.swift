@@ -25,6 +25,7 @@ class Account: BaseUtility {
     }
 
     func fromData(data: AccountData) -> Account {
+        self.account_identifier = data.account_identifier
         self.oauth_token = data.oauth_token
         self.oauth_token_secret = data.oauth_token_secret
         self.user_id = data.user_id
