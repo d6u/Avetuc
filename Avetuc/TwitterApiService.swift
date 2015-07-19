@@ -9,6 +9,8 @@
 import Foundation
 import SwiftTask
 
+typealias BulkProgress = (completedCount: Int, totalCount: Int)
+
 class TwitterApiService {
 
     class var instance: TwitterApiService {
@@ -54,8 +56,29 @@ class TwitterApiService {
     func fetchFriends(user_id: String) {
         self.twitterApi
             .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
-            .success { data -> Void in
-                println(data.ids)
+            .success { data -> Task<BulkProgress, [[UserData]], NSError> in
+                let ids = data.ids
+                var batch = [[String]]()
+                var i = 0
+
+                while i < ids.count {
+                    let end = min(i + 100, ids.count)
+                    batch.append(Array(ids[i..<end]))
+                    i += 100
+                }
+
+                let tasks = batch.map { (ids: [String]) -> UsersLookupTask in
+                    return self.twitterApi.usersLookup([.UserIds(ids), .IncludeEntities(false)])
+                }
+
+                return UsersLookupTask.all(tasks)
+            }
+            .success { (data: [[UserData]]) -> Void in
+                var result = [UserData]()
+                for users in data {
+                    result += users
+                }
+                println(result.map {$0.name})
             }
     }
 

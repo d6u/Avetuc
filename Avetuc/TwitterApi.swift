@@ -13,6 +13,7 @@ import Argo
 typealias OauthRequestTokenTask = Task<Float, OauthRequestTokenData, NSError>
 typealias OauthAccessTokenTask = Task<Float, AccountData, NSError>
 typealias FriendsIdsTask = Task<Float, FriendsIdsData, NSError>
+typealias UsersLookupTask = Task<Float, [UserData], NSError>
 
 class TwitterApi {
 
@@ -53,6 +54,14 @@ class TwitterApi {
             .success { (json: AnyObject) -> FriendsIdsTask in
                 let data: FriendsIdsData? = decode(json)
                 return FriendsIdsTask(value: data!)
+            }
+    }
+
+    func usersLookup(params: [TwitterApiParam]) -> UsersLookupTask {
+        return self.fetch(.UsersLookup, params: params)
+            .success { (json: AnyObject) -> UsersLookupTask in
+                let data: [UserData]? = decode(json)
+                return UsersLookupTask(value: data!)
             }
     }
 

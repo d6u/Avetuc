@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Argo
 
 class User: TimestampUtility {
 
@@ -32,7 +33,15 @@ class User: TimestampUtility {
     @NSManaged var verified: Bool
 
     func toData() -> UserData {
-        return UserData()
+        let data: UserData? = decode(self.toDict())
+        return data!
+    }
+
+    func fromData(data: AccountData) {
+        self.oauth_token = data.oauth_token
+        self.oauth_token_secret = data.oauth_token_secret
+        self.user_id = data.user_id
+        self.screen_name = data.screen_name
     }
 
 }

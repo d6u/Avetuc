@@ -24,4 +24,12 @@ class Account: BaseUtility {
         return data!
     }
 
+    func fromData(data: AccountData) -> Account {
+        self.oauth_token = data.oauth_token
+        self.oauth_token_secret = data.oauth_token_secret
+        self.user_id = data.user_id
+        self.screen_name = data.screen_name
+        return self
+    }
+
 }

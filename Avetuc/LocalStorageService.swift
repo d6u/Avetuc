@@ -43,27 +43,12 @@ class LocalStorageService {
         }
     }
 
-    func loadDefaultAccount() {
-        dataStack.beginAsynchronous {(transaction) in
-            let accounts = transaction.fetchAll(From(Account))!
-            if let account = accounts.first {
-                let accountData = account.toData()
-                TwitterApiService.instance.loadTokens(accountData.oauth_token, oauthTokenSecret: accountData.oauth_token_secret)
-                AccountActions.emitAccount(accountData)
-            } else {
-                AccountActions.emitAccount(nil)
-            }
-        }
-    }
+    // MARK: Create
 
     func createAccount(accountData: AccountData) -> LocalStorageTask {
         return LocalStorageTask { progress, fulfill, reject, configure in
             self.dataStack.beginAsynchronous { transaction in
-                let account = transaction.create(Into(Account))
-                account.oauth_token = accountData.oauth_token
-                account.oauth_token_secret = accountData.oauth_token_secret
-                account.user_id = accountData.user_id
-                account.screen_name = accountData.screen_name
+                let account = transaction.create(Into(Account)).fromData(accountData)
 
                 transaction.commit { result -> Void in
                     switch result {
@@ -79,18 +64,27 @@ class LocalStorageService {
         }
     }
 
+    func createUser
+
+    // MARK: Read
+
+    func loadDefaultAccount() {
+        dataStack.beginAsynchronous {(transaction) in
+            let accounts = transaction.fetchAll(From(Account))!
+            if let account = accounts.first {
+                let accountData = account.toData()
+                TwitterApiService.instance.loadTokens(accountData.oauth_token, oauthTokenSecret: accountData.oauth_token_secret)
+                AccountActions.emitAccount(accountData)
+            } else {
+                AccountActions.emitAccount(nil)
+            }
+        }
+    }
+
     func loadFriendsFor(user_id: String) {
         self.dataStack.beginAsynchronous { transaction in
-            let users = transaction.fetchAll(
-                From(User),
-                Where("account_user_id = \(user_id)")
-            )! as [User]
-
-            let usersData = users.map { user in
-                return user.toData()
-            }
-
-            FriendActions.emitFriends(usersData)
+            let users = transaction.fetchAll(From(User), Where("account_user_id = \(user_id)"))! as [User]
+            FriendActions.emitFriends(users.map { $0.toData() })
         }
     }
 

@@ -17,6 +17,8 @@ enum TwitterApiParam {
     case StringifyIds(Bool)
     case Count(Int16)
     case UserIds([String])
+    case ScreenNames([String])
+    case IncludeEntities(Bool)
 
     var pair: (key: String, value: String) {
         switch self {
@@ -34,6 +36,10 @@ enum TwitterApiParam {
             return (key: "count", value: String(count))
         case .UserIds(let ids):
             return (key: "user_id", value: join(",", ids))
+        case .ScreenNames(let names):
+            return (key: "screen_name", value: join(",", names))
+        case .IncludeEntities(let isTrue):
+            return (key: "include_entities", value: isTrue ? "true" : "false")
         }
     }
 }
