@@ -41,6 +41,9 @@ class Tweet: TimestampUtility {
 
     func fromData(data: TweetData) -> Tweet {
 
+        // Parent class
+        self.created_at = data.created_at
+
         self.favorite_count = data.favorite_count
         self.favorited = data.favorited
         self.id_str = data.id_str

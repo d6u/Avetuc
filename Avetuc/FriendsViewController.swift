@@ -76,10 +76,6 @@ class FriendsViewController:
         self.navigationController!.pushViewController(tweetViewController, animated: true)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        println(self.navigationController!.viewControllers)
-    }
-
     // MARK: - No use
 
     required init!(coder aDecoder: NSCoder!) {

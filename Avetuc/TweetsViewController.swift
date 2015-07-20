@@ -39,7 +39,6 @@ class TweetsViewController:
             }
         }
 
-        println(self.user.id_str)
         TweetsActions.loadStatuses(self.user.id_str)
     }
 
@@ -50,17 +49,18 @@ class TweetsViewController:
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets.count
+        return self.tweets.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER, forIndexPath: indexPath) as! TweetCell
+        cell.loadTweet(self.tweets[indexPath.row], userData: self.user)
         return cell
     }
 
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return
-//    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
 
     // MARK: - No use
     
