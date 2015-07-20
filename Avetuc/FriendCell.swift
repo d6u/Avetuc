@@ -49,7 +49,7 @@ class FriendTableCell: UITableViewCell {
 
     var user: UserData?
 
-    let profileImageView = FriendCellProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
+    let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let nameView = FriendCellNameLabel()
     let screenNameView = FriendCellScreenNameLabel()
     let unreadCountView = FriendCellUnreadCountView()

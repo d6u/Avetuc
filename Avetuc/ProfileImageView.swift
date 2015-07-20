@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FriendCellProfileImageView: UIImageView {
+class ProfileImageView: UIImageView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

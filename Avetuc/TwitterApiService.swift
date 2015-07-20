@@ -92,9 +92,8 @@ class TwitterApiService {
     func fetchHomeTimeline(user_id: String, since_id: String?) {
         getHomeTimeline(self.twitterApi, since_id, nil)
             .success { (data: [TweetData]) -> Void in
-                println(data.count)
-                println(data.map { ($0.id_str, $0.creator_user_id) })
                 if data.count > 0 {
+                    LocalStorageService.instance.createTweets(data, master_account_user_id: user_id)
                     let latest_id = data.first!.id_str
                     LocalStorageService.instance.updateAccountLastestSinceId(user_id, latest_id: latest_id)
                 }

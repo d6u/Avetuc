@@ -12,6 +12,7 @@ PODS:
   - Runes (2.0.0)
   - SnapKit (0.12.0)
   - SwiftTask (3.3.1)
+  - TapLabel (0.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - EmitterKit (~> 3.2)
   - SnapKit (~> 0.12.0)
   - SwiftTask (~> 3.3)
+  - TapLabel (= 0.0.2)
 
 EXTERNAL SOURCES:
   Async:
@@ -49,5 +51,6 @@ SPEC CHECKSUMS:
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   SwiftTask: 0baec4571e2ea235e73817c399cde12056c81f6f
+  TapLabel: da1ee7378d7e65ea94df58cf37fdbfff66022928
 
 COCOAPODS: 0.37.2

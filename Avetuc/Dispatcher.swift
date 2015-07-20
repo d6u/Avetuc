@@ -9,6 +9,10 @@
 import Foundation
 import EmitterKit
 
+typealias AccountDataHandler = (AccountData?) -> Void
+typealias FriendsDataHandler = ([UserData]) -> Void
+typealias TweetsDataHandler = ([TweetData]) -> Void
+
 class Dispatcher {
 
     class var instance: Dispatcher {
@@ -24,6 +28,7 @@ class Dispatcher {
 
     let accountEvent = Event<AccountData?>()
     let friendsEvent = Event<[UserData]>()
+    let tweetsEvent = Event<[TweetData]>()
 
     func register(callback: AccountDataHandler) -> Listener {
         return accountEvent.on(callback)
@@ -33,12 +38,20 @@ class Dispatcher {
         return friendsEvent.on(callback)
     }
 
+    func register(callback: TweetsDataHandler) -> Listener {
+        return tweetsEvent.on(callback)
+    }
+
     func dispatch(account: AccountData?) {
         self.accountEvent.emit(account)
     }
 
     func dispatch(friends: [UserData]) {
         self.friendsEvent.emit(friends)
+    }
+
+    func dispatch(tweets: [TweetData]) {
+        self.tweetsEvent.emit(tweets)
     }
 
 }
