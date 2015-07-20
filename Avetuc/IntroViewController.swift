@@ -17,7 +17,7 @@ class IntroViewController: UIViewController {
 
         self.view = IntroView()
 
-        self.accountListener = AccountsStore.instance.on { storeData in
+        self.accountListener = AccountsStore.instance.on { [unowned self] storeData in
             if storeData.cur != nil {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
