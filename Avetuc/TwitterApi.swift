@@ -37,40 +37,45 @@ class TwitterApi {
     func oauthRequestToken(params: [TwitterApiParam]) -> OauthRequestTokenTask {
         return self.fetch(.OauthRequestToken, params: params)
             .success { (json: AnyObject) -> OauthRequestTokenTask in
-                let data: OauthRequestTokenData? = decode(json)
-                return OauthRequestTokenTask(value: data!)
+                let data: Decoded<OauthRequestTokenData> = decode(json)
+                println("oauthRequestToken", data.description)
+                return OauthRequestTokenTask(value: data.value!)
             }
     }
 
     func oauthAccessToken(params: [TwitterApiParam]) -> OauthAccessTokenTask {
         return self.fetch(.OauthAccessToken, params: params)
             .success { (json: AnyObject) -> OauthAccessTokenTask in
-                let data: AccountData? = decode(json)
-                return OauthAccessTokenTask(value: data!)
+                let data: Decoded<AccountData> = decode(json)
+                println("oauthAccessToken", data.description)
+                return OauthAccessTokenTask(value: data.value!)
         }
     }
 
     func friendsIds(params: [TwitterApiParam]) -> FriendsIdsTask {
         return self.fetch(.FriendsIds, params: params)
             .success { (json: AnyObject) -> FriendsIdsTask in
-                let data: FriendsIdsData? = decode(json)
-                return FriendsIdsTask(value: data!)
+                let data: Decoded<FriendsIdsData> = decode(json)
+                println("friendsIds", data.description)
+                return FriendsIdsTask(value: data.value!)
             }
     }
 
     func usersLookup(params: [TwitterApiParam]) -> UsersLookupTask {
         return self.fetch(.UsersLookup, params: params)
             .success { (json: AnyObject) -> UsersLookupTask in
-                let data: [UserData]? = decode(json)
-                return UsersLookupTask(value: data!)
+                let data: Decoded<[UserData]> = decode(json)
+                println("usersLookup", data.description)
+                return UsersLookupTask(value: data.value!)
             }
     }
 
     func statusesHomeTimeline(params: [TwitterApiParam]) -> StatusesHomeTimelineTask {
         return self.fetch(.StatusesHomeTimeline, params: params)
             .success { (json: AnyObject) -> StatusesHomeTimelineTask in
-                let data: [TweetData]? = decode(json)
-                return StatusesHomeTimelineTask(value: data!)
+                let data: Decoded<[TweetData]> = decode(json)
+                println("statusesHomeTimeline", data.description)
+                return StatusesHomeTimelineTask(value: data.value!)
             }
     }
 
