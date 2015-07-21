@@ -14,18 +14,21 @@ class IntroViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+    }
 
+    private var accountListener: Listener?
+
+    override func loadView() {
         self.view = IntroView()
+    }
 
+    override func viewDidLoad() {
         self.accountListener = AccountsStore.instance.on { [unowned self] storeData in
             if storeData.cur != nil {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
-
     }
-
-    private var accountListener: Listener?
 
     // MARK: - No use
 

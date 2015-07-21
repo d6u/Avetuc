@@ -9,6 +9,11 @@ PODS:
     - GCDKit (= 1.0.1)
   - EmitterKit (3.2.1)
   - GCDKit (1.0.1)
+  - Realm (0.93.2):
+    - Realm/Headers (= 0.93.2)
+  - Realm/Headers (0.93.2)
+  - RealmSwift (0.93.2):
+    - Realm (= 0.93.2)
   - Runes (2.0.0)
   - SnapKit (0.12.0)
   - SwiftTask (3.3.1)
@@ -20,6 +25,7 @@ DEPENDENCIES:
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
   - CoreStore (from `https://github.com/JohnEstropia/CoreStore.git`, tag `0.2.1`)
   - EmitterKit (~> 3.2)
+  - RealmSwift
   - SnapKit (~> 0.12.0)
   - SwiftTask (~> 3.3)
   - TapLabel (= 0.0.2)
@@ -48,6 +54,8 @@ SPEC CHECKSUMS:
   CoreStore: 48bf12abe2803cfba6f6b993a1504094caef8c5a
   EmitterKit: c052cafcca0052005760d18e0c7f163df13730c3
   GCDKit: cabc5ea4ae8d53134e657b59c99e16141d15a8fd
+  Realm: 2fdd0ae74f730e190384e0338d8a0d3654df8220
+  RealmSwift: 231b064da9f98b1c4f325fe1f1cb8756aae2b8d6
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   SwiftTask: 0baec4571e2ea235e73817c399cde12056c81f6f

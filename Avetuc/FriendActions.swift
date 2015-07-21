@@ -15,6 +15,7 @@ struct FriendActions {
     }
 
     static func emitFriends(friends: [UserData]) {
+        println("emitFriends", friends.count)
         Dispatcher.instance.dispatch(friends)
     }
 

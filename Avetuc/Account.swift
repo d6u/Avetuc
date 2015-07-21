@@ -9,28 +9,32 @@
 import Foundation
 import CoreData
 import Argo
+import RealmSwift
 
-class Account: BaseUtility {
+class Account: Object {
 
-    @NSManaged var account_identifier: String?
-    @NSManaged var last_fetch_since_id: String?
-    @NSManaged var oauth_token: String?
-    @NSManaged var oauth_token_secret: String?
-    @NSManaged var user_id: String
-    @NSManaged var screen_name: String
-
-    func toData() -> AccountData {
-        let data: AccountData? = decode(self.toDict())
-        return data!
+    override static func indexedProperties() -> [String] {
+        return ["user_id"]
     }
 
-    func fromData(data: AccountData) -> Account {
-        self.account_identifier = data.account_identifier
-        self.oauth_token = data.oauth_token
-        self.oauth_token_secret = data.oauth_token_secret
-        self.user_id = data.user_id
-        self.screen_name = data.screen_name
-        return self
+    override static func primaryKey() -> String? {
+        return "user_id"
+    }
+
+    dynamic var account_identifier: String = ""
+    dynamic var last_fetch_since_id: String = ""
+    dynamic var oauth_token: String = ""
+    dynamic var oauth_token_secret: String = ""
+    dynamic var user_id: String = ""
+    dynamic var screen_name: String = ""
+
+    func toData() -> AccountData {
+        var d = [String: AnyObject]()
+        for p in self.objectSchema.properties {
+            d[p.name] = self[p.name]
+        }
+        let data: AccountData? = decode(d)
+        return data!
     }
 
 }

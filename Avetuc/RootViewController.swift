@@ -14,12 +14,6 @@ class RootViewController: UINavigationController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-
-        self.accountListener = AccountsStore.instance.on { storeData in
-            if storeData.cur == nil {
-                self.presentIntroView()
-            }
-        }
     }
 
     let friendsTableViewController = FriendsViewController()
@@ -29,11 +23,18 @@ class RootViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pushViewController(self.friendsTableViewController, animated: false)
-        AccountActions.askCurrentAccount()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.accountListener = AccountsStore.instance.on { storeData in
+            if storeData.cur == nil {
+                self.presentIntroView()
+            }
+        }
+
+        AccountActions.askCurrentAccount()
     }
 
     func presentIntroView()

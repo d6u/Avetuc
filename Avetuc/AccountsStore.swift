@@ -13,16 +13,7 @@ typealias StoreAccountEventHandler = (StoreEvent<AccountData>) -> Void
 
 class AccountsStore {
 
-    class var instance: AccountsStore {
-        struct Static {
-            static var instance: AccountsStore?
-            static var token: dispatch_once_t = 0
-        }
-        dispatch_once(&Static.token) {
-            Static.instance = AccountsStore()
-        }
-        return Static.instance!
-    }
+    static let instance = AccountsStore()
 
     init() {
         self.listener = Dispatcher.instance.register { (account: AccountData?) -> Void in

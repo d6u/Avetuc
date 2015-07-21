@@ -9,6 +9,7 @@
 import Foundation
 import CoreStore
 import SwiftTask
+import RealmSwift
 import Async
 
 typealias CreateAccountTask = Task<Float, AccountData, NSError>
@@ -17,16 +18,7 @@ typealias CreateTweetsTask = Task<Float, [TweetData], NSError>
 
 class LocalStorageService {
 
-    class var instance: LocalStorageService {
-        struct Static {
-            static var instance: LocalStorageService?
-            static var token: dispatch_once_t = 0
-        }
-        dispatch_once(&Static.token) {
-            Static.instance = LocalStorageService()
-        }
-        return Static.instance!
-    }
+    static let instance = LocalStorageService()
 
     let dataStack: DataStack
 
@@ -50,24 +42,19 @@ class LocalStorageService {
 
     func createAccount(accountData: AccountData) -> CreateAccountTask {
         return CreateAccountTask { progress, fulfill, reject, configure in
-            self.dataStack.beginAsynchronous { transaction in
-                let account = transaction.create(Into(Account)).fromData(accountData)
+            let realm = Realm()
 
-                transaction.commit { result -> Void in
-                    switch result {
-                    case .Success(let hasChanges):
-                        println("success! hasChanges? \(hasChanges)")
-                        Async.main {
-                            fulfill(accountData)
-                        }
-                    case .Failure(let error):
-                        println(error)
-                        Async.main {
-                            reject(error)
-                        }
-                    }
-                }
+            let account = Account()
+            account.oauth_token = accountData.oauth_token!
+            account.oauth_token_secret = accountData.oauth_token_secret!
+            account.user_id = accountData.user_id
+            account.screen_name = accountData.screen_name
+
+            realm.write {
+                realm.add(account, update: true)
             }
+
+            fulfill(accountData)
         }
     }
 
@@ -158,20 +145,13 @@ class LocalStorageService {
     // MARK: Read
 
     func loadDefaultAccount() {
-        dataStack.beginAsynchronous {(transaction) in
-            let accounts = transaction.fetchAll(From(Account))!
-
-            if let account = accounts.first {
-                let accountData = account.toData()
-                Async.main {
-                    TwitterApiService.instance.loadTokens(accountData.oauth_token!, oauthTokenSecret: accountData.oauth_token_secret!)
-                    AccountActions.emitAccount(accountData)
-                }
-            } else {
-                Async.main {
-                    AccountActions.emitAccount(nil)
-                }
-            }
+        let realm = Realm()
+        if let account = realm.objects(Account).first {
+            let accountData = account.toData()
+            TwitterApiService.instance.loadTokens(accountData.oauth_token!, oauthTokenSecret: accountData.oauth_token_secret!)
+            AccountActions.emitAccount(accountData)
+        } else {
+            AccountActions.emitAccount(nil)
         }
     }
 
@@ -198,10 +178,11 @@ class LocalStorageService {
     // Mark: - Update
 
     func updateAccountLastestSinceId(user_id: String, latest_id: String) {
-        self.dataStack.beginAsynchronous { transaction in
-            let account = transaction.fetchOne(From(Account), Where("user_id == %@", user_id))!
+        let realm = Realm()
+        let account = realm.objects(Account).filter("user_id == %@", user_id).first!
+
+        realm.write {
             account.last_fetch_since_id = latest_id
-            transaction.commit()
         }
     }
 

@@ -15,6 +15,6 @@ let TWITTER_OAUTH_CALLBACK = "avetuc://twitter_callback"
 
 let CELL_IDENTIFIER = "Cell"
 
-let DISABLE_TWITTER_API_CALLS = true
+let DISABLE_TWITTER_API_CALLS = false
 
 let IMAGE_BOX_CORNER_RADIUS = CGFloat(6)
