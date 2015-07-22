@@ -21,7 +21,7 @@ struct ExtendedMediaEntity {
     let expanded_url: String
     let type: String
     let sizes: Size
-    let video_info: VideoInfo
+    let video_info: VideoInfo?
 }
 
 extension ExtendedMediaEntity: Decodable {
@@ -37,7 +37,7 @@ extension ExtendedMediaEntity: Decodable {
         (expanded_url: String)
         (type: String)
         (sizes: Size)
-        (video_info: VideoInfo) -> ExtendedMediaEntity
+        (video_info: VideoInfo?) -> ExtendedMediaEntity
     {
         return ExtendedMediaEntity(
             id: id,
@@ -58,7 +58,7 @@ extension ExtendedMediaEntity: Decodable {
 
         // Have to breakup decode into multiple chunk and use type cast,
         // because Swift compiler cannot handle such complex expression ¯\_(ツ)_/¯
-        typealias Halved = Decoded<String -> String -> Size -> VideoInfo -> ExtendedMediaEntity>
+        typealias Halved = Decoded<String -> String -> Size -> VideoInfo? -> ExtendedMediaEntity>
 
         let p: Halved = ExtendedMediaEntity.create
             <^> j <| "id"
@@ -73,6 +73,6 @@ extension ExtendedMediaEntity: Decodable {
             <*> j <| "expanded_url"
             <*> j <| "type"
             <*> j <| "sizes"
-            <*> j <| "video_info"
+            <*> j <|? "video_info"
     }
 }

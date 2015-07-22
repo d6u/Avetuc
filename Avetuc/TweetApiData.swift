@@ -32,11 +32,11 @@ struct TweetApiData {
     let entities: Entities
     let favorited: Bool
     let retweeted: Bool
-    let possibly_sensitive: Bool
-    let possibly_sensitive_appealable: Bool
+    let possibly_sensitive: Bool?
+    let possibly_sensitive_appealable: Bool?
     let lang: String
     let retweeted_status: RetweetedStatus?
-    let extended_entities: ExtendedEntities
+    let extended_entities: ExtendedEntities?
 
 }
 
@@ -63,11 +63,11 @@ extension TweetApiData: Decodable {
         (entities: Entities)
         (favorited: Bool)
         (retweeted: Bool)
-        (possibly_sensitive: Bool)
-        (possibly_sensitive_appealable: Bool)
+        (possibly_sensitive: Bool?)
+        (possibly_sensitive_appealable: Bool?)
         (lang: String)
         (retweeted_status: RetweetedStatus?)
-        (extended_entities: ExtendedEntities)
+        (extended_entities: ExtendedEntities?)
     -> TweetApiData
     {
         return TweetApiData(
@@ -105,13 +105,13 @@ extension TweetApiData: Decodable {
 
         // Have to breakup decode into multiple chunk and use type cast,
         // because Swift compiler cannot handle such complex expression ¯\_(ツ)_/¯
-        typealias Partial1 = Decoded<Bool -> Int64? -> String? -> Int64? -> String? -> String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial1 = Decoded<Bool -> Int64? -> String? -> Int64? -> String? -> String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool? -> Bool? -> String -> RetweetedStatus? -> ExtendedEntities? -> TweetApiData>
 
-        typealias Partial2 = Decoded<String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial2 = Decoded<String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool? -> Bool? -> String -> RetweetedStatus? -> ExtendedEntities? -> TweetApiData>
 
-        typealias Partial3 = Decoded<Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial3 = Decoded<Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool? -> Bool? -> String -> RetweetedStatus? -> ExtendedEntities? -> TweetApiData>
 
-        typealias Partial4 = Decoded<Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial4 = Decoded<Bool? -> Bool? -> String -> RetweetedStatus? -> ExtendedEntities? -> TweetApiData>
 
         let f1: Partial1 = TweetApiData.create
             <^> j <| "created_at"
@@ -142,10 +142,10 @@ extension TweetApiData: Decodable {
             <*> j <| "retweeted"
 
         return f4
-            <*> j <| "possibly_sensitive"
-            <*> j <| "possibly_sensitive_appealable"
+            <*> j <|? "possibly_sensitive"
+            <*> j <|? "possibly_sensitive_appealable"
             <*> j <| "lang"
             <*> j <|? "retweeted_status"
-            <*> j <| "extended_entities"
+            <*> j <|? "extended_entities"
     }
 }

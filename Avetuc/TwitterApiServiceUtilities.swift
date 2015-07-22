@@ -14,7 +14,7 @@ func getHomeTimeline(
     max_id: String?
 ) -> StatusesHomeTimelineTask
 {
-    let params: [TwitterApiParam] = [.Count(200), .TrimUser(true), .ExcludeReplies(true), .IncludeEntities(true)]
+    let params: [TwitterApiParam] = [.Count(200), .TrimUser(false), .ExcludeReplies(true), .IncludeEntities(true)]
 
     return executeGetHomeTimeline(
         twitterApi,

@@ -365,12 +365,12 @@
 				78EF90261B5DFB89007F8D99 /* UserMention.swift */,
 				78EF90281B5DFBA0007F8D99 /* Url.swift */,
 				78EF902A1B5DFBB0007F8D99 /* Media.swift */,
-				788ABF311B5FC53E00E3540F /* ExtendedEntityMedia.swift */,
 				78EF902C1B5DFDBD007F8D99 /* Size.swift */,
 				78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */,
 				788ABF331B5FC5C700E3540F /* VideoInfo.swift */,
 				788ABF351B5FC66300E3540F /* VideoInfoVariant.swift */,
 				788ABF371B5FC7FF00E3540F /* ExtendedEntities.swift */,
+				788ABF311B5FC53E00E3540F /* ExtendedEntityMedia.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
