@@ -8,7 +8,11 @@
 
 import Foundation
 
-func getHomeTimeline(twitterApi: TwitterApi, since_id: String?, max_id: String?) -> StatusesHomeTimelineTask
+func getHomeTimeline(
+    twitterApi: TwitterApi,
+    since_id: String?,
+    max_id: String?
+) -> StatusesHomeTimelineTask
 {
     let params: [TwitterApiParam] = [.Count(200), .TrimUser(true), .ExcludeReplies(true), .IncludeEntities(true)]
 

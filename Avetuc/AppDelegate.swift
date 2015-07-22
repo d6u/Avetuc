@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var accountListener: Listener?
+    let rootViewController = RootViewController()
 
     func application(
         application: UIApplication,
@@ -25,16 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = window
 
-        window.rootViewController = RootViewController()
+        window.rootViewController = self.rootViewController
         window.makeKeyAndVisible()
 
-        self.accountListener = AccountsStore.instance.on { event in
+        self.accountListener = AccountsStore.instance.on { [unowned self] event in
 
             // TODO: Handle account switching
 
+            self.rootViewController.loadAccount(event.cur)
+
             if let account = event.cur {
                 FriendActions.fetchFriends(account.user_id)
-                TweetsActions.fetchHomeTimeline(account.user_id, since_id: account.last_fetch_since_id)
+//                TweetsActions.fetchHomeTimeline(account.user_id, since_id: account.last_fetch_since_id)
             }
         }
 

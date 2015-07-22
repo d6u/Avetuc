@@ -10,7 +10,7 @@ import Foundation
 
 struct AccountActions {
 
-    static func emitAccount(account: AccountData?) {
+    static func emitAccount(account: Account?) {
         Dispatcher.instance.dispatch(account)
     }
 

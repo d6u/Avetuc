@@ -14,11 +14,25 @@ class RootViewController: UINavigationController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+
+        
     }
 
     let friendsTableViewController = FriendsViewController()
+    var introViewController: IntroViewController?
 
-    private var accountListener: Listener?
+    func loadAccount(account: Account?) {
+        if let account = account {
+            if let intro = self.introViewController {
+                intro.dismissViewControllerAnimated(true, completion: nil)
+            }
+            FriendActions.loadAllFriends(account.user_id)
+        } else {
+            self.presentIntroView()
+        }
+    }
+
+    // MARK: - Delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +41,13 @@ class RootViewController: UINavigationController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-        self.accountListener = AccountsStore.instance.on { storeData in
-            if storeData.cur == nil {
-                self.presentIntroView()
-            }
-        }
-
         AccountActions.askCurrentAccount()
     }
 
     func presentIntroView()
     {
-        let introViewController = IntroViewController()
-//        introViewController.transitioningDelegate = self.transitionDelegate
-//        introViewController.modalPresentationStyle = .Custom
-        self.presentViewController(introViewController, animated: true, completion: nil)
+        self.introViewController = IntroViewController()
+        self.presentViewController(self.introViewController!, animated: true, completion: nil)
     }
 
     // MARK: - No use

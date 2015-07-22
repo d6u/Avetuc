@@ -47,18 +47,18 @@ class FriendTableCell: UITableViewCell {
         }
     }
 
-    var user: UserData?
+    var user: User?
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let nameView = FriendCellNameLabel()
     let screenNameView = FriendCellScreenNameLabel()
     let unreadCountView = FriendCellUnreadCountView()
 
-    func load(data: UserData) {
+    func load(data: User) {
         self.user = data
         self.nameView.text = data.name
         self.screenNameView.text = "@\(data.screen_name)"
-        self.unreadCountView.count = data.unread_count
+        self.unreadCountView.count = data.unread_status_count
 //        self.profileImageView.kf_setImageWithURL(u.profileImageUrl, placeholderImage: nil)
 //
 //        if u.unreadCount > 0 {

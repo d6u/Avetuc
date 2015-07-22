@@ -9,7 +9,7 @@
 import Foundation
 import EmitterKit
 
-typealias FriendsStoreEventHandler = (StoreEvent<[UserData]>) -> Void
+typealias FriendsStoreEventHandler = (StoreEvent<[User]>) -> Void
 
 class FriendsStore {
 
@@ -25,18 +25,18 @@ class FriendsStore {
     }
 
     init() {
-        self.listener = Dispatcher.instance.register { (friends: [UserData]) -> Void in
+        self.listener = Dispatcher.instance.register { (friends: [User]) -> Void in
 
             // TODO: Diff
-            self.event.emit(StoreEvent<[UserData]>(cur: friends, pre: self.friends))
+            self.event.emit(StoreEvent<[User]>(cur: friends, pre: self.friends))
 
             self.friends = friends
         }
     }
 
-    private var friends = [UserData]()
+    private var friends = [User]()
 
-    private let event = Event<StoreEvent<[UserData]>>()
+    private let event = Event<StoreEvent<[User]>>()
     private var listener: Listener?
 
     func on(callback: FriendsStoreEventHandler) -> Listener {

@@ -18,7 +18,11 @@ struct FriendsIdsData {
 
 extension FriendsIdsData: Decodable {
 
-    static func create(ids: [String])(previous_cursor: Int64)(next_cursor: Int64) -> FriendsIdsData {
+    static func create
+        (ids: [String])
+        (previous_cursor: Int64)
+        (next_cursor: Int64) -> FriendsIdsData
+    {
         return FriendsIdsData(ids: ids, previous_cursor: previous_cursor, next_cursor: next_cursor)
     }
 

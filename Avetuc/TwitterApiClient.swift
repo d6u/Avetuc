@@ -11,8 +11,6 @@ import Alamofire
 import SwiftTask
 import Argo
 
-typealias FetchTask = Task<Float, AnyObject, NSError>
-
 class TwitterApiClient {
 
     init(consumerKey: String, consumerSecret: String) {
@@ -39,10 +37,17 @@ class TwitterApiClient {
 
     func fetch(endpoint: TwitterApiEndpoint, params: [TwitterApiParam]) -> FetchTask {
 
+        // DEBUG
         if DISABLE_TWITTER_API_CALLS {
-            let err = NSError(domain: "com.daiweilu.Avtuc", code: 123, userInfo: ["desc": "API Request is blocked due to configuration"])
+            let err = NSError(
+                domain: "com.daiweilu.Avtuc",
+                code: 0,
+                userInfo: [
+                    "desc": "API Request is blocked due to configuration",
+                    "endpoint": endpoint.rawValue
+                ]
+            )
             println(err)
-            println("Blocked request to \(endpoint.rawValue)")
             return FetchTask(error: err)
         }
 
@@ -96,22 +101,5 @@ class TwitterApiClient {
         }
 
         return dict
-    }
-}
-
-func process(task: RequestTask, endpoint: TwitterApiEndpoint) -> FetchTask
-{
-    return task.success { data -> FetchTask in
-
-        switch endpoint.responseFormat {
-
-        case .QueryParam:
-            let json = parseQueryParams(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
-            return FetchTask(value: json)
-
-        case .JSON:
-            let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil)
-            return FetchTask(value: json!)
-        }
     }
 }

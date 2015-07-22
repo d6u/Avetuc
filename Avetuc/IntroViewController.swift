@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EmitterKit
 
 class IntroViewController: UIViewController {
 
@@ -16,18 +15,10 @@ class IntroViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private var accountListener: Listener?
+    // MARK: - Delegate
 
     override func loadView() {
         self.view = IntroView()
-    }
-
-    override func viewDidLoad() {
-        self.accountListener = AccountsStore.instance.on { [unowned self] storeData in
-            if storeData.cur != nil {
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        }
     }
 
     // MARK: - No use

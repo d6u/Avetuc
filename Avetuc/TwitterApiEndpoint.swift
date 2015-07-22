@@ -8,8 +8,8 @@
 
 import Foundation
 
-let API_BASE_URL = "https://api.twitter.com/1.1/"
-let OAUTH_BASE_URL = "https://api.twitter.com/oauth/"
+private let API_BASE_URL = "https://api.twitter.com/1.1/"
+private let OAUTH_BASE_URL = "https://api.twitter.com/oauth/"
 
 enum TwitterApiEndpoint: String {
 

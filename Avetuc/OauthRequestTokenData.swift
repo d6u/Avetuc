@@ -18,13 +18,13 @@ struct OauthRequestTokenData {
 
 extension OauthRequestTokenData: Decodable {
 
-    static func create(oauth_token: String)(oauth_token_secret: String)(oauth_callback_confirmed: String) -> OauthRequestTokenData {
+    static func create
+        (oauth_token: String)
+        (oauth_token_secret: String)
+        (oauth_callback_confirmed: String) -> OauthRequestTokenData
+    {
         return OauthRequestTokenData(oauth_token: oauth_token, oauth_token_secret: oauth_token_secret, oauth_callback_confirmed: oauth_callback_confirmed == "true")
     }
-
-//    static func create(oauth_token: String)(oauth_token_secret: String)(oauth_callback_confirmed: Bool) -> OauthRequestTokenData {
-//        return OauthRequestTokenData(oauth_token: oauth_token, oauth_token_secret: oauth_token_secret, oauth_callback_confirmed: oauth_callback_confirmed)
-//    }
 
     static func decode(j: JSON) -> Decoded<OauthRequestTokenData> {
         return OauthRequestTokenData.create

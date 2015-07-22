@@ -17,7 +17,10 @@ struct OauthCallbackData {
 
 extension OauthCallbackData: Decodable {
 
-    static func create(oauth_token: String)(oauth_verifier: String) -> OauthCallbackData {
+    static func create
+        (oauth_token: String)
+        (oauth_verifier: String) -> OauthCallbackData
+    {
         return OauthCallbackData(oauth_token: oauth_token, oauth_verifier: oauth_verifier)
     }
 

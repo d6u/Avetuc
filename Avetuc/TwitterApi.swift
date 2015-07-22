@@ -11,9 +11,9 @@ import SwiftTask
 import Argo
 
 typealias OauthRequestTokenTask = Task<Float, OauthRequestTokenData, NSError>
-typealias OauthAccessTokenTask = Task<Float, AccountData, NSError>
+typealias OauthAccessTokenTask = Task<Float, AccountApiData, NSError>
 typealias FriendsIdsTask = Task<Float, FriendsIdsData, NSError>
-typealias UsersLookupTask = Task<Float, [UserData], NSError>
+typealias UsersLookupTask = Task<Float, [UserApiData], NSError>
 typealias StatusesHomeTimelineTask = Task<Float, [TweetData], NSError>
 
 class TwitterApi {
@@ -38,15 +38,20 @@ class TwitterApi {
         return self.fetch(.OauthRequestToken, params: params)
             .success { (json: AnyObject) -> OauthRequestTokenTask in
                 let data: Decoded<OauthRequestTokenData> = decode(json)
-                println("oauthRequestToken", data.description)
-                return OauthRequestTokenTask(value: data.value!)
+                if let d = data.value {
+                    return OauthRequestTokenTask(value: d)
+                } else {
+                    let err = parseError(.OauthRequestToken, data)
+                    println("oauthRequestToken", err)
+                    return OauthRequestTokenTask(error: err)
+                }
             }
     }
 
     func oauthAccessToken(params: [TwitterApiParam]) -> OauthAccessTokenTask {
         return self.fetch(.OauthAccessToken, params: params)
             .success { (json: AnyObject) -> OauthAccessTokenTask in
-                let data: Decoded<AccountData> = decode(json)
+                let data: Decoded<AccountApiData> = decode(json)
                 println("oauthAccessToken", data.description)
                 return OauthAccessTokenTask(value: data.value!)
         }
@@ -56,17 +61,27 @@ class TwitterApi {
         return self.fetch(.FriendsIds, params: params)
             .success { (json: AnyObject) -> FriendsIdsTask in
                 let data: Decoded<FriendsIdsData> = decode(json)
-                println("friendsIds", data.description)
-                return FriendsIdsTask(value: data.value!)
+                if let d = data.value {
+                    return FriendsIdsTask(value: d)
+                } else {
+                    let err = parseError(.FriendsIds, data)
+                    println("friendsIds", err)
+                    return FriendsIdsTask(error: err)
+                }
             }
     }
 
     func usersLookup(params: [TwitterApiParam]) -> UsersLookupTask {
         return self.fetch(.UsersLookup, params: params)
             .success { (json: AnyObject) -> UsersLookupTask in
-                let data: Decoded<[UserData]> = decode(json)
-                println("usersLookup", data.description)
-                return UsersLookupTask(value: data.value!)
+                let data: Decoded<[UserApiData]> = decode(json)
+                if let d = data.value {
+                    return UsersLookupTask(value: d)
+                } else {
+                    let err = parseError(.UsersLookup, data)
+                    println("usersLookup", err)
+                    return UsersLookupTask(error: err)
+                }
             }
     }
 

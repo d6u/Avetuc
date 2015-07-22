@@ -9,26 +9,17 @@
 import Foundation
 import EmitterKit
 
-typealias AccountDataHandler = (AccountData?) -> Void
-typealias FriendsDataHandler = ([UserData]) -> Void
-typealias TweetsDataHandler = ([TweetData]) -> Void
+typealias AccountDataHandler = (Account?) -> Void
+typealias FriendsDataHandler = ([User]) -> Void
+//typealias TweetsDataHandler = ([TweetData]) -> Void
 
 class Dispatcher {
 
-    class var instance: Dispatcher {
-        struct Static {
-            static var instance: Dispatcher?
-            static var token: dispatch_once_t = 0
-        }
-        dispatch_once(&Static.token) {
-            Static.instance = Dispatcher()
-        }
-        return Static.instance!
-    }
+    static let instance = Dispatcher()
 
-    let accountEvent = Event<AccountData?>()
-    let friendsEvent = Event<[UserData]>()
-    let tweetsEvent = Event<[TweetData]>()
+    let accountEvent = Event<Account?>()
+    let friendsEvent = Event<[User]>()
+//    let tweetsEvent = Event<[TweetData]>()
 
     func register(callback: AccountDataHandler) -> Listener {
         return accountEvent.on(callback)
@@ -37,21 +28,21 @@ class Dispatcher {
     func register(callback: FriendsDataHandler) -> Listener {
         return friendsEvent.on(callback)
     }
+//
+//    func register(callback: TweetsDataHandler) -> Listener {
+//        return tweetsEvent.on(callback)
+//    }
 
-    func register(callback: TweetsDataHandler) -> Listener {
-        return tweetsEvent.on(callback)
-    }
-
-    func dispatch(account: AccountData?) {
+    func dispatch(account: Account?) {
         self.accountEvent.emit(account)
     }
 
-    func dispatch(friends: [UserData]) {
+    func dispatch(friends: [User]) {
         self.friendsEvent.emit(friends)
     }
-
-    func dispatch(tweets: [TweetData]) {
-        self.tweetsEvent.emit(tweets)
-    }
+//
+//    func dispatch(tweets: [TweetData]) {
+//        self.tweetsEvent.emit(tweets)
+//    }
 
 }

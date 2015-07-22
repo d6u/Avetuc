@@ -11,6 +11,7 @@ import Argo
 import Runes
 
 struct TweetData {
+
     let created_at: String
     let favorite_count: Int64
     let favorited: Bool

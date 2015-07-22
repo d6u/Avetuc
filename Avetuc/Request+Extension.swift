@@ -15,7 +15,6 @@ typealias RequestTask = Task<Float, NSData, NSError>
 extension Request {
     func response() -> RequestTask {
         return RequestTask { progress, fulfill, reject, configure -> Void in
-            println("Request", self.request.URL!)
             self.validate().response { request, response, data, error in
                 if let err = error {
                     println("Request error: ", err)

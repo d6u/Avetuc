@@ -14,7 +14,7 @@ struct FriendActions {
         LocalStorageService.instance.loadFriendsFor(user_id)
     }
 
-    static func emitFriends(friends: [UserData]) {
+    static func emitFriends(friends: [User]) {
         println("emitFriends", friends.count)
         Dispatcher.instance.dispatch(friends)
     }

@@ -24,24 +24,14 @@ class FriendsViewController:
 
     private var accountListener: Listener?
     private var friendsListener: Listener?
-    private var friends = [UserData]()
+    private var friends = [User]()
+
+    // MARK: - View Delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.accountListener = AccountsStore.instance.on { event in
-
-            // TODO: Handle account switching
-
-            if let account = event.cur {
-                FriendActions.loadAllFriends(account.user_id)
-            } else {
-                self.friends = []
-                self.tableView.reloadData()
-            }
-        }
-
-        self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[UserData]>) in
+        self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[User]>) in
             if let friends = data.cur {
                 println("FriendsViewController Friends count", friends.count)
                 self.friends = friends
@@ -70,11 +60,11 @@ class FriendsViewController:
         return FriendTableCell.heightForContent()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.friends[indexPath.row]
-        let tweetViewController = TweetsViewController(user: user)
-        self.navigationController!.pushViewController(tweetViewController, animated: true)
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let user = self.friends[indexPath.row]
+//        let tweetViewController = TweetsViewController(user: user)
+//        self.navigationController!.pushViewController(tweetViewController, animated: true)
+//    }
 
     // MARK: - No use
 

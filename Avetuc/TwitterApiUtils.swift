@@ -8,6 +8,10 @@
 
 import Foundation
 import Alamofire
+import SwiftTask
+import Argo
+
+typealias FetchTask = Task<Float, AnyObject, NSError>
 
 func paramsToDict(params: [TwitterApiParam]) -> [String: String] {
     var dict = [String: String]()
@@ -97,4 +101,25 @@ func parseQueryParams(queryStr: String) -> [String: String] {
         dict[keyValue[0]] = keyValue[1]
     }
     return dict
+}
+
+func process(task: RequestTask, endpoint: TwitterApiEndpoint) -> FetchTask
+{
+    return task.success { data -> FetchTask in
+
+        switch endpoint.responseFormat {
+
+        case .QueryParam:
+            let json = parseQueryParams(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+            return FetchTask(value: json)
+
+        case .JSON:
+            let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil)
+            return FetchTask(value: json!)
+        }
+    }
+}
+
+func parseError<T>(endpoint: TwitterApiEndpoint, decoded: Decoded<T>) -> NSError {
+    return NSError(domain: "com.daiweilu.Avetuc", code: 1, userInfo: ["desc": decoded.description])
 }

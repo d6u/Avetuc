@@ -9,22 +9,22 @@
 import Foundation
 import EmitterKit
 
-typealias StoreAccountEventHandler = (StoreEvent<AccountData>) -> Void
+typealias StoreAccountEventHandler = (StoreEvent<Account>) -> Void
 
 class AccountsStore {
 
     static let instance = AccountsStore()
 
     init() {
-        self.listener = Dispatcher.instance.register { (account: AccountData?) -> Void in
+        self.listener = Dispatcher.instance.register { (account: Account?) -> Void in
             self.account = account
-            self.event.emit(StoreEvent<AccountData>(cur: account, pre: self.account))
+            self.event.emit(StoreEvent<Account>(cur: account, pre: self.account))
         }
     }
 
-    private var account: AccountData?
+    private var account: Account?
 
-    private let event = Event<StoreEvent<AccountData>>()
+    private let event = Event<StoreEvent<Account>>()
     private var listener: Listener?
 
     func on(callback: StoreAccountEventHandler) -> Listener {
