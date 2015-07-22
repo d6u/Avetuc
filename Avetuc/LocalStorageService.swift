@@ -56,7 +56,7 @@ class LocalStorageService {
                 let model = UserModel()
                 model.id = data.id
                 model.id_str = data.id_str
-                model.name = data.name
+                model.name = data.name!
                 model.screen_name = data.screen_name
                 model.location = data.location
                 model.t_description = data.description

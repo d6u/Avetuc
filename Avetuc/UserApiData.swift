@@ -14,7 +14,7 @@ struct UserApiData {
 
     let id: Int64
     let id_str: String
-    let name: String
+    let name: String?
     let screen_name: String
     let location: String
     let description: String
@@ -60,7 +60,7 @@ extension UserApiData: Decodable {
     static func create
         (id: Int64)
         (id_str: String)
-        (name: String)
+        (name: String?)
         (screen_name: String)
         (location: String)
         (description: String)
@@ -165,7 +165,7 @@ extension UserApiData: Decodable {
         let f1: Halved1 = UserApiData.create
             <^> j <| "id"
             <*> j <| "id_str"
-            <*> j <| "name"
+            <*> j <|? "name"
             <*> j <| "screen_name"
             <*> j <| "location"
 

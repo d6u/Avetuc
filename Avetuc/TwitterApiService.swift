@@ -78,18 +78,18 @@ class TwitterApiService {
                 FriendActions.emitFriends(data)
             }
     }
-//
-//    // If no since_id is given, get max 200 tweets
-//    func fetchHomeTimeline(user_id: String, since_id: String?) {
-//        getHomeTimeline(self.twitterApi, since_id, nil)
-//            .success { (data: [TweetData]) -> Void in
-//                if data.count > 0 {
-//                    println(data.map { $0.entities.urls?.map { $0.url } })
+
+    // If no since_id is given, get max 200 tweets
+    func fetchHomeTimeline(user_id: String, since_id: String?) {
+        getHomeTimeline(self.twitterApi, since_id, nil)
+            .success { (data: [TweetApiData]) -> Void in
+                if data.count > 0 {
+                    println(data)
 //                    LocalStorageService.instance.createTweets(data, master_account_user_id: user_id)
 //                    let latest_id = data.first!.id_str
 //                    LocalStorageService.instance.updateAccountLastestSinceId(user_id, latest_id: latest_id)
-//                }
-//            }
-//    }
-//
+                }
+            }
+    }
+
 }

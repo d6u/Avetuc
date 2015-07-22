@@ -14,7 +14,7 @@ typealias OauthRequestTokenTask = Task<Float, OauthRequestTokenData, NSError>
 typealias OauthAccessTokenTask = Task<Float, AccountApiData, NSError>
 typealias FriendsIdsTask = Task<Float, FriendsIdsData, NSError>
 typealias UsersLookupTask = Task<Float, [UserApiData], NSError>
-typealias StatusesHomeTimelineTask = Task<Float, [TweetData], NSError>
+typealias StatusesHomeTimelineTask = Task<Float, [TweetApiData], NSError>
 
 class TwitterApi {
 
@@ -88,9 +88,14 @@ class TwitterApi {
     func statusesHomeTimeline(params: [TwitterApiParam]) -> StatusesHomeTimelineTask {
         return self.fetch(.StatusesHomeTimeline, params: params)
             .success { (json: AnyObject) -> StatusesHomeTimelineTask in
-                let data: Decoded<[TweetData]> = decode(json)
-                println("statusesHomeTimeline", data.description)
-                return StatusesHomeTimelineTask(value: data.value!)
+                let data: Decoded<[TweetApiData]> = decode(json)
+                if let value = data.value {
+                    return StatusesHomeTimelineTask(value: value)
+                } else {
+                    let err = parseError(.StatusesHomeTimeline, data)
+                    println("statusesHomeTimeline", err)
+                    return StatusesHomeTimelineTask(error: err)
+                }
             }
     }
 

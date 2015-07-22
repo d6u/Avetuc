@@ -29,13 +29,13 @@ func executeGetHomeTimeline(
     since_id: String?,
     max_id: String?,
     params: [TwitterApiParam],
-    result: [TweetData]
+    result: [TweetApiData]
 ) -> StatusesHomeTimelineTask
 {
     let newParams = max_id == nil ? params : params + [.MaxId(max_id!)]
 
     return twitterApi.statusesHomeTimeline(newParams)
-        .success { (data: [TweetData]) -> StatusesHomeTimelineTask in
+        .success { (data: [TweetApiData]) -> StatusesHomeTimelineTask in
 
             if since_id != nil && data.count > 0 {
                 let oldest_tweet_id = data.last!.id_str

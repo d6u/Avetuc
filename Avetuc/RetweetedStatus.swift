@@ -1,8 +1,8 @@
 //
-//  TweetData.swift
+//  RetweetedStatus.swift
 //  Avetuc
 //
-//  Created by Daiwei Lu on 7/19/15.
+//  Created by Daiwei Lu on 7/22/15.
 //  Copyright (c) 2015 Daiwei Lu. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Runes
 
-struct TweetApiData {
+struct RetweetedStatus {
 
     let created_at: String
     let id: Int64
@@ -35,12 +35,11 @@ struct TweetApiData {
     let possibly_sensitive: Bool
     let possibly_sensitive_appealable: Bool
     let lang: String
-    let retweeted_status: RetweetedStatus?
     let extended_entities: ExtendedEntities
 
 }
 
-extension TweetApiData: Decodable {
+extension RetweetedStatus: Decodable {
 
     static func create
         (created_at: String)
@@ -66,11 +65,10 @@ extension TweetApiData: Decodable {
         (possibly_sensitive: Bool)
         (possibly_sensitive_appealable: Bool)
         (lang: String)
-        (retweeted_status: RetweetedStatus?)
         (extended_entities: ExtendedEntities)
-    -> TweetApiData
+        -> RetweetedStatus
     {
-        return TweetApiData(
+        return RetweetedStatus(
             created_at: created_at,
             id: id,
             id_str: id_str,
@@ -94,26 +92,25 @@ extension TweetApiData: Decodable {
             possibly_sensitive: possibly_sensitive,
             possibly_sensitive_appealable: possibly_sensitive_appealable,
             lang: lang,
-            retweeted_status: retweeted_status,
             extended_entities: extended_entities
         )
     }
 
-    static func decode(j: JSON) -> Decoded<TweetApiData> {
+    static func decode(j: JSON) -> Decoded<RetweetedStatus> {
 
-        println("decoding TweetApiData")
+        println("decoding RetweetedStatus")
 
         // Have to breakup decode into multiple chunk and use type cast,
         // because Swift compiler cannot handle such complex expression ¯\_(ツ)_/¯
-        typealias Partial1 = Decoded<Bool -> Int64? -> String? -> Int64? -> String? -> String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial1 = Decoded<Bool -> Int64? -> String? -> Int64? -> String? -> String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> ExtendedEntities -> RetweetedStatus>
 
-        typealias Partial2 = Decoded<String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial2 = Decoded<String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> ExtendedEntities -> RetweetedStatus>
 
-        typealias Partial3 = Decoded<Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial3 = Decoded<Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool -> Bool -> String -> ExtendedEntities -> RetweetedStatus>
 
-        typealias Partial4 = Decoded<Bool -> Bool -> String -> RetweetedStatus? -> ExtendedEntities -> TweetApiData>
+        typealias Partial4 = Decoded<Bool -> Bool -> String -> ExtendedEntities -> RetweetedStatus>
 
-        let f1: Partial1 = TweetApiData.create
+        let f1: Partial1 = RetweetedStatus.create
             <^> j <| "created_at"
             <*> j <| "id"
             <*> j <| "id_str"
@@ -145,7 +142,6 @@ extension TweetApiData: Decodable {
             <*> j <| "possibly_sensitive"
             <*> j <| "possibly_sensitive_appealable"
             <*> j <| "lang"
-            <*> j <|? "retweeted_status"
             <*> j <| "extended_entities"
     }
 }
