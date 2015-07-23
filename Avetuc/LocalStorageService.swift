@@ -19,9 +19,6 @@ class LocalStorageService {
 
     static let instance = LocalStorageService()
 
-    init() {
-    }
-
     // MARK: Create
 
     func createAccount(data: AccountApiData) -> CreateAccountTask {
@@ -68,14 +65,13 @@ class LocalStorageService {
     {
         return CreateTweetsTask { progress, fulfill, reject, configure in
             let realm = Realm()
-
             let tweets = tweetsData.map { TweetModel().fromApiData($0) }
-
             realm.write {
                 realm.add(tweets, update: true)
             }
-
-            fulfill([])
+            let data = tweets.map { $0.toData() }
+            TweetsActions.emitTweets(data)
+            fulfill(data)
         }
     }
 
@@ -103,7 +99,10 @@ class LocalStorageService {
 
     func loadStatuses(user_id: String) {
         let realm = Realm()
-        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
+        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map {
+            println($0.retweeted_status?.text)
+            return $0.toData()
+        })
     }
 
 //    // Mark: - Update

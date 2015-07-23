@@ -71,6 +71,33 @@ class TweetModel: Object {
         self.possibly_sensitive = data.possibly_sensitive ?? false
         self.possibly_sensitive_appealable = data.possibly_sensitive_appealable ?? false
         self.lang = data.lang
+
+        if let t = data.retweeted_status {
+            self.retweeted_status = TweetModel().fromRetweetedStatus(t)
+        }
+
+        return self
+    }
+
+    func fromRetweetedStatus(data: RetweetedStatus) -> TweetModel {
+        self.created_at = data.created_at
+        self.id = data.id
+        self.id_str = data.id_str
+        self.text = data.text
+        self.source = data.source
+        self.truncated = data.truncated
+        self.in_reply_to_status_id = data.in_reply_to_status_id ?? -1
+        self.in_reply_to_status_id_str = data.in_reply_to_status_id_str ?? ""
+        self.in_reply_to_user_id = data.in_reply_to_user_id ?? -1
+        self.in_reply_to_user_id_str = data.in_reply_to_user_id_str ?? ""
+        self.in_reply_to_screen_name = data.in_reply_to_screen_name ?? ""
+        self.retweet_count = data.retweet_count
+        self.favorite_count = data.favorite_count
+        self.favorited = data.favorited
+        self.retweeted = data.retweeted
+        self.possibly_sensitive = data.possibly_sensitive ?? false
+        self.possibly_sensitive_appealable = data.possibly_sensitive_appealable ?? false
+        self.lang = data.lang
         return self
     }
 
