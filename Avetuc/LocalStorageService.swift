@@ -27,17 +27,10 @@ class LocalStorageService {
     func createAccount(data: AccountApiData) -> CreateAccountTask {
         return CreateAccountTask { progress, fulfill, reject, configure in
             let realm = Realm()
-
-            let model = AccountModel()
-            model.oauth_token = data.oauth_token
-            model.oauth_token_secret = data.oauth_token_secret
-            model.user_id = data.user_id
-            model.screen_name = data.screen_name
-
+            let model = AccountModel().fromApiData(data)
             realm.write {
                 realm.add(model, update: true)
             }
-
             fulfill(model.toData())
         }
     }
@@ -51,44 +44,7 @@ class LocalStorageService {
         return CreateUsersTask { progress, fulfill, reject, configure in
             let realm = Realm()
 
-            let users = usersData.map { data -> UserModel in
-
-                let model = UserModel()
-                model.id = data.id
-                model.id_str = data.id_str
-                model.name = data.name
-                model.screen_name = data.screen_name
-                model.location = data.location
-                model.t_description = data.description
-                model.url = data.url ?? ""
-                model.protected = data.protected
-                model.followers_count = data.followers_count
-                model.friends_count = data.friends_count
-                model.listed_count = data.listed_count
-                model.created_at = data.created_at
-                model.favourites_count = data.favourites_count
-                model.utc_offset = data.utc_offset ?? -1
-                model.time_zone = data.time_zone ?? ""
-                model.verified = data.verified
-                model.statuses_count = data.statuses_count
-                model.lang = data.lang
-                model.profile_background_color = data.profile_background_color
-                model.profile_background_image_url = data.profile_background_image_url
-                model.profile_background_image_url_https = data.profile_background_image_url_https
-                model.profile_image_url = data.profile_image_url
-                model.profile_image_url_https = data.profile_image_url_https
-                model.profile_link_color = data.profile_link_color
-                model.profile_text_color = data.profile_text_color
-                model.profile_use_background_image = data.profile_use_background_image
-                model.default_profile = data.default_profile
-                model.default_profile_image = data.default_profile_image
-                model.following = data.following
-                model.follow_request_sent = data.follow_request_sent
-                model.notifications = data.notifications
-                model.profile_banner_url = data.profile_banner_url ?? ""
-
-                return model
-            }
+            let users = usersData.map { UserModel().fromApiData($0) }
 
             if let id = following_account_user_id, let account = realm.objects(AccountModel).filter("user_id = %@", id).first {
                 realm.write {
@@ -104,7 +60,7 @@ class LocalStorageService {
             fulfill(users.map { $0.toData() })
         }
     }
-//
+
 //    func createTweets(
 //        tweetsData: [TweetData],
 //        master_account_user_id: String,
@@ -163,6 +119,7 @@ class LocalStorageService {
     func loadFriendsFor(user_id: String) {
         let realm = Realm()
         if let account = realm.objects(AccountModel).filter("user_id = %@", user_id).first {
+//            println(account.friends.first!.account.count)
             FriendActions.emitFriends(Array(account.friends).map { $0.toData() })
         }
     }

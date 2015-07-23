@@ -64,8 +64,50 @@ class UserModel: Object {
 
     dynamic var unread_status_count: Int64 = -1
 
+    let statuses = List<TweetModel>()
+
     var account: AccountModel? {
         return (self.linkingObjects(AccountModel.self, forProperty: "profile") as [AccountModel]).first
+    }
+
+    var following_account: AccountModel? {
+        return (self.linkingObjects(AccountModel.self, forProperty: "friends") as [AccountModel]).first
+    }
+
+    func fromApiData(data: UserApiData) -> UserModel {
+        self.id = data.id
+        self.id_str = data.id_str
+        self.name = data.name
+        self.screen_name = data.screen_name
+        self.location = data.location
+        self.t_description = data.description
+        self.url = data.url ?? ""
+        self.protected = data.protected
+        self.followers_count = data.followers_count
+        self.friends_count = data.friends_count
+        self.listed_count = data.listed_count
+        self.created_at = data.created_at
+        self.favourites_count = data.favourites_count
+        self.utc_offset = data.utc_offset ?? -1
+        self.time_zone = data.time_zone ?? ""
+        self.verified = data.verified
+        self.statuses_count = data.statuses_count
+        self.lang = data.lang
+        self.profile_background_color = data.profile_background_color
+        self.profile_background_image_url = data.profile_background_image_url
+        self.profile_background_image_url_https = data.profile_background_image_url_https
+        self.profile_image_url = data.profile_image_url
+        self.profile_image_url_https = data.profile_image_url_https
+        self.profile_link_color = data.profile_link_color
+        self.profile_text_color = data.profile_text_color
+        self.profile_use_background_image = data.profile_use_background_image
+        self.default_profile = data.default_profile
+        self.default_profile_image = data.default_profile_image
+        self.following = data.following
+        self.follow_request_sent = data.follow_request_sent
+        self.notifications = data.notifications
+        self.profile_banner_url = data.profile_banner_url ?? ""
+        return self
     }
 
     func toData() -> User {

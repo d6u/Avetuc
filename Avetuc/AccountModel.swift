@@ -27,8 +27,15 @@ class AccountModel: Object {
     dynamic var last_fetch_since_id: Int64 = -1
 
     dynamic var profile: UserModel?
-
     let friends = List<UserModel>()
+
+    func fromApiData(data: AccountApiData) -> AccountModel {
+        self.oauth_token = data.oauth_token
+        self.oauth_token_secret = data.oauth_token_secret
+        self.user_id = data.user_id
+        self.screen_name = data.screen_name
+        return self
+    }
 
     func toData() -> Account {
         return Account(
