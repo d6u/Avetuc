@@ -10,7 +10,7 @@ import Foundation
 import Argo
 import Runes
 
-struct ExtendedMediaEntity {
+struct ExtendedMediaApiData {
     let id: Int64
     let id_str: String
     let indices: [Int64]
@@ -20,11 +20,11 @@ struct ExtendedMediaEntity {
     let display_url: String
     let expanded_url: String
     let type: String
-    let sizes: Size
+    let sizes: SizeApiData
     let video_info: VideoInfo?
 }
 
-extension ExtendedMediaEntity: Decodable {
+extension ExtendedMediaApiData: Decodable {
 
     static func create
         (id: Int64)
@@ -36,10 +36,10 @@ extension ExtendedMediaEntity: Decodable {
         (display_url: String)
         (expanded_url: String)
         (type: String)
-        (sizes: Size)
-        (video_info: VideoInfo?) -> ExtendedMediaEntity
+        (sizes: SizeApiData)
+        (video_info: VideoInfo?) -> ExtendedMediaApiData
     {
-        return ExtendedMediaEntity(
+        return ExtendedMediaApiData(
             id: id,
             id_str: id_str,
             indices: indices,
@@ -54,13 +54,13 @@ extension ExtendedMediaEntity: Decodable {
         )
     }
 
-    static func decode(j: JSON) -> Decoded<ExtendedMediaEntity> {
+    static func decode(j: JSON) -> Decoded<ExtendedMediaApiData> {
 
         // Have to breakup decode into multiple chunk and use type cast,
         // because Swift compiler cannot handle such complex expression ¯\_(ツ)_/¯
-        typealias Halved = Decoded<String -> String -> Size -> VideoInfo? -> ExtendedMediaEntity>
+        typealias Halved = Decoded<String -> String -> SizeApiData -> VideoInfo? -> ExtendedMediaApiData>
 
-        let p: Halved = ExtendedMediaEntity.create
+        let p: Halved = ExtendedMediaApiData.create
             <^> j <| "id"
             <*> j <| "id_str"
             <*> j <|| "indices"

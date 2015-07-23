@@ -11,12 +11,12 @@ import Argo
 import Runes
 
 struct ExtendedEntities {
-    let media: [ExtendedMediaEntity]
+    let media: [ExtendedMediaApiData]
 }
 
 extension ExtendedEntities: Decodable {
 
-    static func create(media: [ExtendedMediaEntity])-> ExtendedEntities
+    static func create(media: [ExtendedMediaApiData])-> ExtendedEntities
     {
         return ExtendedEntities(media: media)
     }

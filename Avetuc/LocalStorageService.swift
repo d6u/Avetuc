@@ -99,10 +99,7 @@ class LocalStorageService {
 
     func loadStatuses(user_id: String) {
         let realm = Realm()
-        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map {
-            println($0.retweeted_status?.text)
-            return $0.toData()
-        })
+        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
     }
 
 //    // Mark: - Update

@@ -15,4 +15,15 @@ class HashtagEntityModel: Object {
     dynamic var head_indices: Int64 = -1
     dynamic var tail_indices: Int64 = -1
 
+    func fromApiData(data: Hashtag) -> HashtagEntityModel {
+        self.text = data.text
+        self.head_indices = data.indices[0]
+        self.tail_indices = data.indices[1]
+        return self
+    }
+
+    func toData() -> Hashtag {
+        return Hashtag(text: text, indices: [head_indices, tail_indices])
+    }
+
 }

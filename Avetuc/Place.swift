@@ -44,7 +44,6 @@ extension Place: Decodable {
     }
 
     static func decode(j: JSON) -> Decoded<Place> {
-        println("decoding Place")
         return Place.create
             <^> j <| "id"
             <*> j <| "url"

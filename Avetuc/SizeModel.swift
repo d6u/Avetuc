@@ -16,4 +16,16 @@ class SizeModel: Object {
     dynamic var h: Int64 = -1
     dynamic var resize: String = ""
 
+    func fromApiData(type: SizeType, data: SizeDetail) -> SizeModel {
+        self.type = type.rawValue
+        self.w = data.w
+        self.h = data.h
+        self.resize = data.resize
+        return self
+    }
+
+    func toData() -> Size {
+        return Size(type: SizeType(rawValue: self.type)!, w: w, h: h, resize: resize)
+    }
+
 }

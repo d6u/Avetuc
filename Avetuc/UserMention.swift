@@ -32,7 +32,6 @@ extension UserMention: Decodable {
     }
 
     static func decode(j: JSON) -> Decoded<UserMention> {
-        println("decoding UserMention")
         return UserMention.create
             <^> j <|  "screen_name"
             <*> j <| "name"

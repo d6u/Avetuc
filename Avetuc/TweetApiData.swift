@@ -101,8 +101,6 @@ extension TweetApiData: Decodable {
 
     static func decode(j: JSON) -> Decoded<TweetApiData> {
 
-        println("decoding TweetApiData")
-
         // Have to breakup decode into multiple chunk and use type cast,
         // because Swift compiler cannot handle such complex expression ¯\_(ツ)_/¯
         typealias Partial1 = Decoded<Bool -> Int64? -> String? -> Int64? -> String? -> String? -> UserApiData -> Coordinates? -> Coordinates? -> Place? -> Int64 -> Int64 -> Entities -> Bool -> Bool -> Bool? -> Bool? -> String -> RetweetedStatus? -> ExtendedEntities? -> TweetApiData>

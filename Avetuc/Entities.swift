@@ -14,7 +14,7 @@ struct Entities {
     let hashtags: [Hashtag]?
     let user_mentions: [UserMention]?
     let urls: [Url]?
-    let media: [Media]?
+    let media: [MediaApiData]?
 }
 
 extension Entities: Decodable {
@@ -23,7 +23,7 @@ extension Entities: Decodable {
         (hashtags: [Hashtag]?)
         (user_mentions: [UserMention]?)
         (urls: [Url]?)
-        (media: [Media]?)-> Entities
+        (media: [MediaApiData]?)-> Entities
     {
         return Entities(hashtags: hashtags, user_mentions: user_mentions, urls: urls, media: media)
     }

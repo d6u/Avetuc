@@ -29,4 +29,10 @@ struct Tweet {
     let possibly_sensitive_appealable: Bool
     let lang: String
 
+    let hashtags: [Hashtag]
+    let urls: [Url]
+    let user_mentions: [UserMention]
+    let medias: [Media]
+    let extended_medias: [ExtendedMedia]
+
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		780AA6DD1B5BF81100D0A622 /* TweetApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */; };
+		7826CD211B6087B600B7DBD1 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD201B6087B600B7DBD1 /* Size.swift */; };
+		7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD221B608ABC00B7DBD1 /* Media.swift */; };
+		7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */; };
 		7834C9681B589577004029C3 /* UserApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C9671B589577004029C3 /* UserApiData.swift */; };
 		7834C96A1B589644004029C3 /* FriendActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C9691B589644004029C3 /* FriendActions.swift */; };
 		7834C96C1B5898A7004029C3 /* FriendsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96B1B5898A7004029C3 /* FriendsStore.swift */; };
@@ -31,7 +34,7 @@
 		788ABF2C1B5F57F900E3540F /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF2B1B5F57F900E3540F /* Tweet.swift */; };
 		788ABF2E1B5FC2B400E3540F /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF2D1B5FC2B400E3540F /* Coordinates.swift */; };
 		788ABF301B5FC3F700E3540F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF2F1B5FC3F700E3540F /* Place.swift */; };
-		788ABF321B5FC53E00E3540F /* ExtendedMediaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF311B5FC53E00E3540F /* ExtendedMediaEntity.swift */; };
+		788ABF321B5FC53E00E3540F /* ExtendedMediaApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF311B5FC53E00E3540F /* ExtendedMediaApiData.swift */; };
 		788ABF341B5FC5C700E3540F /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF331B5FC5C700E3540F /* VideoInfo.swift */; };
 		788ABF361B5FC66300E3540F /* VideoInfoVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF351B5FC66300E3540F /* VideoInfoVariant.swift */; };
 		788ABF381B5FC7FF00E3540F /* ExtendedEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF371B5FC7FF00E3540F /* ExtendedEntities.swift */; };
@@ -57,8 +60,8 @@
 		78EF90251B5DF9B2007F8D99 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF90241B5DF9B2007F8D99 /* Entities.swift */; };
 		78EF90271B5DFB89007F8D99 /* UserMention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF90261B5DFB89007F8D99 /* UserMention.swift */; };
 		78EF90291B5DFBA0007F8D99 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF90281B5DFBA0007F8D99 /* Url.swift */; };
-		78EF902B1B5DFBB0007F8D99 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902A1B5DFBB0007F8D99 /* Media.swift */; };
-		78EF902D1B5DFDBD007F8D99 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902C1B5DFDBD007F8D99 /* Size.swift */; };
+		78EF902B1B5DFBB0007F8D99 /* MediaApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */; };
+		78EF902D1B5DFDBD007F8D99 /* SizeApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */; };
 		78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
 		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
@@ -99,6 +102,9 @@
 /* Begin PBXFileReference section */
 		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetApiData.swift; sourceTree = "<group>"; };
+		7826CD201B6087B600B7DBD1 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		7826CD221B608ABC00B7DBD1 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMedia.swift; sourceTree = "<group>"; };
 		7834C9671B589577004029C3 /* UserApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApiData.swift; sourceTree = "<group>"; };
 		7834C9691B589644004029C3 /* FriendActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendActions.swift; sourceTree = "<group>"; };
 		7834C96B1B5898A7004029C3 /* FriendsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsStore.swift; sourceTree = "<group>"; };
@@ -122,7 +128,7 @@
 		788ABF2B1B5F57F900E3540F /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		788ABF2D1B5FC2B400E3540F /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		788ABF2F1B5FC3F700E3540F /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		788ABF311B5FC53E00E3540F /* ExtendedMediaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMediaEntity.swift; sourceTree = "<group>"; };
+		788ABF311B5FC53E00E3540F /* ExtendedMediaApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMediaApiData.swift; sourceTree = "<group>"; };
 		788ABF331B5FC5C700E3540F /* VideoInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		788ABF351B5FC66300E3540F /* VideoInfoVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoInfoVariant.swift; sourceTree = "<group>"; };
 		788ABF371B5FC7FF00E3540F /* ExtendedEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedEntities.swift; sourceTree = "<group>"; };
@@ -148,8 +154,8 @@
 		78EF90241B5DF9B2007F8D99 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		78EF90261B5DFB89007F8D99 /* UserMention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMention.swift; sourceTree = "<group>"; };
 		78EF90281B5DFBA0007F8D99 /* Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
-		78EF902A1B5DFBB0007F8D99 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		78EF902C1B5DFDBD007F8D99 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaApiData.swift; sourceTree = "<group>"; };
+		78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeApiData.swift; sourceTree = "<group>"; };
 		78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeDetail.swift; sourceTree = "<group>"; };
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -246,6 +252,9 @@
 				788A57621B5F111600AF91B9 /* Account.swift */,
 				78E2517A1B5F49DD00E7E5FC /* User.swift */,
 				788ABF2B1B5F57F900E3540F /* Tweet.swift */,
+				7826CD221B608ABC00B7DBD1 /* Media.swift */,
+				7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */,
+				7826CD201B6087B600B7DBD1 /* Size.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -377,10 +386,10 @@
 				78EF90221B5DF98C007F8D99 /* Hashtag.swift */,
 				78EF90261B5DFB89007F8D99 /* UserMention.swift */,
 				78EF90281B5DFBA0007F8D99 /* Url.swift */,
-				78EF902A1B5DFBB0007F8D99 /* Media.swift */,
-				788ABF311B5FC53E00E3540F /* ExtendedMediaEntity.swift */,
+				78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */,
+				788ABF311B5FC53E00E3540F /* ExtendedMediaApiData.swift */,
+				78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */,
 				78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */,
-				78EF902C1B5DFDBD007F8D99 /* Size.swift */,
 				788ABF331B5FC5C700E3540F /* VideoInfo.swift */,
 				788ABF351B5FC66300E3540F /* VideoInfoVariant.swift */,
 			);
@@ -603,8 +612,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				780AA6DD1B5BF81100D0A622 /* TweetApiData.swift in Sources */,
-				788ABF321B5FC53E00E3540F /* ExtendedMediaEntity.swift in Sources */,
+				788ABF321B5FC53E00E3540F /* ExtendedMediaApiData.swift in Sources */,
 				78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */,
+				7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */,
 				78FD6C511B55FED000AA3875 /* AccountActions.swift in Sources */,
 				78EF90251B5DF9B2007F8D99 /* Entities.swift in Sources */,
 				784B5FDF1B5C96EF006F1300 /* TweetTextView.swift in Sources */,
@@ -617,7 +627,7 @@
 				788A57661B5F12B700AF91B9 /* UserEntities.swift in Sources */,
 				784B5FA91B5C5CC7006F1300 /* TweetsStore.swift in Sources */,
 				78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */,
-				78EF902D1B5DFDBD007F8D99 /* Size.swift in Sources */,
+				78EF902D1B5DFDBD007F8D99 /* SizeApiData.swift in Sources */,
 				7834C9701B58A423004029C3 /* UserModel.swift in Sources */,
 				788A57631B5F111600AF91B9 /* Account.swift in Sources */,
 				788ABF381B5FC7FF00E3540F /* ExtendedEntities.swift in Sources */,
@@ -631,6 +641,7 @@
 				788ABF3A1B5FCBC000E3540F /* RetweetedStatus.swift in Sources */,
 				786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */,
 				784B5FA41B5C3855006F1300 /* TweetCell.swift in Sources */,
+				7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */,
 				78FD6C761B56011800AA3875 /* TimestampUtility.swift in Sources */,
 				78E2517B1B5F49DD00E7E5FC /* User.swift in Sources */,
 				788A57681B5F147B00AF91B9 /* UserEntity.swift in Sources */,
@@ -647,7 +658,7 @@
 				78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */,
 				78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */,
 				78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */,
-				78EF902B1B5DFBB0007F8D99 /* Media.swift in Sources */,
+				78EF902B1B5DFBB0007F8D99 /* MediaApiData.swift in Sources */,
 				78CF9F5A1B5B61AB00DE9D9E /* UIColor+Extension.swift in Sources */,
 				7834C9721B58B573004029C3 /* FriendsIdsData.swift in Sources */,
 				788ABF441B6076B500E3540F /* ExtendedMediaEntityModel.swift in Sources */,
@@ -660,6 +671,7 @@
 				78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */,
 				788ABF301B5FC3F700E3540F /* Place.swift in Sources */,
 				7834C96E1B58A423004029C3 /* AccountModel.swift in Sources */,
+				7826CD211B6087B600B7DBD1 /* Size.swift in Sources */,
 				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
 				78CF9F5C1B5B632D00DE9D9E /* ProfileImageView.swift in Sources */,
 				78B4DA2D1B5BFD19008CBD37 /* TweetModel.swift in Sources */,

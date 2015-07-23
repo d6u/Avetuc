@@ -30,9 +30,6 @@ struct User {
     let verified: Bool
     let statuses_count: Int64
     let lang: String
-    // let contributors_enabled: Bool
-    // let is_translator: Bool
-    // let is_translation_enabled: Bool
     let profile_background_color: String
     let profile_background_image_url: String
     let profile_background_image_url_https: String
@@ -50,6 +47,9 @@ struct User {
     let follow_request_sent: Bool
     let notifications: Bool
     let profile_banner_url: String?
+
+    // Custom
+    //
 
     let unread_status_count: Int64?
 

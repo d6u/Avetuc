@@ -41,16 +41,23 @@ class TweetModel: Object {
     dynamic var possibly_sensitive_appealable: Bool = false
     dynamic var lang: String = ""
 
+    // One -> One
+    //
+
     dynamic var retweeted_status: TweetModel?
+
+    var user: UserModel? {
+        return (self.linkingObjects(UserModel.self, forProperty: "statuses") as [UserModel]).first
+    }
+
+    // One -> Many
+    //
+
     let hashtag_entities = List<HashtagEntityModel>()
     let url_entities = List<UrlEntityModel>()
     let user_mention_entities = List<UserMentionEntityModel>()
     let media_entities = List<MediaEntityModel>()
     let extended_media_entities = List<ExtendedMediaEntityModel>()
-
-    var user: UserModel? {
-        return (self.linkingObjects(UserModel.self, forProperty: "statuses") as [UserModel]).first
-    }
 
     func fromApiData(data: TweetApiData) -> TweetModel {
         self.created_at = data.created_at
@@ -76,6 +83,36 @@ class TweetModel: Object {
             self.retweeted_status = TweetModel().fromRetweetedStatus(t)
         }
 
+        if let list = data.entities.hashtags {
+            for e in list  {
+                self.hashtag_entities.append(HashtagEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.urls {
+            for e in list  {
+                self.url_entities.append(UrlEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.user_mentions {
+            for e in list  {
+                self.user_mention_entities.append(UserMentionEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.media {
+            for e in list  {
+                self.media_entities.append(MediaEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.extended_entities?.media {
+            for e in list  {
+                self.extended_media_entities.append(ExtendedMediaEntityModel().fromApiData(e))
+            }
+        }
+
         return self
     }
 
@@ -98,6 +135,35 @@ class TweetModel: Object {
         self.possibly_sensitive = data.possibly_sensitive ?? false
         self.possibly_sensitive_appealable = data.possibly_sensitive_appealable ?? false
         self.lang = data.lang
+
+        if let list = data.entities.hashtags {
+            for e in list  {
+                self.hashtag_entities.append(HashtagEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.urls {
+            for e in list  {
+                self.url_entities.append(UrlEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.user_mentions {
+            for e in list  {
+                self.user_mention_entities.append(UserMentionEntityModel().fromApiData(e))
+            }
+        }
+
+        if let list = data.entities.media {
+            for e in list  {
+                self.media_entities.append(MediaEntityModel().fromApiData(e))
+            }
+        }
+
+        for e in data.extended_entities.media {
+            self.extended_media_entities.append(ExtendedMediaEntityModel().fromApiData(e))
+        }
+
         return self
     }
 
@@ -120,7 +186,12 @@ class TweetModel: Object {
             retweeted: retweeted,
             possibly_sensitive: possibly_sensitive,
             possibly_sensitive_appealable: possibly_sensitive_appealable,
-            lang: lang
+            lang: lang,
+            hashtags: Array(self.hashtag_entities).map { $0.toData() },
+            urls: Array(self.url_entities).map { $0.toData() },
+            user_mentions: Array(self.user_mention_entities).map { $0.toData() },
+            medias: Array(self.media_entities).map { $0.toData() },
+            extended_medias: Array(self.extended_media_entities).map { $0.toData() }
         )
     }
 
