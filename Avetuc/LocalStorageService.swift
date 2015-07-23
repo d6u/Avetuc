@@ -19,33 +19,29 @@ class LocalStorageService {
 
     static let instance = LocalStorageService()
 
+    let realm = Realm()
+
     // MARK: Create
 
     func createAccount(data: AccountApiData) -> CreateAccountTask {
         return CreateAccountTask { progress, fulfill, reject, configure in
-            let realm = Realm()
             let model = AccountModel().fromApiData(data)
-            realm.write {
-                realm.add(model, update: true)
+            self.realm.write {
+                self.realm.add(model, update: true)
             }
             fulfill(model.toData())
         }
     }
 
-    func createUsers(
-        usersData: [UserApiData],
-        following_account_user_id: String? = nil,
-        profile_account_user_id: String? = nil
-    ) -> CreateUsersTask
+    func createUsers(data: [UserApiData], accountUserId: String) -> CreateUsersTask
     {
         return CreateUsersTask { progress, fulfill, reject, configure in
-            let realm = Realm()
 
-            let users = usersData.map { UserModel().fromApiData($0) }
+            let users = data.map { UserModel().fromApiData($0) }
 
-            if let id = following_account_user_id, let account = realm.objects(AccountModel).filter("user_id = %@", id).first {
-                realm.write {
-                    realm.add(users, update: true)
+            if let account = self.realm.objects(AccountModel).filter("user_id = %@", accountUserId).first {
+                self.realm.write {
+                    self.realm.add(users, update: true)
                     for u in users {
                         if account.friends.indexOf(u) == nil {
                             account.friends.append(u)
@@ -60,8 +56,7 @@ class LocalStorageService {
 
     func createTweets(
         tweetsData: [TweetApiData],
-        master_account_user_id: String
-    ) -> CreateTweetsTask
+        master_account_user_id: String) -> CreateTweetsTask
     {
         return CreateTweetsTask { progress, fulfill, reject, configure in
             let realm = Realm()
@@ -70,7 +65,6 @@ class LocalStorageService {
                 realm.add(tweets, update: true)
             }
             let data = tweets.map { $0.toData() }
-            TweetsActions.emitTweets(data)
             fulfill(data)
         }
     }
@@ -84,22 +78,22 @@ class LocalStorageService {
             TwitterApiService.instance.loadTokens(
                 oauthToken: account.oauth_token,
                 oauthTokenSecret: account.oauth_token_secret)
-            AccountActions.emitAccount(account)
+            emitAccount(account)
         } else {
-            AccountActions.emitAccount(nil)
+            emitAccount(nil)
         }
     }
 
     func loadFriendsFor(user_id: String) {
         let realm = Realm()
         if let account = realm.objects(AccountModel).filter("user_id = %@", user_id).first {
-            FriendActions.emitFriends(Array(account.friends).map { $0.toData() })
+            emitFriends(Array(account.friends).map { $0.toData() })
         }
     }
 
     func loadStatuses(user_id: String) {
         let realm = Realm()
-        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
+        emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
     }
 
 //    // Mark: - Update

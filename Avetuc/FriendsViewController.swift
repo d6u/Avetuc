@@ -22,7 +22,6 @@ class FriendsViewController:
         self.tableView.layoutMargins = UIEdgeInsetsZero
     }
 
-    private var accountListener: Listener?
     private var friendsListener: Listener?
     private var friends = [User]()
 
@@ -33,7 +32,6 @@ class FriendsViewController:
 
         self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[User]>) in
             if let friends = data.cur {
-                println("FriendsViewController Friends count", friends.count)
                 self.friends = friends
                 self.tableView.reloadData()
             }

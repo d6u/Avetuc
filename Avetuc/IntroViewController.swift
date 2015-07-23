@@ -26,5 +26,4 @@ class IntroViewController: UIViewController {
     required convenience init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

@@ -14,21 +14,27 @@ class RootViewController: UINavigationController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-
-        
     }
 
     let friendsTableViewController = FriendsViewController()
     var introViewController: IntroViewController?
+    var account: Account?
+    var accountListener: Listener?
 
-    func loadAccount(account: Account?) {
+    func loadAccount(account: Account?)
+    {
+        self.account = account
+
         if let account = account {
             if let intro = self.introViewController {
                 intro.dismissViewControllerAnimated(true, completion: nil)
+                self.introViewController = nil
             }
-            FriendActions.loadAllFriends(account.user_id)
+            loadAllFriendsOfAccount(account.user_id)
         } else {
-            self.presentIntroView()
+            if self.introViewController == nil {
+                self.presentIntroView()
+            }
         }
     }
 
@@ -37,11 +43,21 @@ class RootViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pushViewController(self.friendsTableViewController, animated: false)
+
+        self.accountListener = AccountsStore.instance.on { [unowned self] event in
+
+            self.loadAccount(event.cur)
+
+            if let account = event.cur {
+                fetchFriendsOfAccount(account.user_id)
+//                fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+            }
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        AccountActions.askCurrentAccount()
+        loadDefaultAccount()
     }
 
     func presentIntroView()
@@ -55,5 +71,4 @@ class RootViewController: UINavigationController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

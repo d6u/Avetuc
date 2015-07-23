@@ -67,7 +67,7 @@ class IntroView: UIView {
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
 
     func webAuthButtonTapped() {
-        AccountActions.addAccountThroughWeb()
+        addAccountThroughWeb()
     }
 
     func iosAuthButtonTapped() {

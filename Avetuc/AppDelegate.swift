@@ -14,34 +14,14 @@ import EmitterKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var accountListener: Listener?
-    let rootViewController = RootViewController()
 
     func application(
         application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?
-    ) -> Bool
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
-        let window = UIWindow(frame: screenBounds())
-
-        self.window = window
-
-        window.rootViewController = self.rootViewController
-        window.makeKeyAndVisible()
-
-        self.accountListener = AccountsStore.instance.on { [unowned self] event in
-
-            // TODO: Handle account switching
-
-            self.rootViewController.loadAccount(event.cur)
-
-            if let account = event.cur {
-//                FriendActions.fetchFriends(account.user_id)
-//                TweetsActions.fetchHomeTimeline(account.user_id, since_id: account.last_fetch_since_id)
-                TweetsActions.loadStatuses("123123")
-            }
-        }
-
+        self.window = UIWindow(frame: screenBounds())
+        self.window!.rootViewController = RootViewController()
+        self.window!.makeKeyAndVisible()
         return true
     }
 
@@ -51,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sourceApplication: String?, 
         annotation: AnyObject?) -> Bool
     {
-        AccountActions.handleCallbackUrl(url)
+        handleCallbackUrl(url)
         return true
     }
 

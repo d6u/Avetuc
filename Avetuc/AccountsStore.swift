@@ -17,8 +17,10 @@ class AccountsStore {
 
     init() {
         self.listener = Dispatcher.instance.register { (account: Account?) -> Void in
-            self.account = account
-            self.event.emit(StoreEvent<Account>(cur: account, pre: self.account))
+            if self.account == nil || account == nil || self.account!.user_id != account!.user_id {
+                self.event.emit(StoreEvent<Account>(cur: account, pre: self.account))
+                self.account = account
+            }
         }
     }
 

@@ -41,11 +41,11 @@ class TwitterApiService {
                 return LocalStorageService.instance.createAccount(data)
             }
             .success { (data: Account) -> Void in
-                AccountActions.emitAccount(data)
+                emitAccount(data)
             }
     }
 
-    func fetchFriends(user_id: String) {
+    func fetchFriendsOfAccount(user_id: String) {
         self.twitterApi
             .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
             .success { data -> FetchAllFriendsTask in
@@ -72,10 +72,10 @@ class TwitterApiService {
                     result += users
                 }
 
-                return LocalStorageService.instance.createUsers(result, following_account_user_id: user_id)
+                return LocalStorageService.instance.createUsers(result, accountUserId: user_id)
             }
             .success { data -> Void in
-                FriendActions.emitFriends(data)
+                emitFriends(data)
             }
     }
 
