@@ -13,7 +13,7 @@ import Async
 
 typealias CreateAccountTask = Task<Float, Account, NSError>
 typealias CreateUsersTask = Task<Float, [User], NSError>
-//typealias CreateTweetsTask = Task<Float, [TweetData], NSError>
+typealias CreateTweetsTask = Task<Float, [Tweet], NSError>
 
 class LocalStorageService {
 
@@ -61,46 +61,24 @@ class LocalStorageService {
         }
     }
 
-//    func createTweets(
-//        tweetsData: [TweetData],
-//        master_account_user_id: String,
-//        retweeted_tweet_id: String? = nil,
-//        quoted_tweet_id: String? = nil
-//    ) -> CreateTweetsTask
-//    {
-//        return CreateTweetsTask { progress, fulfill, reject, configure in
-//            self.dataStack.beginAsynchronous { transaction in
-//
-//                let tweets = tweetsData.map { data -> Tweet in
-//                    var tweet: Tweet! = transaction.create(Into(Tweet)).fromData(data)
-//
-//                    tweet.creator_user_id = data.creator_user_id
-//                    tweet.master_account_user_id = master_account_user_id
-//                    tweet.retweeted_tweet_id = retweeted_tweet_id
-//                    tweet.quoted_tweet_id = quoted_tweet_id
-//
-//                    return tweet
-//                }
-//
-//                transaction.commit { result -> Void in
-//                    switch result {
-//                    case .Success(let hasChanges):
-//                        println("Tweets created! hasChanges? \(hasChanges)")
-//                        let data = tweets.map { $0.toData() }
-//                        Async.main {
-//                            fulfill(data)
-//                        }
-//                    case .Failure(let error):
-//                        println(error)
-//                        Async.main {
-//                            reject(error)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
+    func createTweets(
+        tweetsData: [TweetApiData],
+        master_account_user_id: String
+    ) -> CreateTweetsTask
+    {
+        return CreateTweetsTask { progress, fulfill, reject, configure in
+            let realm = Realm()
+
+            let tweets = tweetsData.map { TweetModel().fromApiData($0) }
+
+            realm.write {
+                realm.add(tweets, update: true)
+            }
+
+            fulfill([])
+        }
+    }
+
     // MARK: Read
 
     func loadDefaultAccount() {
@@ -119,21 +97,15 @@ class LocalStorageService {
     func loadFriendsFor(user_id: String) {
         let realm = Realm()
         if let account = realm.objects(AccountModel).filter("user_id = %@", user_id).first {
-//            println(account.friends.first!.account.count)
             FriendActions.emitFriends(Array(account.friends).map { $0.toData() })
         }
     }
-//
-//    func loadStatuses(user_id: String) {
-//        self.dataStack.beginAsynchronous { (transaction) -> Void in
-//            let tweets = transaction.fetchAll(From(Tweet), Where("creator_user_id == %@", user_id))!
-//            let data = tweets.map { $0.toData() }
-//            Async.main {
-//                TweetsActions.emitTweets(data)
-//            }
-//        }
-//    }
-//
+
+    func loadStatuses(user_id: String) {
+        let realm = Realm()
+        TweetsActions.emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
+    }
+
 //    // Mark: - Update
 //
 //    func updateAccountLastestSinceId(user_id: String, latest_id: String) {

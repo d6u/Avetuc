@@ -15,7 +15,7 @@ struct TweetsActions {
     }
 
     static func loadStatuses(user_id: String) {
-//        LocalStorageService.instance.loadStatuses(user_id)
+        LocalStorageService.instance.loadStatuses(user_id)
     }
 
     static func emitTweets(tweets: [Tweet]) {
