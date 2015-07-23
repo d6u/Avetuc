@@ -58,11 +58,11 @@ class FriendsViewController:
         return FriendTableCell.heightForContent()
     }
 
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let user = self.friends[indexPath.row]
-//        let tweetViewController = TweetsViewController(user: user)
-//        self.navigationController!.pushViewController(tweetViewController, animated: true)
-//    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = self.friends[indexPath.row]
+        let tweetViewController = TweetsViewController(user: user)
+        self.navigationController!.pushViewController(tweetViewController, animated: true)
+    }
 
     // MARK: - No use
 

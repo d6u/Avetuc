@@ -82,11 +82,11 @@ class TweetCell: UITableViewCell {
 //            constant: 11)
 //        }()
 
-//    func loadTweet(data: TweetData, userData: UserData) {
-//        self.userNameView.text = userData.name
-//        self.textView.text = data.text
-//        self.timeText.text = data.created_at
-//    }
+    func loadTweet(data: Tweet, userData: User) {
+        self.userNameView.text = userData.name
+        self.textView.text = data.text
+        self.timeText.text = data.created_at
+    }
 
     // MARK: - No use
     

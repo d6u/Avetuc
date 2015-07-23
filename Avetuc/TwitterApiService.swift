@@ -17,6 +17,7 @@ class TwitterApiService {
     static let instance = TwitterApiService()
 
     private let twitterApi = TwitterApi(consumerKey: TWITTER_CONSUMER_KEY, consumerSecret: TWITTER_CONSUMER_SECRET)
+    private var createUsersTask: CreateUsersTask?
 
     func loadTokens(#oauthToken: String, oauthTokenSecret: String) {
         self.twitterApi.loadTokens(oauthToken, oauthTokenSecret: oauthTokenSecret)
@@ -46,7 +47,7 @@ class TwitterApiService {
     }
 
     func fetchFriendsOfAccount(user_id: String) {
-        self.twitterApi
+        self.createUsersTask = self.twitterApi
             .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
             .success { data -> FetchAllFriendsTask in
                 let ids = data.ids
@@ -74,19 +75,34 @@ class TwitterApiService {
 
                 return LocalStorageService.instance.createUsers(result, accountUserId: user_id)
             }
-            .success { data -> Void in
-                emitFriends(data)
-            }
+
+        self.createUsersTask!.success { data -> Void in
+            self.createUsersTask = nil
+            emitFriends(data)
+        }
     }
 
     // If no since_id is given, get max 200 tweets
-    func fetchHomeTimeline(user_id: String, since_id: String?) {
+    func fetchHomeTimelineOfAccount(user_id: String, since_id: String?)
+    {
+        var tweetsData: [TweetApiData]?
+
         getHomeTimeline(self.twitterApi, since_id, nil)
-            .success { (data: [TweetApiData]) -> Void in
+            .success { (data: [TweetApiData]) -> CreateUsersTask in
                 if data.count > 0 {
-                    LocalStorageService.instance.createTweets(data, master_account_user_id: user_id)
-//                    let latest_id = data.first!.id_str
-//                    LocalStorageService.instance.updateAccountLastestSinceId(user_id, latest_id: latest_id)
+                    tweetsData = data
+                    if let createUsersTask = self.createUsersTask {
+                        return createUsersTask
+                    }
+                }
+                return CreateUsersTask(value: [])
+            }
+            .success { (users: [User]) -> Void in
+                if let data = tweetsData {
+                    LocalStorageService.instance.createTweets(data, account_user_id: user_id)
+                    let latest_id = data.first!.id
+                    LocalStorageService.instance.updateAccount(user_id, lastest_since_id: latest_id)
+                    loadAllFriendsOfAccount(user_id)
                 }
             }
     }

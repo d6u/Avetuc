@@ -235,7 +235,6 @@
 		784B5FA51B5C3859006F1300 /* TweetCell */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C751B56011800AA3875 /* TimestampUtility.swift */,
 				784B5FA31B5C3855006F1300 /* TweetCell.swift */,
 				784B5FDE1B5C96EF006F1300 /* TweetTextView.swift */,
 				784B5FDC1B5C7BDE006F1300 /* UserNameLabel.swift */,
@@ -405,8 +404,8 @@
 		78FD6C581B55FF2500AA3875 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */,
 				78FD6C631B56000000AA3875 /* TwitterApiService.swift */,
+				78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */,
 				78FD6C551B55FEFF00AA3875 /* Data */,
 				78FD6C591B55FF3300AA3875 /* Utilities */,
 			);
@@ -460,6 +459,7 @@
 			children = (
 				78FD6C811B5601E400AA3875 /* IntroView.swift */,
 				78CF9F5B1B5B632D00DE9D9E /* ProfileImageView.swift */,
+				78FD6C751B56011800AA3875 /* TimestampUtility.swift */,
 				78CF9F631B5B76E100DE9D9E /* FriendCell */,
 				784B5FA51B5C3859006F1300 /* TweetCell */,
 			);

@@ -51,6 +51,6 @@ struct User {
     // Custom
     //
 
-    let unread_status_count: Int64?
+    let unread_status_count: Int64
 
 }

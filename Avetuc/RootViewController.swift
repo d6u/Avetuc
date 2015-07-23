@@ -50,7 +50,7 @@ class RootViewController: UINavigationController {
 
             if let account = event.cur {
                 fetchFriendsOfAccount(account.user_id)
-//                fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+                fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
             }
         }
     }

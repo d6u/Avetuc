@@ -28,8 +28,8 @@ func loadAllFriendsOfAccount(user_id: String) {
     LocalStorageService.instance.loadFriendsFor(user_id)
 }
 
-func loadStatusesOfUser(user_id: String) {
-    LocalStorageService.instance.loadStatuses(user_id)
+func loadStatusesOfUser(id: Int64) {
+    LocalStorageService.instance.loadStatusesOfUser(id)
 }
 
 // Fetch remote data
@@ -39,7 +39,7 @@ func fetchFriendsOfAccount(user_id: String) {
 }
 
 func fetchHomeTimelineOfAccount(user_id: String, #since_id: Int64?) {
-    TwitterApiService.instance.fetchHomeTimeline(user_id, since_id: since_id == nil ? nil : String(since_id!))
+    TwitterApiService.instance.fetchHomeTimelineOfAccount(user_id, since_id: since_id == nil ? nil : String(since_id!))
 }
 
 // Emit

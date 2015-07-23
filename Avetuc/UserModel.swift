@@ -62,7 +62,7 @@ class UserModel: Object {
 
     // MARK: - Custom
 
-    dynamic var unread_status_count: Int64 = -1
+    dynamic var unread_status_count: Int64 = 0
 
     let statuses = List<TweetModel>()
 
@@ -74,8 +74,12 @@ class UserModel: Object {
         return (self.linkingObjects(AccountModel.self, forProperty: "friends") as [AccountModel]).first
     }
 
-    func fromApiData(data: UserApiData) -> UserModel {
-        self.id = data.id
+    func fromApiData(data: UserApiData, update: Bool = false) -> UserModel {
+
+        if !update {
+            self.id = data.id
+        }
+
         self.id_str = data.id_str
         self.name = data.name
         self.screen_name = data.screen_name
@@ -144,7 +148,7 @@ class UserModel: Object {
             follow_request_sent: follow_request_sent,
             notifications: notifications,
             profile_banner_url: profile_banner_url == "" ? nil : profile_banner_url,
-            unread_status_count: unread_status_count == -1 ? nil : unread_status_count
+            unread_status_count: unread_status_count
         )
     }
 

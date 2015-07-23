@@ -37,15 +37,26 @@ class LocalStorageService {
     {
         return CreateUsersTask { progress, fulfill, reject, configure in
 
-            let users = data.map { UserModel().fromApiData($0) }
+            let account = self.realm.objects(AccountModel).filter("user_id = %@", accountUserId).first!
 
-            if let account = self.realm.objects(AccountModel).filter("user_id = %@", accountUserId).first {
-                self.realm.write {
-                    self.realm.add(users, update: true)
-                    for u in users {
-                        if account.friends.indexOf(u) == nil {
-                            account.friends.append(u)
-                        }
+            var users = [UserModel]()
+
+            self.realm.write {
+                for d in data {
+                    if let user = account.friends.filter("id = %ld", d.id).first {
+                        user.fromApiData(d, update: true)
+                        users.append(user)
+                    } else {
+                        let user = UserModel().fromApiData(d)
+                        users.append(user)
+                    }
+                }
+
+                self.realm.add(users, update: true)
+
+                for u in users {
+                    if account.friends.indexOf(u) == nil {
+                        account.friends.append(u)
                     }
                 }
             }
@@ -54,26 +65,35 @@ class LocalStorageService {
         }
     }
 
-    func createTweets(
-        tweetsData: [TweetApiData],
-        master_account_user_id: String) -> CreateTweetsTask
+    func createTweets(data: [TweetApiData], account_user_id: String) -> CreateTweetsTask
     {
         return CreateTweetsTask { progress, fulfill, reject, configure in
-            let realm = Realm()
-            let tweets = tweetsData.map { TweetModel().fromApiData($0) }
-            realm.write {
-                realm.add(tweets, update: true)
+
+            let account = self.realm.objects(AccountModel).filter("user_id = %@", account_user_id).first!
+
+            var tweetsData = [Tweet]()
+
+            self.realm.write {
+                for d in data {
+                    let tweet = TweetModel().fromApiData(d)
+                    self.realm.add(tweet, update: true)
+
+                    let user = account.friends.filter("id = %ld", d.user.id).first!
+                    user.statuses.append(tweet)
+                    user.unread_status_count += 1
+
+                    tweetsData.append(tweet.toData())
+                }
             }
-            let data = tweets.map { $0.toData() }
-            fulfill(data)
+
+            fulfill(tweetsData)
         }
     }
 
     // MARK: Read
 
     func loadDefaultAccount() {
-        let realm = Realm()
-        if let model = realm.objects(AccountModel).first {
+        if let model = self.realm.objects(AccountModel).first {
             let account = model.toData()
             TwitterApiService.instance.loadTokens(
                 oauthToken: account.oauth_token,
@@ -85,26 +105,23 @@ class LocalStorageService {
     }
 
     func loadFriendsFor(user_id: String) {
-        let realm = Realm()
-        if let account = realm.objects(AccountModel).filter("user_id = %@", user_id).first {
+        if let account = self.realm.objects(AccountModel).filter("user_id = %@", user_id).first {
             emitFriends(Array(account.friends).map { $0.toData() })
         }
     }
 
-    func loadStatuses(user_id: String) {
-        let realm = Realm()
-        emitTweets(Array(realm.objects(TweetModel)).map { $0.toData() })
+    func loadStatusesOfUser(id: Int64) {
+        let user = self.realm.objects(UserModel).filter("id = %ld", id).first!
+        emitTweets(Array(user.statuses).map { $0.toData() })
     }
 
-//    // Mark: - Update
-//
-//    func updateAccountLastestSinceId(user_id: String, latest_id: String) {
-//        let realm = Realm()
-//        let account = realm.objects(Account).filter("user_id == %@", user_id).first!
-//
-//        realm.write {
-//            account.last_fetch_since_id = latest_id
-//        }
-//    }
+    // Mark: - Update
+
+    func updateAccount(user_id: String, lastest_since_id: Int64) {
+        let account = self.realm.objects(AccountModel).filter("user_id == %@", user_id).first!
+        self.realm.write {
+            account.last_fetch_since_id = lastest_since_id
+        }
+    }
 
 }
