@@ -13,34 +13,45 @@ typealias FriendsStoreEventHandler = (StoreEvent<[User]>) -> Void
 
 class FriendsStore {
 
-    class var instance: FriendsStore {
-        struct Static {
-            static var instance: FriendsStore?
-            static var token: dispatch_once_t = 0
-        }
-        dispatch_once(&Static.token) {
-            Static.instance = FriendsStore()
-        }
-        return Static.instance!
-    }
+    static let instance = FriendsStore()
 
     init() {
         self.listener = Dispatcher.instance.register { (friends: [User]) -> Void in
-
-            // TODO: Diff
-            self.event.emit(StoreEvent<[User]>(cur: friends, pre: self.friends))
-
-            self.friends = friends
+            let sorted = self.sortFriends(friends)
+            self.event.emit(StoreEvent<[User]>(cur: sorted, pre: self.friends))
+            self.friends = sorted
         }
     }
 
     private var friends = [User]()
-
     private let event = Event<StoreEvent<[User]>>()
     private var listener: Listener?
 
     func on(callback: FriendsStoreEventHandler) -> Listener {
         return event.on(callback)
+    }
+
+    func sortFriends(friends: [User]) -> [User] {
+        return multiSort(friends, [
+            {
+                if $0.unread_status_count > $1.unread_status_count {
+                    return .LeftFirst
+                } else if $0.unread_status_count < $1.unread_status_count {
+                    return .RightFirst
+                } else {
+                    return .Same
+                }
+            },
+            {
+                if $0.name < $1.name {
+                    return .LeftFirst
+                } else if $0.name > $1.name {
+                    return .RightFirst
+                } else {
+                    return .Same
+                }
+            }
+        ])
     }
     
 }
