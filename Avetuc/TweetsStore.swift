@@ -9,20 +9,25 @@
 import Foundation
 import SwiftTask
 
-typealias TweetsStoreData = (tweets: [Tweet], userId: Int64)
+typealias TweetsStoreData = (tweets: [ParsedTweet], userId: Int64)
+
+struct ParsedTweet {
+    let tweet: Tweet
+    let text: String
+}
 
 class TweetsStore: Store {
 
     static let instance = TweetsStore()
 
     private var userId: Int64?
-    private var tweets = [Tweet]()
+    private var tweets = [ParsedTweet]()
 
-    func perform(data: TweetsStoreData) -> Task<Int, TweetsStoreData, NSError> {
+    func perform(data: (tweets: [Tweet], userId: Int64)) -> Task<Int, TweetsStoreData, NSError> {
         return Task<Int, TweetsStoreData, NSError> { progress, fulfill, reject, configure in
-            self.tweets = data.tweets
+            self.tweets = data.tweets.map { parseTweet($0) }
             self.userId = data.userId
-            fulfill((tweets: data.tweets, userId: data.userId))
+            fulfill((tweets: self.tweets, userId: data.userId))
         }
     }
 

@@ -25,12 +25,12 @@ class TweetsViewController:
 
     let user: User
     var tweetsConsumer: EventConsumer?
-    var tweets = [Tweet]()
+    var tweets = [ParsedTweet]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tweetsConsumer = listen(.Tweets(userId: user.id)) { [unowned self] (tweets: [Tweet]) in
+        self.tweetsConsumer = listen(.Tweets(userId: user.id)) { [unowned self] (tweets: [ParsedTweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
         }

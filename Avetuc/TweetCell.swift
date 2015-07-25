@@ -82,10 +82,10 @@ class TweetCell: UITableViewCell {
 //            constant: 11)
 //        }()
 
-    func loadTweet(data: Tweet, userData: User) {
+    func loadTweet(data: ParsedTweet, userData: User) {
         self.userNameView.text = userData.name
-        self.textView.text = data.text
-        self.timeText.text = data.created_at
+        self.textView.attributedText = NSAttributedString(string: data.text)
+//        self.timeText.text = data.created_at
     }
 
     // MARK: - No use

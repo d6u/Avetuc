@@ -11,5 +11,6 @@ import SwiftTask
 
 protocol Store {
     typealias T
-    func perform(T) -> Task<Int, T, NSError>
+    typealias U
+    func perform(T) -> Task<Int, U, NSError>
 }
