@@ -20,10 +20,6 @@ func handleCallbackUrl(url: NSURL) {
 
 // Load
 
-func loadDefaultAccount() {
-    LocalStorageService.instance.loadDefaultAccount()
-}
-
 func loadAllFriendsOfAccount(user_id: String) {
     LocalStorageService.instance.loadFriendsFor(user_id)
 }

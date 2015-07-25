@@ -19,23 +19,24 @@ class RootViewController: UINavigationController {
     let friendsTableViewController = FriendsViewController()
     var introViewController: IntroViewController?
     var account: Account?
-    var accountListener: Listener?
+    var accountConsumer: EventConsumer?
 
-    func loadAccount(account: Account?)
-    {
+    func loadAccount(account: Account) {
         self.account = account
 
-        if let account = account {
-            if let intro = self.introViewController {
-                intro.dismissViewControllerAnimated(true, completion: nil)
-                self.introViewController = nil
-            }
-            loadAllFriendsOfAccount(account.user_id)
-        } else {
-            if self.introViewController == nil {
-                self.presentIntroView()
-            }
+        if let intro = self.introViewController {
+            intro.dismissViewControllerAnimated(true, completion: nil)
+            self.introViewController = nil
         }
+
+        fetchFriendsOfAccount(account.user_id)
+        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+        loadAllFriendsOfAccount(account.user_id)
+    }
+
+    func presentIntroView() {
+        self.introViewController = IntroViewController()
+        self.presentViewController(self.introViewController!, animated: true, completion: nil)
     }
 
     // MARK: - Delegate
@@ -44,13 +45,17 @@ class RootViewController: UINavigationController {
         super.viewDidLoad()
         self.pushViewController(self.friendsTableViewController, animated: false)
 
-        self.accountListener = AccountsStore.instance.on { [unowned self] event in
-
-            self.loadAccount(event.cur)
-
-            if let account = event.cur {
-                fetchFriendsOfAccount(account.user_id)
-                fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+        self.accountConsumer = listen(.Account) { (result: AccountResult) in
+            switch result {
+            case .Success(let account):
+                loadTokens(oauthToken: account.oauth_token, oauthTokenSecret: account.oauth_token_secret)
+                self.loadAccount(account)
+            case .NoAccount:
+                if self.introViewController == nil {
+                    self.presentIntroView()
+                }
+            default:
+                break
             }
         }
     }
@@ -58,12 +63,6 @@ class RootViewController: UINavigationController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         loadDefaultAccount()
-    }
-
-    func presentIntroView()
-    {
-        self.introViewController = IntroViewController()
-        self.presentViewController(self.introViewController!, animated: true, completion: nil)
     }
 
     // MARK: - No use

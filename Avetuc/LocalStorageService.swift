@@ -92,15 +92,13 @@ class LocalStorageService {
 
     // MARK: Read
 
-    func loadDefaultAccount() {
-        if let model = self.realm.objects(AccountModel).first {
-            let account = model.toData()
-            TwitterApiService.instance.loadTokens(
-                oauthToken: account.oauth_token,
-                oauthTokenSecret: account.oauth_token_secret)
-            emitAccount(account)
-        } else {
-            emitAccount(nil)
+    func loadDefaultAccount() -> Task<Void, Account?, NSError> {
+        return Task<Void, Account?, NSError> { progress, fulfill, reject, configure in
+            if let model = self.realm.objects(AccountModel).first {
+                fulfill(model.toData())
+            } else {
+                fulfill(nil)
+            }
         }
     }
 

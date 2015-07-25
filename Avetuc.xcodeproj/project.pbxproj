@@ -62,6 +62,10 @@
 		78EF902B1B5DFBB0007F8D99 /* MediaApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */; };
 		78EF902D1B5DFDBD007F8D99 /* SizeApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */; };
 		78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */; };
+		78F7A7BB1B63C502002CF1C6 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7A7BA1B63C502002CF1C6 /* Action.swift */; };
+		78F7A7C51B63ED8D002CF1C6 /* EventConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7A7C41B63ED8D002CF1C6 /* EventConsumer.swift */; };
+		78F7A7C71B63EF91002CF1C6 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7A7C61B63EF91002CF1C6 /* EventType.swift */; };
+		78F7A7C91B63EFDB002CF1C6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7A7C81B63EFDB002CF1C6 /* Store.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
 		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
 		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
@@ -155,6 +159,10 @@
 		78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaApiData.swift; sourceTree = "<group>"; };
 		78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeApiData.swift; sourceTree = "<group>"; };
 		78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeDetail.swift; sourceTree = "<group>"; };
+		78F7A7BA1B63C502002CF1C6 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		78F7A7C41B63ED8D002CF1C6 /* EventConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventConsumer.swift; sourceTree = "<group>"; };
+		78F7A7C61B63EF91002CF1C6 /* EventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		78F7A7C81B63EFDB002CF1C6 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -248,7 +256,10 @@
 		786E70CB1B5617DE00B78FFE /* Dispatcher */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */,
+				78F7A7CA1B63F4F4002CF1C6 /* Core */,
+				78F7A7C61B63EF91002CF1C6 /* EventType.swift */,
+				78F7A7BA1B63C502002CF1C6 /* Action.swift */,
+				78FD6C501B55FED000AA3875 /* Actions.swift */,
 			);
 			name = Dispatcher;
 			sourceTree = "<group>";
@@ -277,6 +288,15 @@
 			name = FriendCell;
 			sourceTree = "<group>";
 		};
+		78F7A7CA1B63F4F4002CF1C6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */,
+				78F7A7C41B63ED8D002CF1C6 /* EventConsumer.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		78FD6C171B55FC9300AA3875 = {
 			isa = PBXGroup;
 			children = (
@@ -302,10 +322,9 @@
 			children = (
 				78FD6C651B56001F00AA3875 /* Config.swift */,
 				78FD6C4C1B55FE5900AA3875 /* UI */,
-				78FD6C521B55FED400AA3875 /* Actions */,
+				786E70CB1B5617DE00B78FFE /* Dispatcher */,
 				78FD6C581B55FF2500AA3875 /* Services */,
 				78FD6C601B55FFBF00AA3875 /* Models */,
-				786E70CB1B5617DE00B78FFE /* Dispatcher */,
 				78FD6C7C1B56018B00AA3875 /* Store */,
 				78FD6C231B55FC9300AA3875 /* Supporting Files */,
 			);
@@ -362,14 +381,6 @@
 				78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */,
 			);
 			name = Utilities;
-			sourceTree = "<group>";
-		};
-		78FD6C521B55FED400AA3875 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				78FD6C501B55FED000AA3875 /* Actions.swift */,
-			);
-			name = Actions;
 			sourceTree = "<group>";
 		};
 		78FD6C551B55FEFF00AA3875 /* Data */ = {
@@ -446,6 +457,7 @@
 		78FD6C7C1B56018B00AA3875 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				78F7A7C81B63EFDB002CF1C6 /* Store.swift */,
 				78FD6C7A1B56018900AA3875 /* AccountsStore.swift */,
 				7834C96B1B5898A7004029C3 /* FriendsStore.swift */,
 				784B5FA81B5C5CC7006F1300 /* TweetsStore.swift */,
@@ -651,6 +663,7 @@
 				78E2517B1B5F49DD00E7E5FC /* User.swift in Sources */,
 				788A57681B5F147B00AF91B9 /* UserEntity.swift in Sources */,
 				78FD6C681B56003500AA3875 /* TwitterApiClient.swift in Sources */,
+				78F7A7C91B63EFDB002CF1C6 /* Store.swift in Sources */,
 				78FD6C641B56000000AA3875 /* TwitterApiService.swift in Sources */,
 				786E70CD1B56195500B78FFE /* StoreEvent.swift in Sources */,
 				788ABF421B60769C00E3540F /* MediaEntityModel.swift in Sources */,
@@ -682,10 +695,13 @@
 				788ABF461B6076D000E3540F /* SizeModel.swift in Sources */,
 				788ABF3E1B60764D00E3540F /* UserMentionEntityModel.swift in Sources */,
 				78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */,
+				78F7A7BB1B63C502002CF1C6 /* Action.swift in Sources */,
 				788ABF2C1B5F57F900E3540F /* Tweet.swift in Sources */,
 				784B5FDB1B5C7B6F006F1300 /* TimestampView.swift in Sources */,
 				78CF9F5E1B5B704B00DE9D9E /* FriendCellNameLabel.swift in Sources */,
+				78F7A7C51B63ED8D002CF1C6 /* EventConsumer.swift in Sources */,
 				78FD6C491B55FE1800AA3875 /* Utilities.swift in Sources */,
+				78F7A7C71B63EF91002CF1C6 /* EventType.swift in Sources */,
 				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
 				78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */,
@@ -813,7 +829,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
@@ -829,7 +845,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";

@@ -16,11 +16,12 @@ extension Request {
     func response() -> RequestTask {
         return RequestTask { progress, fulfill, reject, configure -> Void in
             self.validate().response { request, response, data, error in
+                let d = data as! NSData
                 if let err = error {
-                    println("Request error: ", err)
+                    println("Bad request \(response!.statusCode) body: \(NSString(data: d, encoding: NSUTF8StringEncoding)) error: \(err)")
                     reject(err)
                 } else {
-                    fulfill(data as! NSData)
+                    fulfill(d)
                 }
             }
             return // Must return to make SwiftTask happen when compile

@@ -15,7 +15,35 @@ typealias TweetsDataHandler = ([Tweet]) -> Void
 
 class Dispatcher {
 
+    class WeakConsumer {
+        weak var value : EventConsumer?
+        init (value: EventConsumer) {
+            self.value = value
+        }
+    }
+
     static let instance = Dispatcher()
+
+    var weakConsumers = [WeakConsumer]()
+
+    func register(consumer: EventConsumer) {
+        self.weakConsumers.append(WeakConsumer(value: consumer))
+    }
+
+    func dispatch<T>(eventType: EventType, data: T) {
+        self.weakConsumers = self.weakConsumers.filter {
+            if let c = $0.value {
+                if c.type == eventType {
+                    c.consume(data)
+                }
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
+    // MARK: - Deprecated
 
     let accountEvent = Event<Account?>()
     let friendsEvent = Event<[User]>()
