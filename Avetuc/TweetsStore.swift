@@ -7,28 +7,23 @@
 //
 
 import Foundation
-import EmitterKit
+import SwiftTask
 
-typealias TweetsStoreEventHandler = (StoreEvent<[Tweet]>) -> Void
+typealias TweetsStoreData = (tweets: [Tweet], userId: Int64)
 
-class TweetsStore {
+class TweetsStore: Store {
 
     static let instance = TweetsStore()
 
-    init() {
-        self.listener = Dispatcher.instance.register { (tweets: [Tweet]) -> Void in
+    private var userId: Int64?
+    private var tweets = [Tweet]()
 
-            self.event.emit(StoreEvent<[Tweet]>(cur: tweets, pre: self.tweets))
-            self.tweets = tweets
+    func perform(data: TweetsStoreData) -> Task<Int, TweetsStoreData, NSError> {
+        return Task<Int, TweetsStoreData, NSError> { progress, fulfill, reject, configure in
+            self.tweets = data.tweets
+            self.userId = data.userId
+            fulfill((tweets: data.tweets, userId: data.userId))
         }
     }
 
-    private var tweets = [Tweet]()
-    private let event = Event<StoreEvent<[Tweet]>>()
-    private var listener: Listener?
-
-    func on(callback: TweetsStoreEventHandler) -> Listener {
-        return event.on(callback)
-    }
-    
 }

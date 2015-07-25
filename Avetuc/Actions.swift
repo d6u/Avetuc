@@ -14,12 +14,6 @@ func handleCallbackUrl(url: NSURL) {
     TwitterApiService.instance.handleOauthCallback(url)
 }
 
-// Load
-
-func loadStatusesOfUser(id: Int64) {
-    LocalStorageService.instance.loadStatusesOfUser(id)
-}
-
 // Fetch remote data
 
 func fetchFriendsOfAccount(user_id: String) {

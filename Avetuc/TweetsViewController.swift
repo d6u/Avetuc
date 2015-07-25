@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EmitterKit
 
 class TweetsViewController:
     UITableViewController,
@@ -25,17 +24,15 @@ class TweetsViewController:
     }
 
     let user: User
+    var tweetsConsumer: EventConsumer?
     var tweets = [Tweet]()
-    var tweetsListener: Listener?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tweetsListener = TweetsStore.instance.on { [unowned self] event in
-            if let tweets = event.cur {
-                self.tweets = tweets
-                self.tableView.reloadData()
-            }
+        self.tweetsConsumer = listen(.Tweets(userId: user.id)) { [unowned self] (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
         }
 
         loadStatusesOfUser(self.user.id)

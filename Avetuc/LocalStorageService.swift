@@ -112,9 +112,11 @@ class LocalStorageService {
         }
     }
 
-    func loadStatusesOfUser(id: Int64) {
-        let user = self.realm.objects(UserModel).filter("id = %ld", id).first!
-        emitTweets(Array(user.statuses).map { $0.toData() })
+    func loadStatusesOfUser(id: Int64) -> Task<Void, [Tweet], NSError> {
+        return Task<Void, [Tweet], NSError> { progress, fulfill, reject, configure in
+            let user = self.realm.objects(UserModel).filter("id = %ld", id).first!
+            fulfill(Array(user.statuses).map { $0.toData() })
+        }
     }
 
     // Mark: - Update

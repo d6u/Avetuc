@@ -54,3 +54,15 @@ func loadAllFriendsOfAccount(user_id: String) {
             dispatch(.Friends(accountUserId: data.accountUserId), data: data.friends)
         }
 }
+
+// MARK: - Tweets
+
+func loadStatusesOfUser(id: Int64) {
+    LocalStorageService.instance.loadStatusesOfUser(id)
+        .success { (tweets: [Tweet]) -> Task<Int, TweetsStoreData, NSError> in
+            return TweetsStore.instance.perform((tweets: tweets, userId: id))
+        }
+        .success { (data: TweetsStoreData) -> Void in
+            dispatch(.Tweets(userId: data.userId), data: data.tweets)
+        }
+}

@@ -7,12 +7,9 @@
 //
 
 import Foundation
-import EmitterKit
 import SwiftTask
 
 typealias FriendsStoreData = (friends: [User], accountUserId: String)
-
-typealias FriendsStoreEventHandler = (StoreEvent<[User]>) -> Void
 
 class FriendsStore: Store {
 
