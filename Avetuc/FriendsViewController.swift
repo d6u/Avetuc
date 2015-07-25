@@ -22,20 +22,23 @@ class FriendsViewController:
         self.tableView.layoutMargins = UIEdgeInsetsZero
     }
 
-    private var friendsListener: Listener?
+    var accountUserId: String?
+    private var friendsConsumer: EventConsumer?
     private var friends = [User]()
+
+    func loadAccountUserId(id: String) {
+        self.accountUserId = id
+
+        self.friendsConsumer = listen(.Friends(accountUserId: id)) { (friends: [User]) in
+            self.friends = friends
+            self.tableView.reloadData()
+        }
+    }
 
     // MARK: - View Delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.friendsListener = FriendsStore.instance.on { (data: StoreEvent<[User]>) in
-            if let friends = data.cur {
-                self.friends = friends
-                self.tableView.reloadData()
-            }
-        }
     }
 
     // MARK: - TableView Delegate

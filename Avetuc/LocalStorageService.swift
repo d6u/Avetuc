@@ -102,9 +102,13 @@ class LocalStorageService {
         }
     }
 
-    func loadFriendsFor(user_id: String) {
-        if let account = self.realm.objects(AccountModel).filter("user_id = %@", user_id).first {
-            emitFriends(Array(account.friends).map { $0.toData() })
+    func loadFriendsFor(user_id: String) -> Task<Void, [User], NSError> {
+        return Task<Void, [User], NSError> { progress, fulfill, reject, configure in
+            if let account = self.realm.objects(AccountModel).filter("user_id = %@", user_id).first {
+                fulfill(Array(account.friends).map { $0.toData() })
+            } else {
+                fulfill([])
+            }
         }
     }
 

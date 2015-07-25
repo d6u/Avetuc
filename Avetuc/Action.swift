@@ -13,6 +13,12 @@ private func dispatch<T>(type: EventType, #data: T) {
     Dispatcher.instance.dispatch(type, data: data)
 }
 
+// MARK: - API
+
+let loadTokens = TwitterApiService.instance.loadTokens
+
+// MARK: - Account
+
 enum AccountResult {
     case NoAccount
     case Success(Account)
@@ -30,11 +36,21 @@ func loadDefaultAccount() {
         }
 }
 
-let loadTokens = TwitterApiService.instance.loadTokens
-
 func addAccountThroughWeb() {
     TwitterApiService.instance.addAccountThroughWeb()
         .success { result -> Void in
             dispatch(.Account, data: result)
+        }
+}
+
+// MARK: - Friends
+
+func loadAllFriendsOfAccount(user_id: String) {
+    LocalStorageService.instance.loadFriendsFor(user_id)
+        .success { (users: [User]) -> Task<Int, FriendsStoreData, NSError> in
+            return FriendsStore.instance.perform((friends: users, accountUserId: user_id))
+        }
+        .success { (data: FriendsStoreData) -> Void in
+            dispatch(.Friends(accountUserId: data.accountUserId), data: data.friends)
         }
 }

@@ -16,10 +16,6 @@ func handleCallbackUrl(url: NSURL) {
 
 // Load
 
-func loadAllFriendsOfAccount(user_id: String) {
-    LocalStorageService.instance.loadFriendsFor(user_id)
-}
-
 func loadStatusesOfUser(id: Int64) {
     LocalStorageService.instance.loadStatusesOfUser(id)
 }

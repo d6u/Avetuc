@@ -8,27 +8,27 @@
 
 import Foundation
 import EmitterKit
+import SwiftTask
+
+typealias FriendsStoreData = (friends: [User], accountUserId: String)
 
 typealias FriendsStoreEventHandler = (StoreEvent<[User]>) -> Void
 
-class FriendsStore {
+class FriendsStore: Store {
 
     static let instance = FriendsStore()
 
-    init() {
-        self.listener = Dispatcher.instance.register { (friends: [User]) -> Void in
-            let sorted = self.sortFriends(friends)
-            self.event.emit(StoreEvent<[User]>(cur: sorted, pre: self.friends))
-            self.friends = sorted
-        }
-    }
-
     private var friends = [User]()
-    private let event = Event<StoreEvent<[User]>>()
-    private var listener: Listener?
+    private var currentAccountId: String?
 
-    func on(callback: FriendsStoreEventHandler) -> Listener {
-        return event.on(callback)
+    func perform(data: FriendsStoreData) -> Task<Int, FriendsStoreData, NSError>
+    {
+        return Task<Int, FriendsStoreData, NSError> { progress, fulfill, reject, configure in
+            let sorted = self.sortFriends(data.friends)
+            self.friends = sorted
+            self.currentAccountId = data.accountUserId
+            fulfill((friends: sorted, accountUserId: data.accountUserId))
+        }
     }
 
     func sortFriends(friends: [User]) -> [User] {
@@ -51,7 +51,7 @@ class FriendsStore {
                     return .Same
                 }
             }
-        ])
+            ])
     }
     
 }
