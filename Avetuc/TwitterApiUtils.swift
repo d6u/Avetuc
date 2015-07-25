@@ -123,3 +123,9 @@ func process(task: RequestTask, endpoint: TwitterApiEndpoint) -> FetchTask
 func parseError<T>(endpoint: TwitterApiEndpoint, decoded: Decoded<T>) -> NSError {
     return NSError(domain: "com.daiweilu.Avetuc", code: 1, userInfo: ["desc": decoded.description])
 }
+
+func parseOauthCallback(url: NSURL) -> OauthCallbackData {
+    let dict = parseQueryParams(url.query!)
+    let callbackData: OauthCallbackData? = decode(dict)
+    return callbackData!
+}

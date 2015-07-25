@@ -31,3 +31,10 @@ func loadDefaultAccount() {
 }
 
 let loadTokens = TwitterApiService.instance.loadTokens
+
+func addAccountThroughWeb() {
+    TwitterApiService.instance.addAccountThroughWeb()
+        .success { result -> Void in
+            dispatch(.Account, data: result)
+        }
+}

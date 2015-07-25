@@ -27,7 +27,7 @@ class EventConsumer {
     func consume(data: Any) -> HandlerTask? {
         return self.handler(data)
     }
-    
+
 }
 
 func listen<T>(type: EventType, handler: T -> Void) -> EventConsumer {

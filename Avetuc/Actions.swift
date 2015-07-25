@@ -10,10 +10,6 @@ import Foundation
 
 // Actions
 
-func addAccountThroughWeb() {
-    TwitterApiService.instance.addAccountThroughWeb()
-}
-
 func handleCallbackUrl(url: NSURL) {
     TwitterApiService.instance.handleOauthCallback(url)
 }

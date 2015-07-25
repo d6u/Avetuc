@@ -31,14 +31,10 @@ class Dispatcher {
     }
 
     func dispatch<T>(eventType: EventType, data: T) {
-        self.weakConsumers = self.weakConsumers.filter {
-            if let c = $0.value {
-                if c.type == eventType {
-                    c.consume(data)
-                }
-                return true
-            } else {
-                return false
+        self.weakConsumers = self.weakConsumers.filter { $0.value != nil }
+        for weak in self.weakConsumers {
+            if weak.value!.type == eventType {
+                weak.value!.consume(data)
             }
         }
     }

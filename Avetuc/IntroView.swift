@@ -13,6 +13,16 @@ import SnapKit
 class IntroView: UIView {
 
     init() {
+        self.accountConsumer = listen(.Account) { (result: AccountResult) in
+            switch result {
+            case .UserReject:
+                // TODO
+                println("user rejected")
+            default:
+                break
+            }
+        }
+
         super.init(frame: CGRectZero)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
@@ -60,6 +70,7 @@ class IntroView: UIView {
         }
     }
 
+    let accountConsumer: EventConsumer
     let background = UIView()
     let backgroundPlate = UIView()
     let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton

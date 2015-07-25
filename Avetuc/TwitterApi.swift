@@ -99,12 +99,4 @@ class TwitterApi {
             }
     }
 
-    // MARK: - Callback Handler
-
-    func parseOauthCallback(url: NSURL) -> OauthCallbackData {
-        let dict = parseQueryParams(url.query!)
-        let callbackData: OauthCallbackData? = decode(dict)
-        return callbackData!
-    }
-
 }

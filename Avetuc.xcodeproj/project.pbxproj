@@ -256,10 +256,10 @@
 		786E70CB1B5617DE00B78FFE /* Dispatcher */ = {
 			isa = PBXGroup;
 			children = (
-				78F7A7CA1B63F4F4002CF1C6 /* Core */,
 				78F7A7C61B63EF91002CF1C6 /* EventType.swift */,
 				78F7A7BA1B63C502002CF1C6 /* Action.swift */,
 				78FD6C501B55FED000AA3875 /* Actions.swift */,
+				78F7A7CA1B63F4F4002CF1C6 /* Core */,
 			);
 			name = Dispatcher;
 			sourceTree = "<group>";
