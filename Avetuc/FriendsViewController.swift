@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EmitterKit
 
 class FriendsViewController:
     UITableViewController,

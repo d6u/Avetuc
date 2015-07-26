@@ -23,19 +23,3 @@ func fetchFriendsOfAccount(user_id: String) {
 func fetchHomeTimelineOfAccount(user_id: String, #since_id: Int64?) {
     TwitterApiService.instance.fetchHomeTimelineOfAccount(user_id, since_id: since_id == nil ? nil : String(since_id!))
 }
-
-// Emit
-
-func emitAccount(account: Account?) {
-    Dispatcher.instance.dispatch(account)
-}
-
-func emitTweets(tweets: [Tweet]) {
-    println("emitTweets", tweets.count)
-    Dispatcher.instance.dispatch(tweets)
-}
-
-func emitFriends(friends: [User]) {
-    println("emitFriends", friends.count)
-    Dispatcher.instance.dispatch(friends)
-}

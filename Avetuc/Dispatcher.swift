@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import EmitterKit
 
 typealias AccountDataHandler = (Account?) -> Void
 typealias FriendsDataHandler = ([User]) -> Void
@@ -41,36 +40,6 @@ class Dispatcher {
 
         // Clean up deinit objects
         self.weakConsumers = self.weakConsumers.filter { $0.value != nil }
-    }
-
-    // MARK: - Deprecated
-
-    let accountEvent = Event<Account?>()
-    let friendsEvent = Event<[User]>()
-    let tweetsEvent = Event<[Tweet]>()
-
-    func register(callback: AccountDataHandler) -> Listener {
-        return accountEvent.on(callback)
-    }
-
-    func register(callback: FriendsDataHandler) -> Listener {
-        return friendsEvent.on(callback)
-    }
-
-    func register(callback: TweetsDataHandler) -> Listener {
-        return tweetsEvent.on(callback)
-    }
-
-    func dispatch(account: Account?) {
-        self.accountEvent.emit(account)
-    }
-
-    func dispatch(friends: [User]) {
-        self.friendsEvent.emit(friends)
-    }
-
-    func dispatch(tweets: [Tweet]) {
-        self.tweetsEvent.emit(tweets)
     }
 
 }

@@ -95,7 +95,6 @@ class TwitterApiService {
 
         self.createUsersTask!.success { data -> Void in
             self.createUsersTask = nil
-            emitFriends(data)
         }
     }
 

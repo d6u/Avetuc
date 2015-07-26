@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreStore
-import EmitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

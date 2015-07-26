@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EmitterKit
 
 class RootViewController: UINavigationController {
 
