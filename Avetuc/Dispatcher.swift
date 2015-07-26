@@ -31,12 +31,16 @@ class Dispatcher {
     }
 
     func dispatch<T>(eventType: EventType, data: T) {
-        self.weakConsumers = self.weakConsumers.filter { $0.value != nil }
         for weak in self.weakConsumers {
-            if weak.value!.type == eventType {
-                weak.value!.consume(data)
+            if let c = weak.value {
+                if c.type == eventType {
+                    c.consume(data)
+                }
             }
         }
+
+        // Clean up deinit objects
+        self.weakConsumers = self.weakConsumers.filter { $0.value != nil }
     }
 
     // MARK: - Deprecated

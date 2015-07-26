@@ -80,6 +80,14 @@ class LocalStorageService {
 
                     if let t = retweeted {
                         self.realm.add(t, update: true)
+
+                        if let user = self.realm.objects(UserModel).filter("id = %ld", d.retweeted_status!.user.id).first {
+                            user.statuses.append(t)
+                        } else {
+                            let user = UserModel().fromApiData(d.retweeted_status!.user)
+                            user.statuses.append(t)
+                            self.realm.add(user, update: true)
+                        }
                     }
 
                     self.realm.add(tweet, update: true)
@@ -125,9 +133,12 @@ class LocalStorageService {
 
             let tweets = Array(user.statuses).map { tweet -> TweetAndRetweet in
                 if let retweeted_status = tweet.retweeted_status {
-                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: retweeted_status.toData())
+                    return TweetAndRetweet(
+                        tweet: tweet.toData(),
+                        retweetedStatus: retweeted_status.toData(),
+                        retweetedStatusUser: retweeted_status.user!.toData())
                 } else {
-                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: nil)
+                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: nil, retweetedStatusUser: nil)
                 }
             }
 

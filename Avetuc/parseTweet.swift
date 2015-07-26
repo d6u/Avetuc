@@ -76,9 +76,8 @@ extension ExtendedMedia: TweetEntity {
     }
 }
 
-func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
+func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
-    let tweet = tweetAndRetweet.tweet
     let string = tweet.text
 
     var entities = [TweetEntity]()
@@ -155,12 +154,12 @@ func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
     let parsedString = join("", parts)//.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
 
     let text = NSMutableAttributedString(string: parsedString, attributes: [
-            NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 15)!,
-            NSParagraphStyleAttributeName: {
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.lineSpacing = 3
-                paragraphStyle.lineBreakMode = .ByWordWrapping
-                return paragraphStyle
+        NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 15)!,
+        NSParagraphStyleAttributeName: {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 3
+            paragraphStyle.lineBreakMode = .ByWordWrapping
+            return paragraphStyle
             }()
         ])
 
@@ -168,5 +167,23 @@ func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
         text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
     }
 
-    return ParsedTweet(tweet: tweet, retweetedStatus: tweetAndRetweet.retweetedStatus, text: text)
+    return text
+}
+
+func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
+
+    if let retweeted = tweetAndRetweet.retweetedStatus {
+        return ParsedTweet(
+            tweet: tweetAndRetweet.tweet,
+            retweetedStatus: tweetAndRetweet.retweetedStatus,
+            retweetedStatusUser: tweetAndRetweet.retweetedStatusUser,
+            text: parseTweetText(retweeted))
+    }
+    else {
+        return ParsedTweet(
+            tweet: tweetAndRetweet.tweet,
+            retweetedStatus: nil,
+            retweetedStatusUser: nil,
+            text: parseTweetText(tweetAndRetweet.tweet))
+    }
 }

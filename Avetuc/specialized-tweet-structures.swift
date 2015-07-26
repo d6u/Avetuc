@@ -11,10 +11,12 @@ import Foundation
 struct TweetAndRetweet {
     let tweet: Tweet
     let retweetedStatus: Tweet?
+    let retweetedStatusUser: User?
 }
 
 struct ParsedTweet {
     let tweet: Tweet
     let retweetedStatus: Tweet?
+    let retweetedStatusUser: User?
     let text: NSAttributedString
 }

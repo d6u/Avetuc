@@ -61,16 +61,17 @@ class TweetCell: UITableViewCell {
         self.textView.attributedText = parsedTweet.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(parsedTweet.tweet.created_at))
 
-        if let retweeted = parsedTweet.retweetedStatus {
+        if let retweeted = parsedTweet.retweetedStatus, let retweetedUser = parsedTweet.retweetedStatusUser {
             self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
+            self.profileImageView.updateImage(retweetedUser.profile_image_url)
+            self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
             self.userNames.hidden = false
-            self.userNames.loadNames(user.name, screenName: user.screen_name)
             self.retweetedText.hidden = false
         }
         else {
             self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
-            self.userNames.hidden = true
             self.profileImageView.updateImage(user.profile_image_url)
+            self.userNames.hidden = true
             self.retweetedText.hidden = true
         }
 
