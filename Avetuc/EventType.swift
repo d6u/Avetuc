@@ -12,6 +12,7 @@ enum EventType: Equatable {
     case Account
     case Friends(accountUserId: String)
     case Tweets(userId: Int64)
+    case Tweet(Int64)
 }
 
 func ==(lhs: EventType, rhs: EventType) -> Bool {
@@ -21,6 +22,8 @@ func ==(lhs: EventType, rhs: EventType) -> Bool {
     case (.Friends(let l), .Friends(let r)):
         return l == r
     case (.Tweets(let l), .Tweets(let r)):
+        return l == r
+    case (.Tweet(let l), .Tweet(let r)):
         return l == r
     default:
         return false

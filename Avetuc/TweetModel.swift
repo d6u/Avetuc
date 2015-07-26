@@ -41,6 +41,11 @@ class TweetModel: Object {
     dynamic var possibly_sensitive_appealable: Bool = false
     dynamic var lang: String = ""
 
+    // Custom
+    //
+
+    dynamic var is_read: Bool = false
+
     // One -> One
     //
 
@@ -187,6 +192,7 @@ class TweetModel: Object {
             possibly_sensitive: possibly_sensitive,
             possibly_sensitive_appealable: possibly_sensitive_appealable,
             lang: lang,
+            is_read: is_read,
             hashtags: Array(self.hashtag_entities).map { $0.toData() },
             urls: Array(self.url_entities).map { $0.toData() },
             user_mentions: Array(self.user_mention_entities).map { $0.toData() },

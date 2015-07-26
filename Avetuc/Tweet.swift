@@ -29,6 +29,8 @@ struct Tweet {
     let possibly_sensitive_appealable: Bool
     let lang: String
 
+    let is_read: Bool
+
     let hashtags: [Hashtag]
     let urls: [Url]
     let user_mentions: [UserMention]

@@ -17,6 +17,10 @@ private func dispatch<T>(type: EventType, #data: T) {
 
 let loadTokens = TwitterApiService.instance.loadTokens
 
+func handleCallbackUrl(url: NSURL) {
+    TwitterApiService.instance.handleOauthCallback(url)
+}
+
 // MARK: - Account
 
 enum AccountResult {
@@ -64,5 +68,12 @@ func loadStatusesOfUser(id: Int64) {
         }
         .success { (data: TweetsStoreData) -> Void in
             dispatch(.Tweets(userId: data.userId), data: data.tweets)
+        }
+}
+
+func updateTweetReadState(id: Int64, isRead: Bool) {
+    LocalStorageService.instance.updateTweetReadState(id, isRead: isRead)
+        .success { (tweet: Tweet) -> Void in
+            dispatch(.Tweet(tweet.id), data: tweet)
         }
 }
