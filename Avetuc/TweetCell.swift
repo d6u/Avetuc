@@ -62,6 +62,7 @@ class TweetCell: UITableViewCell {
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
     var tweetConsumer: EventConsumer?
+    var makeReadTimer: Timer?
 
     var parsedTweet: ParsedTweet?
 
@@ -72,6 +73,8 @@ class TweetCell: UITableViewCell {
     }
 
     func loadTweet(parsedTweet: ParsedTweet, user: User) {
+        self.cancelMakeReadTimer()
+
         self.parsedTweet = parsedTweet
 
         self.isRead = parsedTweet.tweet.is_read
@@ -102,6 +105,16 @@ class TweetCell: UITableViewCell {
         self.tweetConsumer = listen(.Tweet(parsedTweet.tweet.id)) { [unowned self] (tweet: Tweet) in
             self.isRead = tweet.is_read
         }
+    }
+
+    func setMakeReadTimer() {
+        self.makeReadTimer = Timer(duration: 2) { [unowned self] in
+            updateTweetReadState(self.parsedTweet!.tweet.id, true)
+        }
+    }
+
+    func cancelMakeReadTimer() {
+        self.makeReadTimer = nil
     }
 
     // MARK: - Delegate

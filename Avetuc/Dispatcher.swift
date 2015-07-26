@@ -30,10 +30,13 @@ class Dispatcher {
     }
 
     func dispatch<T>(eventType: EventType, data: T) {
-        for weak in self.weakConsumers {
-            if let c = weak.value {
-                if c.type == eventType {
-                    c.consume(data)
+
+        autoreleasepool {
+            for weak in self.weakConsumers {
+                if let c = weak.value {
+                    if c.type == eventType {
+                        c.consume(data)
+                    }
                 }
             }
         }

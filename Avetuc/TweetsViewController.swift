@@ -27,6 +27,9 @@ class TweetsViewController:
     var tweetsConsumer: EventConsumer?
     var tweetsChangeConsumer: EventConsumer?
     var tweets = [ParsedTweet]()
+    var isMonitoringScroll = false
+
+    // MARK: - Delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +51,17 @@ class TweetsViewController:
         loadStatusesOfUser(self.user.id)
     }
 
-    // MARK: - Delegate
+    override func viewDidAppear(animated: Bool) {
+        self.isMonitoringScroll = true
+        self.scrollViewDidScroll(self.tableView)
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.isMonitoringScroll = false
+        for cell in self.tableView.visibleCells() as! [TweetCell] {
+            cell.cancelMakeReadTimer()
+        }
+    }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -73,13 +86,31 @@ class TweetsViewController:
 
     override func scrollViewDidScroll(scrollView: UIScrollView)
     {
+        // This method will be triggered twice before `viewDidAppear`,
+        // which causes funny memory retain issues when calling `visibleCells`
+        // Set this flag to prevent it being called before `viewDidAppear`
+        if !self.isMonitoringScroll {
+            return
+        }
+
         let offset = scrollView.contentOffset.y + 64 // Top offset
+        let containerHeight = scrollView.frame.height - 64
 
         for cell in self.tableView.visibleCells() as! [TweetCell]
         {
-            if !cell.parsedTweet!.tweet.is_read && cell.frame.origin.y + cell.frame.height < offset
+            if !cell.parsedTweet!.tweet.is_read
             {
-                updateTweetReadState(cell.parsedTweet!.tweet.id, true)
+                let bottom = cell.frame.origin.y + cell.frame.height
+
+                if bottom < offset {
+                    updateTweetReadState(cell.parsedTweet!.tweet.id, true)
+                }
+                else if bottom - offset <= containerHeight {
+                    cell.setMakeReadTimer()
+                }
+                else if bottom - offset > containerHeight {
+                    cell.cancelMakeReadTimer()
+                }
             }
         }
     }
