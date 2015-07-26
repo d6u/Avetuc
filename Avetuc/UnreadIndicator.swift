@@ -14,7 +14,7 @@ class UnreadIndicator: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor(netHex: 0x549AE6)
+        self.backgroundColor = BLUE
         self.layer.mask = {
             let path = UIBezierPath()
             path.moveToPoint(CGPoint(x: 0, y: 0))

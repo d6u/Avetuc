@@ -86,6 +86,20 @@ class TweetCell: UITableViewCell {
         }
     }
 
+    // MARK: - Delegate
+
+    // Prevent sub UIView lost background color
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.unreadIndicator.backgroundColor = BLUE
+    }
+
+    // Prevent sub UIView lost background color
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        self.unreadIndicator.backgroundColor = BLUE
+    }
+
     // MARK: - No use
     
     required init(coder aDecoder: NSCoder) {
