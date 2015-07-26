@@ -76,6 +76,12 @@ class LocalStorageService {
             self.realm.write {
                 for d in data {
                     let tweet = TweetModel().fromApiData(d)
+                    let retweeted = tweet.retweeted_status
+
+                    if let t = retweeted {
+                        self.realm.add(t, update: true)
+                    }
+
                     self.realm.add(tweet, update: true)
 
                     let user = account.friends.filter("id = %ld", d.user.id).first!
@@ -112,10 +118,20 @@ class LocalStorageService {
         }
     }
 
-    func loadStatusesOfUser(id: Int64) -> Task<Void, [Tweet], NSError> {
-        return Task<Void, [Tweet], NSError> { progress, fulfill, reject, configure in
+    func loadStatusesOfUser(id: Int64) -> Task<Void, [TweetAndRetweet], NSError> {
+        return Task<Void, [TweetAndRetweet], NSError> { progress, fulfill, reject, configure in
+
             let user = self.realm.objects(UserModel).filter("id = %ld", id).first!
-            fulfill(Array(user.statuses).map { $0.toData() })
+
+            let tweets = Array(user.statuses).map { tweet -> TweetAndRetweet in
+                if let retweeted_status = tweet.retweeted_status {
+                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: retweeted_status.toData())
+                } else {
+                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: nil)
+                }
+            }
+
+            fulfill(tweets)
         }
     }
 

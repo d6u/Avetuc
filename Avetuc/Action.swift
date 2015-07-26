@@ -59,7 +59,7 @@ func loadAllFriendsOfAccount(user_id: String) {
 
 func loadStatusesOfUser(id: Int64) {
     LocalStorageService.instance.loadStatusesOfUser(id)
-        .success { (tweets: [Tweet]) -> Task<Int, TweetsStoreData, NSError> in
+        .success { (tweets: [TweetAndRetweet]) -> Task<Int, TweetsStoreData, NSError> in
             return TweetsStore.instance.perform((tweets: tweets, userId: id))
         }
         .success { (data: TweetsStoreData) -> Void in

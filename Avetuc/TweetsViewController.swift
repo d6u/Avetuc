@@ -56,11 +56,7 @@ class TweetsViewController:
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let tweet = self.tweets[indexPath.row]
-        let boundingRect = tweet.text.boundingRectWithSize(
-            CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
-            options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
-            context: nil)
-        return ceil(boundingRect.size.height) + 30 + 30
+        return TweetCell.heightForContent(tweet)
     }
 
     // MARK: - No use

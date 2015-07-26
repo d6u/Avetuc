@@ -76,8 +76,9 @@ extension ExtendedMedia: TweetEntity {
     }
 }
 
-func parseTweet(tweet: Tweet) -> ParsedTweet {
+func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
 
+    let tweet = tweetAndRetweet.tweet
     let string = tweet.text
 
     var entities = [TweetEntity]()
@@ -167,5 +168,5 @@ func parseTweet(tweet: Tweet) -> ParsedTweet {
         text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
     }
 
-    return ParsedTweet(tweet: tweet, text: text)
+    return ParsedTweet(tweet: tweet, retweetedStatus: tweetAndRetweet.retweetedStatus, text: text)
 }
