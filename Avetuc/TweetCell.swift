@@ -18,7 +18,9 @@ class TweetCell: UITableViewCell {
             CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
-        return ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 40
+        return max(
+            ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 40,
+            74)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
