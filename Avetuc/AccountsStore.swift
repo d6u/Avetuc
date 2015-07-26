@@ -8,12 +8,15 @@
 
 import Foundation
 import EmitterKit
+import SwiftTask
 
 typealias StoreAccountEventHandler = (StoreEvent<Account>) -> Void
 
 class AccountsStore {
 
     static let instance = AccountsStore()
+
+    //MARK: - Deprecated
 
     init() {
         self.listener = Dispatcher.instance.register { (account: Account?) -> Void in
@@ -25,12 +28,11 @@ class AccountsStore {
     }
 
     private var account: Account?
-
     private let event = Event<StoreEvent<Account>>()
     private var listener: Listener?
 
     func on(callback: StoreAccountEventHandler) -> Listener {
         return event.on(callback)
     }
-
+    
 }

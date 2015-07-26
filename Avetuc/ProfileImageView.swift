@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class ProfileImageView: UIImageView {
 
@@ -16,11 +17,12 @@ class ProfileImageView: UIImageView {
         
         self.layer.cornerRadius = 6
         self.layer.masksToBounds = true
+        self.layer.borderColor = UIColor(netHex: 0xCDCDCD).CGColor
+        self.layer.borderWidth = 1
+    }
 
-        //        self.profileImageView.userInteractionEnabled = true
-        //        let profileImageViewTapGestureRecongnizer = UITapGestureRecognizer(target: self, action: Selector("profileImageTapped:"))
-        //        profileImageViewTapGestureRecongnizer.numberOfTapsRequired = 1
-        //        self.profileImageView.addGestureRecognizer(profileImageViewTapGestureRecongnizer)
+    func updateImage(url: String) {
+        self.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: nil)
     }
 
     // MARK: No use

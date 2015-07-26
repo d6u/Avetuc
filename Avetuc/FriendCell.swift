@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import SnapKit
 
-let UNREAD_COUNT_BACKGROUND_COLOR = UIColor(netHex: 0xAAAAAA)
-
 class FriendTableCell: UITableViewCell {
 
     static func heightForContent() -> CGFloat {
@@ -47,75 +45,33 @@ class FriendTableCell: UITableViewCell {
         }
     }
 
-    var user: User?
-
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let nameView = FriendCellNameLabel()
     let screenNameView = FriendCellScreenNameLabel()
     let unreadCountView = FriendCellUnreadCountView()
 
-    func load(data: User) {
-        self.user = data
-        self.nameView.text = data.name
-        self.screenNameView.text = "@\(data.screen_name)"
-        self.unreadCountView.count = data.unread_status_count
-//        self.profileImageView.kf_setImageWithURL(u.profileImageUrl, placeholderImage: nil)
-//
-//        if u.unreadCount > 0 {
-//            self.addCellActions()
-//        } else {
-//            self.removeCellActions()
-//        }
+    var user: User?
+
+    func load(user: User) {
+        self.user = user
+        self.nameView.text = user.name
+        self.screenNameView.text = "@\(user.screen_name)"
+        self.unreadCountView.count = user.unread_status_count
+        self.profileImageView.updateImage(user.profile_image_url)
     }
 
-//    func addCellActions() {
-//        let markAllReadButton = MGSwipeButton(title: "Mark All Read", backgroundColor: UIColor.redColor()) {
-//            (cell) -> Bool in
-//            self.markAllTweetRead()
-//            return true
-//        }
-//
-//        self.rightButtons = [markAllReadButton]
-//        self.rightSwipeSettings.transition = .Drag
-//
-//        let expansionSettings = MGSwipeExpansionSettings()
-//        expansionSettings.buttonIndex = 0
-//        expansionSettings.fillOnTrigger = true
-//        self.rightExpansion = expansionSettings
-//    }
-//
-//    func removeCellActions() {
-//        self.rightButtons = []
-//    }
-//
-//    func markAllTweetRead() {
-//        let fetchRequest = NSFetchRequest(entityName: "Tweet")
-//        fetchRequest.predicate = NSPredicate(format: "user = %@", self.user!)
-//
-//        let tweets = CoreDataStack.sharedInstance.mainContext.executeFetchRequest(fetchRequest, error: nil) as! [Tweet]
-//
-//        for tweet in tweets {
-//            tweet.makeRead()
-//        }
-//    }
-//
-//    func profileImageTapped(gestureRecognizer: UIGestureRecognizer) {
-//        friendTableCellDelegate?.friendTableCellShouldShowUserProfile(user!)
-//    }
+    // MARK: - Delegate
 
-    // MARK: - Delegate Methods
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
 
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Prevent sub UIView lost background color on cell selected http://stackoverflow.com/questions/7053340
-//        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
-//    }
+        // Prevent sub UIView lost background color on cell selected http://stackoverflow.com/questions/7053340
+        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
+    }
 
     // MARK: - No use
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

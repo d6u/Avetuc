@@ -6,6 +6,7 @@ PODS:
   - Async (1.3.1)
   - Box (1.2.2)
   - EmitterKit (3.2.1)
+  - Kingfisher (1.4.2)
   - Realm (0.93.2):
     - Realm/Headers (= 0.93.2)
   - Realm/Headers (0.93.2)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - Argo
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
   - EmitterKit (~> 3.2)
+  - Kingfisher (~> 1.4)
   - RealmSwift
   - SnapKit (~> 0.12.0)
   - SwiftTask (~> 3.3)
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   Async: edb15b1e34181d7c9873ce6b5d6eabc1c99e638b
   Box: a92e8aa4c099e6bc0733829665caf9e668ef53b8
   EmitterKit: c052cafcca0052005760d18e0c7f163df13730c3
+  Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
   Realm: 2fdd0ae74f730e190384e0338d8a0d3654df8220
   RealmSwift: 231b064da9f98b1c4f325fe1f1cb8756aae2b8d6
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
@@ -49,4 +52,4 @@ SPEC CHECKSUMS:
   SwiftTask: 0baec4571e2ea235e73817c399cde12056c81f6f
   TapLabel: da1ee7378d7e65ea94df58cf37fdbfff66022928
 
-COCOAPODS: 0.38.0
+COCOAPODS: 0.38.1
