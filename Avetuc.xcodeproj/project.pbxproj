@@ -70,7 +70,6 @@
 		78F7A7C91B63EFDB002CF1C6 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F7A7C81B63EFDB002CF1C6 /* Store.swift */; };
 		78F986401B6493630026D961 /* specialized-tweet-structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F9863F1B6493630026D961 /* specialized-tweet-structures.swift */; };
 		78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C251B55FC9300AA3875 /* AppDelegate.swift */; };
-		78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */; };
 		78FD6C301B55FC9300AA3875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C2F1B55FC9300AA3875 /* Images.xcassets */; };
 		78FD6C331B55FC9300AA3875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */; };
 		78FD6C3F1B55FC9300AA3875 /* AvetucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */; };
@@ -172,7 +171,6 @@
 		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Avetuc.xcdatamodel; sourceTree = "<group>"; };
 		78FD6C2F1B55FC9300AA3875 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		78FD6C321B55FC9300AA3875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvetucTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -353,7 +351,6 @@
 				78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */,
 				78FD6C2F1B55FC9300AA3875 /* Images.xcassets */,
 				78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */,
-				78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */,
 				78FD6C241B55FC9300AA3875 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -723,7 +720,6 @@
 				78DCCD901B6462A30066FDB2 /* UIConstants.swift in Sources */,
 				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
-				78FD6C291B55FC9300AA3875 /* Avetuc.xcdatamodeld in Sources */,
 				78FD6C6A1B56008100AA3875 /* Request+Extension.swift in Sources */,
 				7826CD291B60A0D300B7DBD1 /* multiSort.swift in Sources */,
 				78DCCD8E1B64365A0066FDB2 /* parseTweet.swift in Sources */,
@@ -938,19 +934,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		78FD6C271B55FC9300AA3875 /* Avetuc.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */,
-			);
-			currentVersion = 78FD6C281B55FC9300AA3875 /* Avetuc.xcdatamodel */;
-			path = Avetuc.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 78FD6C181B55FC9300AA3875 /* Project object */;
 }
