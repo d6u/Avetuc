@@ -26,11 +26,7 @@ class FriendCellUnreadCountView: UIView {
         self.addSubview(self.label)
 
         self.label.snp_makeConstraints { make in
-            make.right.equalTo(self).offset(-5)
-            make.top.equalTo(self).offset(3)
-            make.bottom.equalTo(self).offset(-3)
-            make.left.equalTo(self).offset(5)
-            make.width.greaterThanOrEqualTo(15)
+            make.edges.equalTo(self).insets(UIEdgeInsetsMake(3, 5, 3, 5))
         }
     }
 

@@ -13,7 +13,7 @@ typealias TweetsStoreData = (tweets: [ParsedTweet], userId: Int64)
 
 struct ParsedTweet {
     let tweet: Tweet
-    let text: String
+    let text: NSAttributedString
 }
 
 class TweetsStore: Store {

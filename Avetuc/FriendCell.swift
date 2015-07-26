@@ -62,10 +62,15 @@ class FriendTableCell: UITableViewCell {
 
     // MARK: - Delegate
 
+    // Prevent sub UIView lost background color
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
+    }
 
-        // Prevent sub UIView lost background color on cell selected http://stackoverflow.com/questions/7053340
+    // Prevent sub UIView lost background color
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
         self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
     }
 

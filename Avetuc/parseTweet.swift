@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
 
@@ -106,35 +107,65 @@ func parseTweet(tweet: Tweet) -> ParsedTweet {
     }
 
     var i = 0
+    var j = 0
     var parts = [String]()
+    var attri = [(NSObject, AnyObject, Int, Int)]()
 
     for e in entities {
         parts.append(string.substringBetweenIndexes(i, e.headIndice))
 
+        j += e.headIndice - i
+        let l: Int
+
         switch e {
         case let url as Url:
             parts.append(url.display_url)
+            l = count(url.display_url)
+            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
         case let media as Media:
             parts.append(media.display_url)
+            l = count(media.display_url)
+            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
         case let userMention as UserMention:
             parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
+            l = e.tailIndice - e.headIndice
+            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
         case let hashtag as Hashtag:
             parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
+            l = e.tailIndice - e.headIndice
+            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x999999), j, j + l))
         case let extendedMedia as ExtendedMedia:
             if extendedMedia.headIndice < i {
                 continue
             }
             parts.append(extendedMedia.display_url)
+            l = count(extendedMedia.display_url)
+            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
         default:
             continue
         }
 
         i = e.tailIndice
+        j += l
     }
 
     parts.append(string.substringBetweenIndexes(i, count(string)))
 
-    return ParsedTweet(
-        tweet: tweet,
-        text: join("", parts).stringByReplacingOccurrencesOfString("&amp;", withString: "&"))
+    let parsedString = join("", parts)//.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
+
+    let text = NSMutableAttributedString(string: parsedString, attributes: [
+            NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 15)!,
+            NSParagraphStyleAttributeName: {
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 3
+                paragraphStyle.lineBreakMode = .ByWordWrapping
+                return paragraphStyle
+            }()
+        ])
+
+    for (key, value, head, tail) in attri {
+        text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
+    }
+
+    return ParsedTweet(tweet: tweet, text: text)
 }

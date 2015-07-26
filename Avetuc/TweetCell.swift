@@ -28,6 +28,7 @@ class TweetCell: UITableViewCell {
         self.textView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self).offset(68)
             make.right.equalTo(self).offset(-10)
+            make.top.equalTo(30)
         }
 
         self.timeText.snp_makeConstraints { (make) -> Void in
@@ -58,7 +59,7 @@ class TweetCell: UITableViewCell {
     func loadTweet(parsedTweet: ParsedTweet, userData: User) {
         self.userNameView.text = userData.name
         self.profileImageView.updateImage(userData.profile_image_url)
-        self.textView.attributedText = NSAttributedString(string: parsedTweet.text)
+        self.textView.attributedText = parsedTweet.text
     }
 
     // MARK: - No use
