@@ -61,7 +61,19 @@ class TweetCell: UITableViewCell {
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
+    var parsedTweet: ParsedTweet?
+
+    var isRead = false {
+        didSet {
+            self.unreadIndicator.hidden = self.isRead
+        }
+    }
+
     func loadTweet(parsedTweet: ParsedTweet, user: User) {
+        self.parsedTweet = parsedTweet
+
+        self.isRead = false
+
         self.textView.attributedText = parsedTweet.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(parsedTweet.tweet.created_at))
 

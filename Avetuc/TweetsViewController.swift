@@ -61,7 +61,14 @@ class TweetsViewController:
 
     // MARK: - Scroll Delegate
 
-
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y + 64 // Top offset
+        for cell in self.tableView.visibleCells() as! [TweetCell] {
+            if cell.frame.origin.y + cell.frame.height < offset {
+                cell.isRead = true
+            }
+        }
+    }
 
     // MARK: - No use
     
