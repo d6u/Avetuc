@@ -60,6 +60,7 @@ class TweetCell: UITableViewCell {
         self.userNameView.text = userData.name
         self.profileImageView.updateImage(userData.profile_image_url)
         self.textView.attributedText = parsedTweet.text
+        self.timeText.text = relativeTimeString(parseTwitterTimestamp(parsedTweet.tweet.created_at))
     }
 
     // MARK: - No use
