@@ -73,7 +73,12 @@ func loadStatusesOfUser(id: Int64) {
 
 func updateTweetReadState(id: Int64, isRead: Bool) {
     LocalStorageService.instance.updateTweetReadState(id, isRead: isRead)
-        .success { (tweet: Tweet) -> Void in
-            dispatch(.Tweet(tweet.id), data: tweet)
+        .success { (tweet: Tweet) -> Task<Int, (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet), NSError> in
+            return TweetsStore.instance.updateTweet(tweet)
         }
+        .success { (data: (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet)) -> Void in
+            dispatch(.TweetsUpdate, data: data)
+            dispatch(.Tweet(data.tweet.tweet.id), data: data.tweet.tweet)
+        }
+}
 }

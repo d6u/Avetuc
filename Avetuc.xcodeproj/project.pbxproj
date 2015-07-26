@@ -77,7 +77,6 @@
 		78FD6C3F1B55FC9300AA3875 /* AvetucTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */; };
 		78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C481B55FE1800AA3875 /* screenBounds.swift */; };
 		78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */; };
-		78FD6C511B55FED000AA3875 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C501B55FED000AA3875 /* Actions.swift */; };
 		78FD6C541B55FEFC00AA3875 /* AccountApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C531B55FEFC00AA3875 /* AccountApiData.swift */; };
 		78FD6C5B1B55FF5700AA3875 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */; };
 		78FD6C5D1B55FFA100AA3875 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */; };
@@ -180,7 +179,6 @@
 		78FD6C3E1B55FC9300AA3875 /* AvetucTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvetucTests.swift; sourceTree = "<group>"; };
 		78FD6C481B55FE1800AA3875 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
 		78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		78FD6C501B55FED000AA3875 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		78FD6C531B55FEFC00AA3875 /* AccountApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountApiData.swift; sourceTree = "<group>"; };
 		78FD6C5A1B55FF5700AA3875 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		78FD6C5C1B55FFA100AA3875 /* LocalStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			children = (
 				78F7A7C61B63EF91002CF1C6 /* EventType.swift */,
 				78F7A7BA1B63C502002CF1C6 /* Action.swift */,
-				78FD6C501B55FED000AA3875 /* Actions.swift */,
 				78F7A7CA1B63F4F4002CF1C6 /* Core */,
 			);
 			name = Dispatcher;
@@ -649,7 +646,6 @@
 				788ABF321B5FC53E00E3540F /* ExtendedMediaApiData.swift in Sources */,
 				78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */,
 				7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */,
-				78FD6C511B55FED000AA3875 /* Actions.swift in Sources */,
 				78EF90251B5DF9B2007F8D99 /* Entities.swift in Sources */,
 				784B5FDF1B5C96EF006F1300 /* TweetTextView.swift in Sources */,
 				7834C9681B589577004029C3 /* UserApiData.swift in Sources */,

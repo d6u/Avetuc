@@ -26,4 +26,38 @@ class TweetsStore: Store {
         }
     }
 
+    func updateTweet(tweet: Tweet) -> Task<Int, (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet), NSError> {
+        return Task<Int, (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet), NSError> {
+            progress, fulfill, reject, configure in
+
+            for (i, t) in enumerate(self.tweets) {
+                if t.tweet.id == tweet.id {
+                    let parsedTweet = ParsedTweet(
+                        tweet: tweet,
+                        retweetedStatus: t.retweetedStatus,
+                        retweetedStatusUser: t.retweetedStatusUser,
+                        text: t.text
+                    )
+
+                    self.tweets[i] = parsedTweet
+
+                    fulfill(
+                        userId: self.userId!,
+                        indexPath: NSIndexPath(forRow: i, inSection: 0),
+                        tweet: parsedTweet
+                    )
+
+                    return
+                }
+            }
+
+            reject(NSError(
+                domain: "com.daiweilu.Avetuc",
+                code: 100,
+                userInfo: [
+                    "desc": ""
+                ]))
+        }
+    }
+
 }

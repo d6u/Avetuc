@@ -25,6 +25,7 @@ class TweetsViewController:
 
     let user: User
     var tweetsConsumer: EventConsumer?
+    var tweetsChangeConsumer: EventConsumer?
     var tweets = [ParsedTweet]()
 
     override func viewDidLoad() {
@@ -33,6 +34,15 @@ class TweetsViewController:
         self.tweetsConsumer = listen(.Tweets(userId: user.id)) { [unowned self] (tweets: [ParsedTweet]) in
             self.tweets = tweets
             self.tableView.reloadData()
+        }
+
+        self.tweetsChangeConsumer = listen(.TweetsUpdate) {
+            [unowned self] (data: (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet)) in
+
+            self.tweets[data.indexPath.row] = data.tweet
+
+            // No need to call self.tableView.reloadRowsAtIndexPaths
+            // Updates handled in table cell
         }
 
         loadStatusesOfUser(self.user.id)
