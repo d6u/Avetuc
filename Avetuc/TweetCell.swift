@@ -34,6 +34,7 @@ class TweetCell: UITableViewCell {
         self.contentView.addSubview(self.userNames)
         self.contentView.addSubview(self.timeText)
         self.contentView.addSubview(self.retweetedText)
+        self.contentView.addSubview(self.unreadIndicator)
 
         self.timeText.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self).offset(-10)
@@ -58,6 +59,7 @@ class TweetCell: UITableViewCell {
     let timeText = TimestampView()
     let userNames = UserNames()
     let retweetedText = RetweetedText()
+    let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
     func loadTweet(parsedTweet: ParsedTweet, user: User) {
         self.textView.attributedText = parsedTweet.text

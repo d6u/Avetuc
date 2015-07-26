@@ -46,6 +46,7 @@
 		788ABF421B60769C00E3540F /* MediaEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF411B60769C00E3540F /* MediaEntityModel.swift */; };
 		788ABF441B6076B500E3540F /* ExtendedMediaEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF431B6076B500E3540F /* ExtendedMediaEntityModel.swift */; };
 		788ABF461B6076D000E3540F /* SizeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF451B6076D000E3540F /* SizeModel.swift */; };
+		78B2CD6B1B653006006E9B90 /* UnreadIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */; };
 		78B4DA2D1B5BFD19008CBD37 /* TweetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B4DA2C1B5BFD19008CBD37 /* TweetModel.swift */; };
 		78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38311B5AF00900FA060B /* TwitterApi.swift */; };
 		78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */; };
@@ -143,6 +144,7 @@
 		788ABF411B60769C00E3540F /* MediaEntityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEntityModel.swift; sourceTree = "<group>"; };
 		788ABF431B6076B500E3540F /* ExtendedMediaEntityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMediaEntityModel.swift; sourceTree = "<group>"; };
 		788ABF451B6076D000E3540F /* SizeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeModel.swift; sourceTree = "<group>"; };
+		78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreadIndicator.swift; sourceTree = "<group>"; };
 		78B4DA2C1B5BFD19008CBD37 /* TweetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetModel.swift; sourceTree = "<group>"; };
 		78BD38311B5AF00900FA060B /* TwitterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApi.swift; sourceTree = "<group>"; };
 		78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthRequestTokenData.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				784B5FD81B5C7AE2006F1300 /* RetweetedText.swift */,
 				784B5FDA1B5C7B6F006F1300 /* TimestampView.swift */,
 				784B5FA61B5C592F006F1300 /* ImageBoxView.swift */,
+				78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */,
 			);
 			name = TweetCell;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
 				78CF9F5C1B5B632D00DE9D9E /* ProfileImageView.swift in Sources */,
 				78B4DA2D1B5BFD19008CBD37 /* TweetModel.swift in Sources */,
+				78B2CD6B1B653006006E9B90 /* UnreadIndicator.swift in Sources */,
 				788ABF461B6076D000E3540F /* SizeModel.swift in Sources */,
 				78F986401B6493630026D961 /* specialized-tweet-structures.swift in Sources */,
 				788ABF3E1B60764D00E3540F /* UserMentionEntityModel.swift in Sources */,
