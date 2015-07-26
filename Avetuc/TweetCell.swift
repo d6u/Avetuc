@@ -18,7 +18,7 @@ class TweetCell: UITableViewCell {
             CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
-        return ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 33
+        return ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 40
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -29,38 +29,49 @@ class TweetCell: UITableViewCell {
 
         self.contentView.addSubview(self.textView)
         self.contentView.addSubview(self.profileImageView)
-        self.contentView.addSubview(self.userNameView)
+        self.contentView.addSubview(self.userNames)
         self.contentView.addSubview(self.timeText)
+        self.contentView.addSubview(self.retweetedText)
 
         self.timeText.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self).offset(-10)
             make.bottom.equalTo(self).offset(-13)
         }
 
-        self.userNameView.snp_makeConstraints { (make) -> Void in
+        self.userNames.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self).offset(68)
             make.top.equalTo(self).offset(8)
             make.right.equalTo(self).offset(-10)
+            make.height.equalTo(14)
+        }
+
+        self.retweetedText.snp_makeConstraints { make in
+            make.left.equalTo(self).offset(68)
+            make.bottom.equalTo(self).offset(-13)
         }
     }
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let textView = TweetTextView()
     let timeText = TimestampView()
-    let userNameView = UserNameLabel()
+    let userNames = UserNames()
+    let retweetedText = RetweetedText()
 
-    func loadTweet(parsedTweet: ParsedTweet, userData: User) {
+    func loadTweet(parsedTweet: ParsedTweet, user: User) {
         self.textView.attributedText = parsedTweet.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(parsedTweet.tweet.created_at))
 
         if let retweeted = parsedTweet.retweetedStatus {
             self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
-            self.userNameView.text = userData.name
+            self.userNames.hidden = false
+            self.userNames.loadNames(user.name, screenName: user.screen_name)
+            self.retweetedText.hidden = false
         }
         else {
             self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
-            self.userNameView.text = nil
-            self.profileImageView.updateImage(userData.profile_image_url)
+            self.userNames.hidden = true
+            self.profileImageView.updateImage(user.profile_image_url)
+            self.retweetedText.hidden = true
         }
 
         self.textView.snp_updateConstraints { make in

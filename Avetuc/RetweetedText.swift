@@ -1,5 +1,5 @@
 //
-//  UnreadIndicatorView.swift
+//  RetweetedText.swift
 //  Avetuc
 //
 //  Created by Daiwei Lu on 7/19/15.
@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
-class UnreadIndicatorView: UILabel {
+class RetweetedText: UILabel {
 
     init() {
         super.init(frame: CGRectZero)
-        self.backgroundColor = UIColor(red: 0.129, green: 0.588, blue: 0.953, alpha: 1) // Blue
+
+        self.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
+        self.textColor = UIColor(netHex: 0x979797)
+        self.text = "Retweeted"
     }
 
     // MARK: - No use
@@ -21,5 +24,4 @@ class UnreadIndicatorView: UILabel {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
