@@ -19,7 +19,7 @@ class TweetCell: UITableViewCell {
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
         return max(
-            ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 40,
+            ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 37,
             74)
     }
 
@@ -37,19 +37,19 @@ class TweetCell: UITableViewCell {
 
         self.timeText.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self).offset(-10)
-            make.bottom.equalTo(self).offset(-13)
+            make.bottom.equalTo(self).offset(-10)
         }
 
         self.userNames.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self).offset(68)
-            make.top.equalTo(self).offset(8)
+            make.top.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
             make.height.equalTo(14)
         }
 
         self.retweetedText.snp_makeConstraints { make in
             make.left.equalTo(self).offset(68)
-            make.bottom.equalTo(self).offset(-13)
+            make.bottom.equalTo(self).offset(-10)
         }
     }
 

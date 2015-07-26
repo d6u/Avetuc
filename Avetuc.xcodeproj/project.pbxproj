@@ -17,6 +17,7 @@
 		7834C96E1B58A423004029C3 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* AccountModel.swift */; };
 		7834C9701B58A423004029C3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* UserModel.swift */; };
 		7834C9721B58B573004029C3 /* FriendsIdsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C9711B58B573004029C3 /* FriendsIdsData.swift */; };
+		783718AC1B6529C000ED168D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; };
 		784B5FA01B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B5F9F1B5C1D0D006F1300 /* TwitterApiServiceUtilities.swift */; };
 		784B5FA21B5C379F006F1300 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B5FA11B5C379F006F1300 /* TweetsViewController.swift */; };
 		784B5FA41B5C3855006F1300 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B5FA31B5C3855006F1300 /* TweetCell.swift */; };
@@ -87,11 +88,9 @@
 		78FD6C6E1B5600B000AA3875 /* TwitterApiParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C6D1B5600B000AA3875 /* TwitterApiParam.swift */; };
 		78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */; };
 		78FD6C761B56011800AA3875 /* timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C751B56011800AA3875 /* timestamp.swift */; };
-		78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7A1B56018900AA3875 /* AccountsStore.swift */; };
 		78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */; };
 		78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */; };
 		78FD6C821B5601E500AA3875 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C811B5601E400AA3875 /* IntroView.swift */; };
-		8D96051C56640C1CDFE78EE0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +162,7 @@
 		78EF902A1B5DFBB0007F8D99 /* MediaApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaApiData.swift; sourceTree = "<group>"; };
 		78EF902C1B5DFDBD007F8D99 /* SizeApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeApiData.swift; sourceTree = "<group>"; };
 		78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeDetail.swift; sourceTree = "<group>"; };
+		78F0F6AB1B64B6BF005FF34C /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = "Pods/../build/Debug-iphoneos/Runes.framework"; sourceTree = "<group>"; };
 		78F7A7BA1B63C502002CF1C6 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		78F7A7C41B63ED8D002CF1C6 /* EventConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventConsumer.swift; sourceTree = "<group>"; };
 		78F7A7C61B63EF91002CF1C6 /* EventType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
@@ -191,7 +191,6 @@
 		78FD6C711B5600DC00AA3875 /* TwitterApiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterApiUtils.swift; sourceTree = "<group>"; };
 		78FD6C751B56011800AA3875 /* timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timestamp.swift; sourceTree = "<group>"; };
 		78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Avetuc-Bridging-Header.h"; sourceTree = "<group>"; };
-		78FD6C7A1B56018900AA3875 /* AccountsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsStore.swift; sourceTree = "<group>"; };
 		78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		78FD6C811B5601E400AA3875 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -204,7 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D96051C56640C1CDFE78EE0 /* Pods.framework in Frameworks */,
+				783718AC1B6529C000ED168D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +229,7 @@
 		36552AE3FEC07D455F1AE10C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F0F6AB1B64B6BF005FF34C /* Runes.framework */,
 				84AE55537037288AF826D948 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -472,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				78F7A7C81B63EFDB002CF1C6 /* Store.swift */,
-				78FD6C7A1B56018900AA3875 /* AccountsStore.swift */,
 				7834C96B1B5898A7004029C3 /* FriendsStore.swift */,
 				784B5FA81B5C5CC7006F1300 /* TweetsStore.swift */,
 				7826CD2A1B60A0DC00B7DBD1 /* Utilities */,
@@ -544,6 +543,7 @@
 				TargetAttributes = {
 					78FD6C1F1B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = NU8RSXM6UB;
 					};
 					78FD6C371B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
@@ -718,7 +718,6 @@
 				78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */,
 				78F7A7C71B63EF91002CF1C6 /* EventType.swift in Sources */,
 				78DCCD901B6462A30066FDB2 /* UIConstants.swift in Sources */,
-				78FD6C7B1B56018900AA3875 /* AccountsStore.swift in Sources */,
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
 				78FD6C6A1B56008100AA3875 /* Request+Extension.swift in Sources */,
 				7826CD291B60A0D300B7DBD1 /* multiSort.swift in Sources */,
@@ -844,8 +843,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
@@ -860,8 +863,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = Avetuc/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
