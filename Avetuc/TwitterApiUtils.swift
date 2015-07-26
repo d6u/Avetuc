@@ -68,7 +68,8 @@ func sha1DigestString(baseStr: String, key: String) -> String {
     return NSData(bytes: result, length: digestLen).base64EncodedStringWithOptions(nil)
 }
 
-let UrlEncoder = Alamofire.ParameterEncoding.Custom { (request, params) -> (NSURLRequest, NSError?) in
+let UrlEncoder = Alamofire.ParameterEncoding.Custom {
+    (request: URLRequestConvertible, params: [String : AnyObject]?) -> (NSMutableURLRequest, NSError?) in
 
     let mutableUrlRequest = request.URLRequest.mutableCopy() as! NSMutableURLRequest
 
