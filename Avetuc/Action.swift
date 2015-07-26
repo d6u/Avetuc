@@ -81,4 +81,15 @@ func updateTweetReadState(id: Int64, isRead: Bool) {
             dispatch(.Tweet(data.tweet.tweet.id), data: data.tweet.tweet)
         }
 }
+
+// MARK: - Remote Data
+
+func fetchFriendsOfAccount(user_id: String) {
+    // TODO: dispatch data
+    TwitterApiService.instance.fetchFriendsOfAccount(user_id)
+}
+
+func fetchHomeTimelineOfAccount(user_id: String, #since_id: Int64?) {
+    // TODO: dispatch data
+    TwitterApiService.instance.fetchHomeTimelineOfAccount(user_id, since_id: since_id == nil ? nil : String(since_id!))
 }
