@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TapLabel
 
 extension String {
 
@@ -115,34 +116,47 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         parts.append(string.substringBetweenIndexes(i, e.headIndice))
 
         j += e.headIndice - i
+
         let l: Int
+        var link: String?
+        let color: UIColor
 
         switch e {
         case let url as Url:
             parts.append(url.display_url)
             l = count(url.display_url)
-            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
+            link = url.expanded_url
+            color = UIColor(netHex: 0x549AE6)
         case let media as Media:
             parts.append(media.display_url)
             l = count(media.display_url)
-            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
+            color = UIColor(netHex: 0x549AE6)
         case let userMention as UserMention:
             parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
             l = e.tailIndice - e.headIndice
-            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
+            link = "https://twitter.com/\(userMention.screen_name)"
+            color = UIColor(netHex: 0x549AE6)
         case let hashtag as Hashtag:
             parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
             l = e.tailIndice - e.headIndice
-            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x999999), j, j + l))
+            link = "https://twitter.com/hashtag/\(hashtag.text)"
+            color = UIColor(netHex: 0x999999)
         case let extendedMedia as ExtendedMedia:
             if extendedMedia.headIndice < i {
                 continue
             }
             parts.append(extendedMedia.display_url)
             l = count(extendedMedia.display_url)
-            attri.append((NSForegroundColorAttributeName, UIColor(netHex: 0x549AE6), j, j + l))
+            color = UIColor(netHex: 0x549AE6)
         default:
             continue
+        }
+
+        attri.append((NSForegroundColorAttributeName, color, j, j + l))
+
+        if let link = link {
+            attri.append((TapLabel.LinkContentName, link, j, j + l))
+            attri.append((TapLabel.SelectedForegroudColorName, UIColor.redColor(), j, j + l))
         }
 
         i = e.tailIndice
