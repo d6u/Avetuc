@@ -158,10 +158,14 @@ class LocalStorageService {
     func updateTweetReadState(id: Int64, isRead: Bool) -> Task<Void, (Tweet, User), Void> {
         return Task<Void, (Tweet, User), Void> { progress, fulfill, reject, configure in
             let tweet = self.realm.objects(TweetModel).filter("id == %ld", id).first!
-            self.realm.write {
-                tweet.is_read = isRead
-                tweet.user!.unread_status_count -= 1
+
+            if tweet.is_read != isRead {
+                self.realm.write {
+                    tweet.is_read = isRead
+                    tweet.user!.unread_status_count -= 1
+                }
             }
+
             fulfill((tweet.toData(), tweet.user!.toData()))
         }
     }

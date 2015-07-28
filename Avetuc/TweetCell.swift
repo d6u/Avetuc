@@ -102,8 +102,9 @@ class TweetCell: UITableViewCell {
             make.top.equalTo(parsedTweet.retweetedStatus == nil ? 10 : 30)
         }
 
-        self.tweetConsumer = listen(.Tweet(parsedTweet.tweet.id)) { [unowned self] (tweet: Tweet) in
-            self.isRead = tweet.is_read
+        self.tweetConsumer = listen(.Tweet(parsedTweet.tweet.id)) { [weak self] (tweet: Tweet) in
+            // [unowned self] will crash when table cell is loaded
+            self?.isRead = tweet.is_read
         }
     }
 
