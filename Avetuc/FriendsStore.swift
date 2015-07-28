@@ -28,6 +28,26 @@ class FriendsStore: Store {
         }
     }
 
+    func updateUser(user: User) -> Task<Int, (indexPath: NSIndexPath, user: User), NSError> {
+        return Task<Int, (indexPath: NSIndexPath, user: User), NSError> { progress, fulfill, reject, configure in
+
+            for (i, u) in enumerate(self.friends) {
+                if u.id == user.id {
+                    let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                    fulfill(indexPath: indexPath, user: user)
+                    break
+                }
+            }
+
+            reject(NSError(
+                domain: "com.daiweilu.Avetuc",
+                code: 100,
+                userInfo: [
+                    "desc": ""
+                ]))
+        }
+    }
+
     func sortFriends(friends: [User]) -> [User] {
         return multiSort(friends, [
             {
