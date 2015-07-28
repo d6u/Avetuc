@@ -132,6 +132,7 @@ extension TweetsViewController: UIScrollViewDelegate {
 extension TweetsViewController: TapLabelDelegate {
 
     func tapLabel(tapLabel: TapLabel, didSelectLink link: String) {
-        println(link)
+        let webViewController = WebViewController(url: link)
+        self.presentViewController(webViewController, animated: true, completion: nil)
     }
 }
