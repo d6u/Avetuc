@@ -23,6 +23,7 @@ class FriendsViewController:
 
     var accountUserId: String?
     private var friendsConsumer: EventConsumer?
+    private var friendsUpdateConsumer: EventConsumer?
     private var friends = [User]()
 
     func loadAccountUserId(id: String) {
@@ -31,6 +32,13 @@ class FriendsViewController:
         self.friendsConsumer = listen(.Friends(accountUserId: id)) { (friends: [User]) in
             self.friends = friends
             self.tableView.reloadData()
+        }
+
+        self.friendsUpdateConsumer = listen(.FriendsUpdate) {
+            [unowned self] (data: (indexPath: NSIndexPath, user: User)) in
+
+            self.friends[data.indexPath.row] = data.user
+            self.tableView.reloadRowsAtIndexPaths([data.indexPath], withRowAnimation: .None)
         }
     }
 
