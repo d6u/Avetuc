@@ -9,11 +9,8 @@
 import Foundation
 import UIKit
 
-class TweetsViewController:
-    UITableViewController,
-    UITableViewDelegate,
-    UITableViewDataSource
-{
+class TweetsViewController: UITableViewController {
+
     init(user: User) {
         self.user = user
 
@@ -29,7 +26,14 @@ class TweetsViewController:
     var tweets = [ParsedTweet]()
     var isMonitoringScroll = false
 
-    // MARK: - Delegate
+    // MARK: - No use
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension TweetsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,9 @@ class TweetsViewController:
             cell.cancelMakeReadTimer()
         }
     }
+}
+
+extension TweetsViewController: UITableViewDataSource {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -76,13 +83,17 @@ class TweetsViewController:
         cell.loadTweet(self.tweets[indexPath.row], user: self.user)
         return cell
     }
+}
+
+extension TweetsViewController: UITableViewDelegate {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let tweet = self.tweets[indexPath.row]
         return TweetCell.heightForContent(tweet)
     }
+}
 
-    // MARK: - Scroll Delegate
+extension TweetsViewController: UIScrollViewDelegate {
 
     override func scrollViewDidScroll(scrollView: UIScrollView)
     {
@@ -113,11 +124,5 @@ class TweetsViewController:
                 }
             }
         }
-    }
-
-    // MARK: - No use
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
