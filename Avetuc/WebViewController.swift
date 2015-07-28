@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TUSafariActivity
 
 class WebViewController: UIViewController {
 
@@ -53,9 +54,9 @@ class WebViewController: UIViewController {
     }
 
     func userDidTapAction() {
-//        let activity = TUSafariActivity()
-//        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [activity])
-//        presentViewController(activityViewController, animated: true, completion: nil)
+        let activity = TUSafariActivity()
+        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: [activity])
+        self.presentViewController(activityViewController, animated: true, completion: nil)
     }
 
     required init(coder aDecoder: NSCoder) {

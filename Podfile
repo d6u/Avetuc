@@ -9,3 +9,4 @@ pod 'Async', :git => 'https://github.com/duemunk/Async.git', :commit => '9e64046
 pod 'TapLabel', '0.0.3'
 pod 'RealmSwift', '0.93.2'
 pod 'Kingfisher', '1.4.2'
+pod 'TUSafariActivity', '1.0.4'
