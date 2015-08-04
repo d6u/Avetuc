@@ -63,7 +63,7 @@ class TwitterApiService {
         }
     }
 
-    func fetchFriendsOfAccount(user_id: String) {
+    func fetchFriendsOfAccount(user_id: String) -> CreateUsersTask {
         self.createUsersTask = self.twitterApi
             .friendsIds([.UserId(user_id), .Count(5000), .StringifyIds(true)])
             .success { data -> FetchAllFriendsTask in
@@ -96,14 +96,16 @@ class TwitterApiService {
         self.createUsersTask!.success { data -> Void in
             self.createUsersTask = nil
         }
+
+        return self.createUsersTask!
     }
 
     // If no since_id is given, get max 200 tweets
-    func fetchHomeTimelineOfAccount(user_id: String, since_id: String?)
+    func fetchHomeTimelineOfAccount(user_id: String, since_id: String?) -> Task<Float, Void, NSError>
     {
         var tweetsData: [TweetApiData]?
 
-        getHomeTimeline(self.twitterApi, since_id, nil)
+        return getHomeTimeline(self.twitterApi, since_id, nil)
             .success { (data: [TweetApiData]) -> CreateUsersTask in
                 if data.count > 0 {
                     tweetsData = data

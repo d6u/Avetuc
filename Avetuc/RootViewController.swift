@@ -30,8 +30,8 @@ class RootViewController: UINavigationController {
 
         self.friendsTableViewController.loadAccountUserId(account.user_id)
 
-//        fetchFriendsOfAccount(account.user_id)
-//        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+        fetchFriendsOfAccount(account.user_id)
+        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
         loadAllFriendsOfAccount(account.user_id)
     }
 
