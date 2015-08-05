@@ -34,6 +34,7 @@
 		7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE01B7238A1004D8AFF /* Custom Operators.swift */; };
 		7879FFE31B7238E5004D8AFF /* requestTokenStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE21B7238E5004D8AFF /* requestTokenStream.swift */; };
 		7879FFE61B7239E3004D8AFF /* createCreateAccountStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */; };
+		7879FFE81B723C72004D8AFF /* requestFriendsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE71B723C72004D8AFF /* requestFriendsStream.swift */; };
 		788A57631B5F111600AF91B9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57621B5F111600AF91B9 /* Account.swift */; };
 		788A57661B5F12B700AF91B9 /* UserEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57651B5F12B700AF91B9 /* UserEntities.swift */; };
 		788A57681B5F147B00AF91B9 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57671B5F147B00AF91B9 /* UserEntity.swift */; };
@@ -138,6 +139,7 @@
 		7879FFE01B7238A1004D8AFF /* Custom Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Custom Operators.swift"; sourceTree = "<group>"; };
 		7879FFE21B7238E5004D8AFF /* requestTokenStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = requestTokenStream.swift; sourceTree = "<group>"; };
 		7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createCreateAccountStream.swift; sourceTree = "<group>"; };
+		7879FFE71B723C72004D8AFF /* requestFriendsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = requestFriendsStream.swift; sourceTree = "<group>"; };
 		788A57621B5F111600AF91B9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		788A57651B5F12B700AF91B9 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntities.swift; sourceTree = "<group>"; };
 		788A57671B5F147B00AF91B9 /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -264,7 +266,7 @@
 			children = (
 				78104DFC1B70FAAE00BDBE02 /* River.swift */,
 				7879FFE41B7238E9004D8AFF /* Stream Factory */,
-				7846331A1B71A675001D8801 /* request+Observable.swift */,
+				7879FFE91B723CD1004D8AFF /* Stream API */,
 				7879FFE01B7238A1004D8AFF /* Custom Operators.swift */,
 			);
 			name = River;
@@ -302,6 +304,15 @@
 				7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */,
 			);
 			name = "Stream Factory";
+			sourceTree = "<group>";
+		};
+		7879FFE91B723CD1004D8AFF /* Stream API */ = {
+			isa = PBXGroup;
+			children = (
+				7879FFE71B723C72004D8AFF /* requestFriendsStream.swift */,
+				7846331A1B71A675001D8801 /* request+Observable.swift */,
+			);
+			name = "Stream API";
 			sourceTree = "<group>";
 		};
 		788A57641B5F111A00AF91B9 /* Data */ = {
@@ -724,6 +735,7 @@
 				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
 				788ABF3C1B60763500E3540F /* UrlEntityModel.swift in Sources */,
 				788ABF2E1B5FC2B400E3540F /* Coordinates.swift in Sources */,
+				7879FFE81B723C72004D8AFF /* requestFriendsStream.swift in Sources */,
 				78FD6C661B56001F00AA3875 /* Config.swift in Sources */,
 				78EF90231B5DF98C007F8D99 /* Hashtag.swift in Sources */,
 				78FD6C721B5600DC00AA3875 /* TwitterApiUtils.swift in Sources */,

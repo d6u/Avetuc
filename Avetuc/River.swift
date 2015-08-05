@@ -16,6 +16,19 @@ class River {
 
         self.stream_account = merge(returnElements(createAccountStream, defaultAccount())) >- replay(1)
         self.stream_account.connect()
+
+        self.stream_account
+            >- filter { account in
+                return account != nil
+            }
+            >- map { account -> Account in
+                return account!
+            }
+            >- flatMap { (account: Account) -> Observable<[User]> in
+                let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
+                let friends = Array(model.friends).map { $0.toData() }
+                return just(friends)
+            }
     }
 
     let action_addAccountFromWeb = PublishSubject<Void>()
