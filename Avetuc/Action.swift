@@ -29,17 +29,6 @@ enum AccountResult {
     case UserReject
 }
 
-func loadDefaultAccount() {
-    LocalStorageService.instance.loadDefaultAccount()
-        .success { account -> Void in
-            if let account = account {
-                dispatch(.Account, data: AccountResult.Success(account))
-            } else {
-                dispatch(.Account, data: AccountResult.NoAccount)
-            }
-        }
-}
-
 func addAccountThroughWeb() {
     TwitterApiService.instance.addAccountThroughWeb()
         .success { result -> Void in

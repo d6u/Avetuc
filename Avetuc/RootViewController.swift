@@ -20,22 +20,16 @@ class RootViewController: UINavigationController {
     let friendsTableViewController = FriendsViewController()
     var introViewController: IntroViewController?
     var account: Account?
-    var accountConsumer: EventConsumer?
 
-    func loadAccount(account: Account) {
-        self.account = account
+//    func loadAccount(account: Account) {
 
-        if let intro = self.introViewController {
-            intro.dismissViewControllerAnimated(true, completion: nil)
-            self.introViewController = nil
-        }
 
 //        self.friendsTableViewController.loadAccountUserId(account.user_id)
 //
 //        fetchFriendsOfAccount(account.user_id)
 //        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
 //        loadAllFriendsOfAccount(account.user_id)
-    }
+//    }
 
     func presentIntroView() {
         self.introViewController = IntroViewController()
@@ -47,21 +41,27 @@ class RootViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pushViewController(self.friendsTableViewController, animated: false)
-
-        River.instance.stream_account
-            >- subscribeNext { [unowned self] account in
-                if let account = account {
-                    self.loadAccount(account)
-                } else {
-                    self.presentIntroView()
-                }
-            }
-            >- self.bag.addDisposable
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        loadDefaultAccount()
+
+        River.instance.stream_account
+            >- subscribeNext { [unowned self] account in
+                if let account = account {
+                    self.account = account
+
+                    if let intro = self.introViewController {
+                        intro.dismissViewControllerAnimated(true, completion: nil)
+                        self.introViewController = nil
+                    }
+
+                }
+                else {
+                    self.presentIntroView()
+                }
+            }
+            >- self.bag.addDisposable
     }
 
     // MARK: - No use
