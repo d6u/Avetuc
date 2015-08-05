@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class RootViewController: UINavigationController {
 
@@ -15,6 +16,7 @@ class RootViewController: UINavigationController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    let bag = DisposeBag()
     let friendsTableViewController = FriendsViewController()
     var introViewController: IntroViewController?
     var account: Account?
@@ -28,11 +30,11 @@ class RootViewController: UINavigationController {
             self.introViewController = nil
         }
 
-        self.friendsTableViewController.loadAccountUserId(account.user_id)
-
-        fetchFriendsOfAccount(account.user_id)
-        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
-        loadAllFriendsOfAccount(account.user_id)
+//        self.friendsTableViewController.loadAccountUserId(account.user_id)
+//
+//        fetchFriendsOfAccount(account.user_id)
+//        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
+//        loadAllFriendsOfAccount(account.user_id)
     }
 
     func presentIntroView() {
@@ -46,19 +48,15 @@ class RootViewController: UINavigationController {
         super.viewDidLoad()
         self.pushViewController(self.friendsTableViewController, animated: false)
 
-        self.accountConsumer = listen(.Account) { (result: AccountResult) in
-            switch result {
-            case .Success(let account):
-                loadTokens(oauthToken: account.oauth_token, oauthTokenSecret: account.oauth_token_secret)
-                self.loadAccount(account)
-            case .NoAccount:
-                if self.introViewController == nil {
+        River.instance.stream_account
+            >- subscribeNext { [unowned self] account in
+                if let account = account {
+                    self.loadAccount(account)
+                } else {
                     self.presentIntroView()
                 }
-            default:
-                break
             }
-        }
+            >- self.bag.addDisposable
     }
 
     override func viewDidAppear(animated: Bool) {
