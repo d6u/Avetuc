@@ -9,20 +9,11 @@
 import Foundation
 import UIKit
 import SnapKit
+import RxSwift
 
 class IntroView: UIView {
 
     init() {
-        self.accountConsumer = listen(.Account) { (result: AccountResult) in
-            switch result {
-            case .UserReject:
-                // TODO
-                println("user rejected")
-            default:
-                break
-            }
-        }
-
         super.init(frame: CGRectZero)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
@@ -37,23 +28,15 @@ class IntroView: UIView {
         self.backgroundPlate.layer.masksToBounds = true
 
         self.webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
-        self.iosAuthButton.frame = CGRect(x: 170, y: 100, width: 130, height: 200)
-
         self.webAuthButton.backgroundColor = UIColor.redColor()
         self.webAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.webAuthButton.setTitle("Web Auth", forState: UIControlState.Normal)
 
-        self.iosAuthButton.backgroundColor = UIColor.purpleColor()
-        self.iosAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.iosAuthButton.setTitle("iOS Auth", forState: UIControlState.Normal)
-
         self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
-        self.iosAuthButton.addTarget(self, action: "iosAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 
         self.addSubview(self.background)
         self.addSubview(self.backgroundPlate)
         self.addSubview(self.webAuthButton)
-        self.addSubview(self.iosAuthButton)
 
         self.webAuthButton.snp_makeConstraints { (make) -> Void in
             make.centerY.equalTo(self.snp_centerY)
@@ -62,31 +45,26 @@ class IntroView: UIView {
             make.height.equalTo(300)
         }
 
-        self.iosAuthButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp_centerY)
-            make.centerX.equalTo(self.snp_centerX).multipliedBy(0.5)
-            make.width.equalTo(self.snp_width).dividedBy(3)
-            make.height.equalTo(300)
-        }
+        River.instance.stream_addAccountError
+            >- subscribeNext { err in
+                println("add account err \(err)")
+            }
+            >- self.bag.addDisposable
     }
 
-    let accountConsumer: EventConsumer
+    let bag = DisposeBag()
     let background = UIView()
     let backgroundPlate = UIView()
     let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let iosAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
 
     func webAuthButtonTapped() {
-        addAccountThroughWeb()
+        action_addAccountFromWeb()
     }
 
-    func iosAuthButtonTapped() {
-
-    }
+    // MARK: - No use
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

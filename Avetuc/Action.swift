@@ -8,17 +8,20 @@
 
 import Foundation
 import SwiftTask
+import RxSwift
+
+func action_handleOauthCallback(url: NSURL) {
+    sendNext(River.instance.action_handleOauthCallback, url)
+}
+
+func action_addAccountFromWeb() {
+    sendNext(River.instance.action_addAccountFromWeb, ())
+}
+
+// MARK: Deprecated
 
 private func dispatch<T>(type: EventType, #data: T) {
     Dispatcher.instance.dispatch(type, data: data)
-}
-
-// MARK: - API
-
-let loadTokens = TwitterApiService.instance.loadTokens
-
-func handleCallbackUrl(url: NSURL) {
-    TwitterApiService.instance.handleOauthCallback(url)
 }
 
 // MARK: - Account
@@ -27,13 +30,6 @@ enum AccountResult {
     case NoAccount
     case Success(Account)
     case UserReject
-}
-
-func addAccountThroughWeb() {
-    TwitterApiService.instance.addAccountThroughWeb()
-        .success { result -> Void in
-            dispatch(.Account, data: result)
-        }
 }
 
 // MARK: - Friends

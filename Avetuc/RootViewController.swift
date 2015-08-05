@@ -17,6 +17,8 @@ class RootViewController: UINavigationController {
     }
 
     let bag = DisposeBag()
+    var disposable_account: Disposable?
+
     let friendsTableViewController = FriendsViewController()
     var introViewController: IntroViewController?
     var account: Account?
@@ -46,22 +48,26 @@ class RootViewController: UINavigationController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        River.instance.stream_account
-            >- subscribeNext { [unowned self] account in
-                if let account = account {
-                    self.account = account
+        if self.disposable_account == nil {
+            self.disposable_account = River.instance.stream_account
+                >- subscribeNext { [unowned self] account in
+                    println("stream_account user_id \(account?.user_id)")
+                    if let account = account {
+                        self.account = account
 
-                    if let intro = self.introViewController {
-                        intro.dismissViewControllerAnimated(true, completion: nil)
-                        self.introViewController = nil
+                        if let intro = self.introViewController {
+                            intro.dismissViewControllerAnimated(true, completion: nil)
+                            self.introViewController = nil
+                        }
+
                     }
+                    else {
+                        self.presentIntroView()
+                    }
+                }
 
-                }
-                else {
-                    self.presentIntroView()
-                }
-            }
-            >- self.bag.addDisposable
+            self.bag.addDisposable(self.disposable_account!)
+        }
     }
 
     // MARK: - No use
