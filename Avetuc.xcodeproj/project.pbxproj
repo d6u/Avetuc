@@ -31,6 +31,9 @@
 		784B5FDF1B5C96EF006F1300 /* TweetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B5FDE1B5C96EF006F1300 /* TweetTextView.swift */; };
 		786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */; };
 		7879FFDF1B71A909004D8AFF /* defaultAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFDE1B71A909004D8AFF /* defaultAccount.swift */; };
+		7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE01B7238A1004D8AFF /* Custom Operators.swift */; };
+		7879FFE31B7238E5004D8AFF /* requestTokenStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE21B7238E5004D8AFF /* requestTokenStream.swift */; };
+		7879FFE61B7239E3004D8AFF /* createCreateAccountStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */; };
 		788A57631B5F111600AF91B9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57621B5F111600AF91B9 /* Account.swift */; };
 		788A57661B5F12B700AF91B9 /* UserEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57651B5F12B700AF91B9 /* UserEntities.swift */; };
 		788A57681B5F147B00AF91B9 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57671B5F147B00AF91B9 /* UserEntity.swift */; };
@@ -132,6 +135,9 @@
 		784B5FDE1B5C96EF006F1300 /* TweetTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTextView.swift; sourceTree = "<group>"; };
 		786E70C71B560F7D00B78FFE /* OauthCallbackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthCallbackData.swift; sourceTree = "<group>"; };
 		7879FFDE1B71A909004D8AFF /* defaultAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defaultAccount.swift; sourceTree = "<group>"; };
+		7879FFE01B7238A1004D8AFF /* Custom Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Custom Operators.swift"; sourceTree = "<group>"; };
+		7879FFE21B7238E5004D8AFF /* requestTokenStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = requestTokenStream.swift; sourceTree = "<group>"; };
+		7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createCreateAccountStream.swift; sourceTree = "<group>"; };
 		788A57621B5F111600AF91B9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		788A57651B5F12B700AF91B9 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntities.swift; sourceTree = "<group>"; };
 		788A57671B5F147B00AF91B9 /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
@@ -257,8 +263,9 @@
 			isa = PBXGroup;
 			children = (
 				78104DFC1B70FAAE00BDBE02 /* River.swift */,
+				7879FFE41B7238E9004D8AFF /* Stream Factory */,
 				7846331A1B71A675001D8801 /* request+Observable.swift */,
-				7879FFDE1B71A909004D8AFF /* defaultAccount.swift */,
+				7879FFE01B7238A1004D8AFF /* Custom Operators.swift */,
 			);
 			name = River;
 			sourceTree = "<group>";
@@ -285,6 +292,16 @@
 				78F7A7CA1B63F4F4002CF1C6 /* Core */,
 			);
 			name = Dispatcher;
+			sourceTree = "<group>";
+		};
+		7879FFE41B7238E9004D8AFF /* Stream Factory */ = {
+			isa = PBXGroup;
+			children = (
+				7879FFDE1B71A909004D8AFF /* defaultAccount.swift */,
+				7879FFE21B7238E5004D8AFF /* requestTokenStream.swift */,
+				7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */,
+			);
+			name = "Stream Factory";
 			sourceTree = "<group>";
 		};
 		788A57641B5F111A00AF91B9 /* Data */ = {
@@ -665,6 +682,7 @@
 				780AA6DD1B5BF81100D0A622 /* TweetApiData.swift in Sources */,
 				788ABF321B5FC53E00E3540F /* ExtendedMediaApiData.swift in Sources */,
 				78BD38321B5AF00900FA060B /* TwitterApi.swift in Sources */,
+				7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */,
 				7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */,
 				78EF90251B5DF9B2007F8D99 /* Entities.swift in Sources */,
 				7879FFDF1B71A909004D8AFF /* defaultAccount.swift in Sources */,
@@ -682,6 +700,7 @@
 				7834C9701B58A423004029C3 /* UserModel.swift in Sources */,
 				788A57631B5F111600AF91B9 /* Account.swift in Sources */,
 				788ABF381B5FC7FF00E3540F /* ExtendedEntities.swift in Sources */,
+				7879FFE31B7238E5004D8AFF /* requestTokenStream.swift in Sources */,
 				78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */,
 				7834C96C1B5898A7004029C3 /* FriendsStore.swift in Sources */,
 				78FD6C541B55FEFC00AA3875 /* AccountApiData.swift in Sources */,
@@ -718,6 +737,7 @@
 				784B5FA21B5C379F006F1300 /* TweetsViewController.swift in Sources */,
 				784B5FD91B5C7AE2006F1300 /* RetweetedText.swift in Sources */,
 				788ABF341B5FC5C700E3540F /* VideoInfo.swift in Sources */,
+				7879FFE61B7239E3004D8AFF /* createCreateAccountStream.swift in Sources */,
 				784B5FA71B5C592F006F1300 /* ImageBoxView.swift in Sources */,
 				78EF90271B5DFB89007F8D99 /* UserMention.swift in Sources */,
 				78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */,
