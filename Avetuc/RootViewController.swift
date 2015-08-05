@@ -51,7 +51,6 @@ class RootViewController: UINavigationController {
         if self.disposable_account == nil {
             self.disposable_account = River.instance.stream_account
                 >- subscribeNext { [unowned self] account in
-                    println("stream_account user_id \(account?.user_id)")
                     if let account = account {
                         self.account = account
 

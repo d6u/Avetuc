@@ -59,7 +59,6 @@ class River {
             }
             >- retry
             >- map { data -> Account? in
-                println("map \(data)")
                 let account: AccountApiData? = decode(data)
                 let model = AccountModel().fromApiData(account!)
                 let realm = Realm()
