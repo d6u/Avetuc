@@ -4,11 +4,11 @@ import LarryBird
 
 func createRequestTokenStream(action_addAccountFromWeb: PublishSubject<Void>) -> Observable<Config> {
     return action_addAccountFromWeb
-        >- flatMap { () -> Observable<NSURL> in
+        >- flatMap { () -> Observable<WebAuthUrlResponse> in
             return requestWebAuthUrlStream(defaultConfig())(TWITTER_OAUTH_CALLBACK)
         }
-        >- doOnNext { url in
+        >- doOnNext { (data: [String: String], url: NSURL) in
             UIApplication.sharedApplication().openURL(url)
         }
-        >- map(configFromRequestTokenData)
+        >- map { res in configFromRequestTokenData(res.data) }
 }

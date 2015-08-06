@@ -11,20 +11,9 @@ func createCreateAccountStream(
 {
     return zip(requestTokenStream, action_handleOauthCallback) { config, url -> Observable<AnyObject> in
         return requestAccessTokenStream(config)(url)
-        }
-        >- flatMap { (observable: Observable<AnyObject>) in
-            return observable
-        }
-        >- `do` { event -> Void in
-            switch event {
-            case .Error(let err):
-                println("createAccountStream error: \(err)")
-                sendNext(stream_addAccountError, err)
-            default:
-                break
-            }
-        }
-        >- retry
+    }
+        >- flattern
+        >- redirectError(stream_addAccountError)
         >- map { data -> Account? in
             let account: AccountApiData? = decode(data)
             let model = AccountModel().fromApiData(account!)

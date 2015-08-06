@@ -2,6 +2,8 @@ import Foundation
 import LarryBird
 import RxSwift
 
+typealias WebAuthUrlResponse = (data: [String: String], url: NSURL)
+
 func requestStream(config: Config)(_ endpoint: Endpoint, _ params: [Param]) -> Observable<AnyObject> {
     return create { (o: ObserverOf<AnyObject>) in
         request(config)(endpoint, params) { err, data in
@@ -19,12 +21,12 @@ func requestStream(config: Config)(_ endpoint: Endpoint, _ params: [Param]) -> O
     }
 }
 
-func requestWebAuthUrlStream(config: Config)(_ callbackUrl: String) -> Observable<NSURL> {
-    return create { (o: ObserverOf<NSURL>) in
+func requestWebAuthUrlStream(config: Config)(_ callbackUrl: String) -> Observable<WebAuthUrlResponse> {
+    return create { (o: ObserverOf<WebAuthUrlResponse>) in
 
-        requestWebAuthUrl(config)(callbackUrl) { err, url in
-            if let url = url {
-                sendNext(o, url)
+        requestWebAuthUrl(config)(callbackUrl) { err, res in
+            if let res = res {
+                sendNext(o, res)
                 sendCompleted(o)
             } else if let err = err {
                 sendError(o, err)
