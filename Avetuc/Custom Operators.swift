@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 
+
+
 func combineModifier<E, R>(other: Observable<R>, transform: (E, R) -> E) -> Observable<E> -> Observable<E> {
     return { source in
         let branch = combineLatest(source, other, transform)

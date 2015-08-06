@@ -1,11 +1,3 @@
-//
-//  createCreateAccountStream.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 8/5/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import RxSwift
 import LarryBird
@@ -17,10 +9,10 @@ func createCreateAccountStream(
     action_handleOauthCallback: PublishSubject<NSURL>,
     stream_addAccountError: PublishSubject<NSError>) -> Observable<Account?>
 {
-    return zip(requestTokenStream, action_handleOauthCallback) { config, url -> Observable<JSONDict> in
+    return zip(requestTokenStream, action_handleOauthCallback) { config, url -> Observable<AnyObject> in
         return requestAccessTokenStream(config)(url)
         }
-        >- flatMap { (observable: Observable<JSONDict>) in
+        >- flatMap { (observable: Observable<AnyObject>) in
             return observable
         }
         >- `do` { event -> Void in

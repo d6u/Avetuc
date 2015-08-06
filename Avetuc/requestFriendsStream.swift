@@ -10,41 +10,32 @@ import Foundation
 import RxSwift
 import LarryBird
 
-func requestFriendsStream(account: Account) -> Observable<[User]> {
-    let config = Config(
-        consumerKey: TWITTER_CONSUMER_KEY,
-        consumerSecret: TWITTER_CONSUMER_SECRET,
-        oauthToken: account.oauth_token,
-        oauthSecret: account.oauth_token_secret)
-    requestStream(config)(.FriendsIds, [.UserId(account.user_id), .Count(5000), .StringifyIds(true)])
-        >- map { data -> Observable<Observable<JSONDict>> in
-            let ids = data["ids"] as! [String]
-            var batch = [[String]]()
-            var i = 0
-
-            while i < ids.count {
-                let end = min(i + 100, ids.count)
-                batch.append(Array(ids[i..<end]))
-                i += 100
-            }
-
-            let tasks = batch.map { (ids: [String]) -> UsersLookupTask in
-                return usersLookup([.UserIds(ids), .IncludeEntities(false)])
-            }
-
-            return UsersLookupTask.all(tasks)
+func requestFriendIdsStream(account: Account) -> Observable<[String]> {
+    return requestStream(configFromAccount(account))(.FriendsIds, [.UserId(account.user_id), .Count(5000), .StringifyIds(true)])
+        >- map { data in
+            return data["ids"] as! [String]
         }
-//    self.twitterApi
-//        .friendsIds()
-//        .success { data -> FetchAllFriendsTask in
-//        }
-//        .success { (data: [[UserApiData]]) -> CreateUsersTask in
-//            var result = [UserApiData]()
-//
-//            for users in data {
-//                result += users
-//            }
-//
-//            return LocalStorageService.instance.createUsers(result, accountUserId: user_id)
-//    }
 }
+
+func requestUsersStream(account: Account, ids: [String]) -> Observable<[AnyObject]> {
+    return requestStream(configFromAccount(account))(.UsersLookup, [.UserIds(ids), .IncludeEntities(false)])
+        >- map { data in
+            return data as! [AnyObject]
+        }
+}
+
+//func requestFriendsStream(account: Account) -> Observable<[User]> {
+////    self.twitterApi
+////        .friendsIds()
+////        .success { data -> FetchAllFriendsTask in
+////        }
+////        .success { (data: [[UserApiData]]) -> CreateUsersTask in
+////            var result = [UserApiData]()
+////
+////            for users in data {
+////                result += users
+////            }
+////
+////            return LocalStorageService.instance.createUsers(result, accountUserId: user_id)
+////    }
+//}
