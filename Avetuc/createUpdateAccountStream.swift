@@ -8,20 +8,15 @@ func createUpdateAccountStream(accountSubject: Observable<Account>) -> Connectab
     return accountSubject >- flatMap { (account: Account) -> Observable<Void> in
         return create { (observer: ObserverOf<Void>) in
 
-            let updateFriendsStream = createUpdateFriendsStream(account)
+            let s = zip(createUpdateFriendsStream(account), createFetchHomeTimeline(account)) {
+                (users: [User], tweetApiData: [TweetApiData]) -> Observable<Int> in
 
-            let config = configFromAccount(account)
+                
 
-            let fetchHomeTimelineStream = requestStream(config)(.StatusesHomeTimeline, [.UserId(account.user_id), .Count(5000), .StringifyIds(true)])
+                return empty()
+            } >- publish
 
-//                >- subscribe(
-//                    next: {
-//                        println("next \($0.map { $0.id })")
-//                    },
-//                    error: {
-//                        println("error \($0)")
-//                    },
-//                    completed: { sendNext(observer, ()) })
+            s.connect()
 
             return AnonymousDisposable {}
         }

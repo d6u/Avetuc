@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		780AA6DD1B5BF81100D0A622 /* TweetApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */; };
 		78104DFD1B70FAAE00BDBE02 /* River.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78104DFC1B70FAAE00BDBE02 /* River.swift */; };
+		7822A4631B74496A0054CF96 /* createFetchHomeTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */; };
 		7826CD211B6087B600B7DBD1 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD201B6087B600B7DBD1 /* Size.swift */; };
 		7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD221B608ABC00B7DBD1 /* Media.swift */; };
 		7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */; };
@@ -117,6 +118,7 @@
 		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetApiData.swift; sourceTree = "<group>"; };
 		78104DFC1B70FAAE00BDBE02 /* River.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = River.swift; sourceTree = "<group>"; };
+		7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createFetchHomeTimeline.swift; sourceTree = "<group>"; };
 		7826CD201B6087B600B7DBD1 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		7826CD221B608ABC00B7DBD1 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMedia.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				7879FFE51B7239E3004D8AFF /* createCreateAccountStream.swift */,
 				78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */,
 				782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */,
+				7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */,
 			);
 			name = "Stream Factory";
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */,
 				78FD6C761B56011800AA3875 /* timestamp.swift in Sources */,
 				78E2517B1B5F49DD00E7E5FC /* User.swift in Sources */,
+				7822A4631B74496A0054CF96 /* createFetchHomeTimeline.swift in Sources */,
 				788A57681B5F147B00AF91B9 /* UserEntity.swift in Sources */,
 				78FD6C681B56003500AA3875 /* TwitterApiClient.swift in Sources */,
 				78F7A7C91B63EFDB002CF1C6 /* Store.swift in Sources */,
