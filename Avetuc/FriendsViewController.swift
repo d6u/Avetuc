@@ -33,6 +33,7 @@ class FriendsViewController:
         River.instance.stream_friends
             >- subscribeNext { [unowned self] friends in
                 self.friends = friends
+                self.tableView.reloadData()
             }
             >- self.bag.addDisposable
     }

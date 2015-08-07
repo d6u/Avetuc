@@ -58,9 +58,13 @@ func createUpdateAccountStream(accountSubject: Observable<Account>) -> Connectab
 
                     accountModel.last_fetch_since_id = tweets.first!.id
                 }
-            } >- subscribeCompleted {
-                sendNext(observer, ())
-            }
+            } >- subscribe(
+                next: { println("next \($0)") },
+                error: { println("error \($0)") },
+                completed: {
+                    println("completed")
+                    sendNext(observer, ())
+                })
 
             return AnonymousDisposable {}
         }

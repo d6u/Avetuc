@@ -5,6 +5,7 @@ import RealmSwift
 func createFriendsStream(stream_account: Observable<Account?>, updateAccountStream: Observable<()>) -> Observable<[User]> {
     return combineLatest(stream_account, updateAccountStream >- startWith()) {
         (account: Account?, ()) -> Account? in
+        println("friends stream \(account)")
         return account
         }
         >- filter { account in

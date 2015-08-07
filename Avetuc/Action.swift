@@ -18,6 +18,10 @@ func action_addAccountFromWeb() {
     sendNext(River.instance.action_addAccountFromWeb, ())
 }
 
+func action_updateAccount(account: Account) {
+    sendNext(River.instance.action_updateAccount, account)
+}
+
 // MARK: Deprecated
 
 private func dispatch<T>(type: EventType, #data: T) {

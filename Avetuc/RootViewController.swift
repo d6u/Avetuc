@@ -23,16 +23,6 @@ class RootViewController: UINavigationController {
     var introViewController: IntroViewController?
     var account: Account?
 
-//    func loadAccount(account: Account) {
-
-
-//        self.friendsTableViewController.loadAccountUserId(account.user_id)
-//
-//        fetchFriendsOfAccount(account.user_id)
-//        fetchHomeTimelineOfAccount(account.user_id, since_id: account.last_fetch_since_id)
-//        loadAllFriendsOfAccount(account.user_id)
-//    }
-
     func presentIntroView() {
         self.introViewController = IntroViewController()
         self.presentViewController(self.introViewController!, animated: true, completion: nil)
@@ -55,6 +45,7 @@ class RootViewController: UINavigationController {
                         self.account = account
 
                         if let intro = self.introViewController {
+                            action_updateAccount(account)
                             intro.dismissViewControllerAnimated(true, completion: nil)
                             self.introViewController = nil
                         }
