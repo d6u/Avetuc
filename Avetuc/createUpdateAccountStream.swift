@@ -4,8 +4,10 @@ import LarryBird
 import Argo
 import RealmSwift
 
-func createUpdateAccountStream(accountSubject: Observable<Account>) -> ConnectableObservableType<Void> {
+func createUpdateAccountStream(accountSubject: Observable<Account>) -> ConnectableObservableType<Void>
+{
     return accountSubject >- flatMap { (account: Account) -> Observable<Void> in
+
         return create { (observer: ObserverOf<Void>) in
 
             let updateFriendsStream = createUpdateFriendsStream(account)
@@ -19,7 +21,7 @@ func createUpdateAccountStream(accountSubject: Observable<Account>) -> Connectab
                 >- catch([TweetApiData]())
 
             zip(updateFriendsStream, fetchHomeTimeline) { (users: [User], tweetsApiData: [TweetApiData]) -> Void in
-
+                println("new tweets count \(tweetsApiData.count)")
                 if tweetsApiData.count == 0 {
                     return
                 }

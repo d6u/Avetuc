@@ -10,6 +10,7 @@
 		780AA6DD1B5BF81100D0A622 /* TweetApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */; };
 		78104DFD1B70FAAE00BDBE02 /* River.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78104DFC1B70FAAE00BDBE02 /* River.swift */; };
 		7822A4631B74496A0054CF96 /* createFetchHomeTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */; };
+		7822A4651B7469A30054CF96 /* createFriendsStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822A4641B7469A30054CF96 /* createFriendsStream.swift */; };
 		7826CD211B6087B600B7DBD1 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD201B6087B600B7DBD1 /* Size.swift */; };
 		7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD221B608ABC00B7DBD1 /* Media.swift */; };
 		7826CD251B608BB700B7DBD1 /* ExtendedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */; };
@@ -119,6 +120,7 @@
 		780AA6DC1B5BF81100D0A622 /* TweetApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetApiData.swift; sourceTree = "<group>"; };
 		78104DFC1B70FAAE00BDBE02 /* River.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = River.swift; sourceTree = "<group>"; };
 		7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createFetchHomeTimeline.swift; sourceTree = "<group>"; };
+		7822A4641B7469A30054CF96 /* createFriendsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createFriendsStream.swift; sourceTree = "<group>"; };
 		7826CD201B6087B600B7DBD1 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		7826CD221B608ABC00B7DBD1 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		7826CD241B608BB700B7DBD1 /* ExtendedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedMedia.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */,
 				782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */,
 				7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */,
+				7822A4641B7469A30054CF96 /* createFriendsStream.swift */,
 			);
 			name = "Stream Factory";
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				784B5FA71B5C592F006F1300 /* ImageBoxView.swift in Sources */,
 				7879FFEB1B731517004D8AFF /* API Config Factory.swift in Sources */,
 				78300ED21B73B67B00C3DB07 /* createUpdateAccountStream.swift in Sources */,
+				7822A4651B7469A30054CF96 /* createFriendsStream.swift in Sources */,
 				78EF90271B5DFB89007F8D99 /* UserMention.swift in Sources */,
 				78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */,
 				788ABF301B5FC3F700E3540F /* Place.swift in Sources */,

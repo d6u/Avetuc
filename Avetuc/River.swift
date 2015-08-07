@@ -1,8 +1,5 @@
 import Foundation
 import RxSwift
-import RealmSwift
-import LarryBird
-import Argo
 
 class River {
     static let instance = River()
@@ -17,24 +14,13 @@ class River {
         self.stream_account = merge(returnElements(createAccountStream, defaultAccount())) >- replay(1)
         self.stream_account.connect()
 
-        self.stream_friends = self.stream_account
-            >- filter { account in
-                return account != nil
-            }
-            >- map { account -> Account in
-                return account!
-            }
-            >- flatMap { (account: Account) -> Observable<[User]> in
-                let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
-                let friends = Array(model.friends).map { $0.toData() }
-                return just(friends)
-            }
-            >- variable
+        let updateAccountStream = createUpdateAccountStream(self.action_updateAccount)
 
-        let s = createUpdateAccountStream(self.action_updateAccount)
-        s.connect()
+        self.stream_friends = createFriendsStream(self.stream_account, updateAccountStream)
 
-        self.stream_account
+        updateAccountStream.connect()
+
+        defaultAccount()
             >- subscribeNext {
                 if let account = $0 {
                     sendNext(self.action_updateAccount, account)

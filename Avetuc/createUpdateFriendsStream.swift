@@ -14,6 +14,7 @@ func createUpdateFriendsStream(account: Account) -> Observable<[User]> {
             return friendsIds!.ids
         }
         >- doOnNext { ids in
+            println("friends count \(ids.count)")
             let realm = Realm()
             let accountModel = realm.objects(AccountModel).filter("user_id = %@", account.user_id).first!
             for friend in accountModel.friends {
