@@ -25,7 +25,6 @@ func createFetchHomeTimeline(account: Account) -> Observable<[TweetApiData]> {
                 return data!
             }
             >- doOnNext { data in
-                println("doOnNext \(data.count)")
                 if sinceId != nil && data.count > 0 {
                     let oldestTweetId = data.last!.id
                     sendNext(subject, String(oldestTweetId - 1))
