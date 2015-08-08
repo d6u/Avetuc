@@ -11,10 +11,26 @@ class River {
     let action_selectFriend = PublishSubject<Int64>()
     let action_updateTweetReadState = PublishSubject<(id: Int64, isRead: Bool)>()
 
-    let observer_addAccountError = PublishSubject<NSError>()
-    let observer_account = ReplaySubject<Account?>(bufferSize: 1)
-    let observer_friends = ReplaySubject<[User]>(bufferSize: 1)
-    let observer_statuses = ReplaySubject<[TweetCellData]>(bufferSize: 1)
+    private let observer_addAccountError = PublishSubject<NSError>()
+    private let observer_account = ReplaySubject<Account?>(bufferSize: 1)
+    private let observer_friends = ReplaySubject<[User]>(bufferSize: 1)
+    private let observer_statuses = ReplaySubject<[TweetCellData]>(bufferSize: 1)
+
+    var observable_addAccountError: Observable<NSError> {
+        return self.observer_addAccountError >- asObservable
+    }
+
+    var observable_account: Observable<Account?> {
+        return self.observer_account >- asObservable
+    }
+
+    var observable_friends: Observable<[User]> {
+        return self.observer_friends >- asObservable
+    }
+
+    var observable_statuses: Observable<[TweetCellData]> {
+        return self.observer_statuses >- asObservable
+    }
 
     init() {
         let stream_addAccountFromWeb = self.action_addAccountFromWeb

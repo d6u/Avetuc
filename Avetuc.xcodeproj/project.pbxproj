@@ -37,7 +37,6 @@
 		7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE01B7238A1004D8AFF /* Custom Operators.swift */; };
 		7879FFE61B7239E3004D8AFF /* addAccountFromWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE51B7239E3004D8AFF /* addAccountFromWeb.swift */; };
 		7879FFEB1B731517004D8AFF /* API Config Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFEA1B731517004D8AFF /* API Config Factory.swift */; };
-		787DB05A1B768F5000D42BF0 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DB0591B768F5000D42BF0 /* Stores.swift */; };
 		787DB05D1B76A84C00D42BF0 /* update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DB05C1B76A84C00D42BF0 /* update.swift */; };
 		788A57631B5F111600AF91B9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57621B5F111600AF91B9 /* Account.swift */; };
 		788A57661B5F12B700AF91B9 /* UserEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A57651B5F12B700AF91B9 /* UserEntities.swift */; };
@@ -134,7 +133,6 @@
 		7879FFE01B7238A1004D8AFF /* Custom Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Custom Operators.swift"; sourceTree = "<group>"; };
 		7879FFE51B7239E3004D8AFF /* addAccountFromWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addAccountFromWeb.swift; sourceTree = "<group>"; };
 		7879FFEA1B731517004D8AFF /* API Config Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API Config Factory.swift"; sourceTree = "<group>"; };
-		787DB0591B768F5000D42BF0 /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
 		787DB05C1B76A84C00D42BF0 /* update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = update.swift; sourceTree = "<group>"; };
 		788A57621B5F111600AF91B9 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		788A57651B5F12B700AF91B9 /* UserEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntities.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				78104DFC1B70FAAE00BDBE02 /* River.swift */,
-				787DB0591B768F5000D42BF0 /* Stores.swift */,
 				78F7A7BA1B63C502002CF1C6 /* Actions.swift */,
 				7879FFE41B7238E9004D8AFF /* Stream Factory */,
 				7879FFE91B723CD1004D8AFF /* Twitter API Stream */,
@@ -689,7 +686,6 @@
 				78300ED21B73B67B00C3DB07 /* createUpdateAccountStream.swift in Sources */,
 				7822A4651B7469A30054CF96 /* loadFriends.swift in Sources */,
 				78EF90271B5DFB89007F8D99 /* UserMention.swift in Sources */,
-				787DB05A1B768F5000D42BF0 /* Stores.swift in Sources */,
 				78EF902F1B5DFE30007F8D99 /* SizeDetail.swift in Sources */,
 				788ABF301B5FC3F700E3540F /* Place.swift in Sources */,
 				7834C96E1B58A423004029C3 /* AccountModel.swift in Sources */,
