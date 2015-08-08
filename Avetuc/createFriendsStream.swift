@@ -2,7 +2,12 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-func createFriendsStream(stream_account: Observable<Account?>, updateAccountStream: Observable<()>) -> Observable<[User]> {
+func createFriendsStream(
+    stream_account: Observable<Account?>,
+    updateAccountStream: Observable<()>,
+    updateTweetReadStateStream: Observable<(tweet: Tweet, user: User)>)
+    -> Observable<[User]>
+{
     return combineLatest(stream_account, updateAccountStream >- startWith()) {
         (account: Account?, ()) -> Account? in
         println("friends stream \(account)")
@@ -14,10 +19,23 @@ func createFriendsStream(stream_account: Observable<Account?>, updateAccountStre
         >- map { account -> Account in
             return account!
         }
-        >- flatMap { (account: Account) -> Observable<[User]> in
+        >- map { (account: Account) -> [User] in
             let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
-            let friends = Array(model.friends).map { $0.toData() }
-            return just(friends)
+            return Array(model.friends).map { $0.toData() }
+        }
+        >- combineModifier(updateTweetReadStateStream) { (friends: [User], data: (Tweet, User)) -> [User] in
+
+            var updatedFriends = friends
+            let (tweet, user) = data
+
+            for (index, friend) in enumerate(friends) {
+                if friend.id == user.id {
+                    updatedFriends[index] = user
+                    break
+                }
+            }
+
+            return updatedFriends
         }
         >- map { (friends: [User]) -> [User] in
             multiSort(friends, [

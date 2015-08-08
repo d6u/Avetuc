@@ -183,21 +183,3 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
     return text
 }
-
-func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
-
-    if let retweeted = tweetAndRetweet.retweetedStatus {
-        return ParsedTweet(
-            tweet: tweetAndRetweet.tweet,
-            retweetedStatus: tweetAndRetweet.retweetedStatus,
-            retweetedStatusUser: tweetAndRetweet.retweetedStatusUser,
-            text: parseTweetText(retweeted))
-    }
-    else {
-        return ParsedTweet(
-            tweet: tweetAndRetweet.tweet,
-            retweetedStatus: nil,
-            retweetedStatusUser: nil,
-            text: parseTweetText(tweetAndRetweet.tweet))
-    }
-}

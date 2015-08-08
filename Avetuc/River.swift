@@ -16,11 +16,13 @@ class River {
 
         let updateAccountStream = createUpdateAccountStream(self.action_updateAccount)
 
-        self.stream_friends = createFriendsStream(self.stream_account, updateAccountStream)
+        let updateTweetReadStateStream = createUpdateTweetReadStateStream(self.action_updateTweetReadState)
+
+        self.stream_friends = createFriendsStream(self.stream_account, updateAccountStream, updateTweetReadStateStream)
 
         updateAccountStream.connect()
 
-        self.stream_statuses = createStatusesStream(self.action_selectFriend) >- replay(1)
+        self.stream_statuses = createStatusesStream(self.action_selectFriend, updateTweetReadStateStream) >- replay(1)
         self.stream_statuses.connect()
 
         defaultAccount()
@@ -35,9 +37,10 @@ class River {
     let action_handleOauthCallback = PublishSubject<NSURL>()
     let action_updateAccount = PublishSubject<Account>()
     let action_selectFriend = PublishSubject<Int64>()
+    let action_updateTweetReadState = PublishSubject<(id: Int64, isRead: Bool)>()
 
     let stream_addAccountError = PublishSubject<NSError>()
     let stream_account: ConnectableObservableType<Account?>
     let stream_friends: Observable<[User]>
-    let stream_statuses: ConnectableObservableType<[ParsedTweet]>
+    let stream_statuses: ConnectableObservableType<[TweetCellData]>
 }
