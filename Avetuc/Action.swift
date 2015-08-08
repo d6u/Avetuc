@@ -22,43 +22,17 @@ func action_updateAccount(account: Account) {
     sendNext(River.instance.action_updateAccount, account)
 }
 
+func action_selectFriend(id: Int64) {
+    sendNext(River.instance.action_selectFriend, id)
+}
+
 // MARK: Deprecated
 
 private func dispatch<T>(type: EventType, #data: T) {
     Dispatcher.instance.dispatch(type, data: data)
 }
 
-// MARK: - Account
-
-enum AccountResult {
-    case NoAccount
-    case Success(Account)
-    case UserReject
-}
-
-// MARK: - Friends
-
-//func loadAllFriendsOfAccount(user_id: String) {
-//    LocalStorageService.instance.loadFriendsFor(user_id)
-//        .success { (users: [User]) -> Task<Int, FriendsStoreData, NSError> in
-//            return FriendsStore.instance.perform((friends: users, accountUserId: user_id))
-//        }
-//        .success { (data: FriendsStoreData) -> Void in
-//            dispatch(.Friends(accountUserId: data.accountUserId), data: data.friends)
-//        }
-//}
-
 // MARK: - Tweets
-
-func loadStatusesOfUser(id: Int64) {
-    LocalStorageService.instance.loadStatusesOfUser(id)
-        .success { (tweets: [TweetAndRetweet]) -> Task<Int, TweetsStoreData, NSError> in
-            return TweetsStore.instance.perform((tweets: tweets, userId: id))
-        }
-        .success { (data: TweetsStoreData) -> Void in
-            dispatch(.Tweets(userId: data.userId), data: data.tweets)
-        }
-}
 
 func updateTweetReadState(id: Int64, isRead: Bool) {
     LocalStorageService.instance.updateTweetReadState(id, isRead: isRead)
@@ -76,19 +50,3 @@ func updateTweetReadState(id: Int64, isRead: Bool) {
                 }
         }
 }
-
-// MARK: - Remote Data
-
-//func fetchFriendsOfAccount(user_id: String) {
-//    TwitterApiService.instance.fetchFriendsOfAccount(user_id)
-//        .success { (friends: [User]) -> Void in
-//            dispatch(.Friends(accountUserId: user_id), data: friends)
-//        }
-//}
-//
-//func fetchHomeTimelineOfAccount(user_id: String, #since_id: Int64?) {
-//    TwitterApiService.instance.fetchHomeTimelineOfAccount(user_id, since_id: since_id == nil ? nil : String(since_id!))
-//        .success { () -> Void in
-//            loadAllFriendsOfAccount(user_id)
-//        }
-//}

@@ -104,48 +104,6 @@ class LocalStorageService {
         }
     }
 
-    // MARK: Read
-
-    func loadDefaultAccount() -> Task<Void, Account?, NSError> {
-        return Task<Void, Account?, NSError> { progress, fulfill, reject, configure in
-            if let model = self.realm.objects(AccountModel).first {
-                fulfill(model.toData())
-            } else {
-                fulfill(nil)
-            }
-        }
-    }
-
-    func loadFriendsFor(user_id: String) -> Task<Void, [User], NSError> {
-        return Task<Void, [User], NSError> { progress, fulfill, reject, configure in
-            if let account = self.realm.objects(AccountModel).filter("user_id = %@", user_id).first {
-                fulfill(Array(account.friends).map { $0.toData() })
-            } else {
-                fulfill([])
-            }
-        }
-    }
-
-    func loadStatusesOfUser(id: Int64) -> Task<Void, [TweetAndRetweet], NSError> {
-        return Task<Void, [TweetAndRetweet], NSError> { progress, fulfill, reject, configure in
-
-            let user = self.realm.objects(UserModel).filter("id = %ld", id).first!
-
-            let tweets = Array(user.statuses).map { tweet -> TweetAndRetweet in
-                if let retweeted_status = tweet.retweeted_status {
-                    return TweetAndRetweet(
-                        tweet: tweet.toData(),
-                        retweetedStatus: retweeted_status.toData(),
-                        retweetedStatusUser: retweeted_status.user!.toData())
-                } else {
-                    return TweetAndRetweet(tweet: tweet.toData(), retweetedStatus: nil, retweetedStatusUser: nil)
-                }
-            }
-
-            fulfill(tweets)
-        }
-    }
-
     // Mark: - Update
 
     func updateAccount(user_id: String, lastest_since_id: Int64) {

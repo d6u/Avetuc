@@ -1,14 +1,7 @@
-//
-//  TweetsViewController.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/19/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import TapLabel
+import RxSwift
 
 class TweetsViewController: UITableViewController {
 
@@ -21,9 +14,8 @@ class TweetsViewController: UITableViewController {
         self.tableView.registerClass(TweetCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
     }
 
+    let bag = DisposeBag()
     let user: User
-    var tweetsConsumer: EventConsumer?
-    var tweetsChangeConsumer: EventConsumer?
     var tweets = [ParsedTweet]()
     var isMonitoringScroll = false
 
@@ -39,29 +31,24 @@ extension TweetsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tweetsConsumer = listen(.Tweets(userId: user.id)) { [unowned self] (tweets: [ParsedTweet]) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }
+        River.instance.stream_statuses
+            >- subscribeNext { [unowned self] tweets in
+                self.tweets = tweets
+                self.tableView.reloadData()
+            }
+            >- self.bag.addDisposable
 
-        self.tweetsChangeConsumer = listen(.TweetsUpdate) {
-            [unowned self] (data: (userId: Int64, indexPath: NSIndexPath, tweet: ParsedTweet)) in
-
-            self.tweets[data.indexPath.row] = data.tweet
-
-            // No need to call self.tableView.reloadRowsAtIndexPaths
-            // Updates handled in table cell
-        }
-
-        loadStatusesOfUser(self.user.id)
+        action_selectFriend(self.user.id)
     }
 
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.isMonitoringScroll = true
         self.scrollViewDidScroll(self.tableView)
     }
 
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         self.isMonitoringScroll = false
         for cell in self.tableView.visibleCells() as! [TweetCell] {
             cell.cancelMakeReadTimer()

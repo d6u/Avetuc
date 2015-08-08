@@ -20,6 +20,9 @@ class River {
 
         updateAccountStream.connect()
 
+        self.stream_statuses = createStatusesStream(self.action_selectFriend) >- replay(1)
+        self.stream_statuses.connect()
+
         defaultAccount()
             >- subscribeNext {
                 if let account = $0 {
@@ -31,8 +34,10 @@ class River {
     let action_addAccountFromWeb = PublishSubject<Void>()
     let action_handleOauthCallback = PublishSubject<NSURL>()
     let action_updateAccount = PublishSubject<Account>()
+    let action_selectFriend = PublishSubject<Int64>()
 
     let stream_addAccountError = PublishSubject<NSError>()
     let stream_account: ConnectableObservableType<Account?>
     let stream_friends: Observable<[User]>
+    let stream_statuses: ConnectableObservableType<[ParsedTweet]>
 }
