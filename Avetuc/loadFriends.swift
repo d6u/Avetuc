@@ -35,6 +35,7 @@ func loadFriends
                 }
             ])
         }
+        >- debug("loadFriends")
 
     return stream1
 }

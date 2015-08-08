@@ -18,4 +18,5 @@ func update(action: PublishSubject<String?>) -> Observable<()> {
         >- flatMap { (account: Account) -> Observable<()> in
             createUpdateAccountStream(account) >- catch { err in empty() }
         }
+        >- debug("update account stream")
 }

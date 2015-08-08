@@ -32,6 +32,7 @@ func loadStatuses(action: Observable<Int64>) -> Observable<[TweetCellData]> {
                 return TweetCellData(original_tweet: tweetModel.toData(), parsed_tweet: parsedTweet, retweeted_user: user)
             }
         }
+        >- debug("loadStatuses")
 //        >- combineModifier(updateTweetReadStateStream) {
 //            (data: [TweetCellData], modifierData: (Tweet, User)) -> [TweetCellData] in
 //

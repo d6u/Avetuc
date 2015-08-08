@@ -6,15 +6,17 @@ import RealmSwift
 
 func createUpdateAccountStream(account: Account) -> Observable<()> {
     let updateFriendsStream = createUpdateFriendsStream(account)
+        >- debug("updateFriendsStream")
         >- catch { err in
             let accountModel = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
             return just(Array(accountModel.friends).map { $0.toData() })
         }
 
-    let fetchHomeTimeline = createFetchHomeTimeline(account) >- catch([TweetApiData]())
+    let fetchHomeTimeline = createFetchHomeTimeline(account)
+        >- debug("fetchHomeTimeline")
+        >- catch([TweetApiData]())
 
     return combineLatest(updateFriendsStream, fetchHomeTimeline) { users, tweetsApiData in
-        println("new tweets count \(tweetsApiData.count)")
         if tweetsApiData.count == 0 {
             return
         }
@@ -51,7 +53,6 @@ func createUpdateAccountStream(account: Account) -> Observable<()> {
             
             accountModel.last_fetch_since_id = tweets.first!.id
         }
-
-        return
     }
+    >- debug("updateAccountStream")
 }

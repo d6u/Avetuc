@@ -20,6 +20,7 @@ func addAccountFromWeb
 
             return combineLatest(stream1, urlObserver) { requestAccessTokenStream($0)($1) }
                 >- flattern
+                >- debug("addAccountFromWeb combineLatest")
                 >- catch {
                     sendNext(errorObserver, $0)
                     return empty()
