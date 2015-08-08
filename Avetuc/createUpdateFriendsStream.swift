@@ -17,7 +17,6 @@ func createUpdateFriendsStream(account: Account) -> Observable<[User]> {
             return friendsIds!.ids
         }
         >- doOnNext { ids in
-            println("friends count \(ids.count)")
             for friend in accountModel.friends {
                 if !contains(ids, friend.id_str) {
                     realm.write {

@@ -78,5 +78,7 @@ class River {
 
 
         stream_updateAccount.connect()
+
+//        sendNext(self.action_updateAccount, nil)
     }
 }
