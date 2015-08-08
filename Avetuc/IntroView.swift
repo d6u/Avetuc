@@ -45,7 +45,7 @@ class IntroView: UIView {
             make.height.equalTo(300)
         }
 
-        River.instance.stream_addAccountError
+        River.instance.observable_addAccountError
             >- subscribeNext { err in
                 println("add account err \(err)")
             }

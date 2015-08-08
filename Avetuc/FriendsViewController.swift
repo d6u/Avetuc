@@ -30,7 +30,7 @@ class FriendsViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        River.instance.stream_friends
+        River.instance.observable_friends
             >- subscribeNext { [unowned self] friends in
                 self.friends = friends
                 self.tableView.reloadData()

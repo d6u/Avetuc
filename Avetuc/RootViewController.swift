@@ -39,13 +39,13 @@ class RootViewController: UINavigationController {
         super.viewDidAppear(animated)
 
         if self.disposable_account == nil {
-            self.disposable_account = River.instance.stream_account
+            self.disposable_account = River.instance.observable_account
                 >- subscribeNext { [unowned self] account in
                     if let account = account {
                         self.account = account
 
                         if let intro = self.introViewController {
-                            action_updateAccount(account)
+                            action_updateAccount(account.user_id)
                             intro.dismissViewControllerAnimated(true, completion: nil)
                             self.introViewController = nil
                         }

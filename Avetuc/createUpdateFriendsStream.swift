@@ -7,16 +7,17 @@ import RealmSwift
 func createUpdateFriendsStream(account: Account) -> Observable<[User]> {
 
     let config = configFromAccount(account)
+    let realm = Realm()
+    let accountModel = realm.objects(AccountModel).filter("user_id = %@", account.user_id).first!
+    let requestEndpoint = requestStream(config)
 
-    return requestStream(config)(.FriendsIds, [.UserId(account.user_id), .Count(5000), .StringifyIds(true)])
+    return requestEndpoint(.FriendsIds, [.UserId(account.user_id), .Count(5000), .StringifyIds(true)])
         >- map { data -> [String] in
             let friendsIds: FriendsIdsData? = decode(data)
             return friendsIds!.ids
         }
         >- doOnNext { ids in
             println("friends count \(ids.count)")
-            let realm = Realm()
-            let accountModel = realm.objects(AccountModel).filter("user_id = %@", account.user_id).first!
             for friend in accountModel.friends {
                 if !contains(ids, friend.id_str) {
                     realm.write {
@@ -36,15 +37,13 @@ func createUpdateFriendsStream(account: Account) -> Observable<[User]> {
             return from(batch)
         }
         >- flatMap { (ids: [String]) -> Observable<AnyObject> in
-            return requestStream(config)(.UsersLookup, [.UserIds(ids), .IncludeEntities(false)])
+            requestEndpoint(.UsersLookup, [.UserIds(ids), .IncludeEntities(false)]) >- catch { err in empty() }
         }
         >- map { (data: AnyObject) -> [UserApiData] in
             let users: [UserApiData]? = decode(data)
             return users!
         }
         >- map { (data: [UserApiData]) -> [User] in
-            let realm = Realm()
-            let accountModel = realm.objects(AccountModel).filter("user_id = %@", account.user_id).first!
 
             var users = [UserModel]()
 

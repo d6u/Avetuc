@@ -31,7 +31,7 @@ extension TweetsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        River.instance.stream_statuses
+        River.instance.observable_statuses
             >- subscribeNext { [unowned self] tweets in
                 self.tweets = tweets
                 self.tableView.reloadData()
