@@ -85,7 +85,7 @@
 		78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C481B55FE1800AA3875 /* screenBounds.swift */; };
 		78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */; };
 		78FD6C541B55FEFC00AA3875 /* AccountApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C531B55FEFC00AA3875 /* AccountApiData.swift */; };
-		78FD6C661B56001F00AA3875 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C651B56001F00AA3875 /* Config.swift */; };
+		78FD6C661B56001F00AA3875 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C651B56001F00AA3875 /* Configuration.swift */; };
 		78FD6C761B56011800AA3875 /* timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C751B56011800AA3875 /* timestamp.swift */; };
 		78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */; };
 		78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FD6C7F1B5601D500AA3875 /* IntroViewController.swift */; };
@@ -186,7 +186,7 @@
 		78FD6C481B55FE1800AA3875 /* screenBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = screenBounds.swift; sourceTree = "<group>"; };
 		78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		78FD6C531B55FEFC00AA3875 /* AccountApiData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountApiData.swift; sourceTree = "<group>"; };
-		78FD6C651B56001F00AA3875 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		78FD6C651B56001F00AA3875 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		78FD6C751B56011800AA3875 /* timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timestamp.swift; sourceTree = "<group>"; };
 		78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Avetuc-Bridging-Header.h"; sourceTree = "<group>"; };
 		78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 		78FD6C221B55FC9300AA3875 /* Avetuc */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C651B56001F00AA3875 /* Config.swift */,
+				78FD6C651B56001F00AA3875 /* Configuration.swift */,
 				784633191B71A654001D8801 /* River */,
 				78FD6C4C1B55FE5900AA3875 /* UI */,
 				78FD6C551B55FEFF00AA3875 /* Twitter API Data */,
@@ -660,7 +660,7 @@
 				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
 				788ABF3C1B60763500E3540F /* UrlEntityModel.swift in Sources */,
 				788ABF2E1B5FC2B400E3540F /* Coordinates.swift in Sources */,
-				78FD6C661B56001F00AA3875 /* Config.swift in Sources */,
+				78FD6C661B56001F00AA3875 /* Configuration.swift in Sources */,
 				78EF90231B5DF98C007F8D99 /* Hashtag.swift in Sources */,
 				78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */,
 				78EF902B1B5DFBB0007F8D99 /* MediaApiData.swift in Sources */,
