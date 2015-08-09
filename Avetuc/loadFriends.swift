@@ -11,14 +11,9 @@ func loadFriends
         a.unread_status_count != b.unread_status_count
     }
 
-    let backgroundWorkScheduler: ImmediateScheduler = {
-        let operationQueue = NSOperationQueue()
-        operationQueue.maxConcurrentOperationCount = 1
-        if operationQueue.respondsToSelector("qualityOfService") {
-            operationQueue.qualityOfService = NSQualityOfService.UserInteractive
-        }
-        return OperationQueueScheduler(operationQueue: operationQueue)
-    }()
+    let backgroundWorkScheduler = SerialDispatchQueueScheduler(
+        queue: dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
+        internalSerialQueueName: "random")
 
     return accountObservable
         >- filter { $0 != nil }
