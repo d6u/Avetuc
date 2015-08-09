@@ -2,17 +2,25 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-struct TweetCellData {
+struct TweetCellData: Equatable {
     let original_tweet: Tweet
     let parsed_tweet: ParsedTweet
     let retweeted_user: User?
 }
 
+func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
+    return lhs.original_tweet.id == rhs.original_tweet.id
+}
+
 func loadStatuses
     (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
     (action: Observable<Int64>)
-    -> Observable<[TweetCellData]>
+    -> Observable<([TweetCellData], DiffResult<TweetCellData>)>
 {
+    let diffTweetCellData = diff { (a: TweetCellData, b: TweetCellData) in
+        a.original_tweet.is_read != b.original_tweet.is_read
+    }
+
     return action
         >- map { (user_id: Int64) -> [TweetModel] in
             let realm = Realm()
@@ -50,6 +58,10 @@ func loadStatuses
             }
 
             return updatedCellData
+        }
+        >- cachePrevious
+        >- map { pre, new in
+            (new, diffTweetCellData(pre: pre, new: new))
         }
         >- debug("loadStatuses")
 }

@@ -25,6 +25,20 @@ class TweetsViewController: UITableViewController {
         }
     }
 
+    func reloadData(diffResult: DiffResult<TweetCellData>) {
+        self.tableView.beginUpdates()
+
+        println("added \(diffResult.added.count)")
+        println("updated \(diffResult.updated.count)")
+        println("moved \(diffResult.moved.count)")
+        println("removed \(diffResult.removed.count)")
+
+        let indexPaths = diffResult.added.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+        self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+
+        self.tableView.endUpdates()
+    }
+
     // MARK: - No use
 
     required init(coder aDecoder: NSCoder) {
@@ -44,10 +58,10 @@ extension TweetsViewController {
             forControlEvents: .ValueChanged)
 
         River.instance.observable_statuses
-            >- subscribeNext { [unowned self] tweets in
-                self.tweets = tweets
-                self.tableView.reloadData()
+            >- subscribeNext { [unowned self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
                 self.refreshControl!.endRefreshing()
+                self.tweets = tweets
+                self.reloadData(diffResult)
             }
             >- self.bag.addDisposable
 
