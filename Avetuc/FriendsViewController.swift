@@ -25,6 +25,14 @@ class FriendsViewController:
     private let bag = DisposeBag()
     private var friends = [User]()
 
+    lazy var reloadTable: DiffResult<User> -> Void = {
+        self.reloadDataFrom { (cell, diffItem: DiffItem<User>, indexPath) -> Void in
+            if let cell = cell as? FriendTableCell {
+                cell.load(diffItem.element)
+            }
+        }
+    }()
+
     // MARK: - View Delegate
 
     override func viewDidLoad() {
@@ -40,11 +48,7 @@ class FriendsViewController:
             >- subscribeNext { [unowned self] (friends, diffResult) in
                 self.refreshControl!.endRefreshing()
                 self.friends = friends
-                self.reloadDataFrom( { (cell, diffItem: DiffItem<User>, indexPath) -> Void in
-                    if let cell = cell as? FriendTableCell {
-                        cell.load(diffItem.element)
-                    }
-                })(diffResult: diffResult)
+                self.reloadTable(diffResult)
             }
             >- self.bag.addDisposable
     }

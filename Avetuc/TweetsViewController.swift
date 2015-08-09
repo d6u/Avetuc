@@ -19,6 +19,16 @@ class TweetsViewController: UITableViewController {
     var tweets = [TweetCellData]()
     var isMonitoringScroll = false
 
+    lazy var reloadTable: DiffResult<TweetCellData> -> Void = {
+        self.reloadDataFrom { [unowned self]
+            (cell, diffItem: DiffItem<TweetCellData>, indexPath) -> Void in
+
+            if let cell = cell as? TweetCell {
+                cell.loadTweet(diffItem.element, user: self.user)
+            }
+        }
+    }()
+
     func refreshControlValueChanged(refreshControl: UIRefreshControl) {
         if refreshControl.refreshing {
             action_updateAccount(nil)
@@ -47,13 +57,7 @@ extension TweetsViewController {
             >- subscribeNext { [unowned self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
                 self.refreshControl!.endRefreshing()
                 self.tweets = tweets
-                self.reloadDataFrom({ [unowned self]
-                    (cell, diffItem: DiffItem<TweetCellData>, indexPath) -> Void in
-
-                    if let cell = cell as? TweetCell {
-                        cell.loadTweet(diffItem.element, user: self.user)
-                    }
-                })(diffResult: diffResult)
+                self.reloadTable(diffResult)
             }
             >- self.bag.addDisposable
 
