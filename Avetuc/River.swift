@@ -63,7 +63,7 @@ class River {
             {
                 (account, ()) in account
             }
-            >- loadFriends
+            >- loadFriends(stream_updateTweetReadState)
             >- publish
 
         stream_friends.subscribe(self.observer_friends)

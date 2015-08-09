@@ -3,6 +3,7 @@ import RxSwift
 import RealmSwift
 
 func loadFriends
+    (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
     (accountObservable: Observable<Account?>)
     -> Observable<[User]>
 {
@@ -12,6 +13,18 @@ func loadFriends
         >- map { account -> [User] in
             let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
             return Array(model.friends).map { $0.toData() }
+        }
+        >- combineModifier(tweetUpdateStream) { friends, change in
+            let (_, user) = change
+            var updatedFriends = friends
+
+            for (i, friend) in enumerate(friends) {
+                if friend.id == user.id {
+                    updatedFriends[i] = user
+                }
+            }
+
+            return updatedFriends
         }
         >- map {
             multiSort($0, [
