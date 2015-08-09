@@ -1,13 +1,6 @@
-//
-//  IntroViewController.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/7/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import UIKit
+import Async
 
 class IntroViewController: UIViewController {
 
@@ -24,13 +17,34 @@ class IntroViewController: UIViewController {
         self.view = IntroView(frame: screenBounds())
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-
     // MARK: - No use
 
     required convenience init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension IntroViewController: UIViewControllerTransitioningDelegate {
+
+    func animationControllerForPresentedController(
+        presented: UIViewController,
+        presentingController presenting: UIViewController,
+        sourceController source: UIViewController)
+        -> UIViewControllerAnimatedTransitioning?
+    {
+        if let introViewController = presented as? IntroViewController {
+            return IntroViewControllerAnimatedTransitioning(introViewController: introViewController, isDismissing: false)
+        }
+        return nil
+    }
+
+    func animationControllerForDismissedController(
+        dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning?
+    {
+        if let introViewController = dismissed as? IntroViewController {
+            return IntroViewControllerAnimatedTransitioning(introViewController: introViewController, isDismissing: true)
+        }
+        return nil
     }
 }

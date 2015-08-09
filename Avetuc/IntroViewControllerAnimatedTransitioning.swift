@@ -7,11 +7,9 @@ class IntroViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimat
     let duration: NSTimeInterval
     let isDismissing: Bool
     let introViewController: IntroViewController
-    let presentingController: UIViewController
 
-    init(introViewController: IntroViewController, presentingController: UIViewController, isDismissing: Bool) {
+    init(introViewController: IntroViewController, isDismissing: Bool) {
         self.introViewController = introViewController
-        self.presentingController = presentingController
         self.isDismissing = isDismissing
         self.duration = isDismissing ? 0.3 : 0.5
     }
@@ -52,37 +50,36 @@ class IntroViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimat
                     introView.layer.position.y -= introView.frame.height
                     backdrop.alpha = 1
                 }) {
+                    self.introViewController.view.backgroundColor = UIColor(white: 0, alpha: 1)
+                    backdrop.removeFromSuperview()
                     transitionContext.completeTransition($0)
                 }
         }
-    }
+        else {
+            let backdrop: UIView = {
+                let view = UIView(frame: screenBounds())
+                view.backgroundColor = UIColor.blackColor()
+                view.alpha = 1
+                return view
+            }()
 
-    func animationEnded(transitionCompleted: Bool) {
-        println("transition ended \(transitionCompleted)")
-    }
-}
+            let frame = self.introViewController.view.frame
 
-extension IntroViewController: UIViewControllerTransitioningDelegate {
+            transitionContext.containerView().insertSubview(backdrop, belowSubview: self.introViewController.view)
+            self.introViewController.view.backgroundColor = UIColor(white: 0, alpha: 0)
 
-    func animationControllerForPresentedController(
-        presented: UIViewController,
-        presentingController presenting: UIViewController,
-        sourceController source: UIViewController)
-        -> UIViewControllerAnimatedTransitioning?
-    {
-        if let introViewController = presented as? IntroViewController {
-            return IntroViewControllerAnimatedTransitioning(
-                introViewController: introViewController,
-                presentingController: presenting,
-                isDismissing: false)
+            UIView.animateWithDuration(
+                self.duration,
+                delay: 0,
+                options: .CurveEaseIn,
+                animations: {
+                    let introView = self.introViewController.view as! IntroView
+                    introView.layer.position.y += introView.frame.height
+                    backdrop.alpha = 0
+                }) {
+                    transitionContext.completeTransition($0)
+                    backdrop.removeFromSuperview()
+                }
         }
-        return nil
-    }
-
-    func animationControllerForDismissedController(
-        dismissed: UIViewController)
-        -> UIViewControllerAnimatedTransitioning?
-    {
-        return nil
     }
 }
