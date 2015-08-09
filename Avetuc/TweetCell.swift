@@ -73,32 +73,34 @@ class TweetCell: UITableViewCell {
     func loadTweet(cellData: TweetCellData, user: User) {
         self.cancelMakeReadTimer()
 
-        self.cellData = cellData
-
         self.isRead = cellData.original_tweet.is_read
 
-        self.textView.attributedText = cellData.parsed_tweet.parsed_text
-        self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.original_tweet.created_at))
+        if self.cellData != cellData {
+            self.textView.attributedText = cellData.parsed_tweet.parsed_text
+            self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.original_tweet.created_at))
 
-        if let retweetedUser = cellData.retweeted_user {
-            self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
-            self.profileImageView.updateImage(retweetedUser.profile_image_url)
-            self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
-            self.userNames.hidden = false
-            self.retweetedText.hidden = false
-        }
-        else {
-            self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
-            self.profileImageView.updateImage(user.profile_image_url)
-            self.userNames.hidden = true
-            self.retweetedText.hidden = true
+            if let retweetedUser = cellData.retweeted_user {
+                self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
+                self.profileImageView.updateImage(retweetedUser.profile_image_url)
+                self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
+                self.userNames.hidden = false
+                self.retweetedText.hidden = false
+            }
+            else {
+                self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
+                self.profileImageView.updateImage(user.profile_image_url)
+                self.userNames.hidden = true
+                self.retweetedText.hidden = true
+            }
+
+            self.textView.snp_updateConstraints { make in
+                make.left.equalTo(self).offset(68)
+                make.right.equalTo(self).offset(-10)
+                make.top.equalTo(cellData.retweeted_user == nil ? 10 : 30)
+            }
         }
 
-        self.textView.snp_updateConstraints { make in
-            make.left.equalTo(self).offset(68)
-            make.right.equalTo(self).offset(-10)
-            make.top.equalTo(cellData.retweeted_user == nil ? 10 : 30)
-        }
+        self.cellData = cellData
     }
 
     func setMakeReadTimer() {
