@@ -37,7 +37,7 @@ func loadStatuses
             }
         }
         >- combineModifier(tweetUpdateStream) { cellsData, change in
-            let (tweet, user) = change
+            let (tweet, _) = change
             var updatedCellData = cellsData
 
             for (i, data) in enumerate(cellsData) {
