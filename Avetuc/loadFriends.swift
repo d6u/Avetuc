@@ -6,7 +6,7 @@ func loadFriends
     (accountObservable: Observable<Account?>)
     -> Observable<[User]>
 {
-    let stream1 = accountObservable
+    return accountObservable
         >- filter { $0 != nil }
         >- map { $0! }
         >- map { account -> [User] in
@@ -36,6 +36,4 @@ func loadFriends
             ])
         }
         >- debug("loadFriends")
-
-    return stream1
 }

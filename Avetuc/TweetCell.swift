@@ -99,11 +99,6 @@ class TweetCell: UITableViewCell {
             make.right.equalTo(self).offset(-10)
             make.top.equalTo(cellData.retweeted_user == nil ? 10 : 30)
         }
-
-//        self.tweetConsumer = listen(.Tweet(cellData.tweet.id)) { [weak self] (tweet: Tweet) in
-//            // [unowned self] will crash when table cell is loaded
-//            self?.isRead = tweet.is_read
-//        }
     }
 
     func setMakeReadTimer() {
@@ -115,8 +110,6 @@ class TweetCell: UITableViewCell {
     func cancelMakeReadTimer() {
         self.markReadTimer = nil
     }
-
-    // MARK: - Delegate
 
     // Prevent sub UIView lost background color
     override func setSelected(selected: Bool, animated: Bool) {

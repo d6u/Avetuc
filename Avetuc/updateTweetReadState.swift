@@ -2,10 +2,8 @@ import Foundation
 import RxSwift
 import RealmSwift
 
-func createUpdateTweetReadStateStream(action_updateTweetReadState: PublishSubject<(id: Int64, isRead: Bool)>)
-    -> Observable<(tweet: Tweet, user: User)>
-{
-    return action_updateTweetReadState
+func updateTweetReadState(action: Observable<(id: Int64, isRead: Bool)>) -> Observable<(tweet: Tweet, user: User)> {
+    return action
         >- map { (id, isRead) -> (Tweet, User) in
             let realm = Realm()
             let tweet = realm.objects(TweetModel).filter("id == %ld", id).first!

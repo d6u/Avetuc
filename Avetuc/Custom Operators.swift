@@ -7,9 +7,45 @@ func flattern<R>(source: Observable<Observable<R>>) -> Observable<R> {
     }
 }
 
-func combineModifier<E, R>(other: Observable<R>, transform: (E, R) -> E) -> Observable<E> -> Observable<E> {
-    return { source in
-        let branch = combineLatest(source, other, transform)
-        return merge(returnElements(source, branch))
+func combineModifier<E, M>
+    (modifierSource: Observable<M>, modify: (E, M) -> E)
+    (source: Observable<E>)
+    -> Observable<E>
+{
+    return create { o in
+
+        var cache: E?
+
+        let disposable1 = source
+            >- subscribe { e in
+                switch e {
+                case .Next(let box):
+                    cache = box.value
+                    sendNext(o, box.value)
+                default:
+                    send(o, e)
+                }
+        }
+
+        let disposable2 = modifierSource
+            >- subscribe { e in
+                switch e {
+                case .Next(let box):
+                    if let c = cache {
+                        cache = modify(c, box.value)
+                        sendNext(o, cache!)
+                    }
+                case .Error(let err):
+                    sendError(o, err)
+                case .Completed:
+                    sendCompleted(o)
+                }
+        }
+
+        return AnonymousDisposable {
+            disposable1.dispose()
+            disposable2.dispose()
+            cache = nil
+        }
     }
 }

@@ -51,6 +51,12 @@ class River {
             >- publish
 
 
+        let stream_updateTweetReadState = self.action_updateTweetReadState
+            >- asObservable
+            >- updateTweetReadState
+            >- publish
+
+
         let stream_friends = combineLatest(
             self.observer_account,
             stream_updateAccount >- startWith())
@@ -66,17 +72,17 @@ class River {
 
         let stream_statuses = combineLatest(
             self.action_selectFriend,
-            stream_updateAccount >- startWith())
-            {
+            stream_updateAccount >- startWith()) {
                 (id, ()) in id
             }
-            >- loadStatuses
+            >- loadStatuses(stream_updateTweetReadState >- asObservable)
             >- publish
 
         stream_statuses.subscribe(self.observer_statuses)
         stream_statuses.connect()
 
 
+        stream_updateTweetReadState.connect()
         stream_updateAccount.connect()
 
 //        sendNext(self.action_updateAccount, nil)

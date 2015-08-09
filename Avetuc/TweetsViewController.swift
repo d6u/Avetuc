@@ -44,7 +44,7 @@ extension TweetsViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.isMonitoringScroll = true
-//        self.scrollViewDidScroll(self.tableView)
+        self.scrollViewDidScroll(self.tableView)
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -77,44 +77,43 @@ extension TweetsViewController: UITableViewDataSource {
 extension TweetsViewController: UITableViewDelegate {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let tweet = self.tweets[indexPath.row]
-        return TweetCell.heightForContent(tweet)
+        return TweetCell.heightForContent(self.tweets[indexPath.row])
     }
 }
 
-//extension TweetsViewController: UIScrollViewDelegate {
-//
-//    override func scrollViewDidScroll(scrollView: UIScrollView)
-//    {
-//        // This method will be triggered twice before `viewDidAppear`,
-//        // which causes funny memory retain issues when calling `visibleCells`
-//        // Set this flag to prevent it being called before `viewDidAppear`
-//        if !self.isMonitoringScroll {
-//            return
-//        }
-//
-//        let offset = scrollView.contentOffset.y + 64 // Top offset
-//        let containerHeight = scrollView.frame.height - 64
-//
-//        for cell in self.tableView.visibleCells() as! [TweetCell]
-//        {
-//            if let cellData = cell.cellData where cellData.original_tweet.is_read
-//            {
-//                let bottom = cell.frame.origin.y + cell.frame.height
-//
-//                if bottom < offset {
-//                    action_updateTweetReadState(cellData.original_tweet.id, true)
-//                }
-//                else if bottom - offset <= containerHeight {
-//                    cell.setMakeReadTimer()
-//                }
-//                else if bottom - offset > containerHeight {
-//                    cell.cancelMakeReadTimer()
-//                }
-//            }
-//        }
-//    }
-//}
+extension TweetsViewController: UIScrollViewDelegate {
+
+    override func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+        // This method will be triggered twice before `viewDidAppear`,
+        // which causes funny memory retain issues when calling `visibleCells`
+        // Set this flag to prevent it being called before `viewDidAppear`
+        if !self.isMonitoringScroll {
+            return
+        }
+
+        let offset = scrollView.contentOffset.y + 64 // Top offset
+        let containerHeight = scrollView.frame.height - 64
+
+        for cell in self.tableView.visibleCells() as! [TweetCell]
+        {
+            if let cellData = cell.cellData where !cellData.original_tweet.is_read
+            {
+                let bottom = cell.frame.origin.y + cell.frame.height
+
+                if bottom < offset {
+                    action_updateTweetReadState(cellData.original_tweet.id, true)
+                }
+                else if bottom - offset <= containerHeight {
+                    cell.setMakeReadTimer()
+                }
+                else if bottom - offset > containerHeight {
+                    cell.cancelMakeReadTimer()
+                }
+            }
+        }
+    }
+}
 
 extension TweetsViewController: TapLabelDelegate {
 
