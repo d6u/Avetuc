@@ -5,8 +5,12 @@ import RealmSwift
 func loadFriends
     (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
     (accountObservable: Observable<Account?>)
-    -> Observable<[User]>
+    -> Observable<([User], DiffResult<User>)>
 {
+    let diffTweetCellData = diff { (a: User, b: User) in
+        a.unread_status_count != b.unread_status_count
+    }
+
     return accountObservable
         >- filter { $0 != nil }
         >- map { $0! }
@@ -47,6 +51,10 @@ func loadFriends
                     }
                 }
             ])
+        }
+        >- cachePrevious
+        >- map { pre, new in
+            (new, diffTweetCellData(pre: pre, new: new))
         }
         >- debug("loadFriends")
 }

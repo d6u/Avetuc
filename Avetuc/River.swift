@@ -13,7 +13,7 @@ class River {
 
     private let observer_addAccountError = PublishSubject<NSError>()
     private let observer_account = ReplaySubject<Account?>(bufferSize: 1)
-    private let observer_friends = ReplaySubject<[User]>(bufferSize: 1)
+    private let observer_friends = ReplaySubject<([User], DiffResult<User>)>(bufferSize: 1)
     private let observer_statuses = ReplaySubject<([TweetCellData], DiffResult<TweetCellData>)>(bufferSize: 1)
 
     var observable_addAccountError: Observable<NSError> {
@@ -24,7 +24,7 @@ class River {
         return self.observer_account >- asObservable
     }
 
-    var observable_friends: Observable<[User]> {
+    var observable_friends: Observable<([User], DiffResult<User>)> {
         return self.observer_friends >- asObservable
     }
 

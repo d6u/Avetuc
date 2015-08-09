@@ -37,10 +37,10 @@ class FriendsViewController:
             forControlEvents: .ValueChanged)
 
         River.instance.observable_friends
-            >- subscribeNext { [unowned self] friends in
-                self.friends = friends
-                self.tableView.reloadData()
+            >- subscribeNext { [unowned self] (friends, diffResult) in
                 self.refreshControl!.endRefreshing()
+                self.friends = friends
+                self.tableView.reloadDataFrom(diffResult)
             }
             >- self.bag.addDisposable
     }

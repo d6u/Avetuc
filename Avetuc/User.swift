@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+struct User: Equatable {
 
     let id: Int64
     let id_str: String
@@ -53,4 +53,8 @@ struct User {
 
     let unread_status_count: Int64
 
+}
+
+func ==(lhs: User, rhs: User) -> Bool {
+    return lhs.id == rhs.id
 }
