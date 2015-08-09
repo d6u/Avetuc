@@ -6,6 +6,7 @@ PODS:
   - Async (1.3.1)
   - Box (1.2.2)
   - CryptoSwift (0.0.12)
+  - EasyAnimation (0.7.0)
   - Kingfisher (1.4.2)
   - LarryBird (0.0.3):
     - Alamofire (~> 1.3.0)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Alamofire (= 1.3.0)
   - Argo (= 1.0.3)
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
+  - EasyAnimation (= 0.7.0)
   - Kingfisher (= 1.4.2)
   - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.3`)
   - RealmSwift (= 0.94.0)
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   Async: edb15b1e34181d7c9873ce6b5d6eabc1c99e638b
   Box: a92e8aa4c099e6bc0733829665caf9e668ef53b8
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
+  EasyAnimation: ddc49f0eaf034f6d47a95bf805d9e95e84908053
   Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
   LarryBird: 8dfc686d12e8633164e88150867d071cabf8b56f
   Realm: a046149653e0ca220b65b5783da907aa5b74d86c

@@ -13,19 +13,22 @@ import RxSwift
 
 class IntroView: UIView {
 
-    init() {
-        super.init(frame: CGRectZero)
+    override init(frame: CGRect)
+    {
+        self.backgroundPlate = {
+            let view = UIView(frame: CGRect(x: 0, y: 20, width: frame.width, height: frame.height - 20))
+            view.layer.cornerRadius = 6
+            view.layer.masksToBounds = true
+            let gradient: CAGradientLayer = CAGradientLayer()
+            gradient.frame = view.bounds
+            gradient.colors = [UIColor(netHex: 0x4A4A4A).CGColor, UIColor(netHex: 0x2B2B2B).CGColor]
+            view.layer.insertSublayer(gradient, atIndex: 0)
+            return view
+        }()
+
+        super.init(frame: frame)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
-
-        self.background.backgroundColor = UIColor.blackColor()
-        self.background.alpha = 0
-        self.background.frame = frame
-
-        self.backgroundPlate.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height - 20)
-        self.backgroundPlate.backgroundColor = UIColor.greenColor()
-        self.backgroundPlate.layer.cornerRadius = 6
-        self.backgroundPlate.layer.masksToBounds = true
 
         self.webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
         self.webAuthButton.backgroundColor = UIColor.redColor()
@@ -34,7 +37,6 @@ class IntroView: UIView {
 
         self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
 
-        self.addSubview(self.background)
         self.addSubview(self.backgroundPlate)
         self.addSubview(self.webAuthButton)
 
@@ -53,8 +55,7 @@ class IntroView: UIView {
     }
 
     let bag = DisposeBag()
-    let background = UIView()
-    let backgroundPlate = UIView()
+    let backgroundPlate: UIView
     let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
 

@@ -13,12 +13,19 @@ class IntroViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
+
+        self.transitioningDelegate = self
+        self.modalPresentationStyle = .Custom
     }
 
     // MARK: - Delegate
 
     override func loadView() {
-        self.view = IntroView()
+        self.view = IntroView(frame: screenBounds())
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 
     // MARK: - No use
