@@ -5,8 +5,21 @@ import RealmSwift
 func loadFriends
     (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
     (accountObservable: Observable<Account?>)
-    -> Observable<[User]>
+    -> Observable<([User], DiffResult<User>)>
 {
+    let diffTweetCellData = diff { (a: User, b: User) in
+        a.unread_status_count != b.unread_status_count
+    }
+
+    let backgroundWorkScheduler: ImmediateScheduler = {
+        let operationQueue = NSOperationQueue()
+        operationQueue.maxConcurrentOperationCount = 1
+        if operationQueue.respondsToSelector("qualityOfService") {
+            operationQueue.qualityOfService = NSQualityOfService.UserInteractive
+        }
+        return OperationQueueScheduler(operationQueue: operationQueue)
+    }()
+
     return accountObservable
         >- filter { $0 != nil }
         >- map { $0! }
@@ -26,6 +39,7 @@ func loadFriends
 
             return updatedFriends
         }
+        >- observeOn(backgroundWorkScheduler)
         >- map {
             multiSort($0, [
                 {
@@ -48,5 +62,10 @@ func loadFriends
                 }
             ])
         }
+        >- cachePrevious
+        >- map { pre, new in
+            (new, diffTweetCellData(pre: pre, new: new))
+        }
+        >- observeOn(MainScheduler.sharedInstance)
         >- debug("loadFriends")
 }

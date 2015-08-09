@@ -49,3 +49,29 @@ func combineModifier<E, M>
         }
     }
 }
+
+func cachePrevious<E>(source: Observable<E>) -> Observable<(E?, E)>
+{
+    return create { o in
+
+        var cache: E?
+
+        let disposable = source
+            >- subscribe { e in
+                switch e {
+                case .Next(let box):
+                    sendNext(o, (cache, box.value))
+                    cache = box.value
+                case .Error(let err):
+                    sendError(o, err)
+                case .Completed:
+                    sendCompleted(o)
+                }
+        }
+
+        return AnonymousDisposable {
+            disposable.dispose()
+            cache = nil
+        }
+    }
+}
