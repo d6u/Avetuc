@@ -9,7 +9,7 @@ func action_addAccountFromWeb() {
     sendNext(River.instance.action_addAccountFromWeb, ())
 }
 
-func action_updateAccount(id: String) {
+func action_updateAccount(id: String?) {
     sendNext(River.instance.action_updateAccount, id)
 }
 

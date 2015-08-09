@@ -30,12 +30,25 @@ class FriendsViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(
+            self,
+            action: Selector("refreshControlValueChanged:"),
+            forControlEvents: .ValueChanged)
+
         River.instance.observable_friends
             >- subscribeNext { [unowned self] friends in
                 self.friends = friends
                 self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
             }
             >- self.bag.addDisposable
+    }
+
+    func refreshControlValueChanged(refreshControl: UIRefreshControl) {
+        if refreshControl.refreshing {
+            action_updateAccount(nil)
+        }
     }
 
     // MARK: - TableView Delegate

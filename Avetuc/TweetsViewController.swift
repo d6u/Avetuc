@@ -19,6 +19,12 @@ class TweetsViewController: UITableViewController {
     var tweets = [TweetCellData]()
     var isMonitoringScroll = false
 
+    func refreshControlValueChanged(refreshControl: UIRefreshControl) {
+        if refreshControl.refreshing {
+            action_updateAccount(nil)
+        }
+    }
+
     // MARK: - No use
 
     required init(coder aDecoder: NSCoder) {
@@ -31,10 +37,17 @@ extension TweetsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(
+            self,
+            action: Selector("refreshControlValueChanged:"),
+            forControlEvents: .ValueChanged)
+
         River.instance.observable_statuses
             >- subscribeNext { [unowned self] tweets in
                 self.tweets = tweets
                 self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
             }
             >- self.bag.addDisposable
 
