@@ -47,7 +47,13 @@ extension TweetsViewController {
             >- subscribeNext { [unowned self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
                 self.refreshControl!.endRefreshing()
                 self.tweets = tweets
-                self.tableView.reloadDataFrom(diffResult)
+                self.reloadDataFrom({ [unowned self]
+                    (cell, diffItem: DiffItem<TweetCellData>, indexPath) -> Void in
+
+                    if let cell = cell as? TweetCell {
+                        cell.loadTweet(diffItem.element, user: self.user)
+                    }
+                })(diffResult: diffResult)
             }
             >- self.bag.addDisposable
 

@@ -40,7 +40,11 @@ class FriendsViewController:
             >- subscribeNext { [unowned self] (friends, diffResult) in
                 self.refreshControl!.endRefreshing()
                 self.friends = friends
-                self.tableView.reloadDataFrom(diffResult)
+                self.reloadDataFrom( { (cell, diffItem: DiffItem<User>, indexPath) -> Void in
+                    if let cell = cell as? FriendTableCell {
+                        cell.load(diffItem.element)
+                    }
+                })(diffResult: diffResult)
             }
             >- self.bag.addDisposable
     }
