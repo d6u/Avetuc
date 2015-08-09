@@ -3,7 +3,7 @@ import RxSwift
 
 func flattern<R>(source: Observable<Observable<R>>) -> Observable<R> {
     return source >- flatMap { (stream: Observable<R>) in
-        return stream
+        stream
     }
 }
 
