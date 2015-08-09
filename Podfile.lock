@@ -7,7 +7,7 @@ PODS:
   - Box (1.2.2)
   - CryptoSwift (0.0.12)
   - Kingfisher (1.4.2)
-  - LarryBird (0.0.1):
+  - LarryBird (0.0.3):
     - Alamofire (~> 1.3.0)
     - CryptoSwift (~> 0.0.12)
   - Realm (0.93.2):
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - Argo (= 1.0.3)
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
   - Kingfisher (= 1.4.2)
-  - LarryBird (from `https://github.com/d6u/LarryBird.git`)
+  - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.3`)
   - RealmSwift (= 0.93.2)
   - RxSwift (= 1.9.0)
   - SnapKit (= 0.12.0)
@@ -41,14 +41,15 @@ EXTERNAL SOURCES:
     :git: https://github.com/duemunk/Async.git
   LarryBird:
     :git: https://github.com/d6u/LarryBird.git
+    :tag: v0.0.3
 
 CHECKOUT OPTIONS:
   Async:
     :commit: 9e64046b767fe11010891f5b7fe2aed613a6ee55
     :git: https://github.com/duemunk/Async.git
   LarryBird:
-    :commit: d2633a26ce96acf6ff1da622bc18f2e1cb0cc23b
     :git: https://github.com/d6u/LarryBird.git
+    :tag: v0.0.3
 
 SPEC CHECKSUMS:
   Alamofire: 220403a8d5840e0b4c946a6fbaf209dbca124282
@@ -57,11 +58,11 @@ SPEC CHECKSUMS:
   Box: a92e8aa4c099e6bc0733829665caf9e668ef53b8
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
   Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
-  LarryBird: 53a2fbb7276c0da4f889cbac7b7ee3d431d2a705
+  LarryBird: 8dfc686d12e8633164e88150867d071cabf8b56f
   Realm: 2fdd0ae74f730e190384e0338d8a0d3654df8220
   RealmSwift: 231b064da9f98b1c4f325fe1f1cb8756aae2b8d6
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
-  RxSwift: 204bf4262908521aa815ec850d93e87e9d635dd5
+  RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   SwiftTask: 0baec4571e2ea235e73817c399cde12056c81f6f
   TapLabel: d85c23c836609748d505c0147de29c6e5c537b9a

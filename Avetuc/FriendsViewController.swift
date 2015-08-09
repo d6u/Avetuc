@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class FriendsViewController:
     UITableViewController,
@@ -21,31 +22,33 @@ class FriendsViewController:
         self.tableView.layoutMargins = UIEdgeInsetsZero
     }
 
-    var accountUserId: String?
-    private var friendsConsumer: EventConsumer?
-    private var friendsUpdateConsumer: EventConsumer?
+    private let bag = DisposeBag()
     private var friends = [User]()
-
-    func loadAccountUserId(id: String) {
-        self.accountUserId = id
-
-        self.friendsConsumer = listen(.Friends(accountUserId: id)) { (friends: [User]) in
-            self.friends = friends
-            self.tableView.reloadData()
-        }
-
-        self.friendsUpdateConsumer = listen(.FriendsUpdate) {
-            [unowned self] (data: (indexPath: NSIndexPath, user: User)) in
-
-            self.friends[data.indexPath.row] = data.user
-            self.tableView.reloadRowsAtIndexPaths([data.indexPath], withRowAnimation: .None)
-        }
-    }
 
     // MARK: - View Delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(
+            self,
+            action: Selector("refreshControlValueChanged:"),
+            forControlEvents: .ValueChanged)
+
+        River.instance.observable_friends
+            >- subscribeNext { [unowned self] friends in
+                self.friends = friends
+                self.tableView.reloadData()
+                self.refreshControl!.endRefreshing()
+            }
+            >- self.bag.addDisposable
+    }
+
+    func refreshControlValueChanged(refreshControl: UIRefreshControl) {
+        if refreshControl.refreshing {
+            action_updateAccount(nil)
+        }
     }
 
     // MARK: - TableView Delegate

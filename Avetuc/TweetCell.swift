@@ -13,14 +13,14 @@ import SnapKit
 
 class TweetCell: UITableViewCell {
 
-    static func heightForContent(tweet: ParsedTweet) -> CGFloat {
-        let boundingRect = tweet.text.boundingRectWithSize(
+    static func heightForContent(cellData: TweetCellData) -> CGFloat
+    {
+        let boundingRect = cellData.parsed_tweet.parsed_text.boundingRectWithSize(
             CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
-        return max(
-            ceil(boundingRect.size.height) + (tweet.retweetedStatus == nil ? 10 : 30) + 37,
-            74)
+
+        return max(ceil(boundingRect.size.height) + (cellData.retweeted_user == nil ? 10 : 30) + 37, 74)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -61,10 +61,8 @@ class TweetCell: UITableViewCell {
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
-    var tweetConsumer: EventConsumer?
-    var makeReadTimer: Timer?
-
-    var parsedTweet: ParsedTweet?
+    var cellData: TweetCellData?
+    var markReadTimer: Timer?
 
     var isRead = false {
         didSet {
@@ -72,17 +70,17 @@ class TweetCell: UITableViewCell {
         }
     }
 
-    func loadTweet(parsedTweet: ParsedTweet, user: User) {
+    func loadTweet(cellData: TweetCellData, user: User) {
         self.cancelMakeReadTimer()
 
-        self.parsedTweet = parsedTweet
+        self.cellData = cellData
 
-        self.isRead = parsedTweet.tweet.is_read
+        self.isRead = cellData.original_tweet.is_read
 
-        self.textView.attributedText = parsedTweet.text
-        self.timeText.text = relativeTimeString(parseTwitterTimestamp(parsedTweet.tweet.created_at))
+        self.textView.attributedText = cellData.parsed_tweet.parsed_text
+        self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.original_tweet.created_at))
 
-        if let retweeted = parsedTweet.retweetedStatus, let retweetedUser = parsedTweet.retweetedStatusUser {
+        if let retweetedUser = cellData.retweeted_user {
             self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
             self.profileImageView.updateImage(retweetedUser.profile_image_url)
             self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
@@ -99,26 +97,19 @@ class TweetCell: UITableViewCell {
         self.textView.snp_updateConstraints { make in
             make.left.equalTo(self).offset(68)
             make.right.equalTo(self).offset(-10)
-            make.top.equalTo(parsedTweet.retweetedStatus == nil ? 10 : 30)
-        }
-
-        self.tweetConsumer = listen(.Tweet(parsedTweet.tweet.id)) { [weak self] (tweet: Tweet) in
-            // [unowned self] will crash when table cell is loaded
-            self?.isRead = tweet.is_read
+            make.top.equalTo(cellData.retweeted_user == nil ? 10 : 30)
         }
     }
 
     func setMakeReadTimer() {
-        self.makeReadTimer = Timer(duration: 2) { [unowned self] in
-            updateTweetReadState(self.parsedTweet!.tweet.id, true)
+        self.markReadTimer = Timer(duration: 2) { [unowned self] in
+            action_updateTweetReadState(self.cellData!.original_tweet.id, true)
         }
     }
 
     func cancelMakeReadTimer() {
-        self.makeReadTimer = nil
+        self.markReadTimer = nil
     }
-
-    // MARK: - Delegate
 
     // Prevent sub UIView lost background color
     override func setSelected(selected: Bool, animated: Bool) {

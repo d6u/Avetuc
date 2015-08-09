@@ -1,11 +1,3 @@
-//
-//  parseTweet.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/25/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import TapLabel
@@ -182,22 +174,4 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
     }
 
     return text
-}
-
-func parseTweet(tweetAndRetweet: TweetAndRetweet) -> ParsedTweet {
-
-    if let retweeted = tweetAndRetweet.retweetedStatus {
-        return ParsedTweet(
-            tweet: tweetAndRetweet.tweet,
-            retweetedStatus: tweetAndRetweet.retweetedStatus,
-            retweetedStatusUser: tweetAndRetweet.retweetedStatusUser,
-            text: parseTweetText(retweeted))
-    }
-    else {
-        return ParsedTweet(
-            tweet: tweetAndRetweet.tweet,
-            retweetedStatus: nil,
-            retweetedStatusUser: nil,
-            text: parseTweetText(tweetAndRetweet.tweet))
-    }
 }

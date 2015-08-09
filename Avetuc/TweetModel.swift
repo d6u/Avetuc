@@ -193,6 +193,7 @@ class TweetModel: Object {
             possibly_sensitive_appealable: possibly_sensitive_appealable,
             lang: lang,
             is_read: is_read,
+            retweeted_status: self.retweeted_status?.toData(),
             hashtags: Array(self.hashtag_entities).map { $0.toData() },
             urls: Array(self.url_entities).map { $0.toData() },
             user_mentions: Array(self.user_mention_entities).map { $0.toData() },
