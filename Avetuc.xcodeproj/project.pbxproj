@@ -492,9 +492,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		78FD6C1F1B55FC9300AA3875 /* Avetuc */ = {
+		78FD6C1F1B55FC9300AA3875 /* avetuc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "Avetuc" */;
+			buildConfigurationList = 78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "avetuc" */;
 			buildPhases = (
 				299597F0D289AAA5FBBBD773 /* Check Pods Manifest.lock */,
 				78FD6C1C1B55FC9300AA3875 /* Sources */,
@@ -507,7 +507,7 @@
 			);
 			dependencies = (
 			);
-			name = Avetuc;
+			name = avetuc;
 			productName = Avetuc;
 			productReference = 78FD6C201B55FC9300AA3875 /* Avetuc.app */;
 			productType = "com.apple.product-type.application";
@@ -541,7 +541,7 @@
 				TargetAttributes = {
 					78FD6C1F1B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = NU8RSXM6UB;
+						DevelopmentTeam = 8MZGXEXG4Z;
 					};
 					78FD6C371B55FC9300AA3875 = {
 						CreatedOnToolsVersion = 6.4;
@@ -562,7 +562,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78FD6C1F1B55FC9300AA3875 /* Avetuc */,
+				78FD6C1F1B55FC9300AA3875 /* avetuc */,
 				78FD6C371B55FC9300AA3875 /* AvetucTests */,
 			);
 		};
@@ -738,7 +738,7 @@
 /* Begin PBXTargetDependency section */
 		78FD6C3A1B55FC9300AA3875 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 78FD6C1F1B55FC9300AA3875 /* Avetuc */;
+			target = 78FD6C1F1B55FC9300AA3875 /* avetuc */;
 			targetProxy = 78FD6C391B55FC9300AA3875 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -922,7 +922,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "Avetuc" */ = {
+		78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "avetuc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78FD6C431B55FC9300AA3875 /* Debug */,
