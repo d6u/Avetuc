@@ -371,6 +371,7 @@
 				78FD6C551B55FEFF00AA3875 /* Twitter API Data */,
 				78FD6C601B55FFBF00AA3875 /* Models */,
 				78FD6C231B55FC9300AA3875 /* Supporting Files */,
+				78FD6C2F1B55FC9300AA3875 /* Images.xcassets */,
 			);
 			path = Avetuc;
 			sourceTree = "<group>";
@@ -379,7 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C771B56015A00AA3875 /* Avetuc-Bridging-Header.h */,
-				78FD6C2F1B55FC9300AA3875 /* Images.xcassets */,
 				78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */,
 				78FD6C241B55FC9300AA3875 /* Info.plist */,
 			);

@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import Async
 
 class IntroViewController: UIViewController {
 
