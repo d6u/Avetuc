@@ -13,36 +13,55 @@ import RxSwift
 
 class IntroView: UIView {
 
-    init() {
-        super.init(frame: CGRectZero)
+    override init(frame: CGRect)
+    {
+        self.backgroundPlate = {
+            let view = UIView(frame: CGRect(x: 0, y: 20, width: frame.width, height: frame.height - 20))
+            view.layer.cornerRadius = 6
+            view.layer.masksToBounds = true
+            let gradient: CAGradientLayer = CAGradientLayer()
+            gradient.frame = view.bounds
+            gradient.colors = [UIColor(netHex: 0x4A4A4A).CGColor, UIColor(netHex: 0x2B2B2B).CGColor]
+            view.layer.insertSublayer(gradient, atIndex: 0)
+            return view
+        }()
+
+        self.logoImage = UIImage(named: "LetterA")!
+        self.logo = UIImageView(image: self.logoImage)
+
+        self.webAuthButton = {
+            let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            button.backgroundColor = UIColor(netHex: 0x787878)
+            let title = NSAttributedString(string: "Sign in with Twitter", attributes: [
+                NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 20)!,
+                NSForegroundColorAttributeName: UIColor.whiteColor()
+            ])
+            button.setAttributedTitle(title, forState: .Normal)
+            button.layer.cornerRadius = 6
+            button.layer.masksToBounds = true
+            return button
+        }()
+
+        super.init(frame: frame)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
 
-        self.background.backgroundColor = UIColor.blackColor()
-        self.background.alpha = 0
-        self.background.frame = frame
+        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: .TouchUpInside)
 
-        self.backgroundPlate.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height - 20)
-        self.backgroundPlate.backgroundColor = UIColor.greenColor()
-        self.backgroundPlate.layer.cornerRadius = 6
-        self.backgroundPlate.layer.masksToBounds = true
-
-        self.webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
-        self.webAuthButton.backgroundColor = UIColor.redColor()
-        self.webAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.webAuthButton.setTitle("Web Auth", forState: UIControlState.Normal)
-
-        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
-
-        self.addSubview(self.background)
         self.addSubview(self.backgroundPlate)
+        self.addSubview(self.logo)
         self.addSubview(self.webAuthButton)
 
+        self.logo.snp_makeConstraints { make in
+            make.top.equalTo(160)
+            make.centerX.equalTo(self)
+        }
+
         self.webAuthButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp_centerY)
-            make.centerX.equalTo(self.snp_centerX).multipliedBy(1.5)
-            make.width.equalTo(self.snp_width).dividedBy(3)
-            make.height.equalTo(300)
+            make.centerX.equalTo(self)
+            make.top.equalTo(self.logo.snp_bottom).offset(120)
+            make.width.equalTo(250)
+            make.height.equalTo(50)
         }
 
         River.instance.observable_addAccountError
@@ -53,10 +72,10 @@ class IntroView: UIView {
     }
 
     let bag = DisposeBag()
-    let background = UIView()
-    let backgroundPlate = UIView()
-    let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let backgroundPlate: UIView
+    let webAuthButton: UIButton
+    let logoImage: UIImage
+    let logo: UIImageView
 
     func webAuthButtonTapped() {
         action_addAccountFromWeb()
