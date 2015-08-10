@@ -26,25 +26,42 @@ class IntroView: UIView {
             return view
         }()
 
+        self.logoImage = UIImage(named: "LetterA")!
+        self.logo = UIImageView(image: self.logoImage)
+
+        self.webAuthButton = {
+            let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            button.backgroundColor = UIColor(netHex: 0x787878)
+            let title = NSAttributedString(string: "Sign in with Twitter", attributes: [
+                NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 20)!,
+                NSForegroundColorAttributeName: UIColor.whiteColor()
+            ])
+            button.setAttributedTitle(title, forState: .Normal)
+            button.layer.cornerRadius = 6
+            button.layer.masksToBounds = true
+            return button
+        }()
+
         super.init(frame: frame)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
 
-        self.webAuthButton.frame = CGRect(x: 20, y: 100, width: 130, height: 200)
-        self.webAuthButton.backgroundColor = UIColor.redColor()
-        self.webAuthButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.webAuthButton.setTitle("Web Auth", forState: UIControlState.Normal)
-
-        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: UIControlEvents.TouchUpInside)
+        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: .TouchUpInside)
 
         self.addSubview(self.backgroundPlate)
+        self.addSubview(self.logo)
         self.addSubview(self.webAuthButton)
 
+        self.logo.snp_makeConstraints { make in
+            make.top.equalTo(160)
+            make.centerX.equalTo(self)
+        }
+
         self.webAuthButton.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(self.snp_centerY)
-            make.centerX.equalTo(self.snp_centerX).multipliedBy(1.5)
-            make.width.equalTo(self.snp_width).dividedBy(3)
-            make.height.equalTo(300)
+            make.centerX.equalTo(self)
+            make.top.equalTo(self.logo.snp_bottom).offset(120)
+            make.width.equalTo(250)
+            make.height.equalTo(50)
         }
 
         River.instance.observable_addAccountError
@@ -56,8 +73,9 @@ class IntroView: UIView {
 
     let bag = DisposeBag()
     let backgroundPlate: UIView
-    let webAuthButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let webAuthButton: UIButton
+    let logoImage: UIImage
+    let logo: UIImageView
 
     func webAuthButtonTapped() {
         action_addAccountFromWeb()
