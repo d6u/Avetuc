@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-let TWITTER_CONSUMER_KEY = "9UWGPKIb9qvJ6QCLeh5FocLOl"
-let TWITTER_CONSUMER_SECRET = "T5wEP5b0aPoUQzMDpAgvElChw9o6OoUInQEKZ7VEbyfgm7gq0E"
-let TWITTER_OAUTH_CALLBACK = "avetuc://twitter_callback"
-
 let CELL_IDENTIFIER = "Cell"
 
 let DISABLE_TWITTER_API_CALLS = false

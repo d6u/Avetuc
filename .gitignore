@@ -19,3 +19,6 @@ DerivedData
 # Cocoapods
 /Pods
 /.idea/
+
+# Secrets
+Avetuc/Secrets.swift
