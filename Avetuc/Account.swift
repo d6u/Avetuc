@@ -1,21 +1,22 @@
-//
-//  Account.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/21/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
+import RealmSwift
 
-struct Account: Equatable {
-    let user_id: String
-    let screen_name: String
-    let oauth_token: String
-    let oauth_token_secret: String
-    let last_fetch_since_id: Int64?
-}
+class Account: Object {
 
-func ==(lhs: Account, rhs: Account) -> Bool {
-    return lhs.user_id == rhs.user_id
+    dynamic var user_id: String = ""
+    dynamic var screen_name: String = ""
+    dynamic var oauth_token: String = ""
+    dynamic var oauth_token_secret: String = ""
+
+    // MARK: - Custom
+    dynamic var last_fetch_since_id: Int64 = -1
+
+    dynamic var profile: User?
+
+    let home_timeline = List<Tweet>()
+
+    override static func primaryKey() -> String? {
+        return "user_id"
+    }
+
 }

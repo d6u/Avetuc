@@ -15,6 +15,7 @@ class River {
     private let observer_account = ReplaySubject<Account?>(bufferSize: 1)
     private let observer_friends = ReplaySubject<([User], DiffResult<User>)>(bufferSize: 1)
     private let observer_statuses: Observable<([TweetCellData], DiffResult<TweetCellData>)>
+    private let observer_tweetReadStateChange:  ConnectableObservableType<[(tweet: Tweet, user: User)]>
 
     var observable_addAccountError: Observable<NSError> {
         return self.observer_addAccountError >- asObservable
@@ -30,6 +31,10 @@ class River {
 
     var observable_statuses: Observable<([TweetCellData], DiffResult<TweetCellData>)> {
         return self.observer_statuses >- asObservable
+    }
+
+    var observable_tweetReadStateChange: Observable<[(tweet: Tweet, user: User)]> {
+        return self.observer_tweetReadStateChange
     }
 
     init() {
@@ -51,7 +56,7 @@ class River {
             >- publish
 
 
-        let stream_updateTweetReadState = self.action_updateTweetReadState
+        self.observer_tweetReadStateChange = self.action_updateTweetReadState
             >- asObservable
             >- updateTweetReadState
             >- publish
@@ -63,7 +68,7 @@ class River {
             {
                 (account, ()) in account
             }
-            >- loadFriends(stream_updateTweetReadState)
+            >- loadFriends(self.observer_tweetReadStateChange)
             >- publish
 
         stream_friends.subscribe(self.observer_friends)
@@ -75,10 +80,10 @@ class River {
             stream_updateAccount >- startWith()) {
                 (id, ()) in id
             }
-            >- loadStatuses(stream_updateTweetReadState >- asObservable)
+            >- loadStatuses(self.observer_tweetReadStateChange >- asObservable)
 
 
-        stream_updateTweetReadState.connect()
+        self.observer_tweetReadStateChange.connect()
         stream_updateAccount.connect()
 
 //        sendNext(self.action_updateAccount, nil)

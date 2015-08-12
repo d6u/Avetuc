@@ -1,26 +1,19 @@
-//
-//  TweetCell.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/19/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import TapLabel
 import SnapKit
+import RxSwift
 
 class TweetCell: UITableViewCell {
 
     static func heightForContent(cellData: TweetCellData) -> CGFloat
     {
-        let boundingRect = cellData.parsed_tweet.parsed_text.boundingRectWithSize(
+        let boundingRect = cellData.text.boundingRectWithSize(
             CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
 
-        return max(ceil(boundingRect.size.height) + (cellData.retweeted_user == nil ? 10 : 30) + 37, 74)
+        return max(ceil(boundingRect.size.height) + (cellData.tweet.retweeted_status == nil ? 10 : 30) + 37, 74)
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -52,7 +45,27 @@ class TweetCell: UITableViewCell {
             make.left.equalTo(self).offset(68)
             make.bottom.equalTo(self).offset(-10)
         }
+
+        River.instance.observable_tweetReadStateChange
+            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<Tweet> in
+                let tweets = arr.map { (tweet: Tweet, user: User) -> Tweet in
+                    tweet
+                }
+                return from(tweets)
+            }
+            >- filter { [weak self] tweet in
+                if let t = self?.cellData?.tweet {
+                    return t == tweet
+                }
+                return false
+            }
+            >- subscribeNext { [weak self] tweet in
+                self?.isRead = tweet.is_read
+            }
+            >- self.bag.addDisposable
     }
+
+    let bag = DisposeBag()
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let textView = TweetTextView()
@@ -73,31 +86,33 @@ class TweetCell: UITableViewCell {
     func loadTweet(cellData: TweetCellData, user: User) {
         self.cancelMakeReadTimer()
 
-        self.isRead = cellData.original_tweet.is_read
+        self.isRead = cellData.tweet.is_read
 
-        if self.cellData != cellData {
-            self.textView.attributedText = cellData.parsed_tweet.parsed_text
-            self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.original_tweet.created_at))
+        if self.cellData == cellData {
+            return
+        }
 
-            if let retweetedUser = cellData.retweeted_user {
-                self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
-                self.profileImageView.updateImage(retweetedUser.profile_image_url)
-                self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
-                self.userNames.hidden = false
-                self.retweetedText.hidden = false
-            }
-            else {
-                self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
-                self.profileImageView.updateImage(user.profile_image_url)
-                self.userNames.hidden = true
-                self.retweetedText.hidden = true
-            }
+        self.textView.attributedText = cellData.text
+        self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
 
-            self.textView.snp_updateConstraints { make in
-                make.left.equalTo(self).offset(68)
-                make.right.equalTo(self).offset(-10)
-                make.top.equalTo(cellData.retweeted_user == nil ? 10 : 30)
-            }
+        if let retweetedUser = cellData.tweet.retweeted_status?.user {
+            self.profileImageView.frame = CGRect(x: 12, y: 33, width: 48, height: 48)
+            self.profileImageView.updateImage(retweetedUser.profile_image_url)
+            self.userNames.loadNames(retweetedUser.name, screenName: retweetedUser.screen_name)
+            self.userNames.hidden = false
+            self.retweetedText.hidden = false
+        }
+        else {
+            self.profileImageView.frame = CGRect(x: 12, y: 13, width: 48, height: 48)
+            self.profileImageView.updateImage(user.profile_image_url)
+            self.userNames.hidden = true
+            self.retweetedText.hidden = true
+        }
+
+        self.textView.snp_updateConstraints { make in
+            make.left.equalTo(self).offset(68)
+            make.right.equalTo(self).offset(-10)
+            make.top.equalTo(cellData.tweet.retweeted_status == nil ? 10 : 30)
         }
 
         self.cellData = cellData
@@ -105,7 +120,7 @@ class TweetCell: UITableViewCell {
 
     func setMakeReadTimer() {
         self.markReadTimer = Timer(duration: 1) { [unowned self] in
-            action_updateTweetReadState(self.cellData!.original_tweet.id, true)
+            action_updateTweetReadState(self.cellData!.tweet.id, true)
         }
     }
 

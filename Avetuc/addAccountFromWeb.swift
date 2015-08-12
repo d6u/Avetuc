@@ -25,13 +25,12 @@ func addAccountFromWeb
                     return empty()
                 }
                 >- map { data in
-                    let account: AccountApiData? = decode(data)
-                    let model = AccountModel().fromApiData(account!)
                     let realm = Realm()
+                    var account: Account!
                     realm.write {
-                        realm.add(model, update: true)
+                        account = realm.create(Account.self, value: data, update: true)
                     }
-                    return model.toData()
+                    return account
                 }
         }
 }

@@ -3,13 +3,12 @@ import RxSwift
 import RealmSwift
 
 struct TweetCellData: Equatable {
-    let original_tweet: Tweet
-    let parsed_tweet: ParsedTweet
-    let retweeted_user: User?
+    let tweet: Tweet
+    let text: NSAttributedString
 }
 
 func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
-    return lhs.original_tweet.id == rhs.original_tweet.id
+    return lhs.tweet == rhs.tweet
 }
 
 func loadStatuses
@@ -18,31 +17,28 @@ func loadStatuses
     -> Observable<([TweetCellData], DiffResult<TweetCellData>)>
 {
     let diffTweetCellData = diff { (a: TweetCellData, b: TweetCellData) in
-        a.original_tweet.is_read != b.original_tweet.is_read
+        a.tweet.is_read != b.tweet.is_read
     }
 
     return action
-        >- observeOn(CommonScheduler.instance)
-        >- map { (user_id: Int64) -> [TweetModel] in
+//        >- observeOn(CommonScheduler.instance)
+        >- map { (user_id: Int64) -> [Tweet] in
             let realm = Realm()
-            let userModel = realm.objects(UserModel).filter("id = %ld", user_id).first!
-            return Array(userModel.statuses)
+            let user = realm.objects(User).filter("id = %ld", user_id).first!
+            let tweets = realm.objects(Tweet.self).filter("user = %@", user)
+            return Array(tweets)
         }
-        >- map { (models: [TweetModel]) -> [TweetCellData] in
-            models.map { tweetModel in
-                let tweet: Tweet
-                let user: User?
+        >- map { (tweets: [Tweet]) -> [TweetCellData] in
+            tweets.map { tweet in
+                let text: NSAttributedString
 
-                if let retweeted = tweetModel.retweeted_status {
-                    tweet = retweeted.toData()
-                    user = retweeted.user?.toData()
+                if let retweeted_status = tweet.retweeted_status {
+                    text = parseTweetText(retweeted_status)
                 } else {
-                    tweet = tweetModel.toData()
-                    user = nil
+                    text = parseTweetText(tweet)
                 }
 
-                let parsedTweet = ParsedTweet(tweet: tweet, parsed_text: parseTweetText(tweet))
-                return TweetCellData(original_tweet: tweetModel.toData(), parsed_tweet: parsedTweet, retweeted_user: user)
+                return TweetCellData(tweet: tweet, text: text)
             }
         }
         >- combineModifier(tweetUpdateStream) { cellsData, changes in
@@ -52,24 +48,20 @@ func loadStatuses
                 for change in changes {
                     let (tweet, _) = change
 
-                    if data.original_tweet.id == tweet.id {
-                        updatedCellData[i] = TweetCellData(
-                            original_tweet: tweet,
-                            parsed_tweet: data.parsed_tweet,
-                            retweeted_user: data.retweeted_user)
+                    if data.tweet == tweet {
+                        updatedCellData[i] = TweetCellData(tweet: tweet, text: data.text)
                     }
                 }
             }
 
             return updatedCellData
         }
-        >- observeOn(CommonScheduler.instance)
         >- map {
             multiSort($0, [
                 {
-                    if $0.original_tweet.id > $1.original_tweet.id {
+                    if $0.tweet.id > $1.tweet.id {
                         return .LeftFirst
-                    } else if $0.original_tweet.id < $1.original_tweet.id {
+                    } else if $0.tweet.id < $1.tweet.id {
                         return .RightFirst
                     } else {
                         return .Same
@@ -78,9 +70,8 @@ func loadStatuses
             ])
         }
         >- cachePrevious
-        >- observeOn(CommonScheduler.instance)
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
-        >- observeOn(MainScheduler.sharedInstance)
+//        >- observeOn(MainScheduler.sharedInstance)
 }

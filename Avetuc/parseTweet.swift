@@ -19,84 +19,70 @@ extension String {
     
 }
 
-protocol TweetEntity {
-    var headIndice: Int { get }
-    var tailIndice: Int { get }
+protocol GeneralEntity {
+    var _indices: EntityIndices { get }
 }
 
-extension Url: TweetEntity {
-    var headIndice: Int {
-        return Int(self.indices[0])
-    }
-    var tailIndice: Int {
-        return Int(self.indices[1])
+extension UrlEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
     }
 }
 
-extension Hashtag: TweetEntity {
-    var headIndice: Int {
-        return Int(self.indices[0])
-    }
-    var tailIndice: Int {
-        return Int(self.indices[1])
+extension HashtagEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
     }
 }
 
-extension UserMention: TweetEntity {
-    var headIndice: Int {
-        return Int(self.indices[0])
-    }
-    var tailIndice: Int {
-        return Int(self.indices[1])
+extension UserMentionEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
     }
 }
 
-extension Media: TweetEntity {
-    var headIndice: Int {
-        return Int(self.head_indices)
-    }
-    var tailIndice: Int {
-        return Int(self.tail_indices)
+extension MediaEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
     }
 }
 
-extension ExtendedMedia: TweetEntity {
-    var headIndice: Int {
-        return Int(self.head_indices)
-    }
-    var tailIndice: Int {
-        return Int(self.tail_indices)
+extension MediaEntityExtended: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
     }
 }
 
 func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
     let string = tweet.text
+    let _entities = tweet.entities
+    let extendedEntities = tweet.extended_entities
 
-    var entities = [TweetEntity]()
+    var entities = [GeneralEntity]()
 
-    for e in tweet.urls {
+    for e in _entities.urls {
         entities.append(e)
     }
 
-    for e in tweet.user_mentions {
+    for e in _entities.user_mentions {
         entities.append(e)
     }
 
-    for e in tweet.hashtags {
+    for e in _entities.hashtags {
         entities.append(e)
     }
 
-    for e in tweet.medias {
+    for e in _entities.media {
         entities.append(e)
     }
 
-    for e in tweet.extended_medias {
+    for e in extendedEntities.media {
         entities.append(e)
     }
 
-    entities.sort { (a: TweetEntity, b: TweetEntity) -> Bool in
-        return a.headIndice < b.headIndice
+    entities.sort { (a: GeneralEntity, b: GeneralEntity) -> Bool in
+        return a._indices.head < b._indices.head
     }
 
     var i = 0
@@ -105,36 +91,36 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
     var attri = [(NSObject, AnyObject, Int, Int)]()
 
     for e in entities {
-        parts.append(string.substringBetweenIndexes(i, e.headIndice))
+        parts.append(string.substringBetweenIndexes(i, e._indices.head))
 
-        j += e.headIndice - i
+        j += e._indices.head - i
 
         let l: Int
         var link: String?
         let color: UIColor
 
         switch e {
-        case let url as Url:
+        case let url as UrlEntity:
             parts.append(url.display_url)
             l = count(url.display_url)
             link = url.expanded_url
             color = UIColor(netHex: 0x549AE6)
-        case let media as Media:
+        case let media as MediaEntity:
             parts.append(media.display_url)
             l = count(media.display_url)
             color = UIColor(netHex: 0x549AE6)
-        case let userMention as UserMention:
-            parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
-            l = e.tailIndice - e.headIndice
+        case let userMention as UserMentionEntity:
+            parts.append(string.substringBetweenIndexes(e._indices.head, e._indices.tail))
+            l = e._indices.tail - e._indices.head
             link = "https://twitter.com/\(userMention.screen_name)"
             color = UIColor(netHex: 0x549AE6)
-        case let hashtag as Hashtag:
-            parts.append(string.substringBetweenIndexes(e.headIndice, e.tailIndice))
-            l = e.tailIndice - e.headIndice
+        case let hashtag as HashtagEntity:
+            parts.append(string.substringBetweenIndexes(e._indices.head, e._indices.tail))
+            l = e._indices.tail - e._indices.head
             link = "https://twitter.com/hashtag/\(hashtag.text)"
             color = UIColor(netHex: 0x999999)
-        case let extendedMedia as ExtendedMedia:
-            if extendedMedia.headIndice < i {
+        case let extendedMedia as MediaEntityExtended:
+            if extendedMedia._indices.head < i {
                 continue
             }
             parts.append(extendedMedia.display_url)
@@ -151,7 +137,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
             attri.append((TapLabel.SelectedForegroudColorName, UIColor.redColor(), j, j + l))
         }
 
-        i = e.tailIndice
+        i = e._indices.tail
         j += l
     }
 

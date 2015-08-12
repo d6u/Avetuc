@@ -17,6 +17,8 @@ PODS:
   - RealmSwift (0.94.1):
     - Realm (= 0.94.1)
   - Runes (2.0.0)
+  - RxCocoa (1.9):
+    - RxSwift
   - RxSwift (1.9)
   - SnapKit (0.12.0)
   - TapLabel (0.0.3)
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - Kingfisher (= 1.4.2)
   - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.4`)
   - RealmSwift (= 0.94.1)
+  - RxCocoa (= 1.9.0)
   - RxSwift (= 1.9.0)
   - SnapKit (= 0.12.0)
   - TapLabel (= 0.0.3)
@@ -63,6 +66,7 @@ SPEC CHECKSUMS:
   Realm: d999a6cf0b41577a077349c9cc9d496cc62a7d17
   RealmSwift: 06b60ff5b1338755654d39aab44ac38001600f76
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
+  RxCocoa: 6ef9cc14418d5bbda067550e46f5949a3eeca37d
   RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
   TapLabel: d85c23c836609748d505c0147de29c6e5c537b9a

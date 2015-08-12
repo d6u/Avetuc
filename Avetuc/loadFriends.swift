@@ -12,12 +12,18 @@ func loadFriends
     }
 
     return accountObservable
-        >- observeOn(CommonScheduler.instance)
         >- filter { $0 != nil }
         >- map { $0! }
         >- map { account -> [User] in
-            let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
-            return Array(model.friends).map { $0.toData() }
+            var friends = [User]()
+
+            for tweet in account.home_timeline {
+                if !contains(friends, tweet.user) {
+                    friends.append(tweet.user)
+                }
+            }
+
+            return friends
         }
         >- combineModifier(tweetUpdateStream) { friends, changes in
             var updatedFriends = friends
@@ -34,7 +40,6 @@ func loadFriends
 
             return updatedFriends
         }
-        >- observeOn(CommonScheduler.instance)
         >- map {
             multiSort($0, [
                 {
@@ -58,9 +63,8 @@ func loadFriends
             ])
         }
         >- cachePrevious
-        >- observeOn(CommonScheduler.instance)
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
-        >- observeOn(MainScheduler.sharedInstance)
+//        >- observeOn(MainScheduler.sharedInstance)
 }

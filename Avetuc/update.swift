@@ -1,18 +1,15 @@
 import Foundation
 import RxSwift
-import LarryBird
-import Argo
 import RealmSwift
 
 func update(action: PublishSubject<String?>) -> Observable<()> {
     return action
         >- flatMap { (id: String?) -> Observable<Account> in
             let realm = Realm()
-            if let id = id {
-                let accountModel = realm.objects(AccountModel).filter("user_id = %@", id).first!
-                return just(accountModel.toData())
+            if let id = id, let account = realm.objects(Account).filter("user_id = %@", id).first {
+                return just(account)
             } else {
-                return from(Array(realm.objects(AccountModel)).map { $0.toData() })
+                return from(Array(realm.objects(Account)))
             }
         }
         >- flatMap { (account: Account) -> Observable<()> in
