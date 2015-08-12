@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import TapLabel
 import SnapKit
+import RxSwift
 
 class TweetCell: UITableViewCell {
 
@@ -44,7 +45,27 @@ class TweetCell: UITableViewCell {
             make.left.equalTo(self).offset(68)
             make.bottom.equalTo(self).offset(-10)
         }
+
+        River.instance.observable_tweetReadStateChange
+            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<Tweet> in
+                let tweets = arr.map { (tweet: Tweet, user: User) -> Tweet in
+                    tweet
+                }
+                return from(tweets)
+            }
+            >- filter { [weak self] tweet in
+                if let t = self?.cellData?.tweet {
+                    return t == tweet
+                }
+                return false
+            }
+            >- subscribeNext { [weak self] tweet in
+                self?.isRead = tweet.is_read
+            }
+            >- self.bag.addDisposable
     }
+
+    let bag = DisposeBag()
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let textView = TweetTextView()
@@ -66,6 +87,10 @@ class TweetCell: UITableViewCell {
         self.cancelMakeReadTimer()
 
         self.isRead = cellData.tweet.is_read
+
+        if self.cellData == cellData {
+            return
+        }
 
         self.textView.attributedText = cellData.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
