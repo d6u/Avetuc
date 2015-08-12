@@ -62,7 +62,6 @@
 		78BD38341B5AF1AA00FA060B /* OauthRequestTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */; };
 		78CA8FDF1B672D0800093FD9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA8FDE1B672D0800093FD9 /* WebViewController.swift */; };
 		78CBC8431B7710520024371A /* diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CBC8421B7710520024371A /* diff.swift */; };
-		78CBC8471B778D3A0024371A /* UITableViewController+ReloadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CBC8461B778D3A0024371A /* UITableViewController+ReloadData.swift */; };
 		78CF9F581B5B614100DE9D9E /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F571B5B614100DE9D9E /* FriendCell.swift */; };
 		78CF9F5A1B5B61AB00DE9D9E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */; };
 		78CF9F5C1B5B632D00DE9D9E /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CF9F5B1B5B632D00DE9D9E /* ProfileImageView.swift */; };
@@ -161,7 +160,6 @@
 		78BD38331B5AF1AA00FA060B /* OauthRequestTokenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthRequestTokenData.swift; sourceTree = "<group>"; };
 		78CA8FDE1B672D0800093FD9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		78CBC8421B7710520024371A /* diff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = diff.swift; sourceTree = "<group>"; };
-		78CBC8461B778D3A0024371A /* UITableViewController+ReloadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+ReloadData.swift"; sourceTree = "<group>"; };
 		78CF9F571B5B614100DE9D9E /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		78CF9F5B1B5B632D00DE9D9E /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
@@ -181,7 +179,7 @@
 		78EF902E1B5DFE30007F8D99 /* SizeDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeDetail.swift; sourceTree = "<group>"; };
 		78F0F6AB1B64B6BF005FF34C /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = "Pods/../build/Debug-iphoneos/Runes.framework"; sourceTree = "<group>"; };
 		78F7A7BA1B63C502002CF1C6 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		78FD6C201B55FC9300AA3875 /* Avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78FD6C201B55FC9300AA3875 /* avetuc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avetuc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FD6C241B55FC9300AA3875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FD6C251B55FC9300AA3875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FD6C2F1B55FC9300AA3875 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -356,7 +354,7 @@
 		78FD6C211B55FC9300AA3875 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78FD6C201B55FC9300AA3875 /* Avetuc.app */,
+				78FD6C201B55FC9300AA3875 /* avetuc.app */,
 				78FD6C381B55FC9300AA3875 /* AvetucTests.xctest */,
 			);
 			name = Products;
@@ -415,7 +413,6 @@
 				78CA8FDE1B672D0800093FD9 /* WebViewController.swift */,
 				78FD6C831B5601E800AA3875 /* Views */,
 				78FD6C4D1B55FE6A00AA3875 /* Utilities */,
-				78CBC8461B778D3A0024371A /* UITableViewController+ReloadData.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -509,7 +506,7 @@
 			);
 			name = avetuc;
 			productName = Avetuc;
-			productReference = 78FD6C201B55FC9300AA3875 /* Avetuc.app */;
+			productReference = 78FD6C201B55FC9300AA3875 /* avetuc.app */;
 			productType = "com.apple.product-type.application";
 		};
 		78FD6C371B55FC9300AA3875 /* AvetucTests */ = {
@@ -666,7 +663,6 @@
 				788ABF3A1B5FCBC000E3540F /* RetweetedStatus.swift in Sources */,
 				78CA8FDF1B672D0800093FD9 /* WebViewController.swift in Sources */,
 				786E70C81B560F7D00B78FFE /* OauthCallbackData.swift in Sources */,
-				78CBC8471B778D3A0024371A /* UITableViewController+ReloadData.swift in Sources */,
 				784B5FA41B5C3855006F1300 /* TweetCell.swift in Sources */,
 				7826CD231B608ABC00B7DBD1 /* Media.swift in Sources */,
 				78FD6C761B56011800AA3875 /* timestamp.swift in Sources */,
@@ -794,6 +790,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -831,6 +828,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -920,7 +918,7 @@
 				78FD6C411B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		78FD6C421B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "avetuc" */ = {
 			isa = XCConfigurationList;
@@ -929,7 +927,7 @@
 				78FD6C441B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		78FD6C451B55FC9300AA3875 /* Build configuration list for PBXNativeTarget "AvetucTests" */ = {
 			isa = XCConfigurationList;
@@ -938,7 +936,7 @@
 				78FD6C471B55FC9300AA3875 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -62,5 +62,4 @@ func loadFriends
             (new, diffTweetCellData(pre: pre, new: new))
         }
         >- observeOn(MainScheduler.sharedInstance)
-        >- debug("loadFriends")
 }
