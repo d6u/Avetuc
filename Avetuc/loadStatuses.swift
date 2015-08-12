@@ -8,7 +8,7 @@ struct TweetCellData: Equatable {
 }
 
 func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
-    return lhs.tweet.id == rhs.tweet.id
+    return lhs.tweet == rhs.tweet
 }
 
 func loadStatuses
@@ -48,7 +48,7 @@ func loadStatuses
                 for change in changes {
                     let (tweet, _) = change
 
-                    if data.tweet.id == tweet.id {
+                    if data.tweet == tweet {
                         updatedCellData[i] = TweetCellData(tweet: tweet, text: data.text)
                     }
                 }

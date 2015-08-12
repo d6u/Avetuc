@@ -40,7 +40,6 @@ func updateTweetReadState(action: Observable<(id: Int64, isRead: Bool)>) -> Obse
                     tweet.user.unread_status_count += isRead ? -1 : 1
                 }
             }
-
             return (tweet, tweet.user)
         }
         >- buffer(0.3)
