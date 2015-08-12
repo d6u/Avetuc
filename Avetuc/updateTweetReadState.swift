@@ -32,16 +32,16 @@ func updateTweetReadState(action: Observable<(id: Int64, isRead: Bool)>) -> Obse
         >- map { (id, isRead) -> (tweet: Tweet, user: User) in
             let realm = Realm()
 
-            let tweet = realm.objects(TweetModel).filter("id == %ld", id).first!
+            let tweet = realm.objects(Tweet).filter("id == %ld", id).first!
 
             if tweet.is_read != isRead {
                 realm.write {
                     tweet.is_read = isRead
-                    tweet.user!.unread_status_count += isRead ? -1 : 1
+                    tweet.user.unread_status_count += isRead ? -1 : 1
                 }
             }
 
-            return (tweet.toData(), tweet.user!.toData())
+            return (tweet, tweet.user)
         }
         >- buffer(0.3)
 }

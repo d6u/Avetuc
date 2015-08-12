@@ -1,60 +1,54 @@
-//
-//  User.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/21/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
+import RealmSwift
 
-struct User: Equatable {
+class User: Object {
 
-    let id: Int64
-    let id_str: String
-    let name: String
-    let screen_name: String
-    let location: String
-    let description: String
-    let url: String?
-    // let entities: UserEntities
-    let protected: Bool
-    let followers_count: Int64
-    let friends_count: Int64
-    let listed_count: Int64
-    let created_at: String
-    let favourites_count: Int64
-    let utc_offset: Int64?
-    let time_zone: String?
-    // let geo_enabled: Bool
-    let verified: Bool
-    let statuses_count: Int64
-    let lang: String
-    let profile_background_color: String
-    let profile_background_image_url: String
-    let profile_background_image_url_https: String
-    // let profile_background_tile: Bool
-    let profile_image_url: String
-    let profile_image_url_https: String
-    let profile_link_color: String
-    // let profile_sidebar_border_color: String
-    // let profile_sidebar_fill_color: String
-    let profile_text_color: String
-    let profile_use_background_image: Bool
-    let default_profile: Bool
-    let default_profile_image: Bool
-    let following: Bool
-    let follow_request_sent: Bool
-    let notifications: Bool
-    let profile_banner_url: String?
+    dynamic var id: Int64 = -1
+    dynamic var id_str: String = ""
+    dynamic var name: String = ""
+    dynamic var screen_name: String = ""
+    dynamic var location: String = ""
+    dynamic var t_description: String = "" // Cannot override builtin `description`, TODO: handle this
+    dynamic var url: String = ""
+    // dynamic var entities: UserEntities = // TODO
+    dynamic var protected: Bool = false
+    dynamic var followers_count: Int64 = -1
+    dynamic var friends_count: Int64 = -1
+    dynamic var listed_count: Int64 = -1
+    dynamic var created_at: String = ""
+    dynamic var favourites_count: Int64 = -1
+    dynamic var utc_offset: Int64 = -1
+    dynamic var time_zone: String = ""
+    // dynamic var geo_enabled: Bool =
+    dynamic var verified: Bool = false
+    dynamic var statuses_count: Int64 = -1
+    dynamic var lang: String = ""
+    // dynamic var contributors_enabled: Bool =
+    // dynamic var is_translator: Bool =
+    // dynamic var is_translation_enabled: Bool =
+    dynamic var profile_background_color: String = ""
+    dynamic var profile_background_image_url: String = ""
+    dynamic var profile_background_image_url_https: String = ""
+    // dynamic var profile_background_tile: Bool =
+    dynamic var profile_image_url: String = ""
+    dynamic var profile_image_url_https: String = ""
+    dynamic var profile_link_color: String = ""
+    // dynamic var profile_sidebar_border_color: String =
+    // dynamic var profile_sidebar_fill_color: String =
+    dynamic var profile_text_color: String = ""
+    dynamic var profile_use_background_image: Bool = false
+    dynamic var default_profile: Bool = false
+    dynamic var default_profile_image: Bool = false
+    dynamic var following: Bool = false
+    dynamic var follow_request_sent: Bool = false
+    dynamic var notifications: Bool = false
+    dynamic var profile_banner_url: String = ""
 
-    // Custom
-    //
+    // MARK: - Custom
+    dynamic var unread_status_count: Int64 = 0
 
-    let unread_status_count: Int64
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 
-}
-
-func ==(lhs: User, rhs: User) -> Bool {
-    return lhs.id == rhs.id
 }

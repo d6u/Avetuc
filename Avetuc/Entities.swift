@@ -1,38 +1,9 @@
-//
-//  Entities.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/20/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
-import Argo
-import Runes
+import RealmSwift
 
-struct Entities {
-    let hashtags: [Hashtag]?
-    let user_mentions: [UserMention]?
-    let urls: [Url]?
-    let media: [MediaApiData]?
-}
-
-extension Entities: Decodable {
-
-    static func create
-        (hashtags: [Hashtag]?)
-        (user_mentions: [UserMention]?)
-        (urls: [Url]?)
-        (media: [MediaApiData]?)-> Entities
-    {
-        return Entities(hashtags: hashtags, user_mentions: user_mentions, urls: urls, media: media)
-    }
-
-    static func decode(j: JSON) -> Decoded<Entities> {
-        return Entities.create
-            <^> j <||? "hashtags"
-            <*> j <||? "user_mentions"
-            <*> j <||? "urls"
-            <*> j <||? "media"
-    }
+class Entities: Object {
+    let hashtags = List<HashtagEntity>()
+    let user_mentions = List<UserMentionEntity>()
+    let urls = List<UrlEntity>()
+    let media = List<MediaEntity>()
 }

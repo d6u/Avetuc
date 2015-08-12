@@ -149,12 +149,12 @@ extension TweetsViewController: UIScrollViewDelegate {
 
         for cell in self.tableView.visibleCells() as! [TweetCell]
         {
-            if let cellData = cell.cellData where !cellData.original_tweet.is_read
+            if let cellData = cell.cellData where !cellData.tweet.is_read
             {
                 let bottom = cell.frame.origin.y + cell.frame.height
 
                 if bottom < offset {
-                    action_updateTweetReadState(cellData.original_tweet.id, true)
+                    action_updateTweetReadState(cellData.tweet.id, true)
                 }
                 else if bottom - offset <= containerHeight {
                     cell.setMakeReadTimer()
