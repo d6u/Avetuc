@@ -13,7 +13,7 @@ func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
 }
 
 func loadStatuses
-    (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
+    (tweetUpdateStream: Observable<[(tweet: Tweet, user: User)]>)
     (action: Observable<Int64>)
     -> Observable<([TweetCellData], DiffResult<TweetCellData>)>
 {
@@ -44,16 +44,19 @@ func loadStatuses
                 return TweetCellData(original_tweet: tweetModel.toData(), parsed_tweet: parsedTweet, retweeted_user: user)
             }
         }
-        >- combineModifier(tweetUpdateStream) { cellsData, change in
-            let (tweet, _) = change
+        >- combineModifier(tweetUpdateStream) { cellsData, changes in
             var updatedCellData = cellsData
 
             for (i, data) in enumerate(cellsData) {
-                if data.original_tweet.id == tweet.id {
-                    updatedCellData[i] = TweetCellData(
-                        original_tweet: tweet,
-                        parsed_tweet: data.parsed_tweet,
-                        retweeted_user: data.retweeted_user)
+                for change in changes {
+                    let (tweet, _) = change
+
+                    if data.original_tweet.id == tweet.id {
+                        updatedCellData[i] = TweetCellData(
+                            original_tweet: tweet,
+                            parsed_tweet: data.parsed_tweet,
+                            retweeted_user: data.retweeted_user)
+                    }
                 }
             }
 

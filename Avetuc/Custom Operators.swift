@@ -67,10 +67,45 @@ func cachePrevious<E>(source: Observable<E>) -> Observable<(E?, E)>
                 case .Completed:
                     sendCompleted(o)
                 }
+            }
+
+        return AnonymousDisposable {
+            disposable.dispose()
+            cache = nil
+        }
+    }
+}
+
+func buffer<E>(interval: Double)(source: Observable<E>) -> Observable<[E]> {
+    return create { o in
+
+        var timer: Timer?
+        var cache: [E]?
+
+        let disposable = source
+            >- subscribe { e in
+                switch e {
+                case .Next(let box):
+                    if timer == nil {
+                        cache = [box.value]
+                        timer = Timer(duration: interval) {
+                            sendNext(o, cache!)
+                            cache = nil
+                            timer = nil
+                        }
+                    } else {
+                        cache!.append(box.value)
+                    }
+                case .Error(let err):
+                    sendError(o, err)
+                case .Completed:
+                    sendCompleted(o)
+                }
         }
 
         return AnonymousDisposable {
             disposable.dispose()
+            timer = nil
             cache = nil
         }
     }
