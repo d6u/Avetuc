@@ -13,7 +13,7 @@ func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
 }
 
 func loadStatuses
-    (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
+    (tweetUpdateStream: Observable<[(tweet: Tweet, user: User)]>)
     (action: Observable<Int64>)
     -> Observable<([TweetCellData], DiffResult<TweetCellData>)>
 {
@@ -22,6 +22,7 @@ func loadStatuses
     }
 
     return action
+        >- observeOn(CommonScheduler.instance)
         >- map { (user_id: Int64) -> [TweetModel] in
             let realm = Realm()
             let userModel = realm.objects(UserModel).filter("id = %ld", user_id).first!
@@ -44,23 +45,42 @@ func loadStatuses
                 return TweetCellData(original_tweet: tweetModel.toData(), parsed_tweet: parsedTweet, retweeted_user: user)
             }
         }
-        >- combineModifier(tweetUpdateStream) { cellsData, change in
-            let (tweet, _) = change
+        >- combineModifier(tweetUpdateStream) { cellsData, changes in
             var updatedCellData = cellsData
 
             for (i, data) in enumerate(cellsData) {
-                if data.original_tweet.id == tweet.id {
-                    updatedCellData[i] = TweetCellData(
-                        original_tweet: tweet,
-                        parsed_tweet: data.parsed_tweet,
-                        retweeted_user: data.retweeted_user)
+                for change in changes {
+                    let (tweet, _) = change
+
+                    if data.original_tweet.id == tweet.id {
+                        updatedCellData[i] = TweetCellData(
+                            original_tweet: tweet,
+                            parsed_tweet: data.parsed_tweet,
+                            retweeted_user: data.retweeted_user)
+                    }
                 }
             }
 
             return updatedCellData
         }
+        >- observeOn(CommonScheduler.instance)
+        >- map {
+            multiSort($0, [
+                {
+                    if $0.original_tweet.id > $1.original_tweet.id {
+                        return .LeftFirst
+                    } else if $0.original_tweet.id < $1.original_tweet.id {
+                        return .RightFirst
+                    } else {
+                        return .Same
+                    }
+                }
+            ])
+        }
         >- cachePrevious
+        >- observeOn(CommonScheduler.instance)
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
+        >- observeOn(MainScheduler.sharedInstance)
 }

@@ -19,19 +19,48 @@ class TweetsViewController: UITableViewController {
     var tweets = [TweetCellData]()
     var isMonitoringScroll = false
 
-//    lazy var reloadTable: DiffResult<TweetCellData> -> Void = {
-//        self.reloadDataFrom { [unowned self]
-//            (cell, diffItem: DiffItem<TweetCellData>, indexPath) -> Void in
-//
-//            if let cell = cell as? TweetCell {
-//                cell.loadTweet(diffItem.element, user: self.user)
-//            }
-//        }
-//    }()
-
     func refreshControlValueChanged(refreshControl: UIRefreshControl) {
         if refreshControl.refreshing {
             action_updateAccount(nil)
+        }
+    }
+
+    func reloadTable(diffResult: DiffResult<TweetCellData>)
+    {
+        switch diffResult {
+        case .Initial(let friends):
+            #if DEBUG
+                println("tweets table initial load")
+            #endif
+
+            self.tableView.reloadData()
+        case .Differences(let differences):
+            #if DEBUG
+                println("tweets table diff load")
+            #endif
+
+            self.tableView.beginUpdates()
+
+            let insertIndexPaths = differences.insert.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+            self.tableView.insertRowsAtIndexPaths(insertIndexPaths, withRowAnimation: .Bottom)
+
+            let removeIndexPaths = differences.remove.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+            self.tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Bottom)
+
+            for update in differences.update {
+                let indexPath = NSIndexPath(forRow: update.index, inSection: 0)
+                if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TweetCell {
+                    cell.loadTweet(update.element, user: self.user)
+                }
+            }
+
+            for item in differences.move {
+                self.tableView.moveRowAtIndexPath(
+                    NSIndexPath(forRow: item.oldIndex, inSection: 0),
+                    toIndexPath: NSIndexPath(forRow: item.newIndex, inSection: 0))
+            }
+            
+            self.tableView.endUpdates()
         }
     }
 
@@ -54,10 +83,10 @@ extension TweetsViewController {
             forControlEvents: .ValueChanged)
 
         River.instance.observable_statuses
-            >- subscribeNext { [unowned self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
-                self.refreshControl!.endRefreshing()
-                self.tweets = tweets
-//                self.reloadTable(diffResult)
+            >- subscribeNext { [weak self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
+                self?.refreshControl!.endRefreshing()
+                self?.tweets = tweets
+                self?.reloadTable(diffResult)
             }
             >- self.bag.addDisposable
 

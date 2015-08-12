@@ -3,7 +3,7 @@ import RxSwift
 import RealmSwift
 
 func loadFriends
-    (tweetUpdateStream: Observable<(tweet: Tweet, user: User)>)
+    (tweetUpdateStream: Observable<[(tweet: Tweet, user: User)]>)
     (accountObservable: Observable<Account?>)
     -> Observable<([User], DiffResult<User>)>
 {
@@ -11,30 +11,30 @@ func loadFriends
         a.unread_status_count != b.unread_status_count
     }
 
-    let backgroundWorkScheduler = SerialDispatchQueueScheduler(
-        queue: dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
-        internalSerialQueueName: "random")
-
     return accountObservable
+        >- observeOn(CommonScheduler.instance)
         >- filter { $0 != nil }
         >- map { $0! }
         >- map { account -> [User] in
             let model = Realm().objects(AccountModel).filter("user_id = %@", account.user_id).first!
             return Array(model.friends).map { $0.toData() }
         }
-        >- combineModifier(tweetUpdateStream) { friends, change in
-            let (_, user) = change
+        >- combineModifier(tweetUpdateStream) { friends, changes in
             var updatedFriends = friends
 
             for (i, friend) in enumerate(friends) {
-                if friend.id == user.id {
-                    updatedFriends[i] = user
+                for change in changes {
+                    let (_, user) = change
+
+                    if friend.id == user.id {
+                        updatedFriends[i] = user
+                    }
                 }
             }
 
             return updatedFriends
         }
-        >- observeOn(backgroundWorkScheduler)
+        >- observeOn(CommonScheduler.instance)
         >- map {
             multiSort($0, [
                 {
@@ -58,6 +58,7 @@ func loadFriends
             ])
         }
         >- cachePrevious
+        >- observeOn(CommonScheduler.instance)
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
