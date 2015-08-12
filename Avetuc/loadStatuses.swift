@@ -63,5 +63,4 @@ func loadStatuses
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
-        >- debug("loadStatuses")
 }

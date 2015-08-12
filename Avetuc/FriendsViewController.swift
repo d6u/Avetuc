@@ -25,13 +25,40 @@ class FriendsViewController:
     private let bag = DisposeBag()
     private var friends = [User]()
 
-    lazy var reloadTable: DiffResult<User> -> Void = {
-        self.reloadDataFrom { (cell, diffItem: DiffItem<User>, indexPath) -> Void in
-            if let cell = cell as? FriendTableCell {
-                cell.load(diffItem.element)
+    func reloadTable(diffResult: DiffResult<User>)
+    {
+        switch diffResult {
+        case .Initial(let friends):
+            #if DEBUG
+            println("friends table initial load")
+            #endif
+
+            self.tableView.reloadData()
+        case .Differences(let differences):
+            #if DEBUG
+            println("friends table diff load")
+            #endif
+
+            self.tableView.beginUpdates()
+
+            let insertIndexPaths = differences.insert.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+            self.tableView.insertRowsAtIndexPaths(insertIndexPaths, withRowAnimation: .Bottom)
+
+            let removeIndexPaths = differences.remove.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+            self.tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Bottom)
+
+            let updateIndexPaths = differences.update.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+            self.tableView.reloadRowsAtIndexPaths(updateIndexPaths, withRowAnimation: .Fade)
+
+            for item in differences.move {
+                self.tableView.moveRowAtIndexPath(
+                    NSIndexPath(forRow: item.oldIndex, inSection: 0),
+                    toIndexPath: NSIndexPath(forRow: item.newIndex, inSection: 0))
             }
+
+            self.tableView.endUpdates()
         }
-    }()
+    }
 
     // MARK: - View Delegate
 

@@ -1,53 +1,53 @@
 import Foundation
 
-struct DiffItem<E> {
-    let element: E
+struct DiffItem<T> {
+    let element: T
     let index: Int
 }
 
-struct MovedDiffItem<E> {
-    let element: E
-    let previousIndex: Int
+struct MovedItem<T> {
+    let element: T
     let newIndex: Int
+    let oldIndex: Int
 }
 
-struct DiffResult<E> {
-    let added: [DiffItem<E>]
-    let removed: [DiffItem<E>]
-    let updated: [DiffItem<E>]
-    let moved: [MovedDiffItem<E>]
+enum DiffResult<T> {
+    case Initial([T])
+    case Differences(insert: [DiffItem<T>], remove: [DiffItem<T>], update: [DiffItem<T>], move: [MovedItem<T>])
 }
 
 func diff<E: Equatable>(hasUpdate: (E, E) -> Bool)(pre: [E]?, new: [E]) -> DiffResult<E> {
-    var add = [DiffItem<E>]()
-    var rem = [DiffItem<E>]()
-    var upd = [DiffItem<E>]()
-    var mov = [MovedDiffItem<E>]()
+    var insert = [DiffItem<E>]()
+    var remove = [DiffItem<E>]()
+    var update = [DiffItem<E>]()
+    var move = [MovedItem<E>]()
 
     if let pre = pre {
+        if pre.count == 0 {
+            return .Initial(new)
+        }
+
         for (i, el) in enumerate(new) {
             if !contains(pre, el) {
-                add.append(DiffItem(element: el, index: i))
+                insert.append(DiffItem(element: el, index: i))
             }
             else if i < pre.count && el == pre[i] && hasUpdate(el, pre[i]) {
-                upd.append(DiffItem(element: el, index: i))
+                update.append(DiffItem(element: el, index: i))
             }
-            else if let preIndex = find(pre, el) where preIndex != i {
-                mov.append(MovedDiffItem(element: el, previousIndex: preIndex, newIndex: i))
+            else if let oldIndex = find(pre, el) where oldIndex != i {
+                move.append(MovedItem(element: el, newIndex: i, oldIndex: oldIndex))
             }
         }
 
         for (i, el) in enumerate(pre) {
             if !contains(new, el) {
-                rem.append(DiffItem(element: el, index: i))
+                remove.append(DiffItem(element: el, index: i))
             }
         }
+
+        return .Differences(insert: insert, remove: remove, update: update, move: move)
     }
     else {
-        for (i, el) in enumerate(new) {
-            add.append(DiffItem(element: el, index: i))
-        }
+        return .Initial(new)
     }
-
-    return DiffResult(added: add, removed: rem, updated: upd, moved: mov)
 }
