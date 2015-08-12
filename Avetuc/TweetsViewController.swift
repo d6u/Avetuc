@@ -47,8 +47,12 @@ class TweetsViewController: UITableViewController {
             let removeIndexPaths = differences.remove.map { NSIndexPath(forRow: $0.index, inSection: 0) }
             self.tableView.deleteRowsAtIndexPaths(removeIndexPaths, withRowAnimation: .Bottom)
 
-            let updateIndexPaths = differences.update.map { NSIndexPath(forRow: $0.index, inSection: 0) }
-            self.tableView.reloadRowsAtIndexPaths(updateIndexPaths, withRowAnimation: .Fade)
+            for update in differences.update {
+                let indexPath = NSIndexPath(forRow: update.index, inSection: 0)
+                if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? TweetCell {
+                    cell.loadTweet(update.element, user: self.user)
+                }
+            }
 
             for item in differences.move {
                 self.tableView.moveRowAtIndexPath(
