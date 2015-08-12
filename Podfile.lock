@@ -11,11 +11,11 @@ PODS:
   - LarryBird (0.0.4):
     - Alamofire (~> 1.3.0)
     - CryptoSwift (~> 0.0.12)
-  - Realm (0.94.0):
-    - Realm/Headers (= 0.94.0)
-  - Realm/Headers (0.94.0)
-  - RealmSwift (0.94.0):
-    - Realm (= 0.94.0)
+  - Realm (0.94.1):
+    - Realm/Headers (= 0.94.1)
+  - Realm/Headers (0.94.1)
+  - RealmSwift (0.94.1):
+    - Realm (= 0.94.1)
   - Runes (2.0.0)
   - RxSwift (1.9)
   - SnapKit (0.12.0)
@@ -29,7 +29,7 @@ DEPENDENCIES:
   - EasyAnimation (= 0.7.0)
   - Kingfisher (= 1.4.2)
   - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.4`)
-  - RealmSwift (= 0.94.0)
+  - RealmSwift (= 0.94.1)
   - RxSwift (= 1.9.0)
   - SnapKit (= 0.12.0)
   - TapLabel (= 0.0.3)
@@ -60,8 +60,8 @@ SPEC CHECKSUMS:
   EasyAnimation: ddc49f0eaf034f6d47a95bf805d9e95e84908053
   Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
   LarryBird: 59c40f924de624343025195deae2a772e51234da
-  Realm: a046149653e0ca220b65b5783da907aa5b74d86c
-  RealmSwift: 5efbbf1a5c179a7237e4d428594e41619fa167ba
+  Realm: d999a6cf0b41577a077349c9cc9d496cc62a7d17
+  RealmSwift: 06b60ff5b1338755654d39aab44ac38001600f76
   Runes: 4fe81355f4620b76b02176222d264b33e60dba51
   RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
