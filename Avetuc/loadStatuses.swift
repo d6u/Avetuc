@@ -59,6 +59,19 @@ func loadStatuses
 
             return updatedCellData
         }
+        >- map {
+            multiSort($0, [
+                {
+                    if $0.original_tweet.id > $1.original_tweet.id {
+                        return .LeftFirst
+                    } else if $0.original_tweet.id < $1.original_tweet.id {
+                        return .RightFirst
+                    } else {
+                        return .Same
+                    }
+                }
+            ])
+        }
         >- cachePrevious
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
