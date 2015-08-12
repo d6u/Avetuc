@@ -11,11 +11,8 @@ func loadFriends
         a.unread_status_count != b.unread_status_count
     }
 
-    let backgroundWorkScheduler = SerialDispatchQueueScheduler(
-        queue: dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
-        internalSerialQueueName: "random")
-
     return accountObservable
+        >- observeOn(CommonScheduler.instance)
         >- filter { $0 != nil }
         >- map { $0! }
         >- map { account -> [User] in
@@ -37,7 +34,6 @@ func loadFriends
 
             return updatedFriends
         }
-        >- observeOn(backgroundWorkScheduler)
         >- map {
             multiSort($0, [
                 {
