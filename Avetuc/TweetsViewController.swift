@@ -79,10 +79,10 @@ extension TweetsViewController {
             forControlEvents: .ValueChanged)
 
         River.instance.observable_statuses
-            >- subscribeNext { [unowned self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
-                self.refreshControl!.endRefreshing()
-                self.tweets = tweets
-                self.reloadTable(diffResult)
+            >- subscribeNext { [weak self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
+                self?.refreshControl!.endRefreshing()
+                self?.tweets = tweets
+                self?.reloadTable(diffResult)
             }
             >- self.bag.addDisposable
 

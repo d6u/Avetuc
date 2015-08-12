@@ -14,7 +14,7 @@ class River {
     private let observer_addAccountError = PublishSubject<NSError>()
     private let observer_account = ReplaySubject<Account?>(bufferSize: 1)
     private let observer_friends = ReplaySubject<([User], DiffResult<User>)>(bufferSize: 1)
-    private let observer_statuses = ReplaySubject<([TweetCellData], DiffResult<TweetCellData>)>(bufferSize: 1)
+    private let observer_statuses: Observable<([TweetCellData], DiffResult<TweetCellData>)>
 
     var observable_addAccountError: Observable<NSError> {
         return self.observer_addAccountError >- asObservable
@@ -70,16 +70,12 @@ class River {
         stream_friends.connect()
 
 
-        let stream_statuses = combineLatest(
+        self.observer_statuses = combineLatest(
             self.action_selectFriend,
             stream_updateAccount >- startWith()) {
                 (id, ()) in id
             }
             >- loadStatuses(stream_updateTweetReadState >- asObservable)
-            >- publish
-
-        stream_statuses.subscribe(self.observer_statuses)
-        stream_statuses.connect()
 
 
         stream_updateTweetReadState.connect()
