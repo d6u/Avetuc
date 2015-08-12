@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		78104DFD1B70FAAE00BDBE02 /* River.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78104DFC1B70FAAE00BDBE02 /* River.swift */; };
+		781FB5F51B7BF67200BFD48B /* removeNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781FB5F41B7BF67200BFD48B /* removeNull.swift */; };
 		7822A4631B74496A0054CF96 /* createFetchHomeTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */; };
 		7822A4651B7469A30054CF96 /* loadFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822A4641B7469A30054CF96 /* loadFriends.swift */; };
 		7826CD291B60A0D300B7DBD1 /* multiSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7826CD281B60A0D300B7DBD1 /* multiSort.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		78104DFC1B70FAAE00BDBE02 /* River.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = River.swift; sourceTree = "<group>"; };
+		781FB5F41B7BF67200BFD48B /* removeNull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = removeNull.swift; sourceTree = "<group>"; };
 		7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createFetchHomeTimeline.swift; sourceTree = "<group>"; };
 		7822A4641B7469A30054CF96 /* loadFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadFriends.swift; sourceTree = "<group>"; };
 		7826CD281B60A0D300B7DBD1 /* multiSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = multiSort.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				7826CD281B60A0D300B7DBD1 /* multiSort.swift */,
 				78DCCD8D1B64365A0066FDB2 /* parseTweet.swift */,
 				78CBC8421B7710520024371A /* diff.swift */,
+				781FB5F41B7BF67200BFD48B /* removeNull.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				784B5FDB1B5C7B6F006F1300 /* TimestampView.swift in Sources */,
 				78D866CA1B7AFFCE0088D8A7 /* Secrets.swift in Sources */,
 				78CF9F5E1B5B704B00DE9D9E /* FriendCellNameLabel.swift in Sources */,
+				781FB5F51B7BF67200BFD48B /* removeNull.swift in Sources */,
 				78FD6C491B55FE1800AA3875 /* screenBounds.swift in Sources */,
 				78DCCD901B6462A30066FDB2 /* UIConstants.swift in Sources */,
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,

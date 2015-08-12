@@ -12,7 +12,6 @@ func loadFriends
     }
 
     return accountObservable
-        >- observeOn(CommonScheduler.instance)
         >- filter { $0 != nil }
         >- map { $0! }
         >- map { account -> [User] in
@@ -67,5 +66,5 @@ func loadFriends
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
-        >- observeOn(MainScheduler.sharedInstance)
+//        >- observeOn(MainScheduler.sharedInstance)
 }

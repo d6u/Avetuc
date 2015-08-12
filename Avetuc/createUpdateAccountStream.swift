@@ -18,11 +18,13 @@ func createUpdateAccountStream(account: Account) -> Observable<()> {
                 return
             }
 
+            let _arr = removeNull(arr) as! Array<[String: AnyObject]>
+
             let realm = Realm()
 
             realm.beginWrite()
 
-            let tweets = arr.map { data -> Tweet in
+            let tweets = _arr.map { data -> Tweet in
                 let tweet = realm.create(Tweet.self, value: data, update: true)
                 tweet.user.unread_status_count += 1
                 return tweet

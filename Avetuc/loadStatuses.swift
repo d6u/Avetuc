@@ -21,11 +21,11 @@ func loadStatuses
     }
 
     return action
-        >- observeOn(CommonScheduler.instance)
+//        >- observeOn(CommonScheduler.instance)
         >- map { (user_id: Int64) -> [Tweet] in
             let realm = Realm()
             let user = realm.objects(User).filter("id = %ld", user_id).first!
-            let tweets = realm.objects(Tweet.self).filter("user = $@", user)
+            let tweets = realm.objects(Tweet.self).filter("user = %@", user)
             return Array(tweets)
         }
         >- map { (tweets: [Tweet]) -> [TweetCellData] in
@@ -73,5 +73,5 @@ func loadStatuses
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }
-        >- observeOn(MainScheduler.sharedInstance)
+//        >- observeOn(MainScheduler.sharedInstance)
 }
