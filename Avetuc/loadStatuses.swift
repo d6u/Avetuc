@@ -63,6 +63,7 @@ func loadStatuses
 
             return updatedCellData
         }
+        >- observeOn(CommonScheduler.instance)
         >- map {
             multiSort($0, [
                 {
@@ -77,6 +78,7 @@ func loadStatuses
             ])
         }
         >- cachePrevious
+        >- observeOn(CommonScheduler.instance)
         >- map { pre, new in
             (new, diffTweetCellData(pre: pre, new: new))
         }

@@ -5,7 +5,7 @@ class CommonScheduler {
 
     static let instance: SerialDispatchQueueScheduler = {
         return SerialDispatchQueueScheduler(
-            queue: dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
+            queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0),
             internalSerialQueueName: "common_background")
     }()
 

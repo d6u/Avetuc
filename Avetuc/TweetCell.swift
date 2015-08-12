@@ -104,7 +104,7 @@ class TweetCell: UITableViewCell {
     }
 
     func setMakeReadTimer() {
-        self.markReadTimer = Timer(duration: 2) { [unowned self] in
+        self.markReadTimer = Timer(duration: 1) { [unowned self] in
             action_updateTweetReadState(self.cellData!.original_tweet.id, true)
         }
     }
