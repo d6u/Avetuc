@@ -202,7 +202,7 @@
 				78CBC8421B7710520024371A /* diff.swift */,
 				781FB5F41B7BF67200BFD48B /* removeNull.swift */,
 			);
-			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		782EA86D1B7B91D70019C8CA /* Entities */ = {
@@ -213,7 +213,7 @@
 				78AA4EED1B7BDB3200AABC8F /* Entity Type */,
 				78AA4EEC1B7BDB1A00AABC8F /* Entity Details */,
 			);
-			name = Entities;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		784633191B71A654001D8801 /* River */ = {
@@ -227,7 +227,7 @@
 				7879FFE01B7238A1004D8AFF /* Custom Operators.swift */,
 				78D866C71B7AF1AF0088D8A7 /* CommonScheduler.swift */,
 			);
-			name = River;
+			path = River;
 			sourceTree = "<group>";
 		};
 		784B5FA51B5C3859006F1300 /* TweetCell */ = {
@@ -241,7 +241,7 @@
 				784B5FA61B5C592F006F1300 /* ImageBoxView.swift */,
 				78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */,
 			);
-			name = TweetCell;
+			path = TweetCell;
 			sourceTree = "<group>";
 		};
 		7879FFE41B7238E9004D8AFF /* Stream Factory */ = {
@@ -253,7 +253,7 @@
 				7822A4641B7469A30054CF96 /* loadFriends.swift */,
 				784F754E1B7594DE001741D1 /* loadStatuses.swift */,
 			);
-			name = "Stream Factory";
+			path = "Stream Factory";
 			sourceTree = "<group>";
 		};
 		7879FFE91B723CD1004D8AFF /* Twitter API Stream */ = {
@@ -262,7 +262,7 @@
 				7879FFEA1B731517004D8AFF /* API Config Factory.swift */,
 				7846331A1B71A675001D8801 /* Request Streams.swift */,
 			);
-			name = "Twitter API Stream";
+			path = "Twitter API Stream";
 			sourceTree = "<group>";
 		};
 		787DB05B1B76A6DF00D42BF0 /* Update Account */ = {
@@ -273,7 +273,7 @@
 				7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */,
 				782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */,
 			);
-			name = "Update Account";
+			path = "Update Account";
 			sourceTree = "<group>";
 		};
 		78AA4EEC1B7BDB1A00AABC8F /* Entity Details */ = {
@@ -283,7 +283,7 @@
 				78643C651B7BBFA500581AF1 /* MediaSizes.swift */,
 				788ABF451B6076D000E3540F /* MediaSize.swift */,
 			);
-			name = "Entity Details";
+			path = "Entity Details";
 			sourceTree = "<group>";
 		};
 		78AA4EED1B7BDB3200AABC8F /* Entity Type */ = {
@@ -295,7 +295,7 @@
 				788ABF411B60769C00E3540F /* MediaEntity.swift */,
 				788ABF431B6076B500E3540F /* MediaEntityExtended.swift */,
 			);
-			name = "Entity Type";
+			path = "Entity Type";
 			sourceTree = "<group>";
 		};
 		78CF9F631B5B76E100DE9D9E /* FriendCell */ = {
@@ -306,7 +306,7 @@
 				78CF9F5F1B5B710D00DE9D9E /* FriendCellScreenNameLabel.swift */,
 				78CF9F611B5B725300DE9D9E /* FriendCellUnreadCountView.swift */,
 			);
-			name = FriendCell;
+			path = FriendCell;
 			sourceTree = "<group>";
 		};
 		78DCCD911B6464AA0066FDB2 /* Component View */ = {
@@ -314,7 +314,7 @@
 			children = (
 				78CF9F5B1B5B632D00DE9D9E /* ProfileImageView.swift */,
 			);
-			name = "Component View";
+			path = "Component View";
 			sourceTree = "<group>";
 		};
 		78FD6C171B55FC9300AA3875 = {
@@ -358,7 +358,7 @@
 				78FD6C311B55FC9300AA3875 /* LaunchScreen.xib */,
 				78FD6C241B55FC9300AA3875 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		78FD6C3B1B55FC9300AA3875 /* AvetucTests */ = {
@@ -375,7 +375,7 @@
 			children = (
 				78FD6C3D1B55FC9300AA3875 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		78FD6C4C1B55FE5900AA3875 /* UI */ = {
@@ -391,7 +391,7 @@
 				78FD6C831B5601E800AA3875 /* Views */,
 				78FD6C4D1B55FE6A00AA3875 /* Utilities */,
 			);
-			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		78FD6C4D1B55FE6A00AA3875 /* Utilities */ = {
@@ -402,7 +402,7 @@
 				78CF9F591B5B61AB00DE9D9E /* UIColor+Extension.swift */,
 				78B2CD6C1B655706006E9B90 /* Timer.swift */,
 			);
-			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		78FD6C601B55FFBF00AA3875 /* Models */ = {
@@ -413,7 +413,7 @@
 				78B4DA2C1B5BFD19008CBD37 /* Tweet.swift */,
 				782EA86D1B7B91D70019C8CA /* Entities */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		78FD6C831B5601E800AA3875 /* Views */ = {
@@ -425,7 +425,7 @@
 				78CF9F631B5B76E100DE9D9E /* FriendCell */,
 				784B5FA51B5C3859006F1300 /* TweetCell */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,6 +666,7 @@
 				78FD6C321B55FC9300AA3875 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -765,11 +766,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = Avetuc/Info.plist;
+				INFOPLIST_FILE = "Avetuc/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Supporting Files/Avetuc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
 			};
 			name = Debug;
@@ -785,11 +786,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				INFOPLIST_FILE = Avetuc/Info.plist;
+				INFOPLIST_FILE = "Avetuc/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Avetuc-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Supporting Files/Avetuc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
 			};
 			name = Release;
@@ -806,7 +807,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AvetucTests/Info.plist;
+				INFOPLIST_FILE = "AvetucTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avetuc.app/Avetuc";
@@ -821,7 +822,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AvetucTests/Info.plist;
+				INFOPLIST_FILE = "AvetucTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avetuc.app/Avetuc";
