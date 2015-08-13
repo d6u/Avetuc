@@ -13,3 +13,4 @@ pod 'LarryBird', :git => 'https://github.com/d6u/LarryBird.git', :tag => 'v0.0.4
 pod 'RxSwift', '1.9.0'
 pod 'RxCocoa', '1.9.0'
 pod 'EasyAnimation', '0.7.0'
+pod 'DZNEmptyDataSet', '1.7'

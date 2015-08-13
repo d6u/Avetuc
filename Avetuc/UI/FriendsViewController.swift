@@ -1,13 +1,6 @@
-//
-//  ViewController.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/5/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import UIKit
 import RxSwift
+import DZNEmptyDataSet
 
 class FriendsViewController:
     UITableViewController,
@@ -78,6 +71,10 @@ class FriendsViewController:
             action: Selector("refreshControlValueChanged:"),
             forControlEvents: .ValueChanged)
 
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.tableFooterView = UIView()
+
         River.instance.observable_friends
             >- subscribeNext { [unowned self] (friends, diffResult) in
                 self.refreshControl!.endRefreshing()
@@ -123,5 +120,12 @@ class FriendsViewController:
 
     required init!(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension FriendsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "Loading friends...")
     }
 }
