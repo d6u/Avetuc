@@ -2,4 +2,4 @@ I often found my friends tweets were buried by account with large amount of post
 
 So here I created this app called **Avetuc**
 
-# Avetuc - A Very Easy To User Client
+# Avetuc - A Very Easy To Use Client
