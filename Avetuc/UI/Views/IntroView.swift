@@ -59,16 +59,10 @@ class IntroView: UIView {
 
         self.webAuthButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(self)
-            make.top.equalTo(self.logo.snp_bottom).offset(120)
+            make.top.equalTo(self.logo.snp_bottom).offset(90)
             make.width.equalTo(250)
             make.height.equalTo(50)
         }
-
-        River.instance.observable_addAccountError
-            >- subscribeNext { err in
-                println("add account err \(err)")
-            }
-            >- self.bag.addDisposable
     }
 
     let bag = DisposeBag()
