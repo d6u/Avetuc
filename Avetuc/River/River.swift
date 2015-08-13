@@ -16,6 +16,7 @@ class River {
     private let observer_friends = ReplaySubject<([User], DiffResult<User>)>(bufferSize: 1)
     private let observer_statuses: Observable<([TweetCellData], DiffResult<TweetCellData>)>
     private let observer_tweetReadStateChange:  ConnectableObservableType<[(tweet: Tweet, user: User)]>
+    private let observer_updateAccount: ConnectableObservableType<()>
 
     var observable_addAccountError: Observable<NSError> {
         return self.observer_addAccountError >- asObservable
@@ -37,6 +38,14 @@ class River {
         return self.observer_tweetReadStateChange
     }
 
+    var observable_updateAccountStart: Observable<String?> {
+        return self.action_updateAccount >- asObservable
+    }
+
+    var observable_updateAccountFinish: Observable<()> {
+        return self.observer_updateAccount >- asObservable
+    }
+
     init() {
         let stream_addAccountFromWeb = self.action_addAccountFromWeb
             >- asObservable
@@ -51,7 +60,7 @@ class River {
         stream_addAccountFromWeb.connect()
 
 
-        let stream_updateAccount = self.action_updateAccount
+        self.observer_updateAccount = self.action_updateAccount
             >- update
             >- publish
 
@@ -64,7 +73,7 @@ class River {
 
         let stream_friends = combineLatest(
             self.observer_account,
-            stream_updateAccount >- startWith())
+            self.observer_updateAccount >- startWith())
             {
                 (account, ()) in account
             }
@@ -77,14 +86,14 @@ class River {
 
         self.observer_statuses = combineLatest(
             self.action_selectFriend,
-            stream_updateAccount >- startWith()) {
+            self.observer_updateAccount >- startWith()) {
                 (id, ()) in id
             }
             >- loadStatuses(self.observer_tweetReadStateChange >- asObservable)
 
 
         self.observer_tweetReadStateChange.connect()
-        stream_updateAccount.connect()
+        self.observer_updateAccount.connect()
 
 //        sendNext(self.action_updateAccount, nil)
     }
