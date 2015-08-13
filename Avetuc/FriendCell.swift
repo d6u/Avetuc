@@ -36,27 +36,7 @@ class FriendTableCell: UITableViewCell {
             make.right.equalTo(self).offset(-15)
             make.top.equalTo(self).offset(24)
         }
-
-        River.instance.observable_tweetReadStateChange
-            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<User> in
-                let users = arr.map { (tweet: Tweet, user: User) -> User in
-                    user
-                }
-                return from(users)
-            }
-            >- filter { [weak self] user in
-                if let u = self?.user {
-                    return u == user
-                }
-                return false
-            }
-            >- subscribeNext { [weak self] user in
-                self?.unreadCountView.count = user.unread_status_count
-            }
-            >- self.bag.addDisposable
     }
-
-    let bag = DisposeBag()
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
     let nameView = FriendCellNameLabel()
@@ -67,10 +47,16 @@ class FriendTableCell: UITableViewCell {
 
     func load(user: User) {
         self.user = user
-        self.nameView.text = user.name
-        self.screenNameView.text = "@\(user.screen_name)"
-        self.unreadCountView.count = user.unread_status_count
-        self.profileImageView.updateImage(user.profile_image_url)
+        self.refresh()
+    }
+
+    func refresh() {
+        if let user = self.user  {
+            self.nameView.text = user.name
+            self.screenNameView.text = "@\(user.screen_name)"
+            self.unreadCountView.count = user.unread_status_count
+            self.profileImageView.updateImage(user.profile_image_url)
+        }
     }
 
     // MARK: - Delegate

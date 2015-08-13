@@ -24,7 +24,7 @@ func createFetchHomeTimeline(account: Account) -> Observable<Array<[String: AnyO
         }
         >- doOnNext { arr in
             if sinceId != nil && arr.count > 0 {
-                let oldestTweetId = arr.last!["id"] as! Int64
+                let oldestTweetId = (arr.last!["id"] as! NSNumber).longLongValue
                 sendNext(subject, String(oldestTweetId - 1))
             } else {
                 sendCompleted(subject)

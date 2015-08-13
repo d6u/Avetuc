@@ -30,13 +30,14 @@ class FriendsViewController:
         switch diffResult {
         case .Initial(let friends):
             #if DEBUG
-            println("friends table initial load")
+                println("friends table initial load")
             #endif
 
             self.tableView.reloadData()
         case .Differences(let differences):
             #if DEBUG
-            println("friends table diff load")
+                println("friends table diff load")
+                println(differences)
             #endif
 
             self.tableView.beginUpdates()
@@ -51,8 +52,14 @@ class FriendsViewController:
             self.tableView.reloadRowsAtIndexPaths(updateIndexPaths, withRowAnimation: .Fade)
 
             for item in differences.move {
+                let indexPath = NSIndexPath(forRow: item.oldIndex, inSection: 0)
+
+                if let cell = self.tableView.cellForRowAtIndexPath(indexPath) as? FriendTableCell {
+                    cell.refresh()
+                }
+
                 self.tableView.moveRowAtIndexPath(
-                    NSIndexPath(forRow: item.oldIndex, inSection: 0),
+                    indexPath,
                     toIndexPath: NSIndexPath(forRow: item.newIndex, inSection: 0))
             }
 

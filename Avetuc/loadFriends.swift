@@ -32,7 +32,7 @@ func loadFriends
                 for change in changes {
                     let (_, user) = change
 
-                    if friend.id == user.id {
+                    if friend == user {
                         updatedFriends[i] = user
                     }
                 }

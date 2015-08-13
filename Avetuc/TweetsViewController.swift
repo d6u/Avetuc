@@ -37,6 +37,7 @@ class TweetsViewController: UITableViewController {
         case .Differences(let differences):
             #if DEBUG
                 println("tweets table diff load")
+                println(differences)
             #endif
 
             self.tableView.beginUpdates()
