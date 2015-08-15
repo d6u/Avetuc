@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Daiwei Lu. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import TUSafariActivity
 

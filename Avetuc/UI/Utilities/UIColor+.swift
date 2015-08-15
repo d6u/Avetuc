@@ -1,11 +1,3 @@
-//
-//  UIColor+Extension.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/19/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -22,5 +14,9 @@ extension UIColor {
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
-    
+
+    convenience init(hex: Int) {
+        self.init(red: (hex >> 16) & 0xff, green: (hex >> 8) & 0xff, blue: hex & 0xff)
+    }
+
 }
