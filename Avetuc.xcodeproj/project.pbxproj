@@ -28,6 +28,11 @@
 		78347D511B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D501B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift */; };
 		78347D531B8029B400DBE981 /* LoadedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D521B8029B400DBE981 /* LoadedObjects.swift */; };
 		78347D551B802BDF00DBE981 /* UpdateTweetReadStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D541B802BDF00DBE981 /* UpdateTweetReadStateStore.swift */; };
+		78347D581B80348900DBE981 /* TweetsViewController+TapLabelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D571B80348900DBE981 /* TweetsViewController+TapLabelDelegate.swift */; };
+		78347D5A1B8034D800DBE981 /* TweetsViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D591B8034D800DBE981 /* TweetsViewController+TableView.swift */; };
+		78347D5C1B8036FC00DBE981 /* FriendsViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D5B1B8036FC00DBE981 /* FriendsViewController+TableView.swift */; };
+		78347D5F1B80383200DBE981 /* RootViewController+ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D5E1B80383200DBE981 /* RootViewController+ProgressBar.swift */; };
+		78347D611B80392700DBE981 /* RootViewController+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D601B80392700DBE981 /* RootViewController+LifeCycle.swift */; };
 		7834C96E1B58A423004029C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* Account.swift */; };
 		7834C9701B58A423004029C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* User.swift */; };
 		783718AC1B6529C000ED168D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -112,6 +117,11 @@
 		78347D501B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
 		78347D521B8029B400DBE981 /* LoadedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedObjects.swift; sourceTree = "<group>"; };
 		78347D541B802BDF00DBE981 /* UpdateTweetReadStateStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTweetReadStateStore.swift; sourceTree = "<group>"; };
+		78347D571B80348900DBE981 /* TweetsViewController+TapLabelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+TapLabelDelegate.swift"; sourceTree = "<group>"; };
+		78347D591B8034D800DBE981 /* TweetsViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+TableView.swift"; sourceTree = "<group>"; };
+		78347D5B1B8036FC00DBE981 /* FriendsViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+TableView.swift"; sourceTree = "<group>"; };
+		78347D5E1B80383200DBE981 /* RootViewController+ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+ProgressBar.swift"; sourceTree = "<group>"; };
+		78347D601B80392700DBE981 /* RootViewController+LifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+LifeCycle.swift"; sourceTree = "<group>"; };
 		7834C96D1B58A423004029C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7834C96F1B58A423004029C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7846331A1B71A675001D8801 /* Request Streams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request Streams.swift"; sourceTree = "<group>"; };
@@ -293,6 +303,7 @@
 			children = (
 				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
 				78347D451B801EF400DBE981 /* FriendsViewController+.swift */,
+				78347D5B1B8036FC00DBE981 /* FriendsViewController+TableView.swift */,
 				78CF9F631B5B76E100DE9D9E /* FriendCell */,
 			);
 			name = Friends;
@@ -313,7 +324,9 @@
 			children = (
 				784B5FA11B5C379F006F1300 /* TweetsViewController.swift */,
 				78347D4D1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift */,
+				78347D591B8034D800DBE981 /* TweetsViewController+TableView.swift */,
 				78347D501B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift */,
+				78347D571B80348900DBE981 /* TweetsViewController+TapLabelDelegate.swift */,
 				784B5FA51B5C3859006F1300 /* TweetCell */,
 			);
 			name = Tweets;
@@ -325,6 +338,16 @@
 				78347D541B802BDF00DBE981 /* UpdateTweetReadStateStore.swift */,
 			);
 			name = "Update Tweet Read State";
+			sourceTree = "<group>";
+		};
+		78347D5D1B80381200DBE981 /* Root Nav View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */,
+				78347D601B80392700DBE981 /* RootViewController+LifeCycle.swift */,
+				78347D5E1B80383200DBE981 /* RootViewController+ProgressBar.swift */,
+			);
+			name = "Root Nav View Controller";
 			sourceTree = "<group>";
 		};
 		784633191B71A654001D8801 /* River */ = {
@@ -473,7 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C251B55FC9300AA3875 /* AppDelegate.swift */,
-				78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */,
+				78347D5D1B80381200DBE981 /* Root Nav View Controller */,
 				78347D311B7FCDFE00DBE981 /* Intro View */,
 				78347D471B801F3E00DBE981 /* Friends */,
 				78347D4F1B80229E00DBE981 /* Tweets */,
@@ -666,6 +689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78347D5C1B8036FC00DBE981 /* FriendsViewController+TableView.swift in Sources */,
 				7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */,
 				784B5FDF1B5C96EF006F1300 /* TweetTextView.swift in Sources */,
 				782EA86C1B7B90B10019C8CA /* Entities.swift in Sources */,
@@ -697,6 +721,8 @@
 				78347D331B7FCE2800DBE981 /* IntroViewController+TransitioningDelegate.swift in Sources */,
 				78CF9F5A1B5B61AB00DE9D9E /* UIColor+.swift in Sources */,
 				788ABF441B6076B500E3540F /* MediaEntityExtended.swift in Sources */,
+				78347D581B80348900DBE981 /* TweetsViewController+TapLabelDelegate.swift in Sources */,
+				78347D5F1B80383200DBE981 /* RootViewController+ProgressBar.swift in Sources */,
 				78CF9F581B5B614100DE9D9E /* FriendCell.swift in Sources */,
 				784B5FA21B5C379F006F1300 /* TweetsViewController.swift in Sources */,
 				784B5FD91B5C7AE2006F1300 /* RetweetedText.swift in Sources */,
@@ -705,6 +731,7 @@
 				78300ED21B73B67B00C3DB07 /* createUpdateAccountStream.swift in Sources */,
 				7834C96E1B58A423004029C3 /* Account.swift in Sources */,
 				782EA86A1B740F460019C8CA /* createUpdateFriendsStream.swift in Sources */,
+				78347D5A1B8034D800DBE981 /* TweetsViewController+TableView.swift in Sources */,
 				78347D4E1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift in Sources */,
 				78FD6C7E1B5601B500AA3875 /* FriendsViewController.swift in Sources */,
 				78CF9F5C1B5B632D00DE9D9E /* ProfileImageView.swift in Sources */,
@@ -728,6 +755,7 @@
 				78643C671B7BBFA500581AF1 /* MediaSizes.swift in Sources */,
 				7826CD291B60A0D300B7DBD1 /* multiSort.swift in Sources */,
 				78347D531B8029B400DBE981 /* LoadedObjects.swift in Sources */,
+				78347D611B80392700DBE981 /* RootViewController+LifeCycle.swift in Sources */,
 				78DCCD8E1B64365A0066FDB2 /* parseTweet.swift in Sources */,
 				78347D381B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift in Sources */,
 				78CBC8431B7710520024371A /* diff.swift in Sources */,
