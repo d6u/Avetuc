@@ -12,19 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         println("in DEBUG")
         #endif
+
         self.window = UIWindow(frame: screenBounds())
         self.window!.rootViewController = RootViewController()
         self.window!.makeKeyAndVisible()
-        return true
-    }
-
-    func application(
-        application: UIApplication, 
-        openURL url: NSURL,
-        sourceApplication: String?, 
-        annotation: AnyObject?) -> Bool
-    {
-        action_handleOauthCallback(url)
         return true
     }
 
@@ -42,5 +33,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
     }
-
 }

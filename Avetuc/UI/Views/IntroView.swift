@@ -1,20 +1,20 @@
-//
-//  IntroView.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/7/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
-import Foundation
 import UIKit
 import SnapKit
 import RxSwift
+import RxCocoa
 
 class IntroView: UIView {
 
+    private let backgroundPlate: UIView
+    private let webAuthButton: UIButton
+    private let logo: UIImageView
+
+    let buttonTapObservable: Observable<Void>
+
     override init(frame: CGRect)
     {
+        self.logo = UIImageView(image: UIImage(named: "LetterA")!)
+
         self.backgroundPlate = {
             let view = UIView(frame: CGRect(x: 0, y: 20, width: frame.width, height: frame.height - 20))
             view.layer.cornerRadius = 6
@@ -25,9 +25,6 @@ class IntroView: UIView {
             view.layer.insertSublayer(gradient, atIndex: 0)
             return view
         }()
-
-        self.logoImage = UIImage(named: "LetterA")!
-        self.logo = UIImageView(image: self.logoImage)
 
         self.webAuthButton = {
             let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
@@ -42,11 +39,11 @@ class IntroView: UIView {
             return button
         }()
 
+        self.buttonTapObservable = self.webAuthButton.rx_tap
+
         super.init(frame: frame)
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
-
-        self.webAuthButton.addTarget(self, action: "webAuthButtonTapped", forControlEvents: .TouchUpInside)
 
         self.addSubview(self.backgroundPlate)
         self.addSubview(self.logo)
@@ -63,16 +60,6 @@ class IntroView: UIView {
             make.width.equalTo(250)
             make.height.equalTo(50)
         }
-    }
-
-    let bag = DisposeBag()
-    let backgroundPlate: UIView
-    let webAuthButton: UIButton
-    let logoImage: UIImage
-    let logo: UIImageView
-
-    func webAuthButtonTapped() {
-        action_addAccountFromWeb()
     }
 
     // MARK: - No use

@@ -2,8 +2,20 @@ import Foundation
 import RxSwift
 
 func flattern<R>(source: Observable<Observable<R>>) -> Observable<R> {
-    return source >- flatMap { (stream: Observable<R>) in
-        stream
+    return source >- flatMap { (stream: Observable<R>) in stream }
+}
+
+func doOnError<E>(handler: ErrorType -> Void) -> Observable<E> -> Observable<E> {
+    return { source in
+        source
+            >- `do` { event in
+                switch event {
+                case .Error(let err):
+                    handler(err)
+                default:
+                    break
+                }
+            }
     }
 }
 
