@@ -5,6 +5,11 @@ import RxSwift
 
 class TweetsViewController: UITableViewController {
 
+    let bag = DisposeBag()
+    let user: User
+    var tweets = [TweetCellData]()
+    var isMonitoringScroll = false
+
     init(user: User) {
         self.user = user
 
@@ -13,11 +18,6 @@ class TweetsViewController: UITableViewController {
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.registerClass(TweetCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
     }
-
-    let bag = DisposeBag()
-    let user: User
-    var tweets = [TweetCellData]()
-    var isMonitoringScroll = false
 
     func refreshControlValueChanged(refreshControl: UIRefreshControl) {
         if refreshControl.refreshing {
@@ -72,41 +72,6 @@ class TweetsViewController: UITableViewController {
     }
 }
 
-extension TweetsViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(
-            self,
-            action: Selector("refreshControlValueChanged:"),
-            forControlEvents: .ValueChanged)
-
-//        River.instance.observable_statuses
-//            >- subscribeNext { [weak self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
-//                self?.refreshControl!.endRefreshing()
-//                self?.tweets = tweets
-//                self?.reloadTable(diffResult)
-//            }
-//            >- self.bag.addDisposable
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.isMonitoringScroll = true
-        self.scrollViewDidScroll(self.tableView)
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.isMonitoringScroll = false
-        for cell in self.tableView.visibleCells() as! [TweetCell] {
-            cell.cancelMakeReadTimer()
-        }
-    }
-}
-
 extension TweetsViewController: UITableViewDataSource {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -129,40 +94,6 @@ extension TweetsViewController: UITableViewDelegate {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return TweetCell.heightForContent(self.tweets[indexPath.row])
-    }
-}
-
-extension TweetsViewController: UIScrollViewDelegate {
-
-    override func scrollViewDidScroll(scrollView: UIScrollView)
-    {
-        // This method will be triggered twice before `viewDidAppear`,
-        // which causes funny memory retain issues when calling `visibleCells`
-        // Set this flag to prevent it being called before `viewDidAppear`
-        if !self.isMonitoringScroll {
-            return
-        }
-
-        let offset = scrollView.contentOffset.y + 64 // Top offset
-        let containerHeight = scrollView.frame.height - 64
-
-        for cell in self.tableView.visibleCells() as! [TweetCell]
-        {
-            if let cellData = cell.cellData where !cellData.tweet.is_read
-            {
-                let bottom = cell.frame.origin.y + cell.frame.height
-
-                if bottom < offset {
-                    action_updateTweetReadState(cellData.tweet.id, true)
-                }
-                else if bottom - offset <= containerHeight {
-                    cell.setMakeReadTimer()
-                }
-                else if bottom - offset > containerHeight {
-                    cell.cancelMakeReadTimer()
-                }
-            }
-        }
     }
 }
 
