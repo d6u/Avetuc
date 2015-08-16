@@ -14,7 +14,10 @@ class TweetCell: UITableViewCell {
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
 
-        return max(ceil(boundingRect.size.height) + (cellData.tweet.retweeted_status == nil ? 10 : 30) + 37, 74)
+        return max(
+            ceil(boundingRect.size.height) + (cellData.tweet.retweeted_status == nil ? 10 : 30) + 37,
+            89 + (cellData.tweet.retweeted_status == nil ? 0 : 20) // Ensure min height
+        )
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -94,8 +97,8 @@ class TweetCell: UITableViewCell {
         }
 
         self.unreadIndicatorDisposable = cellData.tweet.rx_observe("is_read") as Observable<Bool?>
-            >- subscribeNext { [unowned self] isRead in
-                self.unreadIndicator.hidden = isRead!
+            >- subscribeNext { [weak self] isRead in
+                self?.unreadIndicator.hidden = isRead!
             }
     }
 
