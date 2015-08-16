@@ -35,6 +35,7 @@ class AuthWebViewController: UIViewController {
         leftBarButtonItem.rx_tap
             >- subscribeNext { [unowned self] in
                 self.dismissViewControllerAnimated(true, completion: nil)
+                sendError(self.authUrlObservable, UnknownError)
             }
             >- self.bag.addDisposable
     }

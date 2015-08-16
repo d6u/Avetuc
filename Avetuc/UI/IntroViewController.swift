@@ -17,7 +17,10 @@ class IntroViewController: UIViewController {
     override func loadView() {
         let view = IntroView(frame: screenBounds())
 
-        view.buttonTapObservable
+        view.webAuthButton.rx_tap
+            >- doOnNext {
+                view.webAuthButton.enabled = false
+            }
             >- flatMap { _ in
                 requestWebAuthUrlStream(defaultConfig())(TWITTER_OAUTH_CALLBACK)
             }
@@ -27,6 +30,9 @@ class IntroViewController: UIViewController {
                 return combineLatest(s1, s2) { requestAccessTokenStream($0)($1) }
             }
             >- flattern
+            >- `do` { _ in
+                view.webAuthButton.enabled = true
+            }
             >- doOnError { [unowned self] _ in
                 self.showError("Please try again")
             }

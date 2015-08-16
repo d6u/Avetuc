@@ -6,10 +6,8 @@ import RxCocoa
 class IntroView: UIView {
 
     private let backgroundPlate: UIView
-    private let webAuthButton: UIButton
+    let webAuthButton: UIButton
     private let logo: UIImageView
-
-    let buttonTapObservable: Observable<Void>
 
     override init(frame: CGRect)
     {
@@ -38,8 +36,6 @@ class IntroView: UIView {
             button.layer.masksToBounds = true
             return button
         }()
-
-        self.buttonTapObservable = self.webAuthButton.rx_tap
 
         super.init(frame: frame)
 
