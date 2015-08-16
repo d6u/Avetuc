@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import TapLabel
 import RxSwift
+import SnapKit
 
 class TweetsViewController: UITableViewController {
 
@@ -14,6 +15,8 @@ class TweetsViewController: UITableViewController {
         self.user = user
 
         super.init(nibName: nil, bundle: nil)
+
+        self.navigationItem.title = user.name
 
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.registerClass(TweetCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
