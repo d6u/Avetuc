@@ -21,7 +21,7 @@ class TweetsViewController: UITableViewController {
 
     func refreshControlValueChanged(refreshControl: UIRefreshControl) {
         if refreshControl.refreshing {
-            action_updateAccount(nil)
+            action_requestUpdateAccount(nil)
         }
     }
 
@@ -83,15 +83,13 @@ extension TweetsViewController {
             action: Selector("refreshControlValueChanged:"),
             forControlEvents: .ValueChanged)
 
-        River.instance.observable_statuses
-            >- subscribeNext { [weak self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
-                self?.refreshControl!.endRefreshing()
-                self?.tweets = tweets
-                self?.reloadTable(diffResult)
-            }
-            >- self.bag.addDisposable
-
-        action_selectFriend(self.user.id)
+//        River.instance.observable_statuses
+//            >- subscribeNext { [weak self] (tweets: [TweetCellData], diffResult: DiffResult<TweetCellData>) in
+//                self?.refreshControl!.endRefreshing()
+//                self?.tweets = tweets
+//                self?.reloadTable(diffResult)
+//            }
+//            >- self.bag.addDisposable
     }
 
     override func viewDidAppear(animated: Bool) {

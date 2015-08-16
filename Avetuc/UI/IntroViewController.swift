@@ -31,12 +31,16 @@ class IntroViewController: UIViewController {
                 self.showError("Please try again")
             }
             >- retry
-            >- subscribeNext { (data: AnyObject) in
-//                let realm = Realm()
-//                var account: Account!
-//                realm.write {
-//                    account = realm.create(Account.self, value: data, update: true)
-//                }
+            >- subscribeNext { [unowned self] data in
+                let realm = Realm()
+                var account: Account!
+                realm.write {
+                    account = realm.create(Account.self, value: data, update: true)
+                }
+
+                action_addAccount(account)
+                action_requestUpdateAccount(account.user_id)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
             >- self.bag.addDisposable
 

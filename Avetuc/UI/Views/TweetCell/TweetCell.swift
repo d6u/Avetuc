@@ -46,23 +46,23 @@ class TweetCell: UITableViewCell {
             make.bottom.equalTo(self).offset(-10)
         }
 
-        River.instance.observable_tweetReadStateChange
-            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<Tweet> in
-                let tweets = arr.map { (tweet: Tweet, user: User) -> Tweet in
-                    tweet
-                }
-                return from(tweets)
-            }
-            >- filter { [weak self] tweet in
-                if let t = self?.cellData?.tweet {
-                    return t == tweet
-                }
-                return false
-            }
-            >- subscribeNext { [weak self] tweet in
-                self?.isRead = tweet.is_read
-            }
-            >- self.bag.addDisposable
+//        River.instance.observable_tweetReadStateChange
+//            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<Tweet> in
+//                let tweets = arr.map { (tweet: Tweet, user: User) -> Tweet in
+//                    tweet
+//                }
+//                return from(tweets)
+//            }
+//            >- filter { [weak self] tweet in
+//                if let t = self?.cellData?.tweet {
+//                    return t == tweet
+//                }
+//                return false
+//            }
+//            >- subscribeNext { [weak self] tweet in
+//                self?.isRead = tweet.is_read
+//            }
+//            >- self.bag.addDisposable
     }
 
     let bag = DisposeBag()

@@ -45,8 +45,8 @@ class IntroView: UIView {
 
         self.backgroundColor = UIColor(white: 0, alpha: 0)
 
-        self.addSubview(self.logo)
         self.addSubview(self.backgroundPlate)
+        self.addSubview(self.logo)
         self.addSubview(self.webAuthButton)
 
         self.logo.snp_makeConstraints { make in

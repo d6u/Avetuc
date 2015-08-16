@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 import RxSwift
 import M13ProgressSuite
@@ -7,22 +6,38 @@ import Async
 
 class RootViewController: UINavigationController {
 
+    private let progress = M13ProgressViewBar()
+    private var progressBarDisposable: Disposable?
+    private var disposable_account: Disposable?
+
+    private let friendsTableViewController = FriendsViewController()
+    private var introViewController: IntroViewController?
+    private var account: Account?
+
     init() {
         super.init(nibName: nil, bundle: nil)
+        self.setupProgressBar()
+        self.pushViewController(self.friendsTableViewController, animated: false)
     }
 
-    let bag = DisposeBag()
-    let progress = M13ProgressViewBar()
-    var progressBarDisposable: Disposable?
-    var disposable_account: Disposable?
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
 
-    let friendsTableViewController = FriendsViewController()
-    var introViewController: IntroViewController?
-    var account: Account?
+        if self.disposable_account == nil {
+            self.disposable_account = River.instance.getAccountObservable()
+                >- subscribeNext { [unowned self] account in
+                    if let account = account {
+                        self.account = account
+                    }
+                    else {
+                        self.presentIntroView()
+                    }
+                }
+        }
+    }
 
     func presentIntroView() {
-        self.introViewController = IntroViewController()
-        self.presentViewController(self.introViewController!, animated: true, completion: nil)
+        self.presentViewController(IntroViewController(), animated: true, completion: nil)
     }
 
     func progressStarts() {
@@ -46,17 +61,11 @@ class RootViewController: UINavigationController {
         }
     }
 
-    // MARK: - Delegate
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.pushViewController(self.friendsTableViewController, animated: false)
-
+    func setupProgressBar() {
         self.view.addSubview(self.progress)
 
-        let navBar = self.navigationBar
-
         self.progress.snp_makeConstraints { make in
+            let navBar = self.navigationBar
             make.left.equalTo(navBar)
             make.right.equalTo(navBar).offset(10) // Mysterious offset
             make.bottom.equalTo(navBar.snp_bottom).offset(1)
@@ -64,40 +73,15 @@ class RootViewController: UINavigationController {
 
         self.progress.hidden = true
 
-        River.instance.observable_updateAccountStart
-            >- subscribeNext { _ in
-                self.progressStarts()
-            }
-
-        River.instance.observable_updateAccountFinish
-            >- subscribeNext {
-                self.progressEnds()
-            }
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if self.disposable_account == nil {
-            self.disposable_account = River.instance.observable_account
-                >- subscribeNext { [unowned self] account in
-                    if let account = account {
-                        self.account = account
-
-                        if let intro = self.introViewController {
-                            action_updateAccount(account.user_id)
-                            intro.dismissViewControllerAnimated(true, completion: nil)
-                            self.introViewController = nil
-                        }
-
-                    }
-                    else {
-                        self.presentIntroView()
-                    }
-                }
-
-            self.bag.addDisposable(self.disposable_account!)
-        }
+//        River.instance.observable_updateAccountStart
+//            >- subscribeNext { _ in
+//                self.progressStarts()
+//        }
+//
+//        River.instance.observable_updateAccountFinish
+//            >- subscribeNext {
+//                self.progressEnds()
+//        }
     }
 
     // MARK: - No use

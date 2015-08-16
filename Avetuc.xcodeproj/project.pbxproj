@@ -19,6 +19,8 @@
 		78347D331B7FCE2800DBE981 /* IntroViewController+TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D321B7FCE2800DBE981 /* IntroViewController+TransitioningDelegate.swift */; };
 		78347D351B7FD72200DBE981 /* AuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D341B7FD72200DBE981 /* AuthWebViewController.swift */; };
 		78347D381B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D371B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift */; };
+		78347D3A1B7FFBF600DBE981 /* UpdateAccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */; };
+		78347D401B8010BF00DBE981 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D3F1B8010BF00DBE981 /* AccountStore.swift */; };
 		7834C96E1B58A423004029C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* Account.swift */; };
 		7834C9701B58A423004029C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* User.swift */; };
 		783718AC1B6529C000ED168D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -34,11 +36,9 @@
 		784F75511B75A09F001741D1 /* updateTweetReadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784F75501B75A09F001741D1 /* updateTweetReadState.swift */; };
 		78643C661B7BBFA500581AF1 /* ExtendedEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78643C641B7BBFA500581AF1 /* ExtendedEntities.swift */; };
 		78643C671B7BBFA500581AF1 /* MediaSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78643C651B7BBFA500581AF1 /* MediaSizes.swift */; };
-		7879FFDF1B71A909004D8AFF /* defaultAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFDE1B71A909004D8AFF /* defaultAccount.swift */; };
 		7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE01B7238A1004D8AFF /* Custom Operators.swift */; };
 		7879FFE61B7239E3004D8AFF /* addAccountFromWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE51B7239E3004D8AFF /* addAccountFromWeb.swift */; };
 		7879FFEB1B731517004D8AFF /* API Config Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFEA1B731517004D8AFF /* API Config Factory.swift */; };
-		787DB05D1B76A84C00D42BF0 /* update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DB05C1B76A84C00D42BF0 /* update.swift */; };
 		788ABF3C1B60763500E3540F /* UrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3B1B60763500E3540F /* UrlEntity.swift */; };
 		788ABF3E1B60764D00E3540F /* UserMentionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3D1B60764D00E3540F /* UserMentionEntity.swift */; };
 		788ABF401B60765800E3540F /* HashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3F1B60765800E3540F /* HashtagEntity.swift */; };
@@ -89,16 +89,18 @@
 		1081824BEB9FCB5522FE66AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		78104DFC1B70FAAE00BDBE02 /* River.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = River.swift; sourceTree = "<group>"; };
 		781FB5F41B7BF67200BFD48B /* removeNull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = removeNull.swift; sourceTree = "<group>"; };
-		7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createFetchHomeTimeline.swift; sourceTree = "<group>"; };
+		7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createFetchHomeTimeline.swift; path = "Stream Factory/Update Account/createFetchHomeTimeline.swift"; sourceTree = "<group>"; };
 		7822A4641B7469A30054CF96 /* loadFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadFriends.swift; sourceTree = "<group>"; };
 		7826CD281B60A0D300B7DBD1 /* multiSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = multiSort.swift; sourceTree = "<group>"; };
-		782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createUpdateFriendsStream.swift; sourceTree = "<group>"; };
+		782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createUpdateFriendsStream.swift; path = "Stream Factory/Update Account/createUpdateFriendsStream.swift"; sourceTree = "<group>"; };
 		782EA86B1B7B90B10019C8CA /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		782EA86E1B7B92580019C8CA /* EntityIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityIndices.swift; sourceTree = "<group>"; };
-		78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createUpdateAccountStream.swift; sourceTree = "<group>"; };
+		78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createUpdateAccountStream.swift; path = "Stream Factory/Update Account/createUpdateAccountStream.swift"; sourceTree = "<group>"; };
 		78347D321B7FCE2800DBE981 /* IntroViewController+TransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntroViewController+TransitioningDelegate.swift"; sourceTree = "<group>"; };
 		78347D341B7FD72200DBE981 /* AuthWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthWebViewController.swift; sourceTree = "<group>"; };
 		78347D371B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthWebViewController+WebViewDelegate.swift"; sourceTree = "<group>"; };
+		78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateAccountStore.swift; path = "Stream Factory/UpdateAccountStore.swift"; sourceTree = "<group>"; };
+		78347D3F1B8010BF00DBE981 /* AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		7834C96D1B58A423004029C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7834C96F1B58A423004029C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7846331A1B71A675001D8801 /* Request Streams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request Streams.swift"; sourceTree = "<group>"; };
@@ -113,11 +115,9 @@
 		784F75501B75A09F001741D1 /* updateTweetReadState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updateTweetReadState.swift; sourceTree = "<group>"; };
 		78643C641B7BBFA500581AF1 /* ExtendedEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedEntities.swift; sourceTree = "<group>"; };
 		78643C651B7BBFA500581AF1 /* MediaSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSizes.swift; sourceTree = "<group>"; };
-		7879FFDE1B71A909004D8AFF /* defaultAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defaultAccount.swift; sourceTree = "<group>"; };
 		7879FFE01B7238A1004D8AFF /* Custom Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Custom Operators.swift"; sourceTree = "<group>"; };
 		7879FFE51B7239E3004D8AFF /* addAccountFromWeb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addAccountFromWeb.swift; sourceTree = "<group>"; };
 		7879FFEA1B731517004D8AFF /* API Config Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API Config Factory.swift"; sourceTree = "<group>"; };
-		787DB05C1B76A84C00D42BF0 /* update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = update.swift; sourceTree = "<group>"; };
 		788ABF3B1B60763500E3540F /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlEntity.swift; sourceTree = "<group>"; };
 		788ABF3D1B60764D00E3540F /* UserMentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntity.swift; sourceTree = "<group>"; };
 		788ABF3F1B60765800E3540F /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntity.swift; sourceTree = "<group>"; };
@@ -202,7 +202,6 @@
 		7826CD2A1B60A0DC00B7DBD1 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				7879FFDE1B71A909004D8AFF /* defaultAccount.swift */,
 				7826CD281B60A0D300B7DBD1 /* multiSort.swift */,
 				78DCCD8D1B64365A0066FDB2 /* parseTweet.swift */,
 				78CBC8421B7710520024371A /* diff.swift */,
@@ -243,11 +242,40 @@
 			name = "Auth Web View";
 			sourceTree = "<group>";
 		};
+		78347D3B1B7FFBFC00DBE981 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				78347D411B80166300DBE981 /* Account */,
+				78347D3C1B7FFD7700DBE981 /* Update Account */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		78347D3C1B7FFD7700DBE981 /* Update Account */ = {
+			isa = PBXGroup;
+			children = (
+				78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */,
+				78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */,
+				7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */,
+				782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */,
+			);
+			name = "Update Account";
+			sourceTree = "<group>";
+		};
+		78347D411B80166300DBE981 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				78347D3F1B8010BF00DBE981 /* AccountStore.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
 		784633191B71A654001D8801 /* River */ = {
 			isa = PBXGroup;
 			children = (
 				78104DFC1B70FAAE00BDBE02 /* River.swift */,
 				78F7A7BA1B63C502002CF1C6 /* Actions.swift */,
+				78347D3B1B7FFBFC00DBE981 /* Store */,
 				7879FFE41B7238E9004D8AFF /* Stream Factory */,
 				7879FFE91B723CD1004D8AFF /* Twitter API Stream */,
 				7826CD2A1B60A0DC00B7DBD1 /* Utilities */,
@@ -275,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				7879FFE51B7239E3004D8AFF /* addAccountFromWeb.swift */,
-				787DB05B1B76A6DF00D42BF0 /* Update Account */,
 				784F75501B75A09F001741D1 /* updateTweetReadState.swift */,
 				7822A4641B7469A30054CF96 /* loadFriends.swift */,
 				784F754E1B7594DE001741D1 /* loadStatuses.swift */,
@@ -290,17 +317,6 @@
 				7846331A1B71A675001D8801 /* Request Streams.swift */,
 			);
 			path = "Twitter API Stream";
-			sourceTree = "<group>";
-		};
-		787DB05B1B76A6DF00D42BF0 /* Update Account */ = {
-			isa = PBXGroup;
-			children = (
-				787DB05C1B76A84C00D42BF0 /* update.swift */,
-				78300ED11B73B67B00C3DB07 /* createUpdateAccountStream.swift */,
-				7822A4621B74496A0054CF96 /* createFetchHomeTimeline.swift */,
-				782EA8691B740F460019C8CA /* createUpdateFriendsStream.swift */,
-			);
-			path = "Update Account";
 			sourceTree = "<group>";
 		};
 		78AA4EEC1B7BDB1A00AABC8F /* Entity Details */ = {
@@ -605,7 +621,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */,
-				7879FFDF1B71A909004D8AFF /* defaultAccount.swift in Sources */,
 				784B5FDF1B5C96EF006F1300 /* TweetTextView.swift in Sources */,
 				782EA86C1B7B90B10019C8CA /* Entities.swift in Sources */,
 				78CF9F621B5B725300DE9D9E /* FriendCellUnreadCountView.swift in Sources */,
@@ -617,6 +632,7 @@
 				78B2CD6D1B655706006E9B90 /* Timer.swift in Sources */,
 				784B5FDD1B5C7BDE006F1300 /* UserNames.swift in Sources */,
 				78CA8FDF1B672D0800093FD9 /* WebViewController.swift in Sources */,
+				78347D3A1B7FFBF600DBE981 /* UpdateAccountStore.swift in Sources */,
 				784B5FA41B5C3855006F1300 /* TweetCell.swift in Sources */,
 				78347D351B7FD72200DBE981 /* AuthWebViewController.swift in Sources */,
 				782EA86F1B7B92580019C8CA /* EntityIndices.swift in Sources */,
@@ -627,11 +643,11 @@
 				784F754F1B7594DE001741D1 /* loadStatuses.swift in Sources */,
 				78FD6C261B55FC9300AA3875 /* AppDelegate.swift in Sources */,
 				788ABF3C1B60763500E3540F /* UrlEntity.swift in Sources */,
+				78347D401B8010BF00DBE981 /* AccountStore.swift in Sources */,
 				78FD6C661B56001F00AA3875 /* Configuration.swift in Sources */,
 				78FD6C801B5601D500AA3875 /* IntroViewController.swift in Sources */,
 				78347D331B7FCE2800DBE981 /* IntroViewController+TransitioningDelegate.swift in Sources */,
 				78CF9F5A1B5B61AB00DE9D9E /* UIColor+.swift in Sources */,
-				787DB05D1B76A84C00D42BF0 /* update.swift in Sources */,
 				788ABF441B6076B500E3540F /* MediaEntityExtended.swift in Sources */,
 				78CF9F581B5B614100DE9D9E /* FriendCell.swift in Sources */,
 				784B5FA21B5C379F006F1300 /* TweetsViewController.swift in Sources */,

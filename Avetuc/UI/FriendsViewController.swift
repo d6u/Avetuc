@@ -75,18 +75,18 @@ class FriendsViewController:
         self.tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView()
 
-        River.instance.observable_friends
-            >- subscribeNext { [unowned self] (friends, diffResult) in
-                self.refreshControl!.endRefreshing()
-                self.friends = friends
-                self.reloadTable(diffResult)
-            }
-            >- self.bag.addDisposable
+//        River.instance.observable_friends
+//            >- subscribeNext { [unowned self] (friends, diffResult) in
+//                self.refreshControl!.endRefreshing()
+//                self.friends = friends
+//                self.reloadTable(diffResult)
+//            }
+//            >- self.bag.addDisposable
     }
 
     func refreshControlValueChanged(refreshControl: UIRefreshControl) {
         if refreshControl.refreshing {
-            action_updateAccount(nil)
+            action_requestUpdateAccount(nil)
         }
     }
 
