@@ -15,7 +15,7 @@ class TweetsStore {
         return self.river.getUpdateAccountObservable()
             >- startWith()
             >- map { () -> [Tweet] in
-                let tweets = Realm().objects(Tweet.self).filter("user = %@", user)
+                let tweets = Realm().objects(Tweet.self).filter("user = %@", user).sorted("id", ascending: false)
                 return LoadedObjects.instance.getLoadedTweets(Array(tweets))
             }
             >- map { (tweets: [Tweet]) -> [TweetCellData] in
@@ -30,19 +30,6 @@ class TweetsStore {
 
                     return TweetCellData(tweet: tweet, text: text)
                 }
-            }
-            >- map {
-                multiSort($0, [
-                    {
-                        if $0.tweet.id > $1.tweet.id {
-                            return .LeftFirst
-                        } else if $0.tweet.id < $1.tweet.id {
-                            return .RightFirst
-                        } else {
-                            return .Same
-                        }
-                    }
-                ])
             }
     }
 }
