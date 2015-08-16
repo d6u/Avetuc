@@ -12,6 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         println("in DEBUG")
         #endif
+
         self.window = UIWindow(frame: screenBounds())
         self.window!.rootViewController = RootViewController()
         self.window!.makeKeyAndVisible()

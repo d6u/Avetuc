@@ -11,6 +11,7 @@ class River {
 
     let getUpdateAccountObservable: () -> Observable<()>
     let getAccountObservable: () -> Observable<Account?>
+    let getFriendsObservable: Account -> Observable<[User]>
 
     init() {
         let accountStore = AccountStore()
@@ -19,10 +20,14 @@ class River {
         let updateAccountStore = UpdateAccountStore()
         self.getUpdateAccountObservable = updateAccountStore.get
 
+        let friendsStore = FriendsStore()
+        self.getFriendsObservable = friendsStore.get
+
         // Active order matters
         // TODO: - Auto active with dependency injection
 
         accountStore.active(self)
         updateAccountStore.active(self)
+        friendsStore.active(self)
     }
 }

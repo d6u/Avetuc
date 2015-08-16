@@ -28,6 +28,7 @@ class RootViewController: UINavigationController {
                 >- subscribeNext { [unowned self] account in
                     if let account = account {
                         self.account = account
+                        self.friendsTableViewController.loadFriendsOf(account)
                     }
                     else {
                         self.presentIntroView()

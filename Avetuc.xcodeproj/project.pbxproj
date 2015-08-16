@@ -21,6 +21,8 @@
 		78347D381B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D371B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift */; };
 		78347D3A1B7FFBF600DBE981 /* UpdateAccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */; };
 		78347D401B8010BF00DBE981 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D3F1B8010BF00DBE981 /* AccountStore.swift */; };
+		78347D431B801A6C00DBE981 /* FriendsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D421B801A6C00DBE981 /* FriendsStore.swift */; };
+		78347D461B801EF400DBE981 /* FriendsViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D451B801EF400DBE981 /* FriendsViewController+.swift */; };
 		7834C96E1B58A423004029C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96D1B58A423004029C3 /* Account.swift */; };
 		7834C9701B58A423004029C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834C96F1B58A423004029C3 /* User.swift */; };
 		783718AC1B6529C000ED168D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AE55537037288AF826D948 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -101,6 +103,8 @@
 		78347D371B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthWebViewController+WebViewDelegate.swift"; sourceTree = "<group>"; };
 		78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateAccountStore.swift; path = "Stream Factory/UpdateAccountStore.swift"; sourceTree = "<group>"; };
 		78347D3F1B8010BF00DBE981 /* AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
+		78347D421B801A6C00DBE981 /* FriendsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsStore.swift; sourceTree = "<group>"; };
+		78347D451B801EF400DBE981 /* FriendsViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+.swift"; sourceTree = "<group>"; };
 		7834C96D1B58A423004029C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		7834C96F1B58A423004029C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7846331A1B71A675001D8801 /* Request Streams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Request Streams.swift"; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 			children = (
 				78347D411B80166300DBE981 /* Account */,
 				78347D3C1B7FFD7700DBE981 /* Update Account */,
+				78347D441B801A7900DBE981 /* Friends */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -268,6 +273,23 @@
 				78347D3F1B8010BF00DBE981 /* AccountStore.swift */,
 			);
 			name = Account;
+			sourceTree = "<group>";
+		};
+		78347D441B801A7900DBE981 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				78347D421B801A6C00DBE981 /* FriendsStore.swift */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
+		78347D471B801F3E00DBE981 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
+				78347D451B801EF400DBE981 /* FriendsViewController+.swift */,
+			);
+			name = Friends;
 			sourceTree = "<group>";
 		};
 		784633191B71A654001D8801 /* River */ = {
@@ -427,7 +449,7 @@
 				78FD6C251B55FC9300AA3875 /* AppDelegate.swift */,
 				78FD6C4A1B55FE2B00AA3875 /* RootViewController.swift */,
 				78347D311B7FCDFE00DBE981 /* Intro View */,
-				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
+				78347D471B801F3E00DBE981 /* Friends */,
 				784B5FA11B5C379F006F1300 /* TweetsViewController.swift */,
 				78CA8FDE1B672D0800093FD9 /* WebViewController.swift */,
 				78FD6C831B5601E800AA3875 /* Views */,
@@ -625,6 +647,7 @@
 				782EA86C1B7B90B10019C8CA /* Entities.swift in Sources */,
 				78CF9F621B5B725300DE9D9E /* FriendCellUnreadCountView.swift in Sources */,
 				788ABF401B60765800E3540F /* HashtagEntity.swift in Sources */,
+				78347D431B801A6C00DBE981 /* FriendsStore.swift in Sources */,
 				78CF9F601B5B710D00DE9D9E /* FriendCellScreenNameLabel.swift in Sources */,
 				7834C9701B58A423004029C3 /* User.swift in Sources */,
 				78643C661B7BBFA500581AF1 /* ExtendedEntities.swift in Sources */,
@@ -663,6 +686,7 @@
 				78CF9F5C1B5B632D00DE9D9E /* ProfileImageView.swift in Sources */,
 				78B4DA2D1B5BFD19008CBD37 /* Tweet.swift in Sources */,
 				78104DFD1B70FAAE00BDBE02 /* River.swift in Sources */,
+				78347D461B801EF400DBE981 /* FriendsViewController+.swift in Sources */,
 				78B2CD6B1B653006006E9B90 /* UnreadIndicator.swift in Sources */,
 				788ABF461B6076D000E3540F /* MediaSize.swift in Sources */,
 				784F75511B75A09F001741D1 /* updateTweetReadState.swift in Sources */,
