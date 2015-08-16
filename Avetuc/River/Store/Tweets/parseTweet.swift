@@ -2,57 +2,6 @@ import Foundation
 import UIKit
 import TapLabel
 
-extension String {
-
-    func substringToIndex(index: Int) -> String {
-        return self.substringToIndex(advance(self.startIndex, index))
-    }
-
-    func substringFromIndex(index: Int) -> String {
-        return self.substringFromIndex(advance(self.startIndex, index))
-    }
-
-    func substringBetweenIndexes(begin: Int, _ end: Int) -> String {
-        let substring = self.substringToIndex(end)
-        return substring.substringFromIndex(begin)
-    }
-    
-}
-
-protocol GeneralEntity {
-    var _indices: EntityIndices { get }
-}
-
-extension UrlEntity: GeneralEntity {
-    var _indices: EntityIndices {
-        return self.indices
-    }
-}
-
-extension HashtagEntity: GeneralEntity {
-    var _indices: EntityIndices {
-        return self.indices
-    }
-}
-
-extension UserMentionEntity: GeneralEntity {
-    var _indices: EntityIndices {
-        return self.indices
-    }
-}
-
-extension MediaEntity: GeneralEntity {
-    var _indices: EntityIndices {
-        return self.indices
-    }
-}
-
-extension MediaEntityExtended: GeneralEntity {
-    var _indices: EntityIndices {
-        return self.indices
-    }
-}
-
 func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
     let string = tweet.text
@@ -143,7 +92,10 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
     parts.append(string.substringBetweenIndexes(i, count(string)))
 
-    let parsedString = join("", parts)//.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
+    // Cannot use `join("", parts)`
+    // because it will hang when string has contry flag emoji
+    // e.g. "🇬🇧 LHR ✈️ SFO 🇺🇸"
+    let parsedString = (parts as NSArray).componentsJoinedByString("")
 
     let text = NSMutableAttributedString(string: parsedString, attributes: [
         NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 15)!,
@@ -152,12 +104,62 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
             paragraphStyle.lineSpacing = 3
             paragraphStyle.lineBreakMode = .ByWordWrapping
             return paragraphStyle
-            }()
-        ])
+        }()
+    ])
 
     for (key, value, head, tail) in attri {
         text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
     }
 
     return text
+}
+
+extension String {
+
+    func substringToIndex(index: Int) -> String {
+        return self.substringToIndex(advance(self.startIndex, index))
+    }
+
+    func substringFromIndex(index: Int) -> String {
+        return self.substringFromIndex(advance(self.startIndex, index))
+    }
+
+    func substringBetweenIndexes(begin: Int, _ end: Int) -> String {
+        let substring = self.substringToIndex(end)
+        return substring.substringFromIndex(begin)
+    }
+}
+
+protocol GeneralEntity {
+    var _indices: EntityIndices { get }
+}
+
+extension UrlEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
+    }
+}
+
+extension HashtagEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
+    }
+}
+
+extension UserMentionEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
+    }
+}
+
+extension MediaEntity: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
+    }
+}
+
+extension MediaEntityExtended: GeneralEntity {
+    var _indices: EntityIndices {
+        return self.indices
+    }
 }
