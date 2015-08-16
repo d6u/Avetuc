@@ -20,6 +20,7 @@ class IntroViewController: UIViewController {
         view.webAuthButton.rx_tap
             >- doOnNext {
                 view.webAuthButton.enabled = false
+                view.webAuthButton.alpha = 0.5
             }
             >- flatMap { _ in
                 requestWebAuthUrlStream(defaultConfig())(TWITTER_OAUTH_CALLBACK)
@@ -32,6 +33,7 @@ class IntroViewController: UIViewController {
             >- flattern
             >- `do` { _ in
                 view.webAuthButton.enabled = true
+                view.webAuthButton.alpha = 1
             }
             >- doOnError { [unowned self] _ in
                 self.showError("Please try again")
