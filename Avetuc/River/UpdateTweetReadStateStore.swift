@@ -22,7 +22,6 @@ class UpdateTweetReadStateStore {
 
                 return tweet
             }
-            >- debug("UpdateTweetReadStateStore")
             >- publish
 
         self.output.connect()

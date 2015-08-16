@@ -24,9 +24,6 @@ class FriendsStore {
                 return LoadedObjects.instance.getLoadedUsers(Array(friends))
             }
             >- filter { $0.count > 0 }
-            >- combineModifier(s) { friends, changes in
-                friends
-            }
             >- map {
                 multiSort($0, [
                     {
@@ -47,7 +44,42 @@ class FriendsStore {
                             return .Same
                         }
                     }
-                ])
+                    ])
+            }
+            >- combineModifier(s) { friends, changes in
+                friends
+            }
+            >- map { original in
+                var arr = original
+                var i = 0
+                var flag = true
+                var tmp: User!
+                var e1: User!
+                var e2: User!
+
+                while flag {
+                    flag = false
+
+                    for i = 0; i < arr.count - 1; i++ {
+                        e1 = arr[i]
+                        e2 = arr[i+1]
+                        if e1.unread_status_count == e2.unread_status_count {
+                            if e1.name > e2.name {
+                                tmp = arr[i]
+                                arr[i] = e2
+                                arr[i+1] = tmp
+                                flag = true
+                            }
+                        } else if e1.unread_status_count < e2.unread_status_count {
+                            tmp = arr[i]
+                            arr[i] = e2
+                            arr[i+1] = tmp
+                            flag = true
+                        }
+                    }
+                }
+
+                return arr
             }
     }
 }
