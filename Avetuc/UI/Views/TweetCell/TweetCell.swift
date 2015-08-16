@@ -3,6 +3,7 @@ import UIKit
 import TapLabel
 import SnapKit
 import RxSwift
+import RxCocoa
 
 class TweetCell: UITableViewCell {
 
@@ -45,24 +46,6 @@ class TweetCell: UITableViewCell {
             make.left.equalTo(self).offset(68)
             make.bottom.equalTo(self).offset(-10)
         }
-
-//        River.instance.observable_tweetReadStateChange
-//            >- flatMap { (arr: [(tweet: Tweet, user: User)]) -> Observable<Tweet> in
-//                let tweets = arr.map { (tweet: Tweet, user: User) -> Tweet in
-//                    tweet
-//                }
-//                return from(tweets)
-//            }
-//            >- filter { [weak self] tweet in
-//                if let t = self?.cellData?.tweet {
-//                    return t == tweet
-//                }
-//                return false
-//            }
-//            >- subscribeNext { [weak self] tweet in
-//                self?.isRead = tweet.is_read
-//            }
-//            >- self.bag.addDisposable
     }
 
     let bag = DisposeBag()
@@ -76,21 +59,16 @@ class TweetCell: UITableViewCell {
 
     var cellData: TweetCellData?
     var markReadTimer: Timer?
+    var unreadIndicatorDisposable: Disposable?
 
-    var isRead = false {
-        didSet {
-            self.unreadIndicator.hidden = self.isRead
-        }
+    override func prepareForReuse() {
+        self.unreadIndicatorDisposable?.dispose()
+        self.unreadIndicatorDisposable = nil
+        self.cancelMakeReadTimer()
     }
 
     func loadTweet(cellData: TweetCellData, user: User) {
-        self.cancelMakeReadTimer()
-
-        self.isRead = cellData.tweet.is_read
-
-        if self.cellData == cellData {
-            return
-        }
+        self.cellData = cellData
 
         self.textView.attributedText = cellData.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
@@ -115,12 +93,15 @@ class TweetCell: UITableViewCell {
             make.top.equalTo(cellData.tweet.retweeted_status == nil ? 10 : 30)
         }
 
-        self.cellData = cellData
+        self.unreadIndicatorDisposable = cellData.tweet.rx_observe("is_read") as Observable<Bool?>
+            >- subscribeNext { [unowned self] isRead in
+                self.unreadIndicator.hidden = isRead!
+            }
     }
 
     func setMakeReadTimer() {
         self.markReadTimer = Timer(duration: 1) { [unowned self] in
-            action_updateTweetReadState(self.cellData!.tweet.id, true)
+            action_updateTweetReadState(self.cellData!.tweet, true)
         }
     }
 

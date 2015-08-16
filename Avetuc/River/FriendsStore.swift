@@ -12,6 +12,8 @@ class FriendsStore {
 
     func get(account: Account) -> Observable<[User]> {
 
+        let s = self.river.getUpdateTweetReadStateObservable() >- buffer(0.5)
+
         return self.river.getUpdateAccountObservable()
             >- startWith()
             >- map { () -> [User] in
@@ -19,24 +21,12 @@ class FriendsStore {
                 for tweet in account.home_timeline {
                     friends.insert(tweet.user)
                 }
-                return Array(friends)
+                return LoadedObjects.instance.getLoadedUsers(Array(friends))
             }
             >- filter { $0.count > 0 }
-//            >- combineModifier(tweetUpdateStream) { friends, changes in
-//                var updatedFriends = friends
-//
-//                for (i, friend) in enumerate(friends) {
-//                    for change in changes {
-//                        let (_, user) = change
-//
-//                        if friend == user {
-//                            updatedFriends[i] = user
-//                        }
-//                    }
-//                }
-//
-//                return updatedFriends
-//            }
+            >- combineModifier(s) { friends, changes in
+                friends
+            }
             >- map {
                 multiSort($0, [
                     {
@@ -57,7 +47,7 @@ class FriendsStore {
                             return .Same
                         }
                     }
-                    ])
+                ])
             }
     }
 }

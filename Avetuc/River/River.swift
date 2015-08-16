@@ -7,10 +7,11 @@ class River {
 
     let action_addAccount = PublishSubject<Account>()
     let action_requestUpdateAccount = PublishSubject<String?>()
-    let action_updateTweetReadState = PublishSubject<(id: Int64, isRead: Bool)>()
+    let action_updateTweetReadState = PublishSubject<(tweet: Tweet, isRead: Bool)>()
 
     let getUpdateAccountObservable: () -> Observable<()>
     let getAccountObservable: () -> Observable<Account?>
+    let getUpdateTweetReadStateObservable: () -> Observable<Tweet>
     let getFriendsObservable: Account -> Observable<[User]>
     let getTweetsObservable: User -> Observable<[TweetCellData]>
 
@@ -20,6 +21,9 @@ class River {
 
         let updateAccountStore = UpdateAccountStore()
         self.getUpdateAccountObservable = updateAccountStore.get
+
+        let updateTweetReadStateStore = UpdateTweetReadStateStore()
+        self.getUpdateTweetReadStateObservable = updateTweetReadStateStore.get
 
         let friendsStore = FriendsStore()
         self.getFriendsObservable = friendsStore.get
@@ -32,6 +36,7 @@ class River {
 
         accountStore.active(self)
         updateAccountStore.active(self)
+        updateTweetReadStateStore.active(self)
         friendsStore.active(self)
         tweetsStore.active(self)
     }

@@ -9,6 +9,6 @@ func action_requestUpdateAccount(id: String?) {
     sendNext(River.instance.action_requestUpdateAccount, id)
 }
 
-func action_updateTweetReadState(id: Int64, isRead: Bool) {
-    sendNext(River.instance.action_updateTweetReadState, (id, isRead))
+func action_updateTweetReadState(tweet: Tweet, isRead: Bool) {
+    sendNext(River.instance.action_updateTweetReadState, (tweet, isRead))
 }
