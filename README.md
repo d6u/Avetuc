@@ -11,3 +11,7 @@ This project is no master piece. I had many problems while making it. It serves 
 ## Architecture
 
 My most proud piece is this thing called [River](https://github.com/d6u/Avetuc/blob/master/Avetuc/River/River.swift). It's a manager of streams (that's why I named it River) and event dispatcher. It borrowed concepts from Flux and used [RxSwift](https://github.com/ReactiveX/RxSwift/) as pillar store. It doesn't look very clear for now, but I plan to extract it into a separate project and make it more useful.
+
+## Issues & Bugs
+
+I record bugs and future features in PivotalTracker https://www.pivotaltracker.com/n/projects/1356996. But issues and PRs on Github are still welcome!
