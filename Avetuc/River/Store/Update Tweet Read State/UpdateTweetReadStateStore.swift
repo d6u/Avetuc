@@ -13,7 +13,7 @@ class UpdateTweetReadStateStore {
         self.output = river.action_updateTweetReadState
             >- map { tweet, isRead -> Tweet in
                 if tweet.is_read != isRead {
-                    let user = LoadedObjects.instance.getUser(tweet.user.id)!
+                    let user = LoadedObjects.instance.getUser(tweet.user!.id)!
                     Realm().write {
                         tweet.is_read = isRead
                         user.unread_status_count += isRead ? -1 : 1

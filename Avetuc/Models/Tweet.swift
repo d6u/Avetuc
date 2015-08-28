@@ -29,10 +29,10 @@ class Tweet: Object {
     // MARK: - Custom
     dynamic var is_read: Bool = false
 
-    dynamic var user = User()
+    dynamic var user: User?
     dynamic var retweeted_status: Tweet?
-    dynamic var entities = Entities()
-    dynamic var extended_entities = ExtendedEntities()
+    dynamic var entities: Entities?
+    dynamic var extended_entities: ExtendedEntities?
 
     override static func primaryKey() -> String? {
         return "id"

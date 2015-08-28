@@ -11,6 +11,6 @@ class MediaEntityExtended: Object {
     dynamic var expanded_url: String = ""
     dynamic var type: String = ""
 
-    dynamic var indices = EntityIndices()
-    dynamic var sizes = MediaSizes()
+    dynamic var indices: EntityIndices?
+    dynamic var sizes: MediaSizes?
 }

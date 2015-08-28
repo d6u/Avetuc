@@ -5,29 +5,31 @@ import TapLabel
 func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
     let string = tweet.text
-    let _entities = tweet.entities
-    let extendedEntities = tweet.extended_entities
 
     var entities = [GeneralEntity]()
 
-    for e in _entities.urls {
-        entities.append(e)
+    if let _entities = tweet.entities {
+        for e in _entities.urls {
+            entities.append(e)
+        }
+
+        for e in _entities.user_mentions {
+            entities.append(e)
+        }
+
+        for e in _entities.hashtags {
+            entities.append(e)
+        }
+
+        for e in _entities.media {
+            entities.append(e)
+        }
     }
 
-    for e in _entities.user_mentions {
-        entities.append(e)
-    }
-
-    for e in _entities.hashtags {
-        entities.append(e)
-    }
-
-    for e in _entities.media {
-        entities.append(e)
-    }
-
-    for e in extendedEntities.media {
-        entities.append(e)
+    if let extendedEntities = tweet.extended_entities {
+        for e in extendedEntities.media {
+            entities.append(e)
+        }
     }
 
     entities.sort { (a: GeneralEntity, b: GeneralEntity) -> Bool in
@@ -136,30 +138,30 @@ protocol GeneralEntity {
 
 extension UrlEntity: GeneralEntity {
     var _indices: EntityIndices {
-        return self.indices
+        return self.indices!
     }
 }
 
 extension HashtagEntity: GeneralEntity {
     var _indices: EntityIndices {
-        return self.indices
+        return self.indices!
     }
 }
 
 extension UserMentionEntity: GeneralEntity {
     var _indices: EntityIndices {
-        return self.indices
+        return self.indices!
     }
 }
 
 extension MediaEntity: GeneralEntity {
     var _indices: EntityIndices {
-        return self.indices
+        return self.indices!
     }
 }
 
 extension MediaEntityExtended: GeneralEntity {
     var _indices: EntityIndices {
-        return self.indices
+        return self.indices!
     }
 }

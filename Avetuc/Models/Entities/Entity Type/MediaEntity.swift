@@ -15,6 +15,6 @@ class MediaEntity: Object {
     dynamic var source_user_id: Int64 = -1
     dynamic var source_user_id_str: String = ""
 
-    dynamic var indices = EntityIndices()
-    dynamic var sizes = MediaSizes()
+    dynamic var indices: EntityIndices?
+    dynamic var sizes: MediaSizes?
 }
