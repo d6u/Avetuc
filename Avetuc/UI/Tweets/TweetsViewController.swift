@@ -18,6 +18,7 @@ class TweetsViewController: UITableViewController {
 
         self.navigationItem.title = user.name
 
+        self.tableView.allowsSelection = false
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.registerClass(TweetCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
 

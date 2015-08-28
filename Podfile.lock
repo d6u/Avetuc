@@ -1,10 +1,6 @@
 PODS:
-  - Alamofire (1.3.0)
-  - Argo (1.0.3):
-    - Box (~> 1.2)
-    - Runes (>= 1.2.2)
+  - Alamofire (1.3.1)
   - Async (1.3.1)
-  - Box (1.2.2)
   - BRYXBanner (0.2.2)
   - CryptoSwift (0.0.12)
   - DZNEmptyDataSet (1.7)
@@ -14,12 +10,11 @@ PODS:
     - Alamofire (~> 1.3.0)
     - CryptoSwift (~> 0.0.12)
   - M13ProgressSuite (1.2.7)
-  - Realm (0.94.1):
-    - Realm/Headers (= 0.94.1)
-  - Realm/Headers (0.94.1)
-  - RealmSwift (0.94.1):
-    - Realm (= 0.94.1)
-  - Runes (2.0.0)
+  - Realm (0.95.0):
+    - Realm/Headers (= 0.95.0)
+  - Realm/Headers (0.95.0)
+  - RealmSwift (0.95.0):
+    - Realm (= 0.95.0)
   - RxCocoa (1.9):
     - RxSwift
   - RxSwift (1.9)
@@ -28,8 +23,6 @@ PODS:
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
-  - Alamofire (= 1.3.0)
-  - Argo (= 1.0.3)
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
   - BRYXBanner (= 0.2.2)
   - DZNEmptyDataSet (= 1.7)
@@ -37,7 +30,7 @@ DEPENDENCIES:
   - Kingfisher (= 1.4.2)
   - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.4`)
   - M13ProgressSuite (= 1.2.7)
-  - RealmSwift (= 0.94.1)
+  - RealmSwift (= 0.95.0)
   - RxCocoa (= 1.9.0)
   - RxSwift (= 1.9.0)
   - SnapKit (= 0.12.0)
@@ -61,10 +54,8 @@ CHECKOUT OPTIONS:
     :tag: v0.0.4
 
 SPEC CHECKSUMS:
-  Alamofire: 220403a8d5840e0b4c946a6fbaf209dbca124282
-  Argo: 480471806cf73d4074fcb94751482cd6c139ba3c
+  Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
   Async: edb15b1e34181d7c9873ce6b5d6eabc1c99e638b
-  Box: a92e8aa4c099e6bc0733829665caf9e668ef53b8
   BRYXBanner: 48b3759e3f04799f14081e3dfa913bea6d528011
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
   DZNEmptyDataSet: 896f8efb3b0961c5ccb59d4959ccf9280854aa3d
@@ -72,9 +63,8 @@ SPEC CHECKSUMS:
   Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
   LarryBird: 59c40f924de624343025195deae2a772e51234da
   M13ProgressSuite: 03d194af6359da440641ba758aed5a18b0386a86
-  Realm: d999a6cf0b41577a077349c9cc9d496cc62a7d17
-  RealmSwift: 06b60ff5b1338755654d39aab44ac38001600f76
-  Runes: 4fe81355f4620b76b02176222d264b33e60dba51
+  Realm: bbb171b96728ea136ed5cd354dca2a3d6529923c
+  RealmSwift: 35eeb642bf0b43dedfe363451ba3288d0e72ebb9
   RxCocoa: 6ef9cc14418d5bbda067550e46f5949a3eeca37d
   RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882

@@ -19,7 +19,7 @@ class FriendsStore {
             >- map { () -> [User] in
                 var friends = Set<User>()
                 for tweet in account.home_timeline {
-                    friends.insert(tweet.user)
+                    friends.insert(tweet.user!)
                 }
                 return LoadedObjects.instance.getLoadedUsers(Array(friends))
             }
