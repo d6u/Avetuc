@@ -54,6 +54,7 @@
 		788ABF421B60769C00E3540F /* MediaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF411B60769C00E3540F /* MediaEntity.swift */; };
 		788ABF441B6076B500E3540F /* MediaEntityExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF431B6076B500E3540F /* MediaEntityExtended.swift */; };
 		788ABF461B6076D000E3540F /* MediaSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF451B6076D000E3540F /* MediaSize.swift */; };
+		78A17F0E1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A17F0D1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift */; };
 		78B2CD6B1B653006006E9B90 /* UnreadIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */; };
 		78B2CD6D1B655706006E9B90 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2CD6C1B655706006E9B90 /* Timer.swift */; };
 		78B4DA2D1B5BFD19008CBD37 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B4DA2C1B5BFD19008CBD37 /* Tweet.swift */; };
@@ -142,6 +143,7 @@
 		788ABF411B60769C00E3540F /* MediaEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEntity.swift; sourceTree = "<group>"; };
 		788ABF431B6076B500E3540F /* MediaEntityExtended.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEntityExtended.swift; sourceTree = "<group>"; };
 		788ABF451B6076D000E3540F /* MediaSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSize.swift; sourceTree = "<group>"; };
+		78A17F0D1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+LifeCycle.swift"; sourceTree = "<group>"; };
 		78B2CD6A1B653006006E9B90 /* UnreadIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnreadIndicator.swift; sourceTree = "<group>"; };
 		78B2CD6C1B655706006E9B90 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		78B4DA2C1B5BFD19008CBD37 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
+				78A17F0D1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift */,
 				78347D451B801EF400DBE981 /* FriendsViewController+.swift */,
 				78347D5B1B8036FC00DBE981 /* FriendsViewController+TableView.swift */,
 				78CF9F631B5B76E100DE9D9E /* FriendCell */,
@@ -700,6 +703,7 @@
 				78D855641B77E5DA002AB7FE /* IntroViewControllerAnimatedTransitioning.swift in Sources */,
 				78B2CD6D1B655706006E9B90 /* Timer.swift in Sources */,
 				784B5FDD1B5C7BDE006F1300 /* UserNames.swift in Sources */,
+				78A17F0E1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift in Sources */,
 				78CA8FDF1B672D0800093FD9 /* WebViewController.swift in Sources */,
 				78347D3A1B7FFBF600DBE981 /* UpdateAccountStore.swift in Sources */,
 				784B5FA41B5C3855006F1300 /* TweetCell.swift in Sources */,

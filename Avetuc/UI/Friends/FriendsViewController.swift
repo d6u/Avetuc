@@ -9,6 +9,8 @@ class FriendsViewController: UITableViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
 
+        self.clearsSelectionOnViewWillAppear = false
+
         self.tableView.registerClass(FriendTableCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
         self.tableView.layoutMargins = UIEdgeInsetsZero
 
