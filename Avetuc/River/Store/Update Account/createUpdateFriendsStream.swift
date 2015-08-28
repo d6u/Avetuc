@@ -1,7 +1,6 @@
 import Foundation
 import RxSwift
 import LarryBird
-import Argo
 import RealmSwift
 
 //func createUpdateFriendsStream(account: Account) -> Observable<[User]> {
