@@ -1,12 +1,3 @@
-//
-//  FriendCellUnreadCountView.swift
-//  Avetuc
-//
-//  Created by Daiwei Lu on 7/19/15.
-//  Copyright (c) 2015 Daiwei Lu. All rights reserved.
-//
-
-import Foundation
 import UIKit
 import SnapKit
 
@@ -15,13 +6,9 @@ class FriendCellUnreadCountView: UIView {
     init() {
         super.init(frame: CGRectZero)
 
-        self.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
-        self.layer.cornerRadius = 4
-        self.layer.masksToBounds = true
-
-        self.label.textColor = UIColor.whiteColor()
-        self.label.font = UIFont(name: "HelveticaNeue", size: 15)
+        self.label.font = UIFont(name: "HelveticaNeue", size: 17)
         self.label.textAlignment = .Center
+        self.label.backgroundColor = UIColor.whiteColor()
 
         self.addSubview(self.label)
 
@@ -35,7 +22,7 @@ class FriendCellUnreadCountView: UIView {
     var count: Int64? {
         didSet {
             if let c = self.count {
-                self.label.text = String(c)
+                self.label.text = c > 0 ? String(c) : ""
             }
         }
     }

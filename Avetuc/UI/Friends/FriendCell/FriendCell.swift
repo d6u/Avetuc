@@ -1,7 +1,5 @@
-import Foundation
 import UIKit
 import SnapKit
-import RxSwift
 
 class FriendTableCell: UITableViewCell {
 
@@ -38,7 +36,7 @@ class FriendTableCell: UITableViewCell {
         }
     }
 
-    let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 13, width: 48, height: 48))
+    let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 12, width: 48, height: 48))
     let nameView = FriendCellNameLabel()
     let screenNameView = FriendCellScreenNameLabel()
     let unreadCountView = FriendCellUnreadCountView()
@@ -58,22 +56,6 @@ class FriendTableCell: UITableViewCell {
             self.profileImageView.updateImage(user.profile_image_url)
         }
     }
-
-    // MARK: - Delegate
-
-    // Prevent sub UIView lost background color
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
-    }
-
-    // Prevent sub UIView lost background color
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        self.unreadCountView.backgroundColor = UNREAD_COUNT_BACKGROUND_COLOR
-    }
-
-    // MARK: - No use
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
