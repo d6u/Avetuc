@@ -48,6 +48,7 @@
 		78643C671B7BBFA500581AF1 /* MediaSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78643C651B7BBFA500581AF1 /* MediaSizes.swift */; };
 		7879FFE11B7238A1004D8AFF /* Custom Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFE01B7238A1004D8AFF /* Custom Operators.swift */; };
 		7879FFEB1B731517004D8AFF /* API Config Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FFEA1B731517004D8AFF /* API Config Factory.swift */; };
+		788807311B921CB400C64DAE /* NSMutableAttributedString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788807301B921CB400C64DAE /* NSMutableAttributedString+.swift */; };
 		788ABF3C1B60763500E3540F /* UrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3B1B60763500E3540F /* UrlEntity.swift */; };
 		788ABF3E1B60764D00E3540F /* UserMentionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3D1B60764D00E3540F /* UserMentionEntity.swift */; };
 		788ABF401B60765800E3540F /* HashtagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ABF3F1B60765800E3540F /* HashtagEntity.swift */; };
@@ -137,6 +138,7 @@
 		78643C651B7BBFA500581AF1 /* MediaSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSizes.swift; sourceTree = "<group>"; };
 		7879FFE01B7238A1004D8AFF /* Custom Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Custom Operators.swift"; sourceTree = "<group>"; };
 		7879FFEA1B731517004D8AFF /* API Config Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API Config Factory.swift"; sourceTree = "<group>"; };
+		788807301B921CB400C64DAE /* NSMutableAttributedString+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+.swift"; sourceTree = "<group>"; };
 		788ABF3B1B60763500E3540F /* UrlEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlEntity.swift; sourceTree = "<group>"; };
 		788ABF3D1B60764D00E3540F /* UserMentionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMentionEntity.swift; sourceTree = "<group>"; };
 		788ABF3F1B60765800E3540F /* HashtagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagEntity.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				78FD6C651B56001F00AA3875 /* Configuration.swift */,
+				788807301B921CB400C64DAE /* NSMutableAttributedString+.swift */,
 				78D866C91B7AFFCE0088D8A7 /* Secrets.swift */,
 				784633191B71A654001D8801 /* River */,
 				78FD6C4C1B55FE5900AA3875 /* UI */,
@@ -699,6 +702,7 @@
 				78347D431B801A6C00DBE981 /* FriendsStore.swift in Sources */,
 				78CF9F601B5B710D00DE9D9E /* FriendCellScreenNameLabel.swift in Sources */,
 				7834C9701B58A423004029C3 /* User.swift in Sources */,
+				788807311B921CB400C64DAE /* NSMutableAttributedString+.swift in Sources */,
 				78643C661B7BBFA500581AF1 /* ExtendedEntities.swift in Sources */,
 				78D855641B77E5DA002AB7FE /* IntroViewControllerAnimatedTransitioning.swift in Sources */,
 				78B2CD6D1B655706006E9B90 /* Timer.swift in Sources */,

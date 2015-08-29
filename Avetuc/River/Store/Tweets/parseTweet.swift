@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 import TapLabel
 
 func parseTweetText(tweet: Tweet) -> NSAttributedString {
@@ -112,6 +111,10 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
     for (key, value, head, tail) in attri {
         text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
     }
+
+    text.replaceOccurrencesOfString("&amp;", withString: "&")
+    text.replaceOccurrencesOfString("&lt;", withString: "<")
+    text.replaceOccurrencesOfString("&gt;", withString: ">")
 
     return text
 }
