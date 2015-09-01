@@ -11,14 +11,20 @@ extension TweetsViewController: UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER, forIndexPath: indexPath) as! TweetCell
-        cell.textView.delegate = self
-        cell.loadTweet(self.tweets[indexPath.row], user: self.user)
-        return cell
+        return tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER, forIndexPath: indexPath) as! TweetCell
     }
 }
 
 extension TweetsViewController: UITableViewDelegate {
+
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if let cell = cell as? TweetCell
+        {
+            cell.textView.delegate = self
+            cell.loadTweet(self.tweets[indexPath.row], user: self.user)
+        }
+    }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return TweetCell.heightForContent(self.tweets[indexPath.row])
