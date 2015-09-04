@@ -3,6 +3,7 @@ import TapLabel
 import SnapKit
 import RxSwift
 import RxCocoa
+import Cartography
 
 class TweetCell: UITableViewCell {
 
@@ -48,6 +49,10 @@ class TweetCell: UITableViewCell {
             make.left.equalTo(self).offset(72)
             make.bottom.equalTo(self).offset(-10)
         }
+
+        constrain(self.contentView) { view in
+            self.heightConstraint = (view.height == 0)
+        }
     }
 
     let bag = DisposeBag()
@@ -59,6 +64,7 @@ class TweetCell: UITableViewCell {
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
+    var heightConstraint: NSLayoutConstraint!
     var cellData: TweetCellData?
     var markReadTimer: Timer?
     var unreadIndicatorDisposable: Disposable?
@@ -71,6 +77,8 @@ class TweetCell: UITableViewCell {
 
     func loadTweet(cellData: TweetCellData, user: User) {
         self.cellData = cellData
+
+        self.heightConstraint.constant = TweetCell.heightForContent(cellData)
 
         self.textView.attributedText = cellData.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
