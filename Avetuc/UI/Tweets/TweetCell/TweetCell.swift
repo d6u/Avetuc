@@ -30,6 +30,7 @@ class TweetCell: UITableViewCell {
         self.contentView.addSubview(self.timeText)
         self.contentView.addSubview(self.retweetedText)
         self.contentView.addSubview(self.unreadIndicator)
+        self.contentView.addSubnode(self.textNode)
 
         self.timeText.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self).offset(-10)
@@ -54,8 +55,6 @@ class TweetCell: UITableViewCell {
         }
 
         self.textNode.userInteractionEnabled = true
-        self.textNode.delegate = self
-        self.contentView.addSubnode(self.textNode)
     }
 
     let bag = DisposeBag()
@@ -94,7 +93,6 @@ class TweetCell: UITableViewCell {
         self.textNode.attributedString = cellData.text!
         self.textNode.measure(CGSize(width: TWEET_CELL_TEXT_WIDTH, height: CGFloat.max))
         self.textNode.frame = CGRect(origin: CGPoint(x: 72, y: isRetweet ? 30 : 10), size: self.textNode.calculatedSize)
-
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
 
         if let retweetedUser = cellData.tweet.retweeted_status?.user {
@@ -129,26 +127,5 @@ class TweetCell: UITableViewCell {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension TweetCell: ASTextNodeDelegate {
-
-    
-
-    func textNode(
-        textNode: ASTextNode!,
-        tappedLinkAttribute attribute: String!,
-        value: AnyObject!,
-        atPoint point: CGPoint,
-        textRange: NSRange)
-    {
-        println(attribute)
-        println(value)
-    }
-
-    func textNode(textNode: ASTextNode!, shouldHighlightLinkAttribute attribute: String!, value: AnyObject!, atPoint point: CGPoint) -> Bool {
-        println(attribute)
-        return true
     }
 }
