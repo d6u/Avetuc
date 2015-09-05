@@ -50,6 +50,7 @@ class TweetCell: UITableViewCell {
 
         constrain(self.contentView) { view in
             self.heightConstraint = (view.height == 0)
+            view.width == self.frame.width // Otherwise contentView will collapse to zero width
         }
 
         self.textNode.userInteractionEnabled = true
