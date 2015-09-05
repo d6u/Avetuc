@@ -1,9 +1,9 @@
 import UIKit
-import TapLabel
 import SnapKit
 import RxSwift
 import RxCocoa
 import Cartography
+import AsyncDisplayKit
 
 class TweetCell: UITableViewCell {
 
@@ -24,12 +24,12 @@ class TweetCell: UITableViewCell {
         self.layoutMargins = UIEdgeInsetsZero
         self.separatorInset = UIEdgeInsetsMake(0, 72, 0, 0)
 
-        self.contentView.addSubview(self.textView)
         self.contentView.addSubview(self.profileImageView)
         self.contentView.addSubview(self.userNames)
         self.contentView.addSubview(self.timeText)
         self.contentView.addSubview(self.retweetedText)
         self.contentView.addSubview(self.unreadIndicator)
+        self.contentView.addSubnode(self.textNode)
 
         self.timeText.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self).offset(-10)
@@ -57,11 +57,12 @@ class TweetCell: UITableViewCell {
     let bag = DisposeBag()
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 12, width: 48, height: 48))
-    let textView = TweetTextView()
     let timeText = TimestampView()
     let userNames = UserNames()
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+
+    let textNode = TweetTextNode()
 
     var heightConstraint: NSLayoutConstraint!
     var cellData: TweetCellData?
@@ -86,7 +87,8 @@ class TweetCell: UITableViewCell {
 
         self.heightConstraint.constant = TweetCell.heightForText(cellData.text!, isRetweet: isRetweet)
 
-        self.textView.attributedText = cellData.text
+        self.textNode.text = cellData.text!
+        self.textNode.frame = CGRect(origin: CGPoint(x: 72, y: isRetweet ? 30 : 10), size: self.textNode.calculatedSize)
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
 
         if let retweetedUser = cellData.tweet.retweeted_status?.user {
@@ -101,12 +103,6 @@ class TweetCell: UITableViewCell {
             self.profileImageView.updateImage(user.profile_image_url)
             self.userNames.hidden = true
             self.retweetedText.hidden = true
-        }
-
-        self.textView.snp_updateConstraints { make in
-            make.left.equalTo(self).offset(72)
-            make.right.equalTo(self).offset(-10)
-            make.top.equalTo(cellData.tweet.retweeted_status == nil ? 10 : 30)
         }
 
         self.unreadIndicatorDisposable = cellData.tweet.rx_observe("is_read") as Observable<Bool?>

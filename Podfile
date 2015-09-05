@@ -3,7 +3,6 @@ use_frameworks!
 
 pod 'SnapKit', '0.12.0'
 pod 'Async', :git => 'https://github.com/duemunk/Async.git', :commit => '9e64046b767fe11010891f5b7fe2aed613a6ee55'
-pod 'TapLabel', '0.0.3'
 pod 'RealmSwift', '0.95.0'
 pod 'Kingfisher', '1.4.2'
 pod 'TUSafariActivity', '1.0.4'
