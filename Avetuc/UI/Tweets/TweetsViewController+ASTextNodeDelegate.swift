@@ -1,5 +1,4 @@
 import UIKit
-import TapLabel
 import AsyncDisplayKit
 
 extension TweetsViewController: ASTextNodeDelegate {
@@ -11,8 +10,10 @@ extension TweetsViewController: ASTextNodeDelegate {
         atPoint point: CGPoint,
         textRange: NSRange)
     {
-        println(attribute)
-        println(value)
+        if attribute == TEXT_LINK_ATTR_NAME {
+            let webViewController = WebViewController(url: value as! String)
+            self.presentViewController(webViewController, animated: true, completion: nil)
+        }
     }
 
     func textNode(
@@ -21,7 +22,6 @@ extension TweetsViewController: ASTextNodeDelegate {
         value: AnyObject!,
         atPoint point: CGPoint) -> Bool
     {
-        println(attribute)
         return true
     }
 }

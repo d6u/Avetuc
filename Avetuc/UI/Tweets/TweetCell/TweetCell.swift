@@ -53,8 +53,6 @@ class TweetCell: UITableViewCell {
             self.heightConstraint = (view.height == 0)
             view.width == self.frame.width // Otherwise contentView will collapse to zero width
         }
-
-        self.textNode.userInteractionEnabled = true
     }
 
     let bag = DisposeBag()
@@ -65,7 +63,7 @@ class TweetCell: UITableViewCell {
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
 
-    let textNode = ASTextNode()
+    let textNode = TweetTextNode()
 
     var heightConstraint: NSLayoutConstraint!
     var cellData: TweetCellData?
@@ -90,8 +88,7 @@ class TweetCell: UITableViewCell {
 
         self.heightConstraint.constant = TweetCell.heightForText(cellData.text!, isRetweet: isRetweet)
 
-        self.textNode.attributedString = cellData.text!
-        self.textNode.measure(CGSize(width: TWEET_CELL_TEXT_WIDTH, height: CGFloat.max))
+        self.textNode.text = cellData.text!
         self.textNode.frame = CGRect(origin: CGPoint(x: 72, y: isRetweet ? 30 : 10), size: self.textNode.calculatedSize)
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
 
