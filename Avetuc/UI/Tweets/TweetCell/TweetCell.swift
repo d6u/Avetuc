@@ -7,17 +7,15 @@ import Cartography
 
 class TweetCell: UITableViewCell {
 
-    static func heightForContent(cellData: TweetCellData) -> CGFloat
+    static func heightForText(text: NSAttributedString, isRetweet: Bool) -> CGFloat
     {
-        let boundingRect = cellData.text.boundingRectWithSize(
-            CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
+        let boundingRect = text.boundingRectWithSize(CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
             options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
             context: nil)
 
         return max(
-            ceil(boundingRect.size.height) + (cellData.tweet.retweeted_status == nil ? 10 : 30) + 37,
-            89 + (cellData.tweet.retweeted_status == nil ? 0 : 20) // Ensure min height
-        )
+            ceil(boundingRect.size.height) + (isRetweet ? 30 : 10) + 37,
+            89 + (isRetweet ? 20 : 0)) // Ensure min height
     }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -76,9 +74,16 @@ class TweetCell: UITableViewCell {
     }
 
     func loadTweet(cellData: TweetCellData, user: User) {
+
         self.cellData = cellData
 
-        self.heightConstraint.constant = TweetCell.heightForContent(cellData)
+        let isRetweet = cellData.tweet.retweeted_status != nil
+
+        if cellData.text == nil {
+            cellData.text = parseTweetText(isRetweet ? cellData.tweet.retweeted_status! : cellData.tweet)
+        }
+
+        self.heightConstraint.constant = TweetCell.heightForText(cellData.text!, isRetweet: isRetweet)
 
         self.textView.attributedText = cellData.text
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))

@@ -1,8 +1,14 @@
 import Foundation
 
-struct TweetCellData: Equatable {
+class TweetCellData: Equatable {
+
     let tweet: Tweet
-    let text: NSAttributedString
+    var text: NSAttributedString?
+
+    init(tweet: Tweet, text: NSAttributedString?) {
+        self.tweet = tweet
+        self.text = text
+    }
 }
 
 func ==(lhs: TweetCellData, rhs: TweetCellData) -> Bool {
