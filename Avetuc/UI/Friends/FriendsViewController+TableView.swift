@@ -2,10 +2,6 @@ import UIKit
 
 extension FriendsViewController: UITableViewDataSource {
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
     }
@@ -20,10 +16,6 @@ extension FriendsViewController: UITableViewDataSource {
 }
 
 extension FriendsViewController: UITableViewDelegate {
-
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return FriendTableCell.heightForContent()
-    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = self.friends[indexPath.row]
