@@ -21,7 +21,7 @@
 		78347D3A1B7FFBF600DBE981 /* UpdateAccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */; };
 		78347D401B8010BF00DBE981 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D3F1B8010BF00DBE981 /* AccountStore.swift */; };
 		78347D431B801A6C00DBE981 /* FriendsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D421B801A6C00DBE981 /* FriendsStore.swift */; };
-		78347D461B801EF400DBE981 /* FriendsViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D451B801EF400DBE981 /* FriendsViewController+.swift */; };
+		78347D461B801EF400DBE981 /* FriendsViewController+DZNEmptyDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D451B801EF400DBE981 /* FriendsViewController+DZNEmptyDataSet.swift */; };
 		78347D491B80205600DBE981 /* TweetsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D481B80205600DBE981 /* TweetsStore.swift */; };
 		78347D4C1B80213100DBE981 /* TweetStore Support Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D4B1B80213100DBE981 /* TweetStore Support Type.swift */; };
 		78347D4E1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D4D1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift */; };
@@ -112,7 +112,7 @@
 		78347D391B7FFBF600DBE981 /* UpdateAccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAccountStore.swift; sourceTree = "<group>"; };
 		78347D3F1B8010BF00DBE981 /* AccountStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		78347D421B801A6C00DBE981 /* FriendsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsStore.swift; sourceTree = "<group>"; };
-		78347D451B801EF400DBE981 /* FriendsViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+.swift"; sourceTree = "<group>"; };
+		78347D451B801EF400DBE981 /* FriendsViewController+DZNEmptyDataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+DZNEmptyDataSet.swift"; sourceTree = "<group>"; };
 		78347D481B80205600DBE981 /* TweetsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsStore.swift; sourceTree = "<group>"; };
 		78347D4B1B80213100DBE981 /* TweetStore Support Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetStore Support Type.swift"; sourceTree = "<group>"; };
 		78347D4D1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+LifeCycle.swift"; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 			children = (
 				78FD6C7D1B5601B500AA3875 /* FriendsViewController.swift */,
 				78A17F0D1B8FF4A300B51D20 /* FriendsViewController+LifeCycle.swift */,
-				78347D451B801EF400DBE981 /* FriendsViewController+.swift */,
+				78347D451B801EF400DBE981 /* FriendsViewController+DZNEmptyDataSet.swift */,
 				78347D5B1B8036FC00DBE981 /* FriendsViewController+TableView.swift */,
 				78CF9F631B5B76E100DE9D9E /* FriendCell */,
 			);
@@ -745,7 +745,7 @@
 				78347D4C1B80213100DBE981 /* TweetStore Support Type.swift in Sources */,
 				78104DFD1B70FAAE00BDBE02 /* River.swift in Sources */,
 				78347D491B80205600DBE981 /* TweetsStore.swift in Sources */,
-				78347D461B801EF400DBE981 /* FriendsViewController+.swift in Sources */,
+				78347D461B801EF400DBE981 /* FriendsViewController+DZNEmptyDataSet.swift in Sources */,
 				78B2CD6B1B653006006E9B90 /* UnreadIndicator.swift in Sources */,
 				788ABF461B6076D000E3540F /* MediaSize.swift in Sources */,
 				788ABF3E1B60764D00E3540F /* UserMentionEntity.swift in Sources */,
@@ -900,6 +900,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Supporting Files/Avetuc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Debug;
 		};
@@ -920,6 +921,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Avetuc/Supporting Files/Avetuc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Ounchecked";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Release;
 		};
