@@ -23,7 +23,6 @@ PODS:
     - RxSwift
   - RxSwift (1.9)
   - SnapKit (0.12.0)
-  - TapLabel (0.0.3)
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
@@ -40,7 +39,6 @@ DEPENDENCIES:
   - RxCocoa (= 1.9.0)
   - RxSwift (= 1.9.0)
   - SnapKit (= 0.12.0)
-  - TapLabel (= 0.0.3)
   - TUSafariActivity (= 1.0.4)
 
 EXTERNAL SOURCES:
@@ -76,7 +74,6 @@ SPEC CHECKSUMS:
   RxCocoa: 6ef9cc14418d5bbda067550e46f5949a3eeca37d
   RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
   SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
-  TapLabel: d85c23c836609748d505c0147de29c6e5c537b9a
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
 COCOAPODS: 0.38.2

@@ -1,5 +1,4 @@
 import UIKit
-import TapLabel
 import SnapKit
 import RxSwift
 import RxCocoa

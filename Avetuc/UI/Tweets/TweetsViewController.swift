@@ -1,6 +1,4 @@
-import Foundation
 import UIKit
-import TapLabel
 import RxSwift
 import SnapKit
 
