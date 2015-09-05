@@ -4,6 +4,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Cartography
+import AsyncDisplayKit
 
 class TweetCell: UITableViewCell {
 
@@ -24,7 +25,6 @@ class TweetCell: UITableViewCell {
         self.layoutMargins = UIEdgeInsetsZero
         self.separatorInset = UIEdgeInsetsMake(0, 72, 0, 0)
 
-        self.contentView.addSubview(self.textView)
         self.contentView.addSubview(self.profileImageView)
         self.contentView.addSubview(self.userNames)
         self.contentView.addSubview(self.timeText)
@@ -51,16 +51,21 @@ class TweetCell: UITableViewCell {
         constrain(self.contentView) { view in
             self.heightConstraint = (view.height == 0)
         }
+
+        self.textNode.userInteractionEnabled = true
+        self.textNode.delegate = self
+        self.contentView.addSubnode(self.textNode)
     }
 
     let bag = DisposeBag()
 
     let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 12, width: 48, height: 48))
-    let textView = TweetTextView()
     let timeText = TimestampView()
     let userNames = UserNames()
     let retweetedText = RetweetedText()
     let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+
+    let textNode = ASTextNode()
 
     var heightConstraint: NSLayoutConstraint!
     var cellData: TweetCellData?
@@ -85,7 +90,10 @@ class TweetCell: UITableViewCell {
 
         self.heightConstraint.constant = TweetCell.heightForText(cellData.text!, isRetweet: isRetweet)
 
-        self.textView.attributedText = cellData.text
+        self.textNode.attributedString = cellData.text!
+        self.textNode.measure(CGSize(width: TWEET_CELL_TEXT_WIDTH, height: CGFloat.max))
+        self.textNode.frame = CGRect(origin: CGPoint(x: 72, y: isRetweet ? 30 : 10), size: self.textNode.calculatedSize)
+
         self.timeText.text = relativeTimeString(parseTwitterTimestamp(cellData.tweet.created_at))
 
         if let retweetedUser = cellData.tweet.retweeted_status?.user {
@@ -100,12 +108,6 @@ class TweetCell: UITableViewCell {
             self.profileImageView.updateImage(user.profile_image_url)
             self.userNames.hidden = true
             self.retweetedText.hidden = true
-        }
-
-        self.textView.snp_updateConstraints { make in
-            make.left.equalTo(self).offset(72)
-            make.right.equalTo(self).offset(-10)
-            make.top.equalTo(cellData.tweet.retweeted_status == nil ? 10 : 30)
         }
 
         self.unreadIndicatorDisposable = cellData.tweet.rx_observe("is_read") as Observable<Bool?>
@@ -126,5 +128,26 @@ class TweetCell: UITableViewCell {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension TweetCell: ASTextNodeDelegate {
+
+    
+
+    func textNode(
+        textNode: ASTextNode!,
+        tappedLinkAttribute attribute: String!,
+        value: AnyObject!,
+        atPoint point: CGPoint,
+        textRange: NSRange)
+    {
+        println(attribute)
+        println(value)
+    }
+
+    func textNode(textNode: ASTextNode!, shouldHighlightLinkAttribute attribute: String!, value: AnyObject!, atPoint point: CGPoint) -> Bool {
+        println(attribute)
+        return true
     }
 }

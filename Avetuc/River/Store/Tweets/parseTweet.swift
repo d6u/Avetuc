@@ -83,7 +83,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         attri.append((NSForegroundColorAttributeName, color, j, j + l))
 
         if let link = link {
-            attri.append((TapLabel.LinkContentName, link, j, j + l))
+            attri.append((NSLinkAttributeName, link, j, j + l))
             attri.append((TapLabel.SelectedForegroudColorName, UIColor.redColor(), j, j + l))
         }
 
