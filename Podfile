@@ -1,7 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'SnapKit', '0.12.0'
+pod 'SnapKit', '0.13.0'
 pod 'Async', :git => 'https://github.com/duemunk/Async.git', :commit => '9e64046b767fe11010891f5b7fe2aed613a6ee55'
 pod 'RealmSwift', '0.95.0'
 pod 'Kingfisher', '1.4.2'
@@ -14,4 +14,3 @@ pod 'DZNEmptyDataSet', '1.7'
 pod 'M13ProgressSuite', '1.2.7'
 pod 'BRYXBanner', '0.2.2'
 pod 'AsyncDisplayKit', '1.2.3'
-pod 'Cartography', '0.5.0'

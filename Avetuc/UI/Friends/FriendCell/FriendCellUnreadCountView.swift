@@ -13,7 +13,7 @@ class FriendCellUnreadCountView: UIView {
         self.addSubview(self.label)
 
         self.label.snp_makeConstraints { make in
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(3, 5, 3, 5))
+            make.edges.equalTo(self).inset(UIEdgeInsetsMake(3, 5, 3, 5))
         }
     }
 

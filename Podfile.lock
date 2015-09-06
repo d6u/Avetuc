@@ -5,7 +5,6 @@ PODS:
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
   - BRYXBanner (0.2.2)
-  - Cartography (0.5.0)
   - CryptoSwift (0.0.12)
   - DZNEmptyDataSet (1.7)
   - EasyAnimation (0.7.0)
@@ -22,14 +21,13 @@ PODS:
   - RxCocoa (1.9):
     - RxSwift
   - RxSwift (1.9)
-  - SnapKit (0.12.0)
+  - SnapKit (0.13.0)
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
   - Async (from `https://github.com/duemunk/Async.git`, commit `9e64046b767fe11010891f5b7fe2aed613a6ee55`)
   - AsyncDisplayKit (= 1.2.3)
   - BRYXBanner (= 0.2.2)
-  - Cartography (= 0.5.0)
   - DZNEmptyDataSet (= 1.7)
   - EasyAnimation (= 0.7.0)
   - Kingfisher (= 1.4.2)
@@ -38,7 +36,7 @@ DEPENDENCIES:
   - RealmSwift (= 0.95.0)
   - RxCocoa (= 1.9.0)
   - RxSwift (= 1.9.0)
-  - SnapKit (= 0.12.0)
+  - SnapKit (= 0.13.0)
   - TUSafariActivity (= 1.0.4)
 
 EXTERNAL SOURCES:
@@ -62,7 +60,6 @@ SPEC CHECKSUMS:
   Async: edb15b1e34181d7c9873ce6b5d6eabc1c99e638b
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   BRYXBanner: 48b3759e3f04799f14081e3dfa913bea6d528011
-  Cartography: 774e5cc446f5a6bca5d4345c5aa6af9a1fe74dc6
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
   DZNEmptyDataSet: 896f8efb3b0961c5ccb59d4959ccf9280854aa3d
   EasyAnimation: ddc49f0eaf034f6d47a95bf805d9e95e84908053
@@ -73,7 +70,7 @@ SPEC CHECKSUMS:
   RealmSwift: 35eeb642bf0b43dedfe363451ba3288d0e72ebb9
   RxCocoa: 6ef9cc14418d5bbda067550e46f5949a3eeca37d
   RxSwift: cbc8c34c6aaffda5d3c44a2a1c7e822948b78896
-  SnapKit: 00c388aa3bf1944c1b55472f31e841f75bd83882
+  SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
 COCOAPODS: 0.38.2

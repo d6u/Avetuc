@@ -2,7 +2,6 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import Cartography
 import AsyncDisplayKit
 
 class TweetCell: UITableViewCell {
@@ -17,6 +16,21 @@ class TweetCell: UITableViewCell {
             ceil(boundingRect.size.height) + (isRetweet ? 30 : 10) + 37,
             89 + (isRetweet ? 20 : 0)) // Ensure min height
     }
+
+    let bag = DisposeBag()
+
+    let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 12, width: 48, height: 48))
+    let timeText = TimestampView()
+    let userNames = UserNames()
+    let retweetedText = RetweetedText()
+    let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
+
+    let textNode = TweetTextNode()
+
+    var heightConstraint: Constraint!
+    var cellData: TweetCellData?
+    var markReadTimer: Timer?
+    var unreadIndicatorDisposable: Disposable?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
@@ -48,26 +62,11 @@ class TweetCell: UITableViewCell {
             make.bottom.equalTo(self).offset(-10)
         }
 
-        constrain(self.contentView) { view in
-            self.heightConstraint = (view.height == 0)
-            view.width == self.frame.width // Otherwise contentView will collapse to zero width
+        self.contentView.snp_makeConstraints { make in
+            self.heightConstraint = make.height.equalTo(0).constraint
+            make.width.equalTo(self)
         }
     }
-
-    let bag = DisposeBag()
-
-    let profileImageView = ProfileImageView(frame: CGRect(x: 12, y: 12, width: 48, height: 48))
-    let timeText = TimestampView()
-    let userNames = UserNames()
-    let retweetedText = RetweetedText()
-    let unreadIndicator = UnreadIndicator(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
-
-    let textNode = TweetTextNode()
-
-    var heightConstraint: NSLayoutConstraint!
-    var cellData: TweetCellData?
-    var markReadTimer: Timer?
-    var unreadIndicatorDisposable: Disposable?
 
     override func prepareForReuse() {
         self.unreadIndicatorDisposable?.dispose()
@@ -85,7 +84,7 @@ class TweetCell: UITableViewCell {
             cellData.text = parseTweetText(isRetweet ? cellData.tweet.retweeted_status! : cellData.tweet)
         }
 
-        self.heightConstraint.constant = TweetCell.heightForText(cellData.text!, isRetweet: isRetweet)
+        self.heightConstraint.updateOffset(TweetCell.heightForText(cellData.text!, isRetweet: isRetweet))
 
         self.textNode.text = cellData.text!
         self.textNode.frame = CGRect(origin: CGPoint(x: 72, y: isRetweet ? 30 : 10), size: self.textNode.calculatedSize)
