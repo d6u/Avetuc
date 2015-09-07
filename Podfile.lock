@@ -29,7 +29,7 @@ DEPENDENCIES:
   - AsyncDisplayKit (= 1.2.3)
   - BRYXBanner (= 0.2.2)
   - DZNEmptyDataSet (= 1.7)
-  - EasyAnimation (= 0.7.0)
+  - EasyAnimation (from `https://github.com/icanzilb/EasyAnimation.git`, commit `fbef368eb157936e4c7df98189908852b7b37c75`)
   - Kingfisher (= 1.4.2)
   - LarryBird (from `https://github.com/d6u/LarryBird.git`, tag `v0.0.4`)
   - M13ProgressSuite (= 1.2.7)
@@ -43,6 +43,9 @@ EXTERNAL SOURCES:
   Async:
     :commit: 9e64046b767fe11010891f5b7fe2aed613a6ee55
     :git: https://github.com/duemunk/Async.git
+  EasyAnimation:
+    :commit: fbef368eb157936e4c7df98189908852b7b37c75
+    :git: https://github.com/icanzilb/EasyAnimation.git
   LarryBird:
     :git: https://github.com/d6u/LarryBird.git
     :tag: v0.0.4
@@ -51,6 +54,9 @@ CHECKOUT OPTIONS:
   Async:
     :commit: 9e64046b767fe11010891f5b7fe2aed613a6ee55
     :git: https://github.com/duemunk/Async.git
+  EasyAnimation:
+    :commit: fbef368eb157936e4c7df98189908852b7b37c75
+    :git: https://github.com/icanzilb/EasyAnimation.git
   LarryBird:
     :git: https://github.com/d6u/LarryBird.git
     :tag: v0.0.4
@@ -62,7 +68,7 @@ SPEC CHECKSUMS:
   BRYXBanner: 48b3759e3f04799f14081e3dfa913bea6d528011
   CryptoSwift: 16f1b5a768057636275b76d1c43231c2abba9e80
   DZNEmptyDataSet: 896f8efb3b0961c5ccb59d4959ccf9280854aa3d
-  EasyAnimation: ddc49f0eaf034f6d47a95bf805d9e95e84908053
+  EasyAnimation: f58cd2cb74807f67280a2aff7a6e5bf8da423c19
   Kingfisher: 4446782a827abbe2e6048a1fa741924a10e6ad7c
   LarryBird: 59c40f924de624343025195deae2a772e51234da
   M13ProgressSuite: 03d194af6359da440641ba758aed5a18b0386a86
