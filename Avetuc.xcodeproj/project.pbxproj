@@ -26,7 +26,6 @@
 		78347D4C1B80213100DBE981 /* TweetStore Support Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D4B1B80213100DBE981 /* TweetStore Support Type.swift */; };
 		78347D4E1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D4D1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift */; };
 		78347D511B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D501B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift */; };
-		78347D531B8029B400DBE981 /* LoadedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D521B8029B400DBE981 /* LoadedObjects.swift */; };
 		78347D551B802BDF00DBE981 /* UpdateTweetReadStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D541B802BDF00DBE981 /* UpdateTweetReadStateStore.swift */; };
 		78347D581B80348900DBE981 /* TweetsViewController+ASTextNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D571B80348900DBE981 /* TweetsViewController+ASTextNodeDelegate.swift */; };
 		78347D5A1B8034D800DBE981 /* TweetsViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78347D591B8034D800DBE981 /* TweetsViewController+TableView.swift */; };
@@ -118,7 +117,6 @@
 		78347D4B1B80213100DBE981 /* TweetStore Support Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetStore Support Type.swift"; sourceTree = "<group>"; };
 		78347D4D1B80227C00DBE981 /* TweetsViewController+LifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+LifeCycle.swift"; sourceTree = "<group>"; };
 		78347D501B8022D700DBE981 /* TweetsViewController+ScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
-		78347D521B8029B400DBE981 /* LoadedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedObjects.swift; sourceTree = "<group>"; };
 		78347D541B802BDF00DBE981 /* UpdateTweetReadStateStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTweetReadStateStore.swift; sourceTree = "<group>"; };
 		78347D571B80348900DBE981 /* TweetsViewController+ASTextNodeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+ASTextNodeDelegate.swift"; sourceTree = "<group>"; };
 		78347D591B8034D800DBE981 /* TweetsViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetsViewController+TableView.swift"; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 				78F7A7BA1B63C502002CF1C6 /* Actions.swift */,
 				78D866C71B7AF1AF0088D8A7 /* CommonScheduler.swift */,
 				7879FFE01B7238A1004D8AFF /* Custom Operators.swift */,
-				78347D521B8029B400DBE981 /* LoadedObjects.swift */,
 				78104DFC1B70FAAE00BDBE02 /* River.swift */,
 			);
 			path = River;
@@ -772,7 +769,6 @@
 				78FD6C4B1B55FE2B00AA3875 /* RootViewController.swift in Sources */,
 				78643C671B7BBFA500581AF1 /* MediaSizes.swift in Sources */,
 				7826CD291B60A0D300B7DBD1 /* multiSort.swift in Sources */,
-				78347D531B8029B400DBE981 /* LoadedObjects.swift in Sources */,
 				78347D611B80392700DBE981 /* RootViewController+LifeCycle.swift in Sources */,
 				78DCCD8E1B64365A0066FDB2 /* parseTweet.swift in Sources */,
 				78347D381B7FDC6100DBE981 /* AuthWebViewController+WebViewDelegate.swift in Sources */,

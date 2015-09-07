@@ -16,7 +16,7 @@ class TweetsStore {
             >- startWith()
             >- map { () -> [Tweet] in
                 let tweets = Realm().objects(Tweet.self).filter("user = %@", user).sorted("id", ascending: false)
-                return LoadedObjects.instance.getLoadedTweets(Array(tweets))
+                return Array(tweets)
             }
             >- map { (tweets: [Tweet]) -> [TweetCellData] in
                 tweets.map { TweetCellData(tweet: $0, text: nil) }
