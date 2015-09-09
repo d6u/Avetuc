@@ -1,6 +1,4 @@
-import Foundation
 import UIKit
-import TapLabel
 import RxSwift
 import SnapKit
 
@@ -21,6 +19,8 @@ class TweetsViewController: UITableViewController {
         self.tableView.allowsSelection = false
         self.tableView.layoutMargins = UIEdgeInsetsZero
         self.tableView.registerClass(TweetCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.rx_controlEvents(.ValueChanged)

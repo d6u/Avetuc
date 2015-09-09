@@ -21,7 +21,7 @@ class FriendsStore {
                 for tweet in account.home_timeline {
                     friends.insert(tweet.user!)
                 }
-                return LoadedObjects.instance.getLoadedUsers(Array(friends))
+                return Array(friends)
             }
             >- filter { $0.count > 0 }
             >- map {

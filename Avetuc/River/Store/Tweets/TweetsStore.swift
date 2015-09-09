@@ -16,20 +16,10 @@ class TweetsStore {
             >- startWith()
             >- map { () -> [Tweet] in
                 let tweets = Realm().objects(Tweet.self).filter("user = %@", user).sorted("id", ascending: false)
-                return LoadedObjects.instance.getLoadedTweets(Array(tweets))
+                return Array(tweets)
             }
             >- map { (tweets: [Tweet]) -> [TweetCellData] in
-                tweets.map { tweet in
-                    let text: NSAttributedString
-
-                    if let retweeted_status = tweet.retweeted_status {
-                        text = parseTweetText(retweeted_status)
-                    } else {
-                        text = parseTweetText(tweet)
-                    }
-
-                    return TweetCellData(tweet: tweet, text: text)
-                }
+                tweets.map { TweetCellData(tweet: $0, text: nil) }
             }
     }
 }

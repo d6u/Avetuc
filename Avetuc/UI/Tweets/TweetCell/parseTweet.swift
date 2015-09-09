@@ -1,6 +1,6 @@
-import Foundation
 import UIKit
-import TapLabel
+
+let TEXT_LINK_ATTR_NAME = "TEXT_LINK_ATTR_NAME"
 
 func parseTweetText(tweet: Tweet) -> NSAttributedString {
 
@@ -84,8 +84,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         attri.append((NSForegroundColorAttributeName, color, j, j + l))
 
         if let link = link {
-            attri.append((TapLabel.LinkContentName, link, j, j + l))
-            attri.append((TapLabel.SelectedForegroudColorName, UIColor.redColor(), j, j + l))
+            attri.append((TEXT_LINK_ATTR_NAME, link, j, j + l))
         }
 
         i = e._indices.tail
@@ -113,23 +112,11 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         text.addAttributes([key: value], range: NSMakeRange(head, tail - head))
     }
 
+    text.replaceOccurrencesOfString("&amp;", withString: "&")
+    text.replaceOccurrencesOfString("&lt;", withString: "<")
+    text.replaceOccurrencesOfString("&gt;", withString: ">")
+
     return text
-}
-
-extension String {
-
-    func substringToIndex(index: Int) -> String {
-        return self.substringToIndex(advance(self.startIndex, index))
-    }
-
-    func substringFromIndex(index: Int) -> String {
-        return self.substringFromIndex(advance(self.startIndex, index))
-    }
-
-    func substringBetweenIndexes(begin: Int, _ end: Int) -> String {
-        let substring = self.substringToIndex(end)
-        return substring.substringFromIndex(begin)
-    }
 }
 
 protocol GeneralEntity {
