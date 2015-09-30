@@ -73,7 +73,7 @@ class IntroViewController: UIViewController {
 
     // MARK: - No use
 
-    required convenience init(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

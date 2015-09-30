@@ -23,7 +23,7 @@ extension TweetsViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.isMonitoringScroll = false
-        for cell in self.tableView.visibleCells() as! [TweetCell] {
+        for cell in self.tableView.visibleCells as! [TweetCell] {
             cell.cancelMakeReadTimer()
         }
     }

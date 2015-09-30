@@ -25,7 +25,7 @@ class IntroView: UIView {
         }()
 
         self.webAuthButton = {
-            let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            let button = UIButton(type: UIButtonType.Custom)
             button.backgroundColor = UIColor(netHex: 0x787878)
             let title = NSAttributedString(string: "Sign in with Twitter", attributes: [
                 NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 20)!,
@@ -60,7 +60,7 @@ class IntroView: UIView {
 
     // MARK: - No use
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

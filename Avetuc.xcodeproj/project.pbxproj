@@ -597,6 +597,8 @@
 		78FD6C181B55FC9300AA3875 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Daiwei Lu";
 				TargetAttributes = {

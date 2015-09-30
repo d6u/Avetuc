@@ -8,7 +8,7 @@ enum SortResult {
 
 func multiSort<T>(array: [T], sorter: [(T, T) -> SortResult]) -> [T]
 {
-    return sorted(array, { (a, b) -> Bool in
+    return array.sort({ (a, b) -> Bool in
         var r: SortResult = .LeftFirst
 
         for s in sorter {

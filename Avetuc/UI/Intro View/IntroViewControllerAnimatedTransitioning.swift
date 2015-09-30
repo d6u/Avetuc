@@ -14,7 +14,7 @@ class IntroViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimat
         self.duration = isDismissing ? 0.3 : 0.5
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return self.duration
     }
 
@@ -44,7 +44,7 @@ class IntroViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimat
                 delay: 0.0,
                 usingSpringWithDamping: 1,
                 initialSpringVelocity: 2,
-                options: nil,
+                options: [],
                 animations: {
                     let introView = self.introViewController.view as! IntroView
                     introView.layer.position.y -= introView.frame.height

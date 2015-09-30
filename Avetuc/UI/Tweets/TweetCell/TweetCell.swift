@@ -9,7 +9,7 @@ class TweetCell: UITableViewCell {
     static func heightForText(text: NSAttributedString, isRetweet: Bool) -> CGFloat
     {
         let boundingRect = text.boundingRectWithSize(CGSizeMake(TWEET_CELL_TEXT_WIDTH, CGFloat.max),
-            options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading,
+            options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading],
             context: nil)
 
         return max(
@@ -112,7 +112,7 @@ class TweetCell: UITableViewCell {
 
     func setMakeReadTimer() {
         self.markReadTimer = Timer(duration: 1) { [unowned self] in
-            action_updateTweetReadState(self.cellData!.tweet, true)
+            action_updateTweetReadState(self.cellData!.tweet, isRead: true)
         }
     }
 
@@ -120,7 +120,7 @@ class TweetCell: UITableViewCell {
         self.markReadTimer = nil
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

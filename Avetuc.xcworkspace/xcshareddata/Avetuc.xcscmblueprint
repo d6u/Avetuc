@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "56A63A6F42BC508D483CF51FB9F4A710CAAD48EB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FEEE689048C6C02176444B2CCAE320EC6C23C634" : 0,
+    "56A63A6F42BC508D483CF51FB9F4A710CAAD48EB" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9D5C2F3B-D8E7-490A-9D13-47A7F75E67CC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FEEE689048C6C02176444B2CCAE320EC6C23C634" : "LarryBird",
+    "56A63A6F42BC508D483CF51FB9F4A710CAAD48EB" : "Avetuc-refactor"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Avetuc",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Avetuc.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:d6u\/Avetuc-refactor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "56A63A6F42BC508D483CF51FB9F4A710CAAD48EB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:d6u\/LarryBird.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FEEE689048C6C02176444B2CCAE320EC6C23C634"
+    }
+  ]
+}

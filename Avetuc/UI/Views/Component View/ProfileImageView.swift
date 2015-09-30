@@ -15,7 +15,7 @@ class ProfileImageView: UIImageView {
         self.kf_setImageWithURL(NSURL(string: biggerUrl)!, placeholderImage: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

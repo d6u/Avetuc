@@ -40,7 +40,7 @@ class AuthWebViewController: UIViewController {
             >- self.bag.addDisposable
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

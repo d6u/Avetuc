@@ -32,7 +32,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         }
     }
 
-    entities.sort { (a: GeneralEntity, b: GeneralEntity) -> Bool in
+    entities.sortInPlace { (a: GeneralEntity, b: GeneralEntity) -> Bool in
         return a._indices.head < b._indices.head
     }
 
@@ -53,12 +53,12 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         switch e {
         case let url as UrlEntity:
             parts.append(url.display_url)
-            l = count(url.display_url)
+            l = url.display_url.characters.count
             link = url.expanded_url
             color = UIColor(netHex: 0x549AE6)
         case let media as MediaEntity:
             parts.append(media.display_url)
-            l = count(media.display_url)
+            l = media.display_url.characters.count
             color = UIColor(netHex: 0x549AE6)
         case let userMention as UserMentionEntity:
             parts.append(string.substringBetweenIndexes(e._indices.head, e._indices.tail))
@@ -75,7 +75,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
                 continue
             }
             parts.append(extendedMedia.display_url)
-            l = count(extendedMedia.display_url)
+            l = extendedMedia.display_url.characters.count
             color = UIColor(netHex: 0x549AE6)
         default:
             continue
@@ -91,7 +91,7 @@ func parseTweetText(tweet: Tweet) -> NSAttributedString {
         j += l
     }
 
-    parts.append(string.substringBetweenIndexes(i, count(string)))
+    parts.append(string.substringBetweenIndexes(i, string.characters.count))
 
     // Cannot use `join("", parts)`
     // because it will hang when string has contry flag emoji

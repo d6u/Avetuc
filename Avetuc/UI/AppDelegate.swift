@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
         #if DEBUG
-        println("in DEBUG")
+        print("in DEBUG")
         #endif
 
         self.window = UIWindow(frame: screenBounds())

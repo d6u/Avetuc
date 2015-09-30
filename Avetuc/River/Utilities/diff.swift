@@ -27,20 +27,20 @@ func diff<E: Equatable>(hasUpdate: (E, E) -> Bool)(pre: [E]?, new: [E]) -> DiffR
             return .Initial(new)
         }
 
-        for (i, el) in enumerate(new) {
-            if !contains(pre, el) {
+        for (i, el) in new.enumerate() {
+            if !pre.contains(el) {
                 insert.append(DiffItem(element: el, index: i))
             }
             else if i < pre.count && el == pre[i] && hasUpdate(el, pre[i]) {
                 update.append(DiffItem(element: el, index: i))
             }
-            else if let oldIndex = find(pre, el) where oldIndex != i {
+            else if let oldIndex = pre.indexOf(el) where oldIndex != i {
                 move.append(MovedItem(element: el, newIndex: i, oldIndex: oldIndex))
             }
         }
 
-        for (i, el) in enumerate(pre) {
-            if !contains(new, el) {
+        for (i, el) in pre.enumerate() {
+            if !new.contains(el) {
                 remove.append(DiffItem(element: el, index: i))
             }
         }
